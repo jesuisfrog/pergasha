@@ -5,7 +5,7 @@
 export default class AbilityUseDialog extends Dialog {
   constructor(item, dialogData={}, options={}) {
     super(dialogData, options);
-    this.options.classes = ["dnd5e", "dialog"];
+    this.options.classes = ["pergasha-foundryvtt", "dialog"];
 
     /**
      * Store a reference to the Item entity being used
@@ -52,7 +52,7 @@ export default class AbilityUseDialog extends Dialog {
     if ( item.data.type === "spell" ) this._getSpellData(actorData, itemData, data);
 
     // Render the ability usage template
-    const html = await renderTemplate("systems/dnd5e/templates/apps/ability-use.html", data);
+    const html = await renderTemplate("systems/pergasha-foundryvtt/templates/apps/ability-use.html", data);
 
     // Create the Dialog and return data as a Promise
     const icon = data.isSpell ? "fa-magic" : "fa-fist-raised";

@@ -1,13 +1,3 @@
-/**
- * The DnD5e game system for Foundry Virtual Tabletop
- * A system for playing the fifth edition of the worlds most popular roleplaying game.
- * Author: Atropos
- * Software License: GNU GPLv3
- * Content License: https://media.wizards.com/2016/downloads/DND/SRD-OGL_V5.1.pdf
- * Repository: https://gitlab.com/foundrynet/dnd5e
- * Issue Tracker: https://gitlab.com/foundrynet/dnd5e/issues
- */
-
 // Import Modules
 import { DND5E } from "./module/config.js";
 import { registerSystemSettings } from "./module/settings.js";
@@ -43,7 +33,7 @@ import * as migrations from "./module/migration.js";
 /*  Foundry VTT Initialization                  */
 /* -------------------------------------------- */
 
-Hooks.once("init", function() {
+Hooks.once("init", function () {
   console.log(`DnD5e | Initializing the DnD5e Game System\n${DND5E.ASCII}`);
 
   // Create a namespace within the game global
@@ -103,23 +93,23 @@ Hooks.once("init", function() {
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("dnd5e", ActorSheet5eCharacter, {
+  Actors.registerSheet("pergasha-foundryvtt", ActorSheet5eCharacter, {
     types: ["character"],
     makeDefault: true,
     label: "DND5E.SheetClassCharacter"
   });
-  Actors.registerSheet("dnd5e", ActorSheet5eNPC, {
+  Actors.registerSheet("pergasha-foundryvtt", ActorSheet5eNPC, {
     types: ["npc"],
     makeDefault: true,
     label: "DND5E.SheetClassNPC"
   });
-  Actors.registerSheet('dnd5e', ActorSheet5eVehicle, {
+  Actors.registerSheet('pergasha-foundryvtt', ActorSheet5eVehicle, {
     types: ['vehicle'],
     makeDefault: true,
     label: "DND5E.SheetClassVehicle"
   });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("dnd5e", ItemSheet5e, {
+  Items.registerSheet("pergasha-foundryvtt", ItemSheet5e, {
     makeDefault: true,
     label: "DND5E.SheetClassItem"
   });
@@ -136,7 +126,7 @@ Hooks.once("init", function() {
 /**
  * This function runs after game data has been requested and loaded from the servers, so entities exist
  */
-Hooks.once("setup", function() {
+Hooks.once("setup", function () {
 
   // Localize CONFIG objects once up-front
   const toLocalize = [
@@ -155,11 +145,11 @@ Hooks.once("setup", function() {
   ];
 
   // Localize and sort CONFIG objects
-  for ( let o of toLocalize ) {
+  for (let o of toLocalize) {
     const localized = Object.entries(CONFIG.DND5E[o]).map(e => {
       return [e[0], game.i18n.localize(e[1])];
     });
-    if ( !noSort.includes(o) ) localized.sort((a, b) => a[1].localeCompare(b[1]));
+    if (!noSort.includes(o)) localized.sort((a, b) => a[1].localeCompare(b[1]));
     CONFIG.DND5E[o] = localized.reduce((obj, e) => {
       obj[e[0]] = e[1];
       return obj;
@@ -172,25 +162,25 @@ Hooks.once("setup", function() {
 /**
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
-Hooks.once("ready", function() {
+Hooks.once("ready", function () {
 
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (bar, data, slot) => macros.create5eMacro(data, slot));
 
   // Determine whether a system migration is required and feasible
-  if ( !game.user.isGM ) return;
-  const currentVersion = game.settings.get("dnd5e", "systemMigrationVersion");
+  if (!game.user.isGM) return;
+  const currentVersion = game.settings.get("pergasha-foundryvtt", "systemMigrationVersion");
   const NEEDS_MIGRATION_VERSION = "1.3.4";
   const COMPATIBLE_MIGRATION_VERSION = 0.80;
   const totalDocuments = game.actors.size + game.scenes.size + game.items.size;
-  if ( !currentVersion && totalDocuments === 0 ) return game.settings.set("dnd5e", "systemMigrationVersion", game.system.data.version);
+  if (!currentVersion && totalDocuments === 0) return game.settings.set("pergasha-foundryvtt", "systemMigrationVersion", game.system.data.version);
   const needsMigration = !currentVersion || isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
-  if ( !needsMigration ) return;
+  if (!needsMigration) return;
 
   // Perform the migration
-  if ( currentVersion && isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion) ) {
+  if (currentVersion && isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion)) {
     const warning = `Your DnD5e system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
-    ui.notifications.error(warning, {permanent: true});
+    ui.notifications.error(warning, { permanent: true });
   }
   migrations.migrateWorld();
 });
@@ -199,9 +189,9 @@ Hooks.once("ready", function() {
 /*  Canvas Initialization                       */
 /* -------------------------------------------- */
 
-Hooks.on("canvasInit", function() {
+Hooks.on("canvasInit", function () {
   // Extend Diagonal Measurement
-  canvas.grid.diagonalRule = game.settings.get("dnd5e", "diagonalMovement");
+  canvas.grid.diagonalRule = game.settings.get("pergasha-foundryvtt", "diagonalMovement");
   SquareGrid.prototype.measureDistances = measureDistances;
 });
 
@@ -219,7 +209,7 @@ Hooks.on("renderChatMessage", (app, html, data) => {
   chat.highlightCriticalSuccessFailure(app, html, data);
 
   // Optionally collapse the content
-  if (game.settings.get("dnd5e", "autoCollapseItemCards")) html.find(".card-content").hide();
+  if (game.settings.get("pergasha-foundryvtt", "autoCollapseItemCards")) html.find(".card-content").hide();
 });
 Hooks.on("getChatLogEntryContext", chat.addChatMessageContextOptions);
 Hooks.on("renderChatLog", (app, html, data) => Item5e.chatListeners(html));

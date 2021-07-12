@@ -11,7 +11,7 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
   /** @override */
 	static get defaultOptions() {
 	  return mergeObject(super.defaultOptions, {
-      classes: ["dnd5e", "sheet", "actor", "npc"],
+      classes: ["pergasha-foundryvtt", "sheet", "actor", "npc"],
       width: 600,
       height: 680
     });

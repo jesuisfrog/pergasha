@@ -3,9 +3,9 @@
  * @type {Dialog}
  */
 export default class SelectItemsPrompt extends Dialog {
-  constructor(items, dialogData={}, options={}) {
+  constructor(items, dialogData = {}, options = {}) {
     super(dialogData, options);
-    this.options.classes = ["dnd5e", "dialog", "select-items-prompt", "sheet"];
+    this.options.classes = ["pergasha-foundryvtt", "dialog", "select-items-prompt", "sheet"];
 
     /**
      * Store a reference to the Item entities being used
@@ -16,7 +16,7 @@ export default class SelectItemsPrompt extends Dialog {
 
   activateListeners(html) {
     super.activateListeners(html);
-    
+
     // render the item's sheet if its image is clicked
     html.on('click', '.item-image', (event) => {
       const item = this.items.find((feature) => feature.id === event.currentTarget.dataset?.itemId);
@@ -37,7 +37,7 @@ export default class SelectItemsPrompt extends Dialog {
     hint
   }) {
     // Render the ability usage template
-    const html = await renderTemplate("systems/dnd5e/templates/apps/select-items-prompt.html", {items, hint});
+    const html = await renderTemplate("systems/pergasha-foundryvtt/templates/apps/select-items-prompt.html", { items, hint });
 
     return new Promise((resolve) => {
       const dlg = new this(items, {

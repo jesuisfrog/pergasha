@@ -7,8 +7,8 @@ export default class ActorHitDiceConfig extends DocumentSheet {
     /** @override */
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
-            classes: ["dnd5e", "hd-config", "dialog"],
-            template: "systems/dnd5e/templates/apps/hit-dice-config.html",
+            classes: ["pergasha-foundryvtt", "hd-config", "dialog"],
+            template: "systems/pergasha-foundryvtt/templates/apps/hit-dice-config.html",
             width: 360,
             height: "auto"
         });

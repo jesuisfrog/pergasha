@@ -756,7 +756,7 @@ DND5E.spellScrollIds = {
  * @enum {string}
  */
 DND5E.sourcePacks = {
-  ITEMS: "dnd5e.items"
+  ITEMS: "pergasha-foundryvtt.items"
 }
 
 /**

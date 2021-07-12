@@ -5,10 +5,10 @@
 export default class ActorSensesConfig extends DocumentSheet {
 
   /** @inheritdoc */
-	static get defaultOptions() {
-	  return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["dnd5e"],
-      template: "systems/dnd5e/templates/apps/senses-config.html",
+  static get defaultOptions() {
+    return foundry.utils.mergeObject(super.defaultOptions, {
+      classes: ["pergasha-foundryvtt"],
+      template: "systems/pergasha-foundryvtt/templates/apps/senses-config.html",
       width: 300,
       height: "auto"
     });
@@ -31,7 +31,7 @@ export default class ActorSensesConfig extends DocumentSheet {
       special: senses.special ?? "",
       units: senses.units, movementUnits: CONFIG.DND5E.movementUnits
     };
-    for ( let [name, label] of Object.entries(CONFIG.DND5E.senses) ) {
+    for (let [name, label] of Object.entries(CONFIG.DND5E.senses)) {
       const v = senses[name];
       data.senses[name] = {
         label: game.i18n.localize(label),

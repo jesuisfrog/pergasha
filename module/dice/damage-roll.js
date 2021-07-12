@@ -13,14 +13,14 @@ export default class DamageRoll extends Roll {
   constructor(formula, data, options) {
     super(formula, data, options);
     // For backwards compatibility, skip rolls which do not have the "critical" option defined
-    if ( this.options.critical !== undefined ) this.configureDamage();
+    if (this.options.critical !== undefined) this.configureDamage();
   }
 
   /**
    * The HTML template path used to configure evaluation of this Roll
    * @type {string}
    */
-  static EVALUATION_TEMPLATE = "systems/dnd5e/templates/chat/roll-dialog.html";
+  static EVALUATION_TEMPLATE = "systems/pergasha-foundryvtt/templates/chat/roll-dialog.html";
 
   /* -------------------------------------------- */
 
@@ -42,19 +42,19 @@ export default class DamageRoll extends Roll {
    */
   configureDamage() {
     let flatBonus = 0;
-    for ( let [i, term] of this.terms.entries() ) {
+    for (let [i, term] of this.terms.entries()) {
 
       // Multiply dice terms
-      if ( term instanceof DiceTerm ) {
+      if (term instanceof DiceTerm) {
         term.options.baseNumber = term.options.baseNumber ?? term.number; // Reset back
         term.number = term.options.baseNumber;
-        if ( this.isCritical ) {
+        if (this.isCritical) {
           let cm = this.options.criticalMultiplier ?? 2;
 
           // Powerful critical - maximize damage and reduce the multiplier by 1
-          if ( this.options.powerfulCritical ) {
+          if (this.options.powerfulCritical) {
             flatBonus += (term.number * term.faces);
-            cm = Math.max(1, cm-1);
+            cm = Math.max(1, cm - 1);
           }
 
           // Alter the damage term
@@ -66,10 +66,10 @@ export default class DamageRoll extends Roll {
       }
 
       // Multiply numeric terms
-      else if ( this.options.multiplyNumeric && (term instanceof NumericTerm)  ) {
+      else if (this.options.multiplyNumeric && (term instanceof NumericTerm)) {
         term.options.baseNumber = term.options.baseNumber ?? term.number; // Reset back
         term.number = term.options.baseNumber;
-        if ( this.isCritical ) {
+        if (this.isCritical) {
           term.number *= (this.options.criticalMultiplier ?? 2);
           term.options.critical = true;
         }
@@ -77,9 +77,9 @@ export default class DamageRoll extends Roll {
     }
 
     // Add powerful critical bonus
-    if ( this.options.powerfulCritical && (flatBonus > 0) ) {
-      this.terms.push(new OperatorTerm({operator: "+"}));
-      this.terms.push(new NumericTerm({number: flatBonus}, {flavor: game.i18n.localize("DND5E.PowerfulCritical")}));
+    if (this.options.powerfulCritical && (flatBonus > 0)) {
+      this.terms.push(new OperatorTerm({ operator: "+" }));
+      this.terms.push(new NumericTerm({ number: flatBonus }, { flavor: game.i18n.localize("DND5E.PowerfulCritical") }));
     }
 
     // Re-compile the underlying formula
@@ -89,9 +89,9 @@ export default class DamageRoll extends Roll {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  toMessage(messageData={}, options={}) {
+  toMessage(messageData = {}, options = {}) {
     messageData.flavor = messageData.flavor || this.options.flavor;
-    if ( this.isCritical ) {
+    if (this.isCritical) {
       const label = game.i18n.localize("DND5E.CriticalHit");
       messageData.flavor = messageData.flavor ? `${messageData.flavor} (${label})` : label;
     }
@@ -114,7 +114,7 @@ export default class DamageRoll extends Roll {
    * @param {object} options                  Additional Dialog customization options
    * @returns {Promise<D20Roll|null>}         A resulting D20Roll object constructed with the dialog, or null if the dialog was closed
    */
-  async configureDialog({title, defaultRollMode, defaultCritical=false, template, allowCritical=true}={}, options={}) {
+  async configureDialog({ title, defaultRollMode, defaultCritical = false, template, allowCritical = true } = {}, options = {}) {
 
     // Render the Dialog inner HTML
     const content = await renderTemplate(template ?? this.constructor.EVALUATION_TEMPLATE, {
@@ -157,9 +157,9 @@ export default class DamageRoll extends Roll {
     const form = html[0].querySelector("form");
 
     // Append a situational bonus term
-    if ( form.bonus.value ) {
+    if (form.bonus.value) {
       const bonus = new Roll(form.bonus.value, this.data);
-      if ( !(bonus.terms[0] instanceof OperatorTerm) ) this.terms.push(new OperatorTerm({operator: "+"}));
+      if (!(bonus.terms[0] instanceof OperatorTerm)) this.terms.push(new OperatorTerm({ operator: "+" }));
       this.terms = this.terms.concat(bonus.terms);
     }
 

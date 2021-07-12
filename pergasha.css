@@ -69,94 +69,94 @@
 /* ----------------------------------------- */
 /*  All DnD5e Apps                           */
 /* ----------------------------------------- */
-.dnd5e {
+.pergasha-foundryvtt {
   /* ----------------------------------------- */
   /*  Element Styles                           */
   /* ----------------------------------------- */
   /* Form Groups */
   /* Tags */
 }
-.dnd5e .window-content {
+.pergasha-foundryvtt .window-content {
   font-size: 13px;
 }
-.dnd5e input[type="text"],
-.dnd5e input[type="number"],
-.dnd5e select {
+.pergasha-foundryvtt input[type="text"],
+.pergasha-foundryvtt input[type="number"],
+.pergasha-foundryvtt select {
   height: calc(100% - 2px);
   border: 1px solid #7a7971;
   background: rgba(0, 0, 0, 0.05);
   color: #191813;
 }
-.dnd5e input[type="text"]:hover,
-.dnd5e input[type="number"]:hover,
-.dnd5e input[type="text"]:focus,
-.dnd5e input[type="number"]:focus {
+.pergasha-foundryvtt input[type="text"]:hover,
+.pergasha-foundryvtt input[type="number"]:hover,
+.pergasha-foundryvtt input[type="text"]:focus,
+.pergasha-foundryvtt input[type="number"]:focus {
   border: 1px solid #111;
   box-shadow: 0 0 8px red;
 }
-.dnd5e input:disabled,
-.dnd5e select:disabled,
-.dnd5e textarea:disabled {
+.pergasha-foundryvtt input:disabled,
+.pergasha-foundryvtt select:disabled,
+.pergasha-foundryvtt textarea:disabled {
   color: #4b4a44;
   border: 1px solid transparent !important;
   outline: none !important;
 }
-.dnd5e input:disabled:hover,
-.dnd5e select:disabled:hover,
-.dnd5e textarea:disabled:hover,
-.dnd5e input:disabled:focus,
-.dnd5e select:disabled:focus,
-.dnd5e textarea:disabled:focus {
+.pergasha-foundryvtt input:disabled:hover,
+.pergasha-foundryvtt select:disabled:hover,
+.pergasha-foundryvtt textarea:disabled:hover,
+.pergasha-foundryvtt input:disabled:focus,
+.pergasha-foundryvtt select:disabled:focus,
+.pergasha-foundryvtt textarea:disabled:focus {
   box-shadow: none !important;
   border: 1px solid transparent !important;
   outline: none !important;
 }
-.dnd5e button {
+.pergasha-foundryvtt button {
   background: rgba(0, 0, 0, 0.1);
   border: 2px groove #eeede0;
 }
-.dnd5e .form-group label {
+.pergasha-foundryvtt .form-group label {
   flex: 2;
   color: #4b4a44;
   font-weight: bold;
 }
-.dnd5e .form-group .form-fields {
+.pergasha-foundryvtt .form-group .form-fields {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-.dnd5e .form-group .form-fields > * {
+.pergasha-foundryvtt .form-group .form-fields > * {
   flex: 1;
 }
-.dnd5e .form-group .form-fields .flex1 {
+.pergasha-foundryvtt .form-group .form-fields .flex1 {
   flex: 1;
 }
-.dnd5e .form-group .form-fields .flex2 {
+.pergasha-foundryvtt .form-group .form-fields .flex2 {
   flex: 2;
 }
-.dnd5e .form-group .form-fields .flex3 {
+.pergasha-foundryvtt .form-group .form-fields .flex3 {
   flex: 3;
 }
-.dnd5e .form-group .form-fields .flex4 {
+.pergasha-foundryvtt .form-group .form-fields .flex4 {
   flex: 4;
 }
-.dnd5e .form-group .form-fields > * {
+.pergasha-foundryvtt .form-group .form-fields > * {
   margin: 0 3px 0 0;
 }
-.dnd5e .form-group .form-fields > *:last-child {
+.pergasha-foundryvtt .form-group .form-fields > *:last-child {
   margin-right: 0;
 }
-.dnd5e .form-group.stacked > label {
+.pergasha-foundryvtt .form-group.stacked > label {
   flex: 0 0 100%;
   margin: 0;
 }
-.dnd5e .form-group.stacked label.checkbox,
-.dnd5e .form-group.stacked label.radio {
+.pergasha-foundryvtt .form-group.stacked label.checkbox,
+.pergasha-foundryvtt .form-group.stacked label.radio {
   flex: auto;
   text-align: left;
 }
-.dnd5e .form-header {
+.pergasha-foundryvtt .form-header {
   margin: 0 0 0.25em 0;
   padding: 2px 0;
   border-top: 2px groove #eeede0;
@@ -165,7 +165,7 @@
   font-size: 20px;
   font-weight: 700;
 }
-.dnd5e .tag {
+.pergasha-foundryvtt .tag {
   display: inline-block;
   margin: 0 2px 0 0;
   padding: 0 3px;
@@ -178,18 +178,18 @@
 /* ----------------------------------------- */
 /*  Hit Dice Config Sheet Specifically       */
 /* ----------------------------------------- */
-.dnd5e.hd-config .form-group button.increment,
-.dnd5e.hd-config .form-group button.decrement {
+.pergasha-foundryvtt.hd-config .form-group button.increment,
+.pergasha-foundryvtt.hd-config .form-group button.decrement {
   flex: 0 0 1rem;
   line-height: 1rem;
 }
-.dnd5e.hd-config .form-group button.decrement {
+.pergasha-foundryvtt.hd-config .form-group button.decrement {
   margin-right: 0;
 }
-.dnd5e.hd-config .form-group span.sep {
+.pergasha-foundryvtt.hd-config .form-group span.sep {
   margin: 0;
 }
-.dnd5e.hd-config .form-group input {
+.pergasha-foundryvtt.hd-config .form-group input {
   flex: 0 0 2rem;
   text-align: center;
   margin-left: 2px;
@@ -198,7 +198,7 @@
 /* ----------------------------------------- */
 /*  Entity Sheets Specifically               */
 /* ----------------------------------------- */
-.dnd5e.sheet {
+.pergasha-foundryvtt.sheet {
   /* ----------------------------------------- */
   /*  Element Styles                           */
   /* ----------------------------------------- */
@@ -227,48 +227,48 @@
   /*  Active Effects                           */
   /* ----------------------------------------- */
 }
-.dnd5e.sheet .window-content {
+.pergasha-foundryvtt.sheet .window-content {
   overflow-y: hidden;
   padding: 5px;
   background: url("ui/parchment.jpg") repeat;
   font-size: 13px;
   color: #191813;
 }
-.dnd5e.sheet .window-content form {
+.pergasha-foundryvtt.sheet .window-content form {
   height: 100%;
   overflow: hidden;
 }
-.dnd5e.sheet .window-content .tab {
+.pergasha-foundryvtt.sheet .window-content .tab {
   height: 100%;
   overflow-y: auto;
   align-content: flex-start;
 }
-.dnd5e.sheet input[type="text"],
-.dnd5e.sheet input[type="number"] {
+.pergasha-foundryvtt.sheet input[type="text"],
+.pergasha-foundryvtt.sheet input[type="number"] {
   background: none;
   border: 1px solid transparent;
 }
-.dnd5e.sheet input[type="text"]:hover,
-.dnd5e.sheet input[type="number"]:hover,
-.dnd5e.sheet input[type="text"]:focus,
-.dnd5e.sheet input[type="number"]:focus {
+.pergasha-foundryvtt.sheet input[type="text"]:hover,
+.pergasha-foundryvtt.sheet input[type="number"]:hover,
+.pergasha-foundryvtt.sheet input[type="text"]:focus,
+.pergasha-foundryvtt.sheet input[type="number"]:focus {
   border: 1px solid #111;
 }
-.dnd5e.sheet select {
+.pergasha-foundryvtt.sheet select {
   flex: 1;
   font-size: 12px;
   height: 22px;
   background: transparent;
 }
-.dnd5e.sheet .editable .rollable:hover {
+.pergasha-foundryvtt.sheet .editable .rollable:hover {
   cursor: pointer;
 }
-.dnd5e.sheet .editable h4.rollable:hover,
-.dnd5e.sheet .editable .rollable:hover > h4 {
+.pergasha-foundryvtt.sheet .editable h4.rollable:hover,
+.pergasha-foundryvtt.sheet .editable .rollable:hover > h4 {
   color: #000;
   text-shadow: 0 0 10px red;
 }
-.dnd5e.sheet span.sep {
+.pergasha-foundryvtt.sheet span.sep {
   flex: none;
   margin: 0 1px;
   display: inline;
@@ -276,39 +276,39 @@
   color: #7a7971;
   font-weight: normal;
 }
-.dnd5e.sheet .editor {
+.pergasha-foundryvtt.sheet .editor {
   height: 100%;
 }
-.dnd5e.sheet .editor .tox-toolbar-overlord,
-.dnd5e.sheet .editor .tox-toolbar__primary {
+.pergasha-foundryvtt.sheet .editor .tox-toolbar-overlord,
+.pergasha-foundryvtt.sheet .editor .tox-toolbar__primary {
   background: none;
 }
-.dnd5e.sheet .sheet-header {
+.pergasha-foundryvtt.sheet .sheet-header {
   flex: 0 0 100px;
   border-bottom: 2px groove #eeede0;
   /* Character Name */
   /* Profile Image */
   /* Header Summary Details */
 }
-.dnd5e.sheet .sheet-header .header-details {
+.pergasha-foundryvtt.sheet .sheet-header .header-details {
   font-family: "Modesto Condensed", "Palatino Linotype", serif;
   font-size: 20px;
   font-weight: 700;
 }
-.dnd5e.sheet .sheet-header h1 {
+.pergasha-foundryvtt.sheet .sheet-header h1 {
   flex: 1;
   border-bottom: none;
   height: 60px;
   margin: 0;
   padding: 5px;
 }
-.dnd5e.sheet .sheet-header h1 input {
+.pergasha-foundryvtt.sheet .sheet-header h1 input {
   display: block;
   height: 50px;
   font-size: 32px;
   margin: 0;
 }
-.dnd5e.sheet .sheet-header img.profile {
+.pergasha-foundryvtt.sheet .sheet-header img.profile {
   flex: 0 0 100px;
   max-width: 100px;
   height: 100px;
@@ -316,7 +316,7 @@
   border: none;
   border-right: 2px groove #eeede0;
 }
-.dnd5e.sheet .sheet-header .summary {
+.pergasha-foundryvtt.sheet .sheet-header .summary {
   flex: 0 0 100%;
   height: 40px;
   margin: 0;
@@ -325,7 +325,7 @@
   border-top: 2px groove #eeede0;
   border-bottom: none;
 }
-.dnd5e.sheet .sheet-header .summary li {
+.pergasha-foundryvtt.sheet .sheet-header .summary li {
   height: calc(100% - 6px);
   float: left;
   margin: 2px 0;
@@ -334,30 +334,30 @@
   line-height: 34px;
   color: #4b4a44;
 }
-.dnd5e.sheet .sheet-header .summary li:last-child {
+.pergasha-foundryvtt.sheet .sheet-header .summary li:last-child {
   border-right: none;
 }
-.dnd5e.sheet .sheet-navigation {
+.pergasha-foundryvtt.sheet .sheet-navigation {
   flex: 0 0 30px;
   margin-bottom: 5px;
   font-family: "Modesto Condensed", "Palatino Linotype", serif;
   font-size: 20px;
   font-weight: 700;
 }
-.dnd5e.sheet .sheet-navigation .item {
+.pergasha-foundryvtt.sheet .sheet-navigation .item {
   height: 30px;
   line-height: 32px;
   margin: 0 24px;
   border-bottom: 3px solid #b5b3a4;
 }
-.dnd5e.sheet .sheet-navigation .item.active {
+.pergasha-foundryvtt.sheet .sheet-navigation .item.active {
   border-bottom: 3px solid #44191A;
 }
-.dnd5e.sheet .sheet-body {
+.pergasha-foundryvtt.sheet .sheet-body {
   flex: 1;
   overflow: hidden;
 }
-.dnd5e.sheet .filter-list {
+.pergasha-foundryvtt.sheet .filter-list {
   align-items: center;
   list-style: none;
   margin: 0;
@@ -365,45 +365,45 @@
   line-height: 16px;
   max-width: 70%;
 }
-.dnd5e.sheet .filter-list .filter-icon {
+.pergasha-foundryvtt.sheet .filter-list .filter-icon {
   flex: none;
   font-size: 14px;
   color: #7a7971;
 }
-.dnd5e.sheet .filter-list .filter-item {
+.pergasha-foundryvtt.sheet .filter-list .filter-item {
   text-align: center;
   font-size: 12px;
   margin: 0 6px 0 0;
   border-bottom: 3px solid #b5b3a4;
   white-space: nowrap;
 }
-.dnd5e.sheet .filter-list .filter-item:last-child {
+.pergasha-foundryvtt.sheet .filter-list .filter-item:last-child {
   margin: 0;
 }
-.dnd5e.sheet .filter-list .filter-item:hover {
+.pergasha-foundryvtt.sheet .filter-list .filter-item:hover {
   text-shadow: 0 0 4px red;
   border-bottom: 3px solid #7a7971;
 }
-.dnd5e.sheet .filter-list .filter-item.active {
+.pergasha-foundryvtt.sheet .filter-list .filter-item.active {
   border-bottom: 3px solid #44191A;
 }
-.dnd5e.sheet .traits {
+.pergasha-foundryvtt.sheet .traits {
   margin: 5px 0 0;
 }
-.dnd5e.sheet .traits .trait-selector {
+.pergasha-foundryvtt.sheet .traits .trait-selector {
   flex: 0 0 16px;
   padding: 2px 0;
   color: #999;
   font-size: 10px;
 }
-.dnd5e.sheet .traits .traits-list {
+.pergasha-foundryvtt.sheet .traits .traits-list {
   flex: 0 0 100%;
   line-height: 20px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.dnd5e.sheet .items-list {
+.pergasha-foundryvtt.sheet .items-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -411,12 +411,12 @@
   scrollbar-width: thin;
   color: #7a7971;
 }
-.dnd5e.sheet .items-list .item-list {
+.pergasha-foundryvtt.sheet .items-list .item-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.dnd5e.sheet .items-list .item-name {
+.pergasha-foundryvtt.sheet .items-list .item-name {
   flex: 2;
   margin: 0;
   overflow: hidden;
@@ -424,39 +424,39 @@
   text-align: left;
   align-items: center;
 }
-.dnd5e.sheet .items-list .item-name h3,
-.dnd5e.sheet .items-list .item-name h4 {
+.pergasha-foundryvtt.sheet .items-list .item-name h3,
+.pergasha-foundryvtt.sheet .items-list .item-name h4 {
   margin: 0;
   white-space: nowrap;
   overflow-x: hidden;
 }
-.dnd5e.sheet .items-list .item-controls {
+.pergasha-foundryvtt.sheet .items-list .item-controls {
   flex: 0 0 60px;
   justify-content: space-between;
 }
-.dnd5e.sheet .items-list .item-controls a {
+.pergasha-foundryvtt.sheet .items-list .item-controls a {
   font-size: 12px;
   text-align: center;
 }
-.dnd5e.sheet .items-list .item {
+.pergasha-foundryvtt.sheet .items-list .item {
   align-items: center;
   padding: 0 2px;
   border-bottom: 1px solid #c9c7b8;
 }
-.dnd5e.sheet .items-list .item:last-child {
+.pergasha-foundryvtt.sheet .items-list .item:last-child {
   border-bottom: none;
 }
-.dnd5e.sheet .items-list .item .item-name {
+.pergasha-foundryvtt.sheet .items-list .item .item-name {
   color: #191813;
 }
-.dnd5e.sheet .items-list .item .item-name .item-image {
+.pergasha-foundryvtt.sheet .items-list .item .item-name .item-image {
   flex: 0 0 30px;
   height: 30px;
   background-size: 30px;
   border: none;
   margin-right: 5px;
 }
-.dnd5e.sheet .items-list .items-header {
+.pergasha-foundryvtt.sheet .items-list .items-header {
   height: 28px;
   margin: 2px 0;
   padding: 0;
@@ -465,11 +465,11 @@
   border: 2px groove #eeede0;
   font-weight: bold;
 }
-.dnd5e.sheet .items-list .items-header > * {
+.pergasha-foundryvtt.sheet .items-list .items-header > * {
   font-size: 12px;
   text-align: center;
 }
-.dnd5e.sheet .items-list .items-header h3 {
+.pergasha-foundryvtt.sheet .items-list .items-header h3 {
   padding-left: 5px;
   font-family: "Modesto Condensed", "Palatino Linotype", serif;
   font-size: 20px;
@@ -477,15 +477,15 @@
   text-align: left;
   font-size: 16px;
 }
-.dnd5e.sheet .effects .item .effect-source,
-.dnd5e.sheet .effects .item .effect-duration,
-.dnd5e.sheet .effects .item .effect-controls {
+.pergasha-foundryvtt.sheet .effects .item .effect-source,
+.pergasha-foundryvtt.sheet .effects .item .effect-duration,
+.pergasha-foundryvtt.sheet .effects .item .effect-controls {
   text-align: center;
   border-left: 1px solid #c9c7b8;
   border-right: 1px solid #c9c7b8;
   font-size: 12px;
 }
-.dnd5e.sheet .effects .item .effect-controls {
+.pergasha-foundryvtt.sheet .effects .item .effect-controls {
   border: none;
 }
 /* ----------------------------------------- */
@@ -530,21 +530,21 @@
 /* ----------------------------------------- */
 /*  Add Feature Prompt Specifically          */
 /* ----------------------------------------- */
-.dnd5e.select-items-prompt .dialog-content {
+.pergasha-foundryvtt.select-items-prompt .dialog-content {
   margin-bottom: 1em;
 }
-.dnd5e.select-items-prompt .items-list {
+.pergasha-foundryvtt.select-items-prompt .items-list {
   margin-top: 0.5em;
 }
-.dnd5e.select-items-prompt .item-name > label,
-.dnd5e.select-items-prompt .item-image,
-.dnd5e.select-items-prompt input {
+.pergasha-foundryvtt.select-items-prompt .item-name > label,
+.pergasha-foundryvtt.select-items-prompt .item-image,
+.pergasha-foundryvtt.select-items-prompt input {
   cursor: pointer;
 }
-.dnd5e.select-items-prompt .item-name > label {
+.pergasha-foundryvtt.select-items-prompt .item-name > label {
   align-items: center;
 }
-.dnd5e.sheet.actor {
+.pergasha-foundryvtt.sheet.actor {
   /* ----------------------------------------- */
   /*  Sheet Header                             */
   /* ----------------------------------------- */
@@ -581,62 +581,62 @@
   /*  TinyMCE                                  */
   /* ----------------------------------------- */
 }
-.dnd5e.sheet.actor .sheet-header img.profile {
+.pergasha-foundryvtt.sheet.actor .sheet-header img.profile {
   flex: 0 0 160px;
   max-width: 160px;
   height: 160px;
 }
-.dnd5e.sheet.actor .sheet-header h1.charname {
+.pergasha-foundryvtt.sheet.actor .sheet-header h1.charname {
   flex: 1;
   height: 60px;
   padding: 0;
 }
-.dnd5e.sheet.actor .sheet-header h1.charname input {
+.pergasha-foundryvtt.sheet.actor .sheet-header h1.charname input {
   height: 40px;
   margin: 10px 0;
 }
-.dnd5e.sheet.actor .sheet-header .header-exp {
+.pergasha-foundryvtt.sheet.actor .sheet-header .header-exp {
   flex: 0 0 150px;
   margin-right: 3px;
   height: 60px;
   justify-content: flex-end;
   text-align: right;
 }
-.dnd5e.sheet.actor .sheet-header .summary {
+.pergasha-foundryvtt.sheet.actor .sheet-header .summary {
   height: 30px;
   border-bottom: 2px groove #eeede0;
   font-size: 18px;
 }
-.dnd5e.sheet.actor .sheet-header .summary input,
-.dnd5e.sheet.actor .sheet-header .summary span {
+.pergasha-foundryvtt.sheet.actor .sheet-header .summary input,
+.pergasha-foundryvtt.sheet.actor .sheet-header .summary span {
   display: block;
   height: 24px;
   line-height: 24px;
 }
-.dnd5e.sheet.actor .sheet-header .attributes {
+.pergasha-foundryvtt.sheet.actor .sheet-header .attributes {
   flex: 0 0 100%;
   margin: 0;
 }
-.dnd5e.sheet.actor .sheet-header .attributes .attribute {
+.pergasha-foundryvtt.sheet.actor .sheet-header .attributes .attribute {
   height: 70px;
   margin: 0;
   border: none;
   border-right: 2px groove #eeede0;
   border-radius: 0;
 }
-.dnd5e.sheet.actor .sheet-header .attributes .attribute:last-child {
+.pergasha-foundryvtt.sheet.actor .sheet-header .attributes .attribute:last-child {
   border-right: none;
 }
-.dnd5e.sheet.actor .sheet-header .attributes .attribute .attribute-value {
+.pergasha-foundryvtt.sheet.actor .sheet-header .attributes .attribute .attribute-value {
   height: 30px;
   line-height: 30px;
 }
-.dnd5e.sheet.actor .sheet-header .attributes .movement h4.attribute-name,
-.dnd5e.sheet.actor .sheet-header .attributes .hit-dice h4.attribute-name {
+.pergasha-foundryvtt.sheet.actor .sheet-header .attributes .movement h4.attribute-name,
+.pergasha-foundryvtt.sheet.actor .sheet-header .attributes .hit-dice h4.attribute-name {
   position: relative;
 }
-.dnd5e.sheet.actor .sheet-header .attributes .movement .config-button,
-.dnd5e.sheet.actor .sheet-header .attributes .hit-dice .config-button {
+.pergasha-foundryvtt.sheet.actor .sheet-header .attributes .movement .config-button,
+.pergasha-foundryvtt.sheet.actor .sheet-header .attributes .hit-dice .config-button {
   position: absolute;
   display: none;
   right: 0;
@@ -644,14 +644,14 @@
   font-size: 12px;
   font-weight: normal;
 }
-.dnd5e.sheet.actor .sheet-header .attributes .movement:hover .config-button,
-.dnd5e.sheet.actor .sheet-header .attributes .hit-dice:hover .config-button {
+.pergasha-foundryvtt.sheet.actor .sheet-header .attributes .movement:hover .config-button,
+.pergasha-foundryvtt.sheet.actor .sheet-header .attributes .hit-dice:hover .config-button {
   display: block;
 }
-.dnd5e.sheet.actor .sheet-header .attributes input.temphp {
+.pergasha-foundryvtt.sheet.actor .sheet-header .attributes input.temphp {
   width: 48%;
 }
-.dnd5e.sheet.actor h4.box-title {
+.pergasha-foundryvtt.sheet.actor h4.box-title {
   height: 18px;
   line-height: 16px;
   margin: 4px 8px 2px;
@@ -663,26 +663,26 @@
   border-bottom: 1px solid #c9c7b8;
   white-space: nowrap;
 }
-.dnd5e.sheet.actor .tab.attributes {
+.pergasha-foundryvtt.sheet.actor .tab.attributes {
   overflow: hidden;
 }
-.dnd5e.sheet.actor ul.attributes {
+.pergasha-foundryvtt.sheet.actor ul.attributes {
   flex: 0 0 60px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.dnd5e.sheet.actor ul.attributes li.attribute {
+.pergasha-foundryvtt.sheet.actor ul.attributes li.attribute {
   height: 60px;
   margin: 0 5px 0 0;
   border: 2px groove #eeede0;
   border-radius: 4px;
   text-align: center;
 }
-.dnd5e.sheet.actor ul.attributes li.attribute:last-child {
+.pergasha-foundryvtt.sheet.actor ul.attributes li.attribute:last-child {
   margin: 0;
 }
-.dnd5e.sheet.actor ul.attributes li.attribute .attribute-value {
+.pergasha-foundryvtt.sheet.actor ul.attributes li.attribute .attribute-value {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -692,14 +692,14 @@
   font-size: 20px;
   font-weight: 700;
 }
-.dnd5e.sheet.actor ul.attributes li.attribute .attribute-value > * {
+.pergasha-foundryvtt.sheet.actor ul.attributes li.attribute .attribute-value > * {
   font-weight: 400;
   font-size: 24px;
 }
-.dnd5e.sheet.actor ul.attributes li.attribute .attribute-value.multiple input {
+.pergasha-foundryvtt.sheet.actor ul.attributes li.attribute .attribute-value.multiple input {
   flex: 0 0 33%;
 }
-.dnd5e.sheet.actor ul.attributes li.attribute .attribute-footer {
+.pergasha-foundryvtt.sheet.actor ul.attributes li.attribute .attribute-footer {
   flex: 0 0 18px;
   margin-top: -1px;
   line-height: 18px;
@@ -708,7 +708,7 @@
   font-weight: 400;
   white-space: nowrap;
 }
-.dnd5e.sheet.actor .ability-scores {
+.pergasha-foundryvtt.sheet.actor .ability-scores {
   flex: 0 0 100px;
   height: 440px;
   list-style: none;
@@ -720,56 +720,56 @@
   border: 2px groove #eeede0;
   border-radius: 3px;
 }
-.dnd5e.sheet.actor .ability-scores .ability {
+.pergasha-foundryvtt.sheet.actor .ability-scores .ability {
   height: 70px;
   text-align: center;
   border-bottom: 2px groove #eeede0;
 }
-.dnd5e.sheet.actor .ability-scores .ability:last-child {
+.pergasha-foundryvtt.sheet.actor .ability-scores .ability:last-child {
   border-bottom: none;
   margin-bottom: -3px;
 }
-.dnd5e.sheet.actor .ability-scores .ability input.ability-score {
+.pergasha-foundryvtt.sheet.actor .ability-scores .ability input.ability-score {
   height: 30px;
   width: 36px;
   margin: 0 auto;
   line-height: 32px;
   font-size: 24px;
 }
-.dnd5e.sheet.actor .ability-scores .ability .ability-modifiers {
+.pergasha-foundryvtt.sheet.actor .ability-scores .ability .ability-modifiers {
   height: 24px;
   margin: -8px 0 0;
 }
-.dnd5e.sheet.actor .ability-scores .ability .ability-modifiers span.ability-mod,
-.dnd5e.sheet.actor .ability-scores .ability .ability-modifiers span.ability-save {
+.pergasha-foundryvtt.sheet.actor .ability-scores .ability .ability-modifiers span.ability-mod,
+.pergasha-foundryvtt.sheet.actor .ability-scores .ability .ability-modifiers span.ability-save {
   flex: 0 0 24px;
   height: 22px;
   line-height: 22px;
   font-size: 16px;
   border-top: 2px groove #eeede0;
 }
-.dnd5e.sheet.actor .ability-scores .ability .ability-modifiers span.ability-mod {
+.pergasha-foundryvtt.sheet.actor .ability-scores .ability .ability-modifiers span.ability-mod {
   border-right: 2px groove #eeede0;
 }
-.dnd5e.sheet.actor .ability-scores .ability .ability-modifiers .ability-proficiency {
+.pergasha-foundryvtt.sheet.actor .ability-scores .ability .ability-modifiers .ability-proficiency {
   line-height: 30px;
 }
-.dnd5e.sheet.actor .ability-scores .ability .ability-modifiers span.ability-save {
+.pergasha-foundryvtt.sheet.actor .ability-scores .ability .ability-modifiers span.ability-save {
   border-left: 2px groove #eeede0;
 }
-.dnd5e.sheet.actor .proficiency-toggle {
+.pergasha-foundryvtt.sheet.actor .proficiency-toggle {
   color: #b5b3a4;
   font-size: 12px;
 }
-.dnd5e.sheet.actor .proficient .proficiency-toggle {
+.pergasha-foundryvtt.sheet.actor .proficient .proficiency-toggle {
   color: #4b4a44;
 }
-.dnd5e.sheet.actor .locked .proficiency-toggle {
+.pergasha-foundryvtt.sheet.actor .locked .proficiency-toggle {
   color: #b5b3a4;
   text-shadow: none;
   cursor: default;
 }
-.dnd5e.sheet.actor ul.skills-list {
+.pergasha-foundryvtt.sheet.actor ul.skills-list {
   flex: 0 0 180px;
   height: 440px;
   list-style: none;
@@ -778,181 +778,181 @@
   border: 2px groove #eeede0;
   border-radius: 3px;
 }
-.dnd5e.sheet.actor ul.skills-list li.skill {
+.pergasha-foundryvtt.sheet.actor ul.skills-list li.skill {
   height: 24px;
   padding: 3px 2px;
 }
-.dnd5e.sheet.actor ul.skills-list li.skill:nth-child(even) {
+.pergasha-foundryvtt.sheet.actor ul.skills-list li.skill:nth-child(even) {
   background: rgba(0, 0, 0, 0.05);
 }
-.dnd5e.sheet.actor ul.skills-list li.skill h4 {
+.pergasha-foundryvtt.sheet.actor ul.skills-list li.skill h4 {
   flex: 1px;
   margin: 0;
   font-size: 11px;
   line-height: 18px;
 }
-.dnd5e.sheet.actor ul.skills-list li.skill .skill-proficiency {
+.pergasha-foundryvtt.sheet.actor ul.skills-list li.skill .skill-proficiency {
   flex: 0 0 16px;
   line-height: 18px;
 }
-.dnd5e.sheet.actor ul.skills-list li.skill .skill-ability {
+.pergasha-foundryvtt.sheet.actor ul.skills-list li.skill .skill-ability {
   flex: 0 0 26px;
   text-transform: capitalize;
 }
-.dnd5e.sheet.actor ul.skills-list li.skill .skill-mod {
+.pergasha-foundryvtt.sheet.actor ul.skills-list li.skill .skill-mod {
   flex: 0 0 20px;
 }
-.dnd5e.sheet.actor ul.skills-list li.skill .skill-passive {
+.pergasha-foundryvtt.sheet.actor ul.skills-list li.skill .skill-passive {
   flex: 0 0 26px;
   text-align: center;
   color: #7a7971;
 }
-.dnd5e.sheet.actor .counters {
+.pergasha-foundryvtt.sheet.actor .counters {
   flex: none;
   padding: 5px 0;
   margin: 0;
   border-bottom: 2px groove #eeede0;
 }
-.dnd5e.sheet.actor .counters .counter {
+.pergasha-foundryvtt.sheet.actor .counters .counter {
   height: 20px;
   line-height: 20px;
 }
-.dnd5e.sheet.actor .counters .counter h4 {
+.pergasha-foundryvtt.sheet.actor .counters .counter h4 {
   flex: auto;
   margin: 0;
   font-size: 13px;
   font-weight: bold;
   color: #4b4a44;
 }
-.dnd5e.sheet.actor .counters .counter .counter-value {
+.pergasha-foundryvtt.sheet.actor .counters .counter .counter-value {
   flex: none;
   text-align: right;
 }
-.dnd5e.sheet.actor .counters .counter .counter-value > * {
+.pergasha-foundryvtt.sheet.actor .counters .counter .counter-value > * {
   display: inline;
 }
-.dnd5e.sheet.actor .counters .counter input[type="text"],
-.dnd5e.sheet.actor .counters .counter input[type="number"] {
+.pergasha-foundryvtt.sheet.actor .counters .counter input[type="text"],
+.pergasha-foundryvtt.sheet.actor .counters .counter input[type="number"] {
   height: 20px;
   max-width: 20px;
   margin: 0;
   padding: 0;
   text-align: center;
 }
-.dnd5e.sheet.actor .counters .counter input[type="checkbox"] {
+.pergasha-foundryvtt.sheet.actor .counters .counter input[type="checkbox"] {
   position: relative;
   width: 16px;
   height: 16px;
   margin: 0;
   top: 4px;
 }
-.dnd5e.sheet.actor .counters .counter span.sep {
+.pergasha-foundryvtt.sheet.actor .counters .counter span.sep {
   font-size: 12px;
 }
-.dnd5e.sheet.actor .center-pane {
+.pergasha-foundryvtt.sheet.actor .center-pane {
   height: 100%;
   padding: 0 5px 0 3px;
   overflow-y: auto;
   scrollbar-width: thin;
 }
-.dnd5e.sheet.actor .traits .form-group,
-.dnd5e.sheet.actor .traits .form-group-stacked {
+.pergasha-foundryvtt.sheet.actor .traits .form-group,
+.pergasha-foundryvtt.sheet.actor .traits .form-group-stacked {
   margin: 0 0 3px 0;
   justify-content: space-between;
 }
-.dnd5e.sheet.actor .traits .config-button {
+.pergasha-foundryvtt.sheet.actor .traits .config-button {
   flex: 1;
 }
-.dnd5e.sheet.actor .traits label {
+.pergasha-foundryvtt.sheet.actor .traits label {
   flex: none;
   line-height: 20px;
   font-weight: bold;
   margin: 0 10px 0 0;
 }
-.dnd5e.sheet.actor .traits select {
+.pergasha-foundryvtt.sheet.actor .traits select {
   max-width: 200px;
 }
-.dnd5e.sheet.actor .traits input {
+.pergasha-foundryvtt.sheet.actor .traits input {
   text-align: right;
 }
-.dnd5e.sheet.actor .traits i.fas {
+.pergasha-foundryvtt.sheet.actor .traits i.fas {
   float: right;
   margin-right: 3px;
   text-align: right;
   color: #999;
 }
-.dnd5e.sheet.actor .traits i.fas:hover {
+.pergasha-foundryvtt.sheet.actor .traits i.fas:hover {
   color: #111;
   text-shadow: 0 0 10px red;
 }
-.dnd5e.sheet.actor .traits .inactive {
+.pergasha-foundryvtt.sheet.actor .traits .inactive {
   color: #7a7971;
 }
-.dnd5e.sheet.actor .tab.features,
-.dnd5e.sheet.actor .tab.inventory,
-.dnd5e.sheet.actor .tab.spellbook {
+.pergasha-foundryvtt.sheet.actor .tab.features,
+.pergasha-foundryvtt.sheet.actor .tab.inventory,
+.pergasha-foundryvtt.sheet.actor .tab.spellbook {
   overflow-y: hidden;
 }
-.dnd5e.sheet.actor .inventory-filters {
+.pergasha-foundryvtt.sheet.actor .inventory-filters {
   margin: 0 8px;
   flex: 0 0 20px;
   justify-content: flex-end;
 }
-.dnd5e.sheet.actor .inventory-filters .currency {
+.pergasha-foundryvtt.sheet.actor .inventory-filters .currency {
   flex: 0 0 100%;
   list-style: none;
   margin: 4px 0 8px;
   padding: 0;
   font-size: 12px;
 }
-.dnd5e.sheet.actor .inventory-filters .currency label {
+.pergasha-foundryvtt.sheet.actor .inventory-filters .currency label {
   flex: 0;
   margin-left: 8px;
   text-align: right;
   line-height: 20px;
   color: #7a7971;
 }
-.dnd5e.sheet.actor .inventory-filters .currency input[type="text"] {
+.pergasha-foundryvtt.sheet.actor .inventory-filters .currency input[type="text"] {
   flex: 0 0 48px;
   text-align: center;
   margin-left: 8px;
   border-bottom: 2px groove #eeede0;
 }
-.dnd5e.sheet.actor .inventory-list {
+.pergasha-foundryvtt.sheet.actor .inventory-list {
   padding: 0 5px;
 }
-.dnd5e.sheet.actor .inventory-list .item .item-name {
+.pergasha-foundryvtt.sheet.actor .inventory-list .item .item-name {
   cursor: pointer;
 }
-.dnd5e.sheet.actor .inventory-list .item .item-name.rollable:hover .item-image {
+.pergasha-foundryvtt.sheet.actor .inventory-list .item .item-name.rollable:hover .item-image {
   background-image: url("../../icons/svg/d20-grey.svg") !important;
 }
-.dnd5e.sheet.actor .inventory-list .item .item-name.rollable .item-image:hover {
+.pergasha-foundryvtt.sheet.actor .inventory-list .item .item-name.rollable .item-image:hover {
   background-image: url("../../icons/svg/d20-black.svg") !important;
 }
-.dnd5e.sheet.actor .inventory-list .item .item-name i.attuned {
+.pergasha-foundryvtt.sheet.actor .inventory-list .item .item-name i.attuned {
   color: #7a7971;
 }
-.dnd5e.sheet.actor .inventory-list .item .item-name i.not-attuned {
+.pergasha-foundryvtt.sheet.actor .inventory-list .item .item-name i.not-attuned {
   color: #44191A;
 }
-.dnd5e.sheet.actor .inventory-list .item .item-uses input {
+.pergasha-foundryvtt.sheet.actor .inventory-list .item .item-uses input {
   width: 24px;
   text-align: center;
 }
-.dnd5e.sheet.actor .inventory-list .item .item-properties {
+.pergasha-foundryvtt.sheet.actor .inventory-list .item .item-properties {
   margin-top: 3px;
 }
-.dnd5e.sheet.actor .inventory-list .item .item-recharge {
+.pergasha-foundryvtt.sheet.actor .inventory-list .item .item-recharge {
   flex: 0 0 80px;
   text-align: right;
   font-size: 11px;
   white-space: nowrap;
 }
-.dnd5e.sheet.actor .inventory-list .inventory-header .item-controls a.item-create {
+.pergasha-foundryvtt.sheet.actor .inventory-list .inventory-header .item-controls a.item-create {
   flex: 0 0 100%;
 }
-.dnd5e.sheet.actor .inventory-list .item-detail {
+.pergasha-foundryvtt.sheet.actor .inventory-list .item-detail {
   flex: 0 0 70px;
   font-size: 12px;
   text-align: center;
@@ -961,24 +961,24 @@
   white-space: nowrap;
   overflow: hidden;
 }
-.dnd5e.sheet.actor .inventory-list .item-detail:last-child {
+.pergasha-foundryvtt.sheet.actor .inventory-list .item-detail:last-child {
   border-right: none;
 }
-.dnd5e.sheet.actor .inventory-list .item-detail.item-action {
+.pergasha-foundryvtt.sheet.actor .inventory-list .item-detail.item-action {
   flex: 0 0 100px;
 }
-.dnd5e.sheet.actor .inventory-list .item-detail.attunement {
+.pergasha-foundryvtt.sheet.actor .inventory-list .item-detail.attunement {
   flex: 0 0 24px;
 }
-.dnd5e.sheet.actor .inventory-list .item-weight {
+.pergasha-foundryvtt.sheet.actor .inventory-list .item-weight {
   flex: 0 0 60px;
   border-left: 1px solid #c9c7b8;
   border-right: 1px solid #c9c7b8;
 }
-.dnd5e.sheet.actor .inventory-list .item-controls {
+.pergasha-foundryvtt.sheet.actor .inventory-list .item-controls {
   flex: 0 0 44px;
 }
-.dnd5e.sheet.actor .inventory-list .item-summary {
+.pergasha-foundryvtt.sheet.actor .inventory-list .item-summary {
   flex: 0 0 100%;
   font-size: 12px;
   line-height: 16px;
@@ -986,7 +986,7 @@
   color: #191813;
   border-top: 1px solid #c9c7b8;
 }
-.dnd5e.sheet.actor .encumbrance {
+.pergasha-foundryvtt.sheet.actor .encumbrance {
   flex: 0 0 12px;
   background: #7a7971;
   margin: 1px 15px 0 1px;
@@ -994,7 +994,7 @@
   border-radius: 3px;
   position: relative;
 }
-.dnd5e.sheet.actor .encumbrance .encumbrance-bar {
+.pergasha-foundryvtt.sheet.actor .encumbrance .encumbrance-bar {
   position: absolute;
   top: 1px;
   left: 1px;
@@ -1003,7 +1003,7 @@
   border: 1px solid #cde4ff;
   border-radius: 2px;
 }
-.dnd5e.sheet.actor .encumbrance .encumbrance-label {
+.pergasha-foundryvtt.sheet.actor .encumbrance .encumbrance-label {
   height: 10px;
   padding: 0 5px;
   position: absolute;
@@ -1015,17 +1015,17 @@
   color: #EEE;
   text-shadow: 0 0 5px #000;
 }
-.dnd5e.sheet.actor .encumbrance .encumbrance-breakpoint {
+.pergasha-foundryvtt.sheet.actor .encumbrance .encumbrance-breakpoint {
   display: block;
   position: absolute;
 }
-.dnd5e.sheet.actor .encumbrance .encumbrance-breakpoint.encumbrance-33 {
+.pergasha-foundryvtt.sheet.actor .encumbrance .encumbrance-breakpoint.encumbrance-33 {
   left: 33%;
 }
-.dnd5e.sheet.actor .encumbrance .encumbrance-breakpoint.encumbrance-66 {
+.pergasha-foundryvtt.sheet.actor .encumbrance .encumbrance-breakpoint.encumbrance-66 {
   left: 66%;
 }
-.dnd5e.sheet.actor .encumbrance .arrow-up {
+.pergasha-foundryvtt.sheet.actor .encumbrance .arrow-up {
   bottom: 0;
   width: 0;
   height: 0;
@@ -1033,7 +1033,7 @@
   border-right: 4px solid transparent;
   border-bottom: 4px solid #666;
 }
-.dnd5e.sheet.actor .encumbrance .arrow-down {
+.pergasha-foundryvtt.sheet.actor .encumbrance .arrow-down {
   top: 0;
   width: 0;
   height: 0;
@@ -1041,63 +1041,63 @@
   border-right: 4px solid transparent;
   border-top: 4px solid #666;
 }
-.dnd5e.sheet.actor .encumbrance.encumbered .arrow-up {
+.pergasha-foundryvtt.sheet.actor .encumbrance.encumbered .arrow-up {
   border-bottom: 4px solid #000;
 }
-.dnd5e.sheet.actor .encumbrance.encumbered .arrow-down {
+.pergasha-foundryvtt.sheet.actor .encumbrance.encumbered .arrow-down {
   border-top: 4px solid #000;
 }
-.dnd5e.sheet.actor .spellcasting-ability {
+.pergasha-foundryvtt.sheet.actor .spellcasting-ability {
   flex: 0 0 240px;
   margin: 0;
 }
-.dnd5e.sheet.actor .spellcasting-ability label,
-.dnd5e.sheet.actor .spellcasting-ability span {
+.pergasha-foundryvtt.sheet.actor .spellcasting-ability label,
+.pergasha-foundryvtt.sheet.actor .spellcasting-ability span {
   flex: none;
 }
-.dnd5e.sheet.actor .spellcasting-ability input {
+.pergasha-foundryvtt.sheet.actor .spellcasting-ability input {
   flex: 0 0 28px;
   text-align: center;
 }
-.dnd5e.sheet.actor .spellcasting-ability select {
+.pergasha-foundryvtt.sheet.actor .spellcasting-ability select {
   margin: 0 5px;
   flex: 0 0 120px;
 }
-.dnd5e.sheet.actor .spell-slots,
-.dnd5e.sheet.actor .spell-comps {
+.pergasha-foundryvtt.sheet.actor .spell-slots,
+.pergasha-foundryvtt.sheet.actor .spell-comps {
   flex: none;
   padding: 0 5px;
   font-size: 12px;
   color: #7a7971;
   border-right: 1px solid #c9c7b8;
 }
-.dnd5e.sheet.actor .spell-slots input {
+.pergasha-foundryvtt.sheet.actor .spell-slots input {
   display: inline;
   max-width: 20px;
 }
-.dnd5e.sheet.actor .spell-slots .sep {
+.pergasha-foundryvtt.sheet.actor .spell-slots .sep {
   font-size: 13px;
   font-weight: normal;
 }
-.dnd5e.sheet.actor .spellbook .spell-uses {
+.pergasha-foundryvtt.sheet.actor .spellbook .spell-uses {
   padding-right: 5px;
   text-align: right;
   color: #7a7971;
 }
-.dnd5e.sheet.actor .spell-school,
-.dnd5e.sheet.actor .spell-action,
-.dnd5e.sheet.actor .spell-target {
+.pergasha-foundryvtt.sheet.actor .spell-school,
+.pergasha-foundryvtt.sheet.actor .spell-action,
+.pergasha-foundryvtt.sheet.actor .spell-target {
   flex: 0 0 100px;
   font-size: 12px;
   color: #7a7971;
   text-align: center;
   border-right: 1px solid #c9c7b8;
 }
-.dnd5e.sheet.actor .spell-component {
+.pergasha-foundryvtt.sheet.actor .spell-component {
   line-height: 14px;
 }
-.dnd5e.sheet.actor .spell-component.C,
-.dnd5e.sheet.actor .spell-component.R {
+.pergasha-foundryvtt.sheet.actor .spell-component.C,
+.pergasha-foundryvtt.sheet.actor .spell-component.R {
   display: inline-block;
   text-align: center;
   padding-top: 1px;
@@ -1107,13 +1107,13 @@
   border: 1px solid transparent;
   border-radius: 8px;
 }
-.dnd5e.sheet.actor .spellbook-empty .item-controls {
+.pergasha-foundryvtt.sheet.actor .spellbook-empty .item-controls {
   flex: 1;
 }
-.dnd5e.sheet.actor .features i.original-class {
+.pergasha-foundryvtt.sheet.actor .features i.original-class {
   color: #4b4a44;
 }
-.dnd5e.sheet.actor .editor {
+.pergasha-foundryvtt.sheet.actor .editor {
   padding: 0 8px;
 }
 #actor-flags .window-content {
@@ -1129,7 +1129,7 @@
   overflow-y: auto;
   scrollbar-width: thin;
 }
-.dnd5e.sheet.item {
+.pergasha-foundryvtt.sheet.item {
   min-height: 400px;
   max-height: 95%;
   min-width: 480px;
@@ -1149,10 +1149,10 @@
   /*  Loot Sheet (No Tabs)                     */
   /* ----------------------------------------- */
 }
-.dnd5e.sheet.item .sheet-header img.profile {
+.pergasha-foundryvtt.sheet.item .sheet-header img.profile {
   border: 2px solid #000;
 }
-.dnd5e.sheet.item .sheet-header .item-subtitle {
+.pergasha-foundryvtt.sheet.item .sheet-header .item-subtitle {
   flex: 0 0 100px;
   height: 60px;
   margin: 0;
@@ -1160,49 +1160,49 @@
   text-align: right;
   color: #7a7971;
 }
-.dnd5e.sheet.item .sheet-header .item-subtitle .item-type {
+.pergasha-foundryvtt.sheet.item .sheet-header .item-subtitle .item-type {
   font-size: 24px;
   line-height: 26px;
   margin: 0;
 }
-.dnd5e.sheet.item .sheet-header .item-subtitle .item-status {
+.pergasha-foundryvtt.sheet.item .sheet-header .item-subtitle .item-status {
   font-size: 16px;
   line-height: 24px;
 }
-.dnd5e.sheet.item .sheet-navigation {
+.pergasha-foundryvtt.sheet.item .sheet-navigation {
   margin-bottom: 5px;
 }
-.dnd5e.sheet.item .sheet-navigation .item {
+.pergasha-foundryvtt.sheet.item .sheet-navigation .item {
   font-size: 18px;
 }
-.dnd5e.sheet.item .sheet-body {
+.pergasha-foundryvtt.sheet.item .sheet-body {
   overflow: hidden;
 }
-.dnd5e.sheet.item .sheet-body .tab {
+.pergasha-foundryvtt.sheet.item .sheet-body .tab {
   padding: 0 5px;
   overflow: hidden auto;
 }
-.dnd5e.sheet.item .sheet-body .item-properties {
+.pergasha-foundryvtt.sheet.item .sheet-body .item-properties {
   flex: 0 0 120px;
   margin: 5px 5px 5px 0;
   padding-right: 5px;
   border-right: 2px groove #eeede0;
 }
-.dnd5e.sheet.item .sheet-body .item-properties .form-group {
+.pergasha-foundryvtt.sheet.item .sheet-body .item-properties .form-group {
   margin: 0;
 }
-.dnd5e.sheet.item .sheet-body .item-properties .form-group label {
+.pergasha-foundryvtt.sheet.item .sheet-body .item-properties .form-group label {
   line-height: 20px;
 }
-.dnd5e.sheet.item .sheet-body .item-properties .form-group input {
+.pergasha-foundryvtt.sheet.item .sheet-body .item-properties .form-group input {
   text-align: right;
 }
-.dnd5e.sheet.item .sheet-body .item-properties .properties-list {
+.pergasha-foundryvtt.sheet.item .sheet-body .item-properties .properties-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.dnd5e.sheet.item .sheet-body .item-properties .properties-list li {
+.pergasha-foundryvtt.sheet.item .sheet-body .item-properties .properties-list li {
   margin: 3px 0;
   padding: 0 2px;
   background: rgba(0, 0, 0, 0.05);
@@ -1211,81 +1211,81 @@
   font-size: 12px;
   line-height: 18px;
 }
-.dnd5e.sheet.item .details input[type="text"],
-.dnd5e.sheet.item .details input[type="number"],
-.dnd5e.sheet.item .details select {
+.pergasha-foundryvtt.sheet.item .details input[type="text"],
+.pergasha-foundryvtt.sheet.item .details input[type="number"],
+.pergasha-foundryvtt.sheet.item .details select {
   height: 24px;
   border: 1px solid #7a7971;
   background: rgba(0, 0, 0, 0.05);
 }
-.dnd5e.sheet.item .details .form-group span {
+.pergasha-foundryvtt.sheet.item .details .form-group span {
   text-align: center;
   line-height: 24px;
 }
-.dnd5e.sheet.item .details .form-group.input-select select {
+.pergasha-foundryvtt.sheet.item .details .form-group.input-select select {
   flex: 1.8;
 }
-.dnd5e.sheet.item .details .form-group.input-select-select select {
+.pergasha-foundryvtt.sheet.item .details .form-group.input-select-select select {
   flex: 1.5;
 }
-.dnd5e.sheet.item .details .form-group.uses-per .form-fields {
+.pergasha-foundryvtt.sheet.item .details .form-group.uses-per .form-fields {
   flex-wrap: nowrap;
 }
-.dnd5e.sheet.item .details .form-group.uses-per input {
+.pergasha-foundryvtt.sheet.item .details .form-group.uses-per input {
   flex: 0 0 32px;
 }
-.dnd5e.sheet.item .details .form-group.uses-per span {
+.pergasha-foundryvtt.sheet.item .details .form-group.uses-per span {
   flex: 0 0 16px;
   margin: 0 4px 0 0;
 }
-.dnd5e.sheet.item .details span.sep {
+.pergasha-foundryvtt.sheet.item .details span.sep {
   flex: 0 0 8px;
 }
-.dnd5e.sheet.item .details .prepared {
+.pergasha-foundryvtt.sheet.item .details .prepared {
   flex: 1.3 !important;
   text-align: right;
   padding-right: 10px;
 }
-.dnd5e.sheet.item .details .spell-materials {
+.pergasha-foundryvtt.sheet.item .details .spell-materials {
   flex: 0 0 100%;
   margin: 0.25em 0;
   justify-content: flex-end;
 }
-.dnd5e.sheet.item .details .spell-materials label {
+.pergasha-foundryvtt.sheet.item .details .spell-materials label {
   flex: 0 0 64px;
   text-align: right;
   margin-right: 5px;
   font-size: 12px;
   line-height: 24px;
 }
-.dnd5e.sheet.item .details .spell-materials input[type="text"] {
+.pergasha-foundryvtt.sheet.item .details .spell-materials input[type="text"] {
   flex: 0 0 48px;
   margin-right: 10px;
 }
-.dnd5e.sheet.item h4.damage-header {
+.pergasha-foundryvtt.sheet.item h4.damage-header {
   margin: 0;
   padding: 0;
   font-weight: bold;
   line-height: 24px;
   color: #4b4a44;
 }
-.dnd5e.sheet.item .damage-parts {
+.pergasha-foundryvtt.sheet.item .damage-parts {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.dnd5e.sheet.item .damage-parts .damage-part {
+.pergasha-foundryvtt.sheet.item .damage-parts .damage-part {
   flex: 0 0 100%;
   padding: 0;
 }
-.dnd5e.sheet.item .damage-parts .damage-part input {
+.pergasha-foundryvtt.sheet.item .damage-parts .damage-part input {
   flex: 3;
 }
-.dnd5e.sheet.item .damage-parts .damage-part select {
+.pergasha-foundryvtt.sheet.item .damage-parts .damage-part select {
   margin-left: 5px;
   flex: 1;
 }
-.dnd5e.sheet.item .damage-control {
+.pergasha-foundryvtt.sheet.item .damage-control {
   width: 18px;
   flex: 0 0 18px;
   line-height: 24px;
@@ -1293,45 +1293,45 @@
   text-align: right;
   color: #7a7971;
 }
-.dnd5e.sheet.item .recharge.form-group span {
+.pergasha-foundryvtt.sheet.item .recharge.form-group span {
   text-align: right;
   padding-right: 3px;
 }
-.dnd5e.sheet.item .recharge.form-group input[type="text"] {
+.pergasha-foundryvtt.sheet.item .recharge.form-group input[type="text"] {
   flex: 0 0 32px;
   text-align: center;
 }
-.dnd5e.sheet.item .recharge.form-group label.checkbox {
+.pergasha-foundryvtt.sheet.item .recharge.form-group label.checkbox {
   flex: none;
 }
-.dnd5e.sheet.item .recharge.form-group label.checkbox input {
+.pergasha-foundryvtt.sheet.item .recharge.form-group label.checkbox input {
   width: 16px;
   height: 16px;
   top: 4px;
 }
-.dnd5e.sheet.item .weapon-properties label.checkbox {
+.pergasha-foundryvtt.sheet.item .weapon-properties label.checkbox {
   flex: 0 0 98px;
 }
-.dnd5e.sheet.item .loot-header {
+.pergasha-foundryvtt.sheet.item .loot-header {
   margin-bottom: 10px;
 }
 /* ----------------------------------------- */
 /*  Chat Cards
 /* ----------------------------------------- */
-.dnd5e.chat-card {
+.pergasha-foundryvtt.chat-card {
   font-style: normal;
   font-size: 12px;
 }
-.dnd5e.chat-card .card-header {
+.pergasha-foundryvtt.chat-card .card-header {
   padding: 3px 0;
   border-top: 2px groove #FFF;
   border-bottom: 2px groove #FFF;
 }
-.dnd5e.chat-card .card-header img {
+.pergasha-foundryvtt.chat-card .card-header img {
   flex: 0 0 36px;
   margin-right: 5px;
 }
-.dnd5e.chat-card .card-header h3 {
+.pergasha-foundryvtt.chat-card .card-header h3 {
   flex: 1;
   margin: 0;
   line-height: 36px;
@@ -1340,49 +1340,49 @@
   font-weight: 700;
   color: #4b4a44;
 }
-.dnd5e.chat-card .card-header h3:hover {
+.pergasha-foundryvtt.chat-card .card-header h3:hover {
   color: #111;
   text-shadow: 0 0 10px red;
 }
-.dnd5e.chat-card .card-content {
+.pergasha-foundryvtt.chat-card .card-content {
   margin: 5px 0;
 }
-.dnd5e.chat-card .card-content h3 {
+.pergasha-foundryvtt.chat-card .card-content h3 {
   font-size: 12px;
   margin: 0;
   font-weight: bold;
 }
-.dnd5e.chat-card .card-content > * {
+.pergasha-foundryvtt.chat-card .card-content > * {
   -webkit-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
 }
-.dnd5e.chat-card .card-buttons {
+.pergasha-foundryvtt.chat-card .card-buttons {
   margin: 5px 0;
 }
-.dnd5e.chat-card .card-buttons span {
+.pergasha-foundryvtt.chat-card .card-buttons span {
   display: block;
   line-height: 28px;
   text-align: center;
   border: 1px solid #CCC;
 }
-.dnd5e.chat-card .card-buttons button {
+.pergasha-foundryvtt.chat-card .card-buttons button {
   font-size: 12px;
   height: 24px;
   line-height: 20px;
   margin: 2px 0;
 }
-.dnd5e.chat-card .card-footer {
+.pergasha-foundryvtt.chat-card .card-footer {
   padding: 3px 0 0;
   border-top: 2px groove #FFF;
 }
-.dnd5e.chat-card .card-footer span {
+.pergasha-foundryvtt.chat-card .card-footer span {
   border-right: 2px groove #FFF;
   padding: 0 3px 0 0;
   font-size: 10px;
 }
-.dnd5e.chat-card .card-footer span:last-child {
+.pergasha-foundryvtt.chat-card .card-footer span:last-child {
   border-right: none;
   padding-right: 0;
 }
@@ -1405,7 +1405,7 @@
 /* ----------------------------------------- */
 /*  Basic Structure                          */
 /* ----------------------------------------- */
-.dnd5e.sheet.actor.character {
+.pergasha-foundryvtt.sheet.actor.character {
   min-width: 720px;
   min-height: 680px;
   /* ----------------------------------------- */
@@ -1421,30 +1421,30 @@
   /*  Biography                                */
   /* ----------------------------------------- */
 }
-.dnd5e.sheet.actor.character .sheet-header img.profile {
+.pergasha-foundryvtt.sheet.actor.character .sheet-header img.profile {
   flex: 0 0 160px;
   max-width: 160px;
   height: 160px;
 }
-.dnd5e.sheet.actor.character .sheet-header .charlevel {
+.pergasha-foundryvtt.sheet.actor.character .sheet-header .charlevel {
   flex: 0 0 20px;
   height: 20px;
   font-size: 18px;
   color: #7a7971;
   white-space: nowrap;
 }
-.dnd5e.sheet.actor.character .sheet-header .experience {
+.pergasha-foundryvtt.sheet.actor.character .sheet-header .experience {
   flex: 0 0 32px;
   margin-bottom: -5px;
   align-items: center;
   font-size: 18px;
 }
-.dnd5e.sheet.actor.character .sheet-header .experience span.max {
+.pergasha-foundryvtt.sheet.actor.character .sheet-header .experience span.max {
   color: #7a7971;
   flex: none;
   margin-left: 3px;
 }
-.dnd5e.sheet.actor.character .sheet-header .xpbar {
+.pergasha-foundryvtt.sheet.actor.character .sheet-header .xpbar {
   flex: 0 0 8px;
   width: 100%;
   margin-bottom: 5px;
@@ -1452,7 +1452,7 @@
   border: 1px solid #000;
   border-radius: 3px;
 }
-.dnd5e.sheet.actor.character .sheet-header .xpbar .bar {
+.pergasha-foundryvtt.sheet.actor.character .sheet-header .xpbar .bar {
   height: 4px;
   margin: 1px;
   display: block;
@@ -1460,27 +1460,27 @@
   border: 1px solid #000;
   border-radius: 2px;
 }
-.dnd5e.sheet.actor.character .sheet-header .attributes a.rest {
+.pergasha-foundryvtt.sheet.actor.character .sheet-header .attributes a.rest {
   border: 1px solid #b5b3a4;
   border-radius: 2px;
   background: rgba(0, 0, 0, 0.05);
   padding: 0 3px;
   margin: 0 3px;
 }
-.dnd5e.sheet.actor.character .sheet-header .attributes .hit-dice {
+.pergasha-foundryvtt.sheet.actor.character .sheet-header .attributes .hit-dice {
   font-size: 24px;
 }
-.dnd5e.sheet.actor.character .sheet-header .attributes .initiative .attribute-footer input {
+.pergasha-foundryvtt.sheet.actor.character .sheet-header .attributes .initiative .attribute-footer input {
   width: 32px;
 }
-.dnd5e.sheet.actor.character .sheet-header .summary .proficiency {
+.pergasha-foundryvtt.sheet.actor.character .sheet-header .summary .proficiency {
   text-align: right;
   padding-right: 5px;
 }
-.dnd5e.sheet.actor.character .resource .attribute-value > input {
+.pergasha-foundryvtt.sheet.actor.character .resource .attribute-value > input {
   flex: 0 0 25%;
 }
-.dnd5e.sheet.actor.character .resource .attribute-value label.recharge {
+.pergasha-foundryvtt.sheet.actor.character .resource .attribute-value label.recharge {
   height: 32px;
   position: relative;
   font-family: "Signika", sans-serif;
@@ -1489,54 +1489,54 @@
   color: #4b4a44;
   align-items: center;
 }
-.dnd5e.sheet.actor.character .resource .attribute-value label.recharge input[type="checkbox"] {
+.pergasha-foundryvtt.sheet.actor.character .resource .attribute-value label.recharge input[type="checkbox"] {
   height: 14px;
   width: 14px;
   margin: 0;
   top: -6px;
 }
-.dnd5e.sheet.actor.character ul.skills-list {
+.pergasha-foundryvtt.sheet.actor.character ul.skills-list {
   flex: 0 0 212px;
 }
-.dnd5e.sheet.actor.character ul.skills-list li.skill {
+.pergasha-foundryvtt.sheet.actor.character ul.skills-list li.skill {
   padding: 3px;
 }
-.dnd5e.sheet.actor.character ul.skills-list li.skill h4 {
+.pergasha-foundryvtt.sheet.actor.character ul.skills-list li.skill h4 {
   flex: 1px;
   margin: 0;
   font-size: 13px;
 }
-.dnd5e.sheet.actor.character .item-detail.player-class {
+.pergasha-foundryvtt.sheet.actor.character .item-detail.player-class {
   flex: 0 0 180px;
   text-align: right;
   padding-right: 10px;
 }
-.dnd5e.sheet.actor.character .inventory .item-controls,
-.dnd5e.sheet.actor.character .spellbook .item-controls {
+.pergasha-foundryvtt.sheet.actor.character .inventory .item-controls,
+.pergasha-foundryvtt.sheet.actor.character .spellbook .item-controls {
   flex: 0 0 68px;
 }
-.dnd5e.sheet.actor.character .inventory .item-controls .item-toggle,
-.dnd5e.sheet.actor.character .spellbook .item-controls .item-toggle {
+.pergasha-foundryvtt.sheet.actor.character .inventory .item-controls .item-toggle,
+.pergasha-foundryvtt.sheet.actor.character .spellbook .item-controls .item-toggle {
   color: #b5b3a4;
 }
-.dnd5e.sheet.actor.character .inventory .item-controls .item-toggle.active,
-.dnd5e.sheet.actor.character .spellbook .item-controls .item-toggle.active {
+.pergasha-foundryvtt.sheet.actor.character .inventory .item-controls .item-toggle.active,
+.pergasha-foundryvtt.sheet.actor.character .spellbook .item-controls .item-toggle.active {
   color: #4b4a44;
 }
-.dnd5e.sheet.actor.character .inventory .item-controls .item-toggle.fixed,
-.dnd5e.sheet.actor.character .spellbook .item-controls .item-toggle.fixed {
+.pergasha-foundryvtt.sheet.actor.character .inventory .item-controls .item-toggle.fixed,
+.pergasha-foundryvtt.sheet.actor.character .spellbook .item-controls .item-toggle.fixed {
   color: #44191A;
 }
-.dnd5e.sheet.actor.character .inventory .item-controls .item-toggle.fixed:hover,
-.dnd5e.sheet.actor.character .spellbook .item-controls .item-toggle.fixed:hover {
+.pergasha-foundryvtt.sheet.actor.character .inventory .item-controls .item-toggle.fixed:hover,
+.pergasha-foundryvtt.sheet.actor.character .spellbook .item-controls .item-toggle.fixed:hover {
   text-shadow: none;
 }
-.dnd5e.sheet.actor.character .characteristics {
+.pergasha-foundryvtt.sheet.actor.character .characteristics {
   flex: 0 0 180px;
   height: 100%;
   padding: 0 3px 3px;
 }
-.dnd5e.sheet.actor.character .characteristics label {
+.pergasha-foundryvtt.sheet.actor.character .characteristics label {
   flex: 0 0 20px;
   font-family: "Modesto Condensed", "Palatino Linotype", serif;
   font-size: 20px;
@@ -1546,82 +1546,82 @@
   line-height: 20px;
   text-align: center;
 }
-.dnd5e.sheet.actor.character .characteristics textarea {
+.pergasha-foundryvtt.sheet.actor.character .characteristics textarea {
   font-family: "Signika", serif;
   font-size: 13px;
   border: 1px solid #c9c7b8;
   resize: none;
 }
-.dnd5e.sheet.actor.character .biography {
+.pergasha-foundryvtt.sheet.actor.character .biography {
   max-width: calc(100% - 180px);
 }
 /* ----------------------------------------- */
 /*  Basic Structure                          */
 /* ----------------------------------------- */
-.dnd5e.sheet.actor.npc {
+.pergasha-foundryvtt.sheet.actor.npc {
   min-width: 600px;
   min-height: 680px;
 }
-.dnd5e.sheet.actor.npc .header-exp {
+.pergasha-foundryvtt.sheet.actor.npc .header-exp {
   flex: 0 0 80px;
   justify-content: center;
 }
-.dnd5e.sheet.actor.npc .header-exp .cr {
+.pergasha-foundryvtt.sheet.actor.npc .header-exp .cr {
   flex: 0 0 32px;
   line-height: 28px;
   margin-bottom: -5px;
   font-size: 24px;
 }
-.dnd5e.sheet.actor.npc .header-exp .cr input {
+.pergasha-foundryvtt.sheet.actor.npc .header-exp .cr input {
   width: 32px;
   padding: 0;
   text-align: center;
 }
-.dnd5e.sheet.actor.npc .header-exp .experience {
+.pergasha-foundryvtt.sheet.actor.npc .header-exp .experience {
   flex: 0 0 18px;
   color: #7a7971;
   font-size: 16px;
 }
-.dnd5e.sheet.actor.npc .summary {
+.pergasha-foundryvtt.sheet.actor.npc .summary {
   font-size: 18px;
 }
-.dnd5e.sheet.actor.npc .summary .creature-type {
+.pergasha-foundryvtt.sheet.actor.npc .summary .creature-type {
   display: flex;
   justify-content: space-between;
   width: 1em;
   padding: 0 3px;
 }
-.dnd5e.sheet.actor.npc .summary .creature-type span {
+.pergasha-foundryvtt.sheet.actor.npc .summary .creature-type span {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.dnd5e.sheet.actor.npc .summary .creature-type .config-button {
+.pergasha-foundryvtt.sheet.actor.npc .summary .creature-type .config-button {
   display: none;
   font-size: 12px;
   font-weight: normal;
   line-height: 2em;
 }
-.dnd5e.sheet.actor.npc .summary .creature-type:hover .config-button {
+.pergasha-foundryvtt.sheet.actor.npc .summary .creature-type:hover .config-button {
   display: block;
 }
-.dnd5e.sheet.actor.vehicle .features .item-controls {
+.pergasha-foundryvtt.sheet.actor.vehicle .features .item-controls {
   flex: 0 0 68px;
 }
-.dnd5e.sheet.actor.vehicle .features .item-controls .item-toggle {
+.pergasha-foundryvtt.sheet.actor.vehicle .features .item-controls .item-toggle {
   color: #b5b3a4;
 }
-.dnd5e.sheet.actor.vehicle .features .item-controls .item-toggle.active {
+.pergasha-foundryvtt.sheet.actor.vehicle .features .item-controls .item-toggle.active {
   color: #4b4a44;
 }
-.dnd5e.sheet.actor.vehicle .counters .counter.creature-cap .counter-value {
+.pergasha-foundryvtt.sheet.actor.vehicle .counters .counter.creature-cap .counter-value {
   flex: 1;
 }
-.dnd5e.sheet.actor.vehicle .counters .counter.creature-cap input {
+.pergasha-foundryvtt.sheet.actor.vehicle .counters .counter.creature-cap input {
   max-width: none;
   text-align: right;
 }
-.dnd5e.sheet.actor.vehicle .counters .counter.cargo-cap input {
+.pergasha-foundryvtt.sheet.actor.vehicle .counters .counter.cargo-cap input {
   max-width: 40px;
   text-align: right;
 }

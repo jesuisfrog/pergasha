@@ -6,8 +6,8 @@ export default class ActorSheetFlags extends DocumentSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       id: "actor-flags",
-	    classes: ["dnd5e"],
-      template: "systems/dnd5e/templates/apps/actor-flags.html",
+      classes: ["pergasha-foundryvtt"],
+      template: "systems/pergasha-foundryvtt/templates/apps/actor-flags.html",
       width: 500,
       closeOnSubmit: true
     });

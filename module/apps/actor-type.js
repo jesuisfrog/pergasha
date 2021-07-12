@@ -9,8 +9,8 @@ export default class ActorTypeConfig extends FormApplication {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["dnd5e", "actor-type", "trait-selector"],
-      template: "systems/dnd5e/templates/apps/actor-type.html",
+      classes: ["pergasha-foundryvtt", "actor-type", "trait-selector"],
+      template: "systems/pergasha-foundryvtt/templates/apps/actor-type.html",
       title: "DND5E.CreatureTypeTitle",
       width: 280,
       height: "auto",
@@ -35,7 +35,7 @@ export default class ActorTypeConfig extends FormApplication {
 
     // Get current value or new default
     let attr = foundry.utils.getProperty(this.object.data.data, 'details.type');
-    if ( foundry.utils.getType(attr) !== "Object" ) attr = {
+    if (foundry.utils.getType(attr) !== "Object") attr = {
       value: (attr in CONFIG.DND5E.creatureTypes) ? attr : "humanoid",
       subtype: "",
       swarm: "",
@@ -44,7 +44,7 @@ export default class ActorTypeConfig extends FormApplication {
 
     // Populate choices
     const types = {};
-    for ( let [k, v] of Object.entries(CONFIG.DND5E.creatureTypes) ) {
+    for (let [k, v] of Object.entries(CONFIG.DND5E.creatureTypes)) {
       types[k] = {
         label: game.i18n.localize(v),
         chosen: attr.value === k

@@ -12,7 +12,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
    */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ["dnd5e", "sheet", "actor", "vehicle"],
+      classes: ["pergasha-foundryvtt", "sheet", "actor", "vehicle"],
       width: 605,
       height: 680
     });

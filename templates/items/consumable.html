@@ -2,11 +2,11 @@
 
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'DND5E.ItemName' }}"/>
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'DND5E.ItemName' }}" />
             </h1>
 
             <div class="item-subtitle">
@@ -19,10 +19,12 @@
                     {{lookup config.consumableTypes data.consumableType }}
                 </li>
                 <li>
-                    <input type="text" name="data.rarity" value="{{data.rarity}}" placeholder="{{ localize 'DND5E.Rarity' }}"/>
+                    <input type="text" name="data.rarity" value="{{data.rarity}}"
+                        placeholder="{{ localize 'DND5E.Rarity' }}" />
                 </li>
                 <li>
-                    <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'DND5E.Source' }}"/>
+                    <input type="text" name="data.source" value="{{data.source}}"
+                        placeholder="{{ localize 'DND5E.Source' }}" />
                 </li>
             </ul>
         </div>
@@ -39,7 +41,7 @@
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
-        {{> "systems/dnd5e/templates/items/parts/item-description.html"}}
+        {{> "systems/pergasha-foundryvtt/templates/items/parts/item-description.html"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -67,21 +69,24 @@
             <div class="form-group stacked">
                 <label>{{ localize "DND5E.ItemConsumableStatus" }}</label>
                 <label class="checkbox">
-                    <input type="checkbox" name="data.equipped" {{checked data.equipped}}/> {{ localize "DND5E.Equipped" }}
+                    <input type="checkbox" name="data.equipped" {{checked data.equipped}} /> {{ localize
+                    "DND5E.Equipped" }}
                 </label>
                 <label class="checkbox">
-                    <input type="checkbox" name="data.identified" {{checked data.identified}}/> {{ localize "DND5E.Identified" }}
+                    <input type="checkbox" name="data.identified" {{checked data.identified}} /> {{ localize
+                    "DND5E.Identified" }}
                 </label>
             </div>
 
             <h3 class="form-header">{{ localize "DND5E.ItemConsumableUsage" }}</h3>
 
             {{!-- Item Activation Template --}}
-            {{> "systems/dnd5e/templates/items/parts/item-activation.html"}}
+            {{> "systems/pergasha-foundryvtt/templates/items/parts/item-activation.html"}}
             {{#if data.activation.type}}
             <div class="form-group">
                 <label class="checkbox">
-                    <input type="checkbox" name="data.uses.autoDestroy" {{checked data.uses.autoDestroy}}/> {{ localize "DND5E.ItemDestroyEmpty" }}
+                    <input type="checkbox" name="data.uses.autoDestroy" {{checked data.uses.autoDestroy}} /> {{ localize
+                    "DND5E.ItemDestroyEmpty" }}
                 </label>
             </div>
             {{/if}}
@@ -89,12 +94,12 @@
             <h3 class="form-header">{{ localize "DND5E.ItemConsumableActivation" }}</h3>
 
             {{!-- Item Action Template --}}
-            {{> "systems/dnd5e/templates/items/parts/item-action.html"}}
+            {{> "systems/pergasha-foundryvtt/templates/items/parts/item-action.html"}}
         </div>
 
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-            {{> "systems/dnd5e/templates/actors/parts/active-effects.html"}}
+            {{> "systems/pergasha-foundryvtt/templates/actors/parts/active-effects.html"}}
         </div>
     </section>
 </form>
