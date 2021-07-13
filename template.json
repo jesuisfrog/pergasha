@@ -100,6 +100,11 @@
             "units": "ft",
             "special": ""
           },
+          "psionics": {
+            "psionicsAbility": "int",
+            "psiPoints": "0",
+            "psiLimit": "2"
+          },
           "spellcasting": "int"
         },
         "details": {
@@ -245,12 +250,17 @@
             "attack": "",
             "damage": ""
           },
+          "pmak": {},
+          "prak": {},
           "abilities": {
             "check": "",
             "save": "",
             "skill": ""
           },
           "spell": {
+            "dc": ""
+          },
+          "psionics": {
             "dc": ""
           }
         }
@@ -271,6 +281,7 @@
           "failure": 0
         },
         "exhaustion": 0,
+        "fatigue": 0,
         "inspiration": 0
       },
       "details": {
@@ -503,7 +514,7 @@
         "save": {
           "ability": "",
           "dc": null,
-          "scaling": "spell"
+          "scaling": "psionics"
         }
       },
       "mountable": {

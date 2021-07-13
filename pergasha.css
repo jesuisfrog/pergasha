@@ -890,7 +890,8 @@
 }
 .pergasha-foundryvtt.sheet.actor .tab.features,
 .pergasha-foundryvtt.sheet.actor .tab.inventory,
-.pergasha-foundryvtt.sheet.actor .tab.spellbook {
+.pergasha-foundryvtt.sheet.actor .tab.spellbook,
+.pergasha-foundryvtt.sheet.actor .tab.psionics {
   overflow-y: hidden;
 }
 .pergasha-foundryvtt.sheet.actor .inventory-filters {
@@ -1624,4 +1625,38 @@
 .pergasha-foundryvtt.sheet.actor.vehicle .counters .counter.cargo-cap input {
   max-width: 40px;
   text-align: right;
+}
+
+
+/* Psionics */
+
+.pergasha-foundryvtt.sheet.actor .psionics-ability {
+  flex: 0 0 240px;
+  margin: 0;
+}
+.pergasha-foundryvtt.sheet.actor .psionics-ability label,
+.pergasha-foundryvtt.sheet.actor .psionics-ability span {
+  flex: none;
+}
+.pergasha-foundryvtt.sheet.actor .psionics-ability input {
+  flex: 0 0 28px;
+  text-align: center;
+}
+.pergasha-foundryvtt.sheet.actor .psionics-ability select {
+  margin: 0 5px;
+  flex: 0 0 120px;
+}
+
+.pergasha-foundryvtt.sheet.actor .psionics-order,
+.pergasha-foundryvtt.sheet.actor .psionics-action,
+.pergasha-foundryvtt.sheet.actor .psionics-target {
+  flex: 0 0 100px;
+  font-size: 12px;
+  color: #7a7971;
+  text-align: center;
+  border-right: 1px solid #c9c7b8;
+}
+
+.pergasha-foundryvtt.sheet.actor .psionics-empty .item-controls {
+  flex: 1;
 }

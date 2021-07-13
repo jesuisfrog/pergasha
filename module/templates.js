@@ -14,6 +14,7 @@ export const preloadHandlebarsTemplates = async function () {
     "systems/pergasha-foundryvtt/templates/actors/parts/actor-inventory.html",
     "systems/pergasha-foundryvtt/templates/actors/parts/actor-features.html",
     "systems/pergasha-foundryvtt/templates/actors/parts/actor-spellbook.html",
+    "systems/pergasha-foundryvtt/templates/actors/parts/actor-psionics.html",
 
     // Item Sheet Partials
     "systems/pergasha-foundryvtt/templates/items/parts/item-action.html",

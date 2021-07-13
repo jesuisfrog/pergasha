@@ -90,6 +90,7 @@
         <a class="item active" data-tab="attributes">{{ localize "DND5E.Attributes" }}</a>
         <a class="item" data-tab="features">{{ localize "DND5E.Features" }}</a>
         <a class="item" data-tab="spellbook">{{ localize "DND5E.Spellbook" }}</a>
+        <a class="item" data-tab="psionics">{{ localize "DND5E.Psionics" }}</a>
         <a class="item" data-tab="effects">{{ localize "DND5E.Effects" }}</a>
         <a class="item" data-tab="biography">{{ localize "DND5E.Biography" }}</a>
     </nav>
@@ -184,6 +185,11 @@
         {{!-- Spellbook Tab --}}
         <div class="tab spellbook flexcol" data-group="primary" data-tab="spellbook">
             {{> "systems/pergasha-foundryvtt/templates/actors/parts/actor-spellbook.html"}}
+        </div>
+
+        {{!-- Psionics Tab --}}
+        <div class="tab psionics flexcol" data-group="primary" data-tab="psionics">
+            {{> "systems/pergasha-foundryvtt/templates/actors/parts/actor-psionics.html"}}
         </div>
 
         {{!-- Effects Tab --}}

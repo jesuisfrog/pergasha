@@ -91,8 +91,11 @@
                         <input name="data.attributes.ac.value" type="number" value="{{data.attributes.ac.value}}"
                             placeholder="10" />
                     </div>
-                    <footer class="attribute-footer">
+                    <!-- <footer class="attribute-footer">
                         <span class="spell-dc">{{localize "DND5E.SpellDC"}} {{data.attributes.spelldc}}</span>
+                    </footer> -->
+                    <footer class="attribute-footer">
+                        <span class="psionics-dc">{{localize "DND5E.PsionicsDC"}} {{data.attributes.psionics.psionicsdc}}</span>
                     </footer>
                 </li>
 
@@ -131,7 +134,8 @@
         <a class="item active" data-tab="attributes">{{ localize "DND5E.Attributes" }}</a>
         <a class="item" data-tab="inventory">{{ localize "DND5E.Inventory" }}</a>
         <a class="item" data-tab="features">{{ localize "DND5E.Features" }}</a>
-        <a class="item" data-tab="spellbook">{{ localize "DND5E.Spellbook" }}</a>
+        <!-- <a class="item" data-tab="spellbook">{{ localize "DND5E.Spellbook" }}</a> -->
+        <a class="item" data-tab="psionics">{{ localize "DND5E.Psionics" }}</a>
         <a class="item" data-tab="effects">{{ localize "DND5E.Effects" }}</a>
         <a class="item" data-tab="biography">{{ localize "DND5E.Biography" }}</a>
     </nav>
@@ -229,17 +233,23 @@
                                 value="{{data.attributes.exhaustion}}" />
                         </div>
                     </div>
+                    <div class="counter flexrow fatigue">
+                        <h4>{{ localize "DND5E.Fatigue" }}</h4>
+                        <div class="counter-value">
+                            <input name="data.attributes.fatigue" type="number" placeholder="0"
+                                value="{{data.attributes.fatigue}}" />
+                        </div>
+                    </div>
                     <div class="counter flexrow inspiration">
                         <h4>{{ localize "DND5E.Inspiration" }}</h4>
                         <div class="counter-value">
-                            <input type="checkbox" name="data.attributes.inspiration" data-dtype="Boolean" {{checked
-                                data.attributes.inspiration}} />
+                            <input type="number" name="data.attributes.inspiration" placeholder="0"
+                                value="{{data.attributes.inspiration}}" />
                         </div>
                     </div>
-                </div>
 
-                {{!-- Traits --}}
-                {{> "systems/pergasha-foundryvtt/templates/actors/parts/actor-traits.html"}}
+                    {{!-- Traits --}}
+                    {{> "systems/pergasha-foundryvtt/templates/actors/parts/actor-traits.html"}}
             </section>
         </div>
 
@@ -253,9 +263,14 @@
             {{> "systems/pergasha-foundryvtt/templates/actors/parts/actor-features.html" sections=features}}
         </div>
 
-        {{!-- Spellbook Tab --}}
+        <!-- {{!-- Spellbook Tab --}}
         <div class="tab spellbook flexcol" data-group="primary" data-tab="spellbook">
             {{> "systems/pergasha-foundryvtt/templates/actors/parts/actor-spellbook.html"}}
+        </div> -->
+
+        {{!-- Psionics Tab --}}
+        <div class="tab psionics flexcol" data-group="primary" data-tab="psionics">
+            {{> "systems/pergasha-foundryvtt/templates/actors/parts/actor-psionics.html"}}
         </div>
 
         {{!-- Effects Tab --}}

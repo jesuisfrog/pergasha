@@ -723,6 +723,27 @@ DND5E.spellSchools = {
   "trs": "DND5E.SchoolTrs"
 };
 
+DND5E.psionicOrders = {
+  "avatar": "DND5E.AvatarOrder",
+  "awakened": "DND5E.AwakenedOrder",
+  "farhand": "DND5E.FarHandOrder",
+  "immortal": "DND5E.ImmortalOrder",
+  "nomad": "DND5E.NomadOrder",
+  "talents": "DND5E.Talents",
+};
+
+DND5E.psionicPowerCosts = {
+  0: "DND5E.PsiCost0",
+  1: "DND5E.PsiCost1",
+  2: "DND5E.PsiCost2",
+  3: "DND5E.PsiCost3",
+  4: "DND5E.PsiCost4",
+  5: "DND5E.PsiCost5",
+  6: "DND5E.PsiCost6",
+  7: "DND5E.PsiCost7",
+  8: "DND5E.PsiCostVar"
+}
+
 // Spell Levels
 DND5E.spellLevels = {
   0: "DND5E.SpellLevel0",
@@ -843,6 +864,7 @@ DND5E.conditionTypes = {
   "deafened": "DND5E.ConDeafened",
   "diseased": "DND5E.ConDiseased",
   "exhaustion": "DND5E.ConExhaustion",
+  "fatigue": "DND5E.ConFatigue",
   "frightened": "DND5E.ConFrightened",
   "grappled": "DND5E.ConGrappled",
   "incapacitated": "DND5E.ConIncapacitated",
