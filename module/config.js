@@ -322,6 +322,8 @@ DND5E.itemActionTypes = {
   "rwak": "DND5E.ActionRWAK",
   "msak": "DND5E.ActionMSAK",
   "rsak": "DND5E.ActionRSAK",
+  "mpak": "DND5E.ActionMPAK",
+  "rpak": "DND5E.ActionRPAK",
   "save": "DND5E.ActionSave",
   "heal": "DND5E.ActionHeal",
   "abil": "DND5E.ActionAbil",
