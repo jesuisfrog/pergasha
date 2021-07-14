@@ -833,6 +833,19 @@ export default class Item5e extends Item {
   }
 
   /* -------------------------------------------- */
+  /**
+   * Render a chat card for Psionic Powers type data
+   * @return {Object}
+   * @private
+   */
+  _psionicPowerChatData(data, labels, props) {
+    // props.push(
+    //   labels.level,
+    //   labels.components + (labels.materials ? ` (${labels.materials})` : "")
+    // );
+  }
+
+  /* -------------------------------------------- */
 
   /**
    * Prepare chat card data for items of the "Feat" type

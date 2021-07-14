@@ -73,7 +73,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     };
 
     // Partition items by category
-    let [items, spells, feats, classes] = data.items.reduce((arr, item) => {
+    let [items, spells, feats, classes, psionicPowers] = data.items.reduce((arr, item) => {
 
       // Item details
       item.img = item.img || CONST.DEFAULT_TOKEN;
@@ -107,6 +107,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       if (item.type === "spell") arr[1].push(item);
       else if (item.type === "feat") arr[2].push(item);
       else if (item.type === "class") arr[3].push(item);
+      else if (item.type === "psionicPower") arr[4].push(item);
       else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
       return arr;
     }, [[], [], [], []]);
@@ -114,6 +115,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     // Apply active item filters
     items = this._filterItems(items, this._filters.inventory);
     spells = this._filterItems(spells, this._filters.spellbook);
+    // psionicPowers = this._filterItems(psionicPowers, this._filters.psionics);
     feats = this._filterItems(feats, this._filters.features);
 
     // Organize items
@@ -126,7 +128,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
     // Organize Spellbook and count the number of prepared spells (excluding always, at will, etc...)
     const spellbook = this._prepareSpellbook(data, spells);
-    const test = this._preparePsionics(data, []);
+    // const psionics = this._preparePsionics(data, psionicPowers);
     const nPrepared = spells.filter(s => {
       return (s.data.level > 0) && (s.data.preparation.mode === "prepared") && s.data.preparation.prepared;
     }).length;
@@ -148,6 +150,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     data.inventory = Object.values(inventory);
     data.spellbook = spellbook;
     data.preparedSpells = nPrepared;
+    // data.psionics = psionics;
     data.features = Object.values(features);
   }
 

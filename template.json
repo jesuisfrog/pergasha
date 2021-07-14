@@ -102,8 +102,8 @@
           },
           "psionics": {
             "psionicsAbility": "int",
-            "psiPoints": "0",
-            "psiLimit": "2"
+            "psiPoints": 0,
+            "psiLimit": 2
           },
           "spellcasting": "int"
         },
@@ -250,8 +250,8 @@
             "attack": "",
             "damage": ""
           },
-          "pmak": {},
-          "prak": {},
+          "mpak": {},
+          "rpak": {},
           "abilities": {
             "check": "",
             "save": "",
@@ -447,7 +447,8 @@
       "class",
       "spell",
       "feat",
-      "backpack"
+      "backpack",
+      "psionicPower"
     ],
     "templates": {
       "itemDescription": {
@@ -672,6 +673,16 @@
       "weaponType": "simpleM",
       "properties": {},
       "proficient": true
+    },
+    "psionicPower": {
+      "templates": [
+        "itemDescription",
+        "activatedEffect",
+        "action"
+      ],
+      "psionicOrder": "talent",
+      "psionicDiscipline": "talent",
+      "psiCost": 0
     }
   }
 }
