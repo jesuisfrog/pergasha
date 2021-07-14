@@ -133,7 +133,7 @@ Hooks.once("setup", function () {
     "abilities", "abilityAbbreviations", "abilityActivationTypes", "abilityConsumptionTypes", "actorSizes", "alignments",
     "armorProficiencies", "conditionTypes", "consumableTypes", "cover", "currencies", "damageResistanceTypes",
     "damageTypes", "distanceUnits", "equipmentTypes", "healingTypes", "itemActionTypes", "languages",
-    "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "senses", "skills",
+    "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "psionicOrders", "psionicPowerCosts", "senses", "skills",
     "spellComponents", "spellLevels", "spellPreparationModes", "spellScalingModes", "spellSchools", "targetTypes",
     "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "weaponTypes"
   ];
@@ -141,7 +141,7 @@ Hooks.once("setup", function () {
   // Exclude some from sorting where the default order matters
   const noSort = [
     "abilities", "alignments", "currencies", "distanceUnits", "movementUnits", "itemActionTypes", "proficiencyLevels",
-    "limitedUsePeriods", "spellComponents", "spellLevels", "spellPreparationModes", "weaponTypes"
+    "limitedUsePeriods", "psionicPowerCosts", "spellComponents", "spellLevels", "spellPreparationModes", "weaponTypes"
   ];
 
   // Localize and sort CONFIG objects

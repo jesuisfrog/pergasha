@@ -294,8 +294,13 @@ export default class Item5e extends Item {
     const save = this.data.data?.save;
 
     // Actor spell-DC based scaling
-    if (save.scaling === "spell") {
-      save.dc = this.isOwned ? getProperty(this.actor.data, "data.attributes.spelldc") : null;
+    // if (save.scaling === "spell") {
+    //   save.dc = this.isOwned ? getProperty(this.actor.data, "data.attributes.spelldc") : null;
+    // }
+
+    if (save.scaling === "psionics") {
+      console.log("test");
+      save.dc = this.isOwned ? getProperty(this.actor.data, "data.attributes.psionics.psionicsdc") : null;
     }
 
     // Ability-score based scaling

@@ -97,7 +97,8 @@ export default class Actor5e extends Actor {
     }
 
     // Ability modifiers and saves
-    const dcBonus = Number.isNumeric(data.bonuses?.spell?.dc) ? parseInt(data.bonuses.spell.dc) : 0;
+    // const dcBonus = Number.isNumeric(data.bonuses?.spell?.dc) ? parseInt(data.bonuses.spell.dc) : 0;
+    const dcBonus = Number.isNumeric(data.bonuses?.psionics?.dc) ? parseInt(data.bonuses.psionics.dc) : 0;
     const saveBonus = Number.isNumeric(bonuses.save) ? parseInt(bonuses.save) : 0;
     const checkBonus = Number.isNumeric(bonuses.check) ? parseInt(bonuses.check) : 0;
     for (let [id, abl] of Object.entries(data.abilities)) {
@@ -143,7 +144,7 @@ export default class Actor5e extends Actor {
     }
 
     // Prepare spell-casting data
-    this._computeSpellcastingProgression(this.data);
+    this._computePsionicsDC(this.data);
   }
 
   /* -------------------------------------------- */
@@ -479,6 +480,20 @@ export default class Actor5e extends Actor {
       spells.pact.max = parseInt(spells.pact.override) || 0
       spells.pact.level = spells.pact.max > 0 ? 1 : 0;
     }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Prepare data related to the spell-casting capabilities of the Actor
+   * @private
+   */
+  _computePsionicsDC(actorData) {
+    if (actorData.type === 'vehicle') return;
+    const ad = actorData.data;
+    // Psionics DC
+    const psionicsAbility = ad.abilities[ad.attributes.psionics.psionicsAbility];
+    ad.attributes.psionics.psionicsdc = psionicsAbility ? psionicsAbility.dc : 8 + ad.attributes.prof;
   }
 
   /* -------------------------------------------- */
@@ -1389,6 +1404,7 @@ export default class Actor5e extends Actor {
     // Specific additional adjustments
     d.data.details.alignment = o.data.details.alignment; // Don't change alignment
     d.data.attributes.exhaustion = o.data.attributes.exhaustion; // Keep your prior exhaustion level
+    d.date.attributes.fatigue = o.data.attributes.fatigue; // Keep your prior fatigue level
     d.data.attributes.inspiration = o.data.attributes.inspiration; // Keep inspiration
     d.data.spells = o.data.spells; // Keep spell slots
 
