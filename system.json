@@ -55,10 +55,10 @@
       "entity": "Item"
     },
     {
-      "name": "classfeatures",
-      "label": "Class Features (SRD)",
+      "name": "class-features",
+      "label": "Class Features",
       "system": "pergasha-foundryvtt",
-      "path": "./packs/classfeatures.db",
+      "path": "./packs/class-features.db",
       "entity": "Item"
     },
     {
