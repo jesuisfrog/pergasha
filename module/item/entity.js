@@ -29,6 +29,9 @@ export default class Item5e extends Item {
       // Spells - Use Actor spellcasting modifier
       if (this.data.type === "spell") return actorData.attributes.spellcasting || "int";
 
+      // Psionic Powers - Use Actor psionicAbility modifier
+      else if (this.data.type === "psionicPower") return actorData.attributes.psionics.psionicAbility || "int";
+
       // Tools - default to Intelligence
       else if (this.data.type === "tool") return "int";
 
@@ -63,7 +66,7 @@ export default class Item5e extends Item {
    * @type {boolean}
    */
   get hasAttack() {
-    return ["mwak", "rwak", "msak", "rsak"].includes(this.data.data.actionType);
+    return ["mwak", "rwak", "msak", "rsak", "mpak", "rpak"].includes(this.data.data.actionType);
   }
 
   /* -------------------------------------------- */
@@ -173,6 +176,14 @@ export default class Item5e extends Item {
         return arr;
       }, []);
       labels.materials = data?.materials?.value ?? null;
+    }
+
+    // Psionic Powers
+    else if (itemData.type === "psionicPower") {
+      labels.psionicOrder = C.psionicOrders[data.psionicOrder];
+      labels.psiCost = C.psionicPowerCosts[data.psiCost];
+      labels.psionicDiscipline = C.psionicDisciplines[data.psionicDiscipline];
+      labels.concentration = data.concentration;
     }
 
     // Feat Items
@@ -299,7 +310,6 @@ export default class Item5e extends Item {
     // }
 
     if (save.scaling === "psionics") {
-      console.log("test");
       save.dc = this.isOwned ? getProperty(this.actor.data, "data.attributes.psionics.psionicsdc") : null;
     }
 
@@ -417,7 +427,7 @@ export default class Item5e extends Item {
    *                                        the prepared chat message data (if false).
    * @return {Promise<ChatMessage|object|void>}
    */
-  async roll({ configureDialog = true, rollMode, createMessage = true } = {}) {
+  async roll({ configureDialog = true, rollMode, createMessage = true } = {}) { //Automated Psipoint cost goes here --WIP--
     let item = this;
     const id = this.data.data;                // Item system data
     const actor = this.actor;
@@ -839,10 +849,12 @@ export default class Item5e extends Item {
    * @private
    */
   _psionicPowerChatData(data, labels, props) {
-    // props.push(
-    //   labels.level,
-    //   labels.components + (labels.materials ? ` (${labels.materials})` : "")
-    // );
+    props.push(
+      labels.psionicOrder,
+      labels.psionicDiscipline,
+      labels.psiCost,
+      labels.concentration
+    );
   }
 
   /* -------------------------------------------- */
@@ -990,7 +1002,11 @@ export default class Item5e extends Item {
       messageData["flags.dnd5e.roll"].versatile = true;
     }
 
-    // Scale damage from up-casting spells
+
+    // --WIP-- Psionic Powers boosted psiCost goes here
+
+
+    // Scale damage from up-casting spells 
     if ((this.data.type === "spell")) {
       if ((itemData.scaling.mode === "cantrip")) {
         const level = this.actor.data.type === "character" ? actorData.details.level : actorData.details.spellLevel;

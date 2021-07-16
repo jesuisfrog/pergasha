@@ -445,10 +445,10 @@
       "tool",
       "loot",
       "class",
+      "psionicPower",
       "spell",
       "feat",
-      "backpack",
-      "psionicPower"
+      "backpack"
     ],
     "templates": {
       "itemDescription": {
@@ -680,9 +680,11 @@
         "activatedEffect",
         "action"
       ],
-      "psionicOrder": "talent",
-      "psionicDiscipline": "talent",
-      "psiCost": 0
+      "psionicOrder": null,
+      "psionicDiscipline": null,
+      "psiCost": 0,
+      "concentration": false,
+      "variableCost": null
     }
   }
 }

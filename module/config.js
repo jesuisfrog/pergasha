@@ -320,8 +320,8 @@ DND5E.creatureTypes = {
 DND5E.itemActionTypes = {
   "mwak": "DND5E.ActionMWAK",
   "rwak": "DND5E.ActionRWAK",
-  "msak": "DND5E.ActionMSAK",
-  "rsak": "DND5E.ActionRSAK",
+  // "msak": "DND5E.ActionMSAK",
+  // "rsak": "DND5E.ActionRSAK",
   "mpak": "DND5E.ActionMPAK",
   "rpak": "DND5E.ActionRPAK",
   "save": "DND5E.ActionSave",
@@ -731,7 +731,13 @@ DND5E.psionicOrders = {
   "farhand": "DND5E.FarHandOrder",
   "immortal": "DND5E.ImmortalOrder",
   "nomad": "DND5E.NomadOrder",
-  "talents": "DND5E.Talents",
+};
+
+DND5E.psionicDisciplines = {
+  "adaptiveBody": "DND5E.AdaptiveBody",
+  "auraOfCommand": "DND5E.AuraOfCommand",
+  "auraOfFury": "DND5E.AuraOfFury",
+  "auraSight": "DND5E.AuraSight"
 };
 
 DND5E.psionicPowerCosts = {

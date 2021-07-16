@@ -76,7 +76,13 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     let [items, spells, feats, classes, psionicPowers] = data.items.reduce((arr, item) => {
 
       // Item details
+      // if (item.type === "psionicPower") { --WIP-- Default icon for psionics
+      //   console.log("YAY");
+      //   item.img = item.img || "systems/pergasha-foundryvtt/icons/pergasha_icons/icons_psionics.png";
+      // } else {
       item.img = item.img || CONST.DEFAULT_TOKEN;
+      // }
+
       item.isStack = Number.isNumeric(item.data.quantity) && (item.data.quantity !== 1);
       item.attunement = {
         [CONFIG.DND5E.attunementTypes.REQUIRED]: {

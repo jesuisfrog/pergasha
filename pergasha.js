@@ -133,7 +133,7 @@ Hooks.once("setup", function () {
     "abilities", "abilityAbbreviations", "abilityActivationTypes", "abilityConsumptionTypes", "actorSizes", "alignments",
     "armorProficiencies", "conditionTypes", "consumableTypes", "cover", "currencies", "damageResistanceTypes",
     "damageTypes", "distanceUnits", "equipmentTypes", "healingTypes", "itemActionTypes", "languages",
-    "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "psionicOrders", "psionicPowerCosts", "senses", "skills",
+    "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "psionicOrders", "psionicDisciplines", "psionicPowerCosts", "senses", "skills",
     "spellComponents", "spellLevels", "spellPreparationModes", "spellScalingModes", "spellSchools", "targetTypes",
     "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "weaponTypes"
   ];
@@ -219,4 +219,24 @@ Hooks.on('getActorDirectoryEntryContext', Actor5e.addDirectoryContextOptions);
 // FIXME: This helper is needed for the vehicle sheet. It should probably be refactored.
 Handlebars.registerHelper('getProperty', function (data, property) {
   return getProperty(data, property);
+});
+
+//Handlebar helper for variable costs on psionic powers
+Handlebars.registerHelper('isVariableCost', function (psionicPower) {
+  if (psionicPower.psiCost == 8) {
+    return true;
+  } else {
+    return false;
+  }
+});
+
+Handlebars.registerHelper('isTalent', function (psionicPower) {
+  if (psionicPower.psiCost == 0) {
+    psionicPower.psionicOrder = null;
+    psionicPower.psionicDiscipline = null;
+    psionicPower.variableCost = null;
+    return true;
+  } else {
+    return false;
+  }
 });
