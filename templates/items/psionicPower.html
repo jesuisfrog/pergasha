@@ -25,7 +25,8 @@
                 </li>
                 {{/unless}}
                 <li>
-                    {{labels.psiCost}}{{#if (isVariableCost data)}}: {{data.variableCost}}{{/if}}
+                    {{labels.psiCost}}{{#if (isVariableCost data)}}:
+                    {{data.variableCost.baseCost}}-{{data.variableCost.maxCost}}{{/if}}
                 </li>
             </ul>
         </div>
@@ -58,10 +59,30 @@
                     {{/each}}
                     {{/select}}
                 </select>
-                {{#if (isVariableCost data)}}
-                <input type="text" name="data.variableCost" value="{{data.variableCost}}" />
-                {{/if}}
+
             </div>
+            <!-- Fit to data ? One line for all variable info ? Fix margin/padding -->
+            {{#if (isVariableCost data)}}
+            <div class="form-group">
+                <label>{{ localize "DND5E.PsionicPowerBaseCost" }}</label>
+                <select name="data.variableCost.baseCost" data-dtype="String">
+                    {{#select data.variableCost.baseCost}}
+                    {{#each config.basePsionicPowerCosts as |name cost|}}
+                    <option value="{{cost}}">{{name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+                <label>{{ localize "DND5E.PsionicPowerMaxCost" }}</label>
+                <select name="data.variableCost.maxCost" data-dtype="String">
+                    {{#select data.variableCost.maxCost}}
+                    {{#each config.maxPsionicPowerCosts as |name cost|}}
+                    <option value="{{cost}}">{{name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+
+            {{/if}}
             {{#unless (isTalent data)}}
             {{!-- Psionic Order --}}
             <div class="form-group">
@@ -103,13 +124,13 @@
             {{!-- Item Action Template --}}
             {{> "systems/pergasha-foundryvtt/templates/items/parts/item-action.html"}}
 
-            <!-- {{!-- Spell Level Scaling --}} --WIP-- Talent scaling
+            {{!-- Psionic Power Scaling --}}
             <div class="form-group">
-                <label>{{ localize "DND5E.LevelScaling" }}</label>
+                <label>{{ localize "DND5E.PsionicPowerScaling" }}</label>
                 <div class="form-fields">
                     <select name="data.scaling.mode">
                         {{#select data.scaling.mode}}
-                        {{#each config.spellScalingModes as |name key|}}
+                        {{#each config.psionicPowerScaling as |name key|}}
                         <option value="{{key}}">{{name}}</option>
                         {{/each}}
                         {{/select}}
@@ -117,7 +138,7 @@
                     <input type="text" name="data.scaling.formula" value="{{data.scaling.formula}}"
                         placeholder="{{ localize 'DND5E.ScalingFormula' }}" />
                 </div>
-            </div> -->
+            </div>
         </div>
 
         {{!-- Effects Tab --}}

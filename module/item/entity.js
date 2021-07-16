@@ -1004,7 +1004,16 @@ export default class Item5e extends Item {
 
 
     // --WIP-- Psionic Powers boosted psiCost goes here
-
+    if ((this.data.type === "psionicPower")) {
+      if ((itemData.scaling.mode === "talent")) {
+        const level = this.actor.data.type === "character" ? actorData.details.level : 1;
+        this._scaleTalentDamage(parts, itemData.scaling.formula, level, rollData);
+      }
+      else if (itemData.variableCost && (itemData.scaling.mode === "variableCost") && itemData.scaling.formula) {
+        const scaling = itemData.scaling.formula;
+        this._scalePsionicPowerDamage(parts, itemData.baseCost, psiPointsSpent, scaling, rollData);
+      }
+    }
 
     // Scale damage from up-casting spells 
     if ((this.data.type === "spell")) {
@@ -1073,6 +1082,37 @@ export default class Item5e extends Item {
     if (upcastLevels === 0) return parts;
     this._scaleDamage(parts, formula, upcastLevels, rollData);
   }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Adjust a talent damage formula to scale it for higher level characters and monsters
+   * @private
+   */
+  _scaleTalentDamage(parts, scale, level, rollData) {
+    const add = Math.floor((level + 1) / 6);
+    if (add === 0) return;
+    this._scaleDamage(parts, scale || parts.join(" + "), add, rollData);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Adjust the psionic power damage formula to scale it for variable cost powers
+   * @param {Array} parts         The original damage parts
+   * @param {number} baseCost    The default spell level
+   * @param {number} psiPointsSpent   The casted spell level
+   * @param {string} formula      The scaling formula
+   * @param {object} rollData     A data object that should be applied to the scaled damage roll
+   * @return {string[]}           The scaled roll parts
+   * @private
+   */
+  _scalePsionicPowerDamage(parts, baseCost, psiPointsSpent, formula, rollData) {
+    const upCost = Math.max(psiPointsSpent - baseCost, 0);
+    if (upCost === 0) return parts;
+    this._scaleDamage(parts, formula, upCost, rollData);
+  }
+
 
   /* -------------------------------------------- */
 

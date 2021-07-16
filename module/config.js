@@ -752,6 +752,38 @@ DND5E.psionicPowerCosts = {
   8: "DND5E.PsiCostVar"
 }
 
+DND5E.basePsionicPowerCosts = {
+  1: "DND5E.PsiCost1",
+  2: "DND5E.PsiCost2",
+  3: "DND5E.PsiCost3",
+  4: "DND5E.PsiCost4",
+  5: "DND5E.PsiCost5",
+  6: "DND5E.PsiCost6"
+}
+
+DND5E.maxPsionicPowerCosts = {
+  2: "DND5E.PsiCost2",
+  3: "DND5E.PsiCost3",
+  4: "DND5E.PsiCost4",
+  5: "DND5E.PsiCost5",
+  6: "DND5E.PsiCost6",
+  7: "DND5E.PsiCost7"
+}
+
+/* -------------------------------------------- */
+
+/**
+ * The available choices for how psionic power damage scaling may be computed
+ * @type {Object}
+ */
+DND5E.psionicPowerScaling = {
+  "none": "DND5E.PsionicPowerNone",
+  "talent": "DND5E.PsionicPowerTalent",
+  "variableCost": "DND5E.PsionicPowerVariableCost"
+};
+
+/* -------------------------------------------- */
+
 // Spell Levels
 DND5E.spellLevels = {
   0: "DND5E.SpellLevel0",

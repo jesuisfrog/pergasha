@@ -684,7 +684,14 @@
       "psionicDiscipline": null,
       "psiCost": 0,
       "concentration": false,
-      "variableCost": null
+      "variableCost": {
+        "baseCost": null,
+        "maxCost": null
+      },
+      "scaling": {
+        "mode": "none",
+        "formula": null
+      }
     }
   }
 }

@@ -133,7 +133,7 @@ Hooks.once("setup", function () {
     "abilities", "abilityAbbreviations", "abilityActivationTypes", "abilityConsumptionTypes", "actorSizes", "alignments",
     "armorProficiencies", "conditionTypes", "consumableTypes", "cover", "currencies", "damageResistanceTypes",
     "damageTypes", "distanceUnits", "equipmentTypes", "healingTypes", "itemActionTypes", "languages",
-    "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "psionicOrders", "psionicDisciplines", "psionicPowerCosts", "senses", "skills",
+    "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "psionicOrders", "psionicDisciplines", "psionicPowerCosts", "psionicPowerScaling", "basePsionicPowerCosts", "maxPsionicPowerCosts", "senses", "skills",
     "spellComponents", "spellLevels", "spellPreparationModes", "spellScalingModes", "spellSchools", "targetTypes",
     "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "weaponTypes"
   ];
@@ -141,7 +141,7 @@ Hooks.once("setup", function () {
   // Exclude some from sorting where the default order matters
   const noSort = [
     "abilities", "alignments", "currencies", "distanceUnits", "movementUnits", "itemActionTypes", "proficiencyLevels",
-    "limitedUsePeriods", "psionicPowerCosts", "spellComponents", "spellLevels", "spellPreparationModes", "weaponTypes"
+    "limitedUsePeriods", "psionicPowerCosts", "basePsionicPowerCosts", "maxPsionicPowerCosts", "spellComponents", "spellLevels", "spellPreparationModes", "weaponTypes"
   ];
 
   // Localize and sort CONFIG objects
@@ -226,6 +226,8 @@ Handlebars.registerHelper('isVariableCost', function (psionicPower) {
   if (psionicPower.psiCost == 8) {
     return true;
   } else {
+    psionicPower.variableCost.baseCost = null;
+    psionicPower.variableCost.maxCost = null;
     return false;
   }
 });
@@ -234,7 +236,6 @@ Handlebars.registerHelper('isTalent', function (psionicPower) {
   if (psionicPower.psiCost == 0) {
     psionicPower.psionicOrder = null;
     psionicPower.psionicDiscipline = null;
-    psionicPower.variableCost = null;
     return true;
   } else {
     return false;
