@@ -362,67 +362,42 @@ export default class ActorSheet5e extends ActorSheet {
     const psiLimit = actorData.attributes.psionics.psiLimit;
     const psionics = {};
 
-    // // Define some mappings
-    // const sections = {
-    //   "atwill": -20,
-    //   "innate": -10,
-    //   "pact": 0.5
-    // };
 
-    // // Format a spellbook entry for a certain indexed level
-    // const registerSection = (sl, i, label, { prepMode = "prepared", value, max, override } = {}) => {
-    //   spellbook[i] = {
-    //     order: i,
-    //     label: label,
-    //     usesSlots: i > 0,
-    //     canCreate: owner,
-    //     canPrepare: (data.actor.type === "character") && (i >= 1),
-    //     spells: [],
-    //     uses: useLabels[i] || value || 0,
-    //     slots: useLabels[i] || max || 0,
-    //     override: override || 0,
-    //     dataset: { "type": "spell", "level": prepMode in sections ? 1 : i, "preparation.mode": prepMode },
-    //     prop: sl
-    //   };
-    // };
+    // // Format a psionics entry for a certain indexed level
+    const registerSection = (i, label) => {
+      psionics[i] = {
+        order: i,
+        label: label,
+        canCreate: owner,
+        psionicPowers: [],
+        dataset: { "type": "psionicPower", "psicost": i },
+      };
+    };
 
-    // // Determine the maximum spell level which has a slot
-    // const maxLevel = Array.fromRange(10).reduce((max, i) => {
-    //   if (i === 0) return max;
-    //   const level = levels[`spell${i}`];
-    //   if ((level.max || level.override) && (i > max)) max = i;
-    //   return max;
-    // }, 0);
-
-    // // Level-based spellcasters have cantrips and leveled slots
-    // if (maxLevel > 0) {
-    //   registerSection("spell0", 0, CONFIG.DND5E.spellLevels[0]);
-    //   for (let lvl = 1; lvl <= maxLevel; lvl++) {
-    //     const sl = `spell${lvl}`;
-    //     registerSection(sl, lvl, CONFIG.DND5E.spellLevels[lvl], levels[sl]);
-    //   }
+    // // // Talent + section up to psi limit + Variable section
+    // registerSection(0, CONFIG.DND5E.psionicPowerCosts[0]);
+    // registerSection(8, CONFIG.DND5E.psionicPowerCosts[8]);
+    // for (let cost = 1; cost <= psiLimit; cost++) {
+    //   registerSection(cost, CONFIG.DND5E.psionicPowerCosts[cost]);
     // }
 
+    // Iterate over every psionic power item, adding psionic powers to the psionics by section
+    psionicPowers.forEach(psionicPower => {
+      let cost = psionicPower.data.psicost || 0;
 
-    // // Iterate over every spell item, adding spells to the spellbook by section
-    // spells.forEach(spell => {
-    //   const mode = spell.data.preparation.mode || "prepared";
-    //   let s = spell.data.level || 0;
-    //   const sl = `spell${s}`;
+      // Sections for higher-cost psionic powers which the character "should not" have, but psionic power items exist for
+      if (!psionics[cost]) {
+        registerSection(cost, CONFIG.DND5E.psionicPowerCosts[cost]);
+      }
 
-    //   // Sections for higher-level spells which the caster "should not" have, but spell items exist for
-    //   if (!spellbook[s]) {
-    //     registerSection(sl, s, CONFIG.DND5E.spellLevels[s], { levels: levels[sl] });
-    //   }
+      // Add the psionic power to the relevant heading
+      psionics[cost].psionicPowers.push(psionicPower);
+    });
 
-    //   // Add the spell to the relevant heading
-    //   spellbook[s].spells.push(spell);
-    // });
-
-    // // Sort the spellbook by section level
-    // const sorted = Object.values(spellbook);
-    // sorted.sort((a, b) => a.order - b.order);
-    // return sorted;
+    // Sort the psionics by section cost
+    const sorted = Object.values(psionics);
+    sorted.sort((a, b) => a.order - b.order);
+    return sorted;
   }
 
   /* -------------------------------------------- */
@@ -435,7 +410,6 @@ export default class ActorSheet5e extends ActorSheet {
   _filterItems(items, filters) {
     return items.filter(item => {
       const data = item.data;
-
       // Action usage
       for (let f of ["action", "bonus", "reaction"]) {
         if (filters.has(f)) {
@@ -443,17 +417,27 @@ export default class ActorSheet5e extends ActorSheet {
         }
       }
 
-      // Spell-specific filters
+      // Spell-specific filters + Psionic Concentration
       if (filters.has("ritual")) {
         if (data.components.ritual !== true) return false;
       }
-      if (filters.has("concentration")) {
+      if (item.type === "spell" && filters.has("concentration")) {
         if (data.components.concentration !== true) return false;
       }
       if (filters.has("prepared")) {
         if (data.level === 0 || ["innate", "always"].includes(data.preparation.mode)) return true;
         if (this.actor.data.type === "npc") return true;
         return data.preparation.prepared;
+      }
+
+      // Psionic Filters
+      if (item.type === "psionicPower" && filters.has("concentration")) {
+        if (data.concentration !== true) return false;
+      }
+
+      if (item.type === "psionicPower" && filters.has("psilimit")) {
+        console.log(this.actor.data);
+        if (data.psicost > this.actor.data.data.attributes.psionics.psiLimit) return false;
       }
 
       // Equipment-specific filters

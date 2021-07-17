@@ -223,7 +223,7 @@ Handlebars.registerHelper('getProperty', function (data, property) {
 
 //Handlebar helper for variable costs on psionic powers
 Handlebars.registerHelper('isVariableCost', function (psionicPower) {
-  if (psionicPower.psiCost == 8) {
+  if (psionicPower.psicost == 8) {
     return true;
   } else {
     psionicPower.variableCost.baseCost = null;
@@ -233,7 +233,7 @@ Handlebars.registerHelper('isVariableCost', function (psionicPower) {
 });
 
 Handlebars.registerHelper('isTalent', function (psionicPower) {
-  if (psionicPower.psiCost == 0) {
+  if (psionicPower.psicost == 0) {
     psionicPower.psionicOrder = null;
     psionicPower.psionicDiscipline = null;
     return true;
@@ -241,3 +241,24 @@ Handlebars.registerHelper('isTalent', function (psionicPower) {
     return false;
   }
 });
+
+Handlebars.registerHelper('maxHigherThanBase', function (psionicPower) {
+  const base = psionicPower.variableCost.baseCost;
+  const max = psionicPower.variableCost.maxCost;
+  if (base && max) {
+    if (max > base) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+});
+
+Handlebars.registerHelper('isTalentSection', function (section) {
+  if (section.label === "Talent") {
+    return true;
+  } else {
+    return false;
+  }
+});
+

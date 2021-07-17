@@ -181,7 +181,7 @@ export default class Item5e extends Item {
     // Psionic Powers
     else if (itemData.type === "psionicPower") {
       labels.psionicOrder = C.psionicOrders[data.psionicOrder];
-      labels.psiCost = C.psionicPowerCosts[data.psiCost];
+      labels.psicost = C.psionicPowerCosts[data.psicost];
       labels.psionicDiscipline = C.psionicDisciplines[data.psionicDiscipline];
       labels.concentration = data.concentration;
     }
@@ -852,7 +852,7 @@ export default class Item5e extends Item {
     props.push(
       labels.psionicOrder,
       labels.psionicDiscipline,
-      labels.psiCost,
+      labels.psicost,
       labels.concentration
     );
   }
@@ -1003,7 +1003,7 @@ export default class Item5e extends Item {
     }
 
 
-    // --WIP-- Psionic Powers boosted psiCost goes here
+    // --WIP-- Psionic Powers boosted psicost goes here
     if ((this.data.type === "psionicPower")) {
       if ((itemData.scaling.mode === "talent")) {
         const level = this.actor.data.type === "character" ? actorData.details.level : 1;

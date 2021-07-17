@@ -11,9 +11,9 @@
         </select>
         <span>{{localize "DND5E.AbbreviationDC"}} {{data.attributes.psionics.psionicsdc}}</span>
     </div>
-    <div class="form-group psionics-ability">
+    <div class="form-group psionics-ability" style="max-width: fit-content;">
         <label>{{localize "DND5E.PsionicLimit"}}</label>
-        <select name="data.attributes.psionics.psiLimit" data-type="number">
+        <select style="max-width: fit-content;" name="data.attributes.psionics.psiLimit" data-type="number">
             {{#select data.attributes.psionics.psiLimit}}
             <option value="2" selected>2</option>
             <option value="3">3</option>
@@ -30,16 +30,20 @@
         <li class="filter-item" data-filter="bonus">{{localize "DND5E.BonusAction"}}</li>
         <li class="filter-item" data-filter="reaction">{{localize "DND5E.Reaction"}}</li>
         <li class="filter-item" data-filter="concentration">{{localize "DND5E.AbbreviationConc"}}</li>
+        <li class="filter-item" data-filter="psilimit">{{localize "DND5E.PsiLimit"}}</li>
     </ul>
 </div>
 
 <ol class="items-list inventory-list">
-    {{#each spellbook as |section|}}
-    <li class="items-header spellbook-header flexrow">
+    {{#each psionics as |section|}}
+    <li class="items-header flexrow">
         <div class="item-name flexrow">
             <h3>{{section.label}}</h3>
         </div>
+        {{#unless (isTalentSection section)}}
         <div class="psionics-order">{{localize "DND5E.PsionicOrder"}}</div>
+        <div class="psionics-discipline">{{localize "DND5E.PsionicDiscipline"}}</div>
+        {{/unless}}
         <div class="psionics-action">{{localize "DND5E.EvokingTime"}}</div>
         <div class="psionics-target">{{localize "DND5E.PsionicTarget"}}</div>
 
@@ -54,16 +58,14 @@
     </li>
 
     <ol class="item-list">
-        {{#each section.spells as |item i|}}
+        {{#each section.psionicPowers as |item i|}}
         <li class="item flexrow" data-item-id="{{item._id}}">
             <div class="item-name flexrow rollable">
                 <div class="item-image" style="background-image: url('{{item.img}}')"></div>
                 <h4>{{item.name}}</h4>
-                {{#if item.data.uses.per }}
-                <div class="item-detail spell-uses">Uses {{item.data.uses.value}} / {{item.data.uses.max}}</div>
-                {{/if}}
             </div>
-            <div class="psionics-order">{{labels.school}}</div>
+            <div class="psionics-order">{{labels.psionicOrder}}</div>
+            <div class="psionics-discipline">{{labels.psionicDiscipline}}</div>
             <div class="psionics-action">{{labels.activation}}</div>
             <div class="psionics-target" title="{{localize 'DND5E.Range'}}: {{labels.range}}">
                 {{#if labels.target}}
@@ -84,15 +86,15 @@
     </ol>
     {{else}}
     {{#if owner}}
-    {{#if filters.spellbook.size}}
+    {{#if filters.psionics.size}}
     <li class="item flexrow">
         <p class="notes">{{localize "DND5E.FilterNoPsionicPowers"}}</p>
     </li>
     {{else}}
-    <li class="item flexrow inventory-header spellbook-header psionics-empty">
+    <li class="item flexrow inventory-header psionics-empty">
         <div class="item-controls flexrow">
-            <a class="item-control item-create" title="{{localize 'DND5E.PsionicPowerCreate'}}" data-type="spell"
-                data-level="{{lvl}}"><i class="fas fa-plus"></i> {{localize "DND5E.PsionicPowerCreate"}}</a>
+            <a class="item-control item-create" title="{{localize 'DND5E.PsionicPowerCreate'}}" data-type="psionicPower"
+                data-psicost="{{psicost}}"><i class="fas fa-plus"></i> {{localize "DND5E.PsionicPowerCreate"}}</a>
         </div>
     </li>
     {{/if}}

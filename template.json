@@ -682,7 +682,7 @@
       ],
       "psionicOrder": null,
       "psionicDiscipline": null,
-      "psiCost": 0,
+      "psicost": 2,
       "concentration": false,
       "variableCost": {
         "baseCost": null,

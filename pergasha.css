@@ -860,6 +860,12 @@
   margin: 0 0 3px 0;
   justify-content: space-between;
 }
+
+
+.pergasha-foundryvtt .psiPower{
+      text-align: center;
+    }
+
 .pergasha-foundryvtt.sheet.actor .traits .config-button {
   flex: 1;
 }
@@ -1648,6 +1654,7 @@
 }
 
 .pergasha-foundryvtt.sheet.actor .psionics-order,
+.pergasha-foundryvtt.sheet.actor .psionics-discipline,
 .pergasha-foundryvtt.sheet.actor .psionics-action,
 .pergasha-foundryvtt.sheet.actor .psionics-target {
   flex: 0 0 100px;

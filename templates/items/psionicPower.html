@@ -25,7 +25,7 @@
                 </li>
                 {{/unless}}
                 <li>
-                    {{labels.psiCost}}{{#if (isVariableCost data)}}:
+                    {{labels.psicost}}{{#if (isVariableCost data)}}:
                     {{data.variableCost.baseCost}}-{{data.variableCost.maxCost}}{{/if}}
                 </li>
             </ul>
@@ -52,19 +52,15 @@
             {{!-- Psionic Power Cost --}}
             <div class="form-group">
                 <label>{{ localize "DND5E.PsiCost" }}</label>
-                <select name="data.psiCost" data-dtype="String">
-                    {{#select data.psiCost}}
+                <select name="data.psicost" data-dtype="String">
+                    {{#select data.psicost}}
                     {{#each config.psionicPowerCosts as |name cost|}}
                     <option value="{{cost}}">{{name}}</option>
                     {{/each}}
                     {{/select}}
                 </select>
-
-            </div>
-            <!-- Fit to data ? One line for all variable info ? Fix margin/padding -->
-            {{#if (isVariableCost data)}}
-            <div class="form-group">
-                <label>{{ localize "DND5E.PsionicPowerBaseCost" }}</label>
+                {{#if (isVariableCost data)}}
+                <label class="psiPower">{{ localize "DND5E.PsionicPowerBaseCost" }}</label>
                 <select name="data.variableCost.baseCost" data-dtype="String">
                     {{#select data.variableCost.baseCost}}
                     {{#each config.basePsionicPowerCosts as |name cost|}}
@@ -72,7 +68,7 @@
                     {{/each}}
                     {{/select}}
                 </select>
-                <label>{{ localize "DND5E.PsionicPowerMaxCost" }}</label>
+                <label class="psiPower">{{ localize "DND5E.PsionicPowerMaxCost" }}</label>
                 <select name="data.variableCost.maxCost" data-dtype="String">
                     {{#select data.variableCost.maxCost}}
                     {{#each config.maxPsionicPowerCosts as |name cost|}}
@@ -80,9 +76,17 @@
                     {{/each}}
                     {{/select}}
                 </select>
+                {{/if}}
             </div>
-
+            {{#if (isVariableCost data)}}
+            {{#unless (maxHigherThanBase data)}}
+            <div class="form-group">
+                <p style="color: red; font-weight: bold;">The maximum cost must be higher than the base cost.</p>
+            </div>
+            {{/unless}}
             {{/if}}
+
+
             {{#unless (isTalent data)}}
             {{!-- Psionic Order --}}
             <div class="form-group">
