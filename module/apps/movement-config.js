@@ -7,8 +7,8 @@ export default class ActorMovementConfig extends DocumentSheet {
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["pergasha-foundryvtt"],
-      template: "systems/pergasha-foundryvtt/templates/apps/movement-config.html",
+      classes: ["pergashaFoundryvtt"],
+      template: "systems/pergashaFoundryvtt/templates/apps/movement-config.html",
       width: 300,
       height: "auto"
     });

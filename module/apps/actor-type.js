@@ -9,8 +9,8 @@ export default class ActorTypeConfig extends FormApplication {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["pergasha-foundryvtt", "actor-type", "trait-selector"],
-      template: "systems/pergasha-foundryvtt/templates/apps/actor-type.html",
+      classes: ["pergashaFoundryvtt", "actor-type", "trait-selector"],
+      template: "systems/pergashaFoundryvtt/templates/apps/actor-type.html",
       title: "DND5E.CreatureTypeTitle",
       width: 280,
       height: "auto",

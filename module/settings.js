@@ -1,9 +1,9 @@
-export const registerSystemSettings = function() {
+export const registerSystemSettings = function () {
 
   /**
    * Track the system version upon which point a migration was last applied
    */
-  game.settings.register("pergasha-foundryvtt", "systemMigrationVersion", {
+  game.settings.register("pergashaFoundryvtt", "systemMigrationVersion", {
     name: "System Migration Version",
     scope: "world",
     config: false,
@@ -14,7 +14,7 @@ export const registerSystemSettings = function() {
   /**
    * Register resting variants
    */
-  game.settings.register("pergasha-foundryvtt", "restVariant", {
+  game.settings.register("pergashaFoundryvtt", "restVariant", {
     name: "SETTINGS.5eRestN",
     hint: "SETTINGS.5eRestL",
     scope: "world",
@@ -31,7 +31,7 @@ export const registerSystemSettings = function() {
   /**
    * Register diagonal movement rule setting
    */
-  game.settings.register("pergasha-foundryvtt", "diagonalMovement", {
+  game.settings.register("pergashaFoundryvtt", "diagonalMovement", {
     name: "SETTINGS.5eDiagN",
     hint: "SETTINGS.5eDiagL",
     scope: "world",
@@ -49,7 +49,7 @@ export const registerSystemSettings = function() {
   /**
    * Register Initiative formula setting
    */
-  game.settings.register("pergasha-foundryvtt", "initiativeDexTiebreaker", {
+  game.settings.register("pergashaFoundryvtt", "initiativeDexTiebreaker", {
     name: "SETTINGS.5eInitTBN",
     hint: "SETTINGS.5eInitTBL",
     scope: "world",
@@ -61,7 +61,7 @@ export const registerSystemSettings = function() {
   /**
    * Require Currency Carrying Weight
    */
-  game.settings.register("pergasha-foundryvtt", "currencyWeight", {
+  game.settings.register("pergashaFoundryvtt", "currencyWeight", {
     name: "SETTINGS.5eCurWtN",
     hint: "SETTINGS.5eCurWtL",
     scope: "world",
@@ -73,7 +73,7 @@ export const registerSystemSettings = function() {
   /**
    * Option to disable XP bar for session-based or story-based advancement.
    */
-  game.settings.register("pergasha-foundryvtt", "disableExperienceTracking", {
+  game.settings.register("pergashaFoundryvtt", "disableExperienceTracking", {
     name: "SETTINGS.5eNoExpN",
     hint: "SETTINGS.5eNoExpL",
     scope: "world",
@@ -85,7 +85,7 @@ export const registerSystemSettings = function() {
   /**
    * Option to automatically collapse Item Card descriptions
    */
-  game.settings.register("pergasha-foundryvtt", "autoCollapseItemCards", {
+  game.settings.register("pergashaFoundryvtt", "autoCollapseItemCards", {
     name: "SETTINGS.5eAutoCollapseCardN",
     hint: "SETTINGS.5eAutoCollapseCardL",
     scope: "client",
@@ -100,7 +100,7 @@ export const registerSystemSettings = function() {
   /**
    * Option to allow GMs to restrict polymorphing to GMs only.
    */
-  game.settings.register('pergasha-foundryvtt', 'allowPolymorphing', {
+  game.settings.register('pergashaFoundryvtt', 'allowPolymorphing', {
     name: 'SETTINGS.5eAllowPolymorphingN',
     hint: 'SETTINGS.5eAllowPolymorphingL',
     scope: 'world',
@@ -112,7 +112,7 @@ export const registerSystemSettings = function() {
   /**
    * Remember last-used polymorph settings.
    */
-  game.settings.register('pergasha-foundryvtt', 'polymorphSettings', {
+  game.settings.register('pergashaFoundryvtt', 'polymorphSettings', {
     scope: 'client',
     default: {
       keepPhysical: false,

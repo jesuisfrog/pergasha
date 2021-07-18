@@ -12,7 +12,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
    */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ["pergasha-foundryvtt", "sheet", "actor", "vehicle"],
+      classes: ["pergashaFoundryvtt", "sheet", "actor", "vehicle"],
       width: 605,
       height: 680
     });
@@ -56,13 +56,13 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
     // Compute overall encumbrance
     const max = actorData.data.attributes.capacity.cargo;
     const pct = Math.clamped((totalWeight * 100) / max, 0, 100);
-    return {value: totalWeight.toNearest(0.1), max, pct};
+    return { value: totalWeight.toNearest(0.1), max, pct };
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  _getMovementSpeed(actorData, largestPrimary=true) {
+  _getMovementSpeed(actorData, largestPrimary = true) {
     return super._getMovementSpeed(actorData, largestPrimary);
   }
 
@@ -134,7 +134,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
         label: game.i18n.localize('DND5E.ActionPl'),
         items: [],
         crewable: true,
-        dataset: {type: 'feat', 'activation.type': 'crew'},
+        dataset: { type: 'feat', 'activation.type': 'crew' },
         columns: [{
           label: game.i18n.localize('DND5E.VehicleCrew'),
           css: 'item-crew',
@@ -149,24 +149,24 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
         label: game.i18n.localize('DND5E.ItemTypeEquipment'),
         items: [],
         crewable: true,
-        dataset: {type: 'equipment', 'armor.type': 'vehicle'},
+        dataset: { type: 'equipment', 'armor.type': 'vehicle' },
         columns: equipmentColumns
       },
       passive: {
         label: game.i18n.localize('DND5E.Features'),
         items: [],
-        dataset: {type: 'feat'}
+        dataset: { type: 'feat' }
       },
       reactions: {
         label: game.i18n.localize('DND5E.ReactionPl'),
         items: [],
-        dataset: {type: 'feat', 'activation.type': 'reaction'}
+        dataset: { type: 'feat', 'activation.type': 'reaction' }
       },
       weapons: {
         label: game.i18n.localize('DND5E.ItemTypeWeaponPl'),
         items: [],
         crewable: true,
-        dataset: {type: 'weapon', 'weapon-type': 'siege'},
+        dataset: { type: 'weapon', 'weapon-type': 'siege' },
         columns: equipmentColumns
       }
     };
@@ -177,7 +177,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
         items: data.data.cargo.crew,
         css: 'cargo-row crew',
         editableName: true,
-        dataset: {type: 'crew'},
+        dataset: { type: 'crew' },
         columns: cargoColumns
       },
       passengers: {
@@ -185,13 +185,13 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
         items: data.data.cargo.passengers,
         css: 'cargo-row passengers',
         editableName: true,
-        dataset: {type: 'passengers'},
+        dataset: { type: 'passengers' },
         columns: cargoColumns
       },
       cargo: {
         label: game.i18n.localize('DND5E.VehicleCargo'),
         items: [],
-        dataset: {type: 'loot'},
+        dataset: { type: 'loot' },
         columns: [{
           label: game.i18n.localize('DND5E.Quantity'),
           css: 'item-qty',
@@ -217,15 +217,15 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
       this._prepareCrewedItem(item);
 
       // Handle cargo explicitly
-      const isCargo = item.flags.dnd5e?.vehicleCargo === true;
-      if ( isCargo ) {
+      const isCargo = item.flags.pergashaFoundryvtt?.vehicleCargo === true;
+      if (isCargo) {
         totalWeight += (item.data.weight || 0) * item.data.quantity;
         cargo.cargo.items.push(item);
         continue;
       }
 
       // Handle non-cargo item types
-      switch ( item.type ) {
+      switch (item.type) {
         case "weapon":
           features.weapons.items.push(item);
           break;
@@ -233,7 +233,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
           features.equipment.items.push(item);
           break;
         case "feat":
-          if ( !item.data.activation.type || (item.data.activation.type === "none") ) features.passive.items.push(item);
+          if (!item.data.activation.type || (item.data.activation.type === "none")) features.passive.items.push(item);
           else if (item.data.activation.type === 'reaction') features.reactions.items.push(item);
           else features.actions.items.push(item);
           break;
@@ -256,7 +256,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
-    if ( !this.isEditable ) return;
+    if (!this.isEditable) return;
 
     html.find('.item-toggle').click(this._onToggleItem.bind(this));
     html.find('.item-hp input')
@@ -304,7 +304,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
     entry[key] = value;
 
     // Perform the Actor update
-    return this.actor.update({[`data.cargo.${property}`]: cargo});
+    return this.actor.update({ [`data.cargo.${property}`]: cargo });
   }
 
   /* -------------------------------------------- */
@@ -326,7 +326,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
       case 'Number': value = parseInt(value); break;
       case 'Boolean': value = value === 'true'; break;
     }
-    return item.update({[`${property}`]: value});
+    return item.update({ [`${property}`]: value });
   }
 
   /* -------------------------------------------- */
@@ -344,7 +344,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
     if (type === 'crew' || type === 'passengers') {
       const cargo = foundry.utils.deepClone(this.actor.data.data.cargo[type]);
       cargo.push(this.constructor.newCargo);
-      return this.actor.update({[`data.cargo.${type}`]: cargo});
+      return this.actor.update({ [`data.cargo.${type}`]: cargo });
     }
     return super._onItemCreate(event);
   }
@@ -364,7 +364,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
       const idx = Number(row.dataset.itemId);
       const type = row.classList.contains('crew') ? 'crew' : 'passengers';
       const cargo = foundry.utils.deepClone(this.actor.data.data.cargo[type]).filter((_, i) => i !== idx);
-      return this.actor.update({[`data.cargo.${type}`]: cargo});
+      return this.actor.update({ [`data.cargo.${type}`]: cargo });
     }
     return super._onItemDelete(event);
   }
@@ -375,7 +375,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
   async _onDropItemCreate(itemData) {
     const cargoTypes = ["weapon", "equipment", "consumable", "tool", "loot", "backpack"];
     const isCargo = cargoTypes.includes(itemData.type) && (this._tabs[0].active === "cargo");
-    foundry.utils.setProperty(itemData, "flags.dnd5e.vehicleCargo", isCargo);
+    foundry.utils.setProperty(itemData, "flags.pergashaFoundryvtt.vehicleCargo", isCargo);
     return super._onDropItemCreate(itemData);
   }
 
@@ -393,7 +393,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
     const item = this.actor.items.get(itemID);
     const hp = Math.clamped(0, parseInt(event.currentTarget.value), item.data.data.hp.max);
     event.currentTarget.value = hp;
-    return item.update({'data.hp.value': hp});
+    return item.update({ 'data.hp.value': hp });
   }
 
   /* -------------------------------------------- */
@@ -409,6 +409,6 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
     const itemID = event.currentTarget.closest('.item').dataset.itemId;
     const item = this.actor.items.get(itemID);
     const crewed = !!item.data.data.crewed;
-    return item.update({'data.crewed': !crewed});
+    return item.update({ 'data.crewed': !crewed });
   }
 };

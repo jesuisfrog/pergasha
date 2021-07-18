@@ -6,8 +6,8 @@ export default class ActorSheetFlags extends DocumentSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       id: "actor-flags",
-      classes: ["pergasha-foundryvtt"],
-      template: "systems/pergasha-foundryvtt/templates/apps/actor-flags.html",
+      classes: ["pergashaFoundryvtt"],
+      template: "systems/pergashaFoundryvtt/templates/apps/actor-flags.html",
       width: 500,
       closeOnSubmit: true
     });
@@ -64,8 +64,8 @@ export default class ActorSheetFlags extends DocumentSheet {
       flag.type = v.type.name;
       flag.isCheckbox = v.type === Boolean;
       flag.isSelect = v.hasOwnProperty('choices');
-      flag.value = getProperty(baseData.flags, `dnd5e.${k}`);
-      flags[v.section][`flags.dnd5e.${k}`] = flag;
+      flag.value = getProperty(baseData.flags, `pergashaFoundryvtt.${k}`);
+      flags[v.section][`flags.pergashaFoundryvtt.${k}`] = flag;
     }
     return flags;
   }
@@ -87,6 +87,10 @@ export default class ActorSheetFlags extends DocumentSheet {
       { name: "data.bonuses.msak.damage", label: "DND5E.BonusMSDamage" },
       { name: "data.bonuses.rsak.attack", label: "DND5E.BonusRSAttack" },
       { name: "data.bonuses.rsak.damage", label: "DND5E.BonusRSDamage" },
+      { name: "data.bonuses.mpak.attack", label: "DND5E.BonusMPAttack" },
+      { name: "data.bonuses.mpak.damage", label: "DND5E.BonusMPDamage" },
+      { name: "data.bonuses.rpak.attack", label: "DND5E.BonusRPAttack" },
+      { name: "data.bonuses.rpak.damage", label: "DND5E.BonusRPDamage" },
       { name: "data.bonuses.abilities.check", label: "DND5E.BonusAbilityCheck" },
       { name: "data.bonuses.abilities.save", label: "DND5E.BonusAbilitySave" },
       { name: "data.bonuses.abilities.skill", label: "DND5E.BonusAbilitySkill" },
@@ -108,11 +112,11 @@ export default class ActorSheetFlags extends DocumentSheet {
 
     // Unset any flags which are "false"
     let unset = false;
-    const flags = updateData.flags.dnd5e;
+    const flags = updateData.flags.pergashaFoundryvtt;
     for (let [k, v] of Object.entries(flags)) {
       if ([undefined, null, "", false, 0].includes(v)) {
         delete flags[k];
-        if (hasProperty(actor._data.flags, `dnd5e.${k}`)) {
+        if (hasProperty(actor._data.flags, `pergashaFoundryvtt.${k}`)) {
           unset = true;
           flags[`-=${k}`] = null;
         }

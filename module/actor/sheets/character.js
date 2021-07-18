@@ -14,7 +14,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
    */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ["pergasha-foundryvtt", "sheet", "actor", "character"],
+      classes: ["pergashaFoundryvtt", "sheet", "actor", "character"],
       width: 720,
       height: 680
     });
@@ -44,7 +44,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     }, []);
 
     // Experience Tracking
-    sheetData["disableExperience"] = game.settings.get("pergasha-foundryvtt", "disableExperienceTracking");
+    sheetData["disableExperience"] = game.settings.get("pergashaFoundryvtt", "disableExperienceTracking");
     sheetData["classLabels"] = this.actor.itemTypes.class.map(c => c.name).join(", ");
     sheetData["multiclassLabels"] = this.actor.itemTypes.class.map(c => {
       return [c.data.data.subclass, c.name, c.data.data.levels].filterJoin(' ')
@@ -78,7 +78,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       // Item details
       // if (item.type === "psionicPower") { --WIP-- Default icon for psionics
       //   console.log("YAY");
-      //   item.img = item.img || "systems/pergasha-foundryvtt/icons/pergasha_icons/icons_psionics.png";
+      //   item.img = item.img || "systems/pergashaFoundryvtt/icons/pergasha_icons/icons_psionics.png";
       // } else {
       item.img = item.img || CONST.DEFAULT_TOKEN;
       // }

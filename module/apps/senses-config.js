@@ -7,8 +7,8 @@ export default class ActorSensesConfig extends DocumentSheet {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["pergasha-foundryvtt"],
-      template: "systems/pergasha-foundryvtt/templates/apps/senses-config.html",
+      classes: ["pergashaFoundryvtt"],
+      template: "systems/pergashaFoundryvtt/templates/apps/senses-config.html",
       width: 300,
       height: "auto"
     });

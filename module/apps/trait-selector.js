@@ -8,9 +8,9 @@ export default class TraitSelector extends DocumentSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       id: "trait-selector",
-      classes: ["pergasha-foundryvtt", "trait-selector", "subconfig"],
+      classes: ["pergashaFoundryvtt", "trait-selector", "subconfig"],
       title: "Actor Trait Selection",
-      template: "systems/pergasha-foundryvtt/templates/apps/trait-selector.html",
+      template: "systems/pergashaFoundryvtt/templates/apps/trait-selector.html",
       width: 320,
       height: "auto",
       choices: {},

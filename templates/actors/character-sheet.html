@@ -95,7 +95,8 @@
                         <span class="spell-dc">{{localize "DND5E.SpellDC"}} {{data.attributes.spelldc}}</span>
                     </footer> -->
                     <footer class="attribute-footer">
-                        <span class="psionics-dc">{{localize "DND5E.PsionicsDC"}} {{data.attributes.psionics.psionicsdc}}</span>
+                        <span class="psionics-dc">{{localize "DND5E.PsionicsDC"}}
+                            {{data.attributes.psionics.psionicsdc}}</span>
                     </footer>
                 </li>
 
@@ -249,33 +250,33 @@
                     </div>
 
                     {{!-- Traits --}}
-                    {{> "systems/pergasha-foundryvtt/templates/actors/parts/actor-traits.html"}}
+                    {{> "systems/pergashaFoundryvtt/templates/actors/parts/actor-traits.html"}}
             </section>
         </div>
 
         {{!-- Inventory Tab --}}
         <div class="tab inventory flexcol" data-group="primary" data-tab="inventory">
-            {{> "systems/pergasha-foundryvtt/templates/actors/parts/actor-inventory.html" sections=inventory}}
+            {{> "systems/pergashaFoundryvtt/templates/actors/parts/actor-inventory.html" sections=inventory}}
         </div>
 
         {{!-- Features Tab --}}
         <div class="tab features flexcol" data-group="primary" data-tab="features">
-            {{> "systems/pergasha-foundryvtt/templates/actors/parts/actor-features.html" sections=features}}
+            {{> "systems/pergashaFoundryvtt/templates/actors/parts/actor-features.html" sections=features}}
         </div>
 
         <!-- {{!-- Spellbook Tab --}}
         <div class="tab spellbook flexcol" data-group="primary" data-tab="spellbook">
-            {{> "systems/pergasha-foundryvtt/templates/actors/parts/actor-spellbook.html"}}
+            {{> "systems/pergashaFoundryvtt/templates/actors/parts/actor-spellbook.html"}}
         </div> -->
 
         {{!-- Psionics Tab --}}
         <div class="tab psionics flexcol" data-group="primary" data-tab="psionics">
-            {{> "systems/pergasha-foundryvtt/templates/actors/parts/actor-psionics.html"}}
+            {{> "systems/pergashaFoundryvtt/templates/actors/parts/actor-psionics.html"}}
         </div>
 
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-            {{> "systems/pergasha-foundryvtt/templates/actors/parts/active-effects.html"}}
+            {{> "systems/pergashaFoundryvtt/templates/actors/parts/active-effects.html"}}
         </div>
 
         {{!-- Biography Tab --}}

@@ -33,7 +33,7 @@ export const highlightCriticalSuccessFailure = function (message, html, data) {
  * Optionally hide the display of chat card action buttons which cannot be performed by the user
  */
 export const displayChatActionButtons = function (message, html, data) {
-  const chatCard = html.find(".pergasha-foundryvtt.chat-card");
+  const chatCard = html.find(".pergashaFoundryvtt.chat-card");
   if (chatCard.length > 0) {
     const flavor = html.find(".flavor-text");
     if (flavor.text() === html.find(".item-name").text()) flavor.remove();

@@ -13,8 +13,8 @@ export default class LongRestDialog extends Dialog {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      template: "systems/pergasha-foundryvtt/templates/apps/long-rest.html",
-      classes: ["pergasha-foundryvtt", "dialog"]
+      template: "systems/pergashaFoundryvtt/templates/apps/long-rest.html",
+      classes: ["pergashaFoundryvtt", "dialog"]
     });
   }
 
@@ -23,7 +23,7 @@ export default class LongRestDialog extends Dialog {
   /** @override */
   getData() {
     const data = super.getData();
-    const variant = game.settings.get("pergasha-foundryvtt", "restVariant");
+    const variant = game.settings.get("pergashaFoundryvtt", "restVariant");
     data.promptNewDay = variant !== "gritty";     // It's always a new day when resting 1 week
     data.newDay = variant === "normal";           // It's probably a new day when resting normally (8 hours)
     return data;
@@ -47,7 +47,7 @@ export default class LongRestDialog extends Dialog {
             label: game.i18n.localize("DND5E.Rest"),
             callback: html => {
               let newDay = true;
-              if (game.settings.get("pergasha-foundryvtt", "restVariant") !== "gritty")
+              if (game.settings.get("pergashaFoundryvtt", "restVariant") !== "gritty")
                 newDay = html.find('input[name="newDay"]')[0].checked;
               resolve(newDay);
             }

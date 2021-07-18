@@ -14,6 +14,7 @@ ______      ______ _____ _____
 _______________________________`;
 
 
+
 /**
  * The set of Ability Scores used within the system
  * @type {Object}
@@ -320,8 +321,8 @@ DND5E.creatureTypes = {
 DND5E.itemActionTypes = {
   "mwak": "DND5E.ActionMWAK",
   "rwak": "DND5E.ActionRWAK",
-  // "msak": "DND5E.ActionMSAK",
-  // "rsak": "DND5E.ActionRSAK",
+  "msak": "DND5E.ActionMSAK",
+  "rsak": "DND5E.ActionRSAK",
   "mpak": "DND5E.ActionMPAK",
   "rpak": "DND5E.ActionRPAK",
   "save": "DND5E.ActionSave",
@@ -817,7 +818,7 @@ DND5E.spellScrollIds = {
  * @enum {string}
  */
 DND5E.sourcePacks = {
-  ITEMS: "pergasha-foundryvtt.items"
+  ITEMS: "pergashaFoundryvtt.items"
 }
 
 /**

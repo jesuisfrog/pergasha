@@ -23,7 +23,7 @@ export default class ItemSheet5e extends ItemSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       width: 560,
       height: 400,
-      classes: ["pergasha-foundryvtt", "sheet", "item"],
+      classes: ["pergashaFoundryvtt", "sheet", "item"],
       resizable: true,
       scrollY: [".tab.details"],
       tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description" }]
@@ -34,7 +34,7 @@ export default class ItemSheet5e extends ItemSheet {
 
   /** @inheritdoc */
   get template() {
-    const path = "systems/pergasha-foundryvtt/templates/items/";
+    const path = "systems/pergashaFoundryvtt/templates/items/";
     return `${path}/${this.item.data.type}.html`;
   }
 

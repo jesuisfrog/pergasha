@@ -244,6 +244,7 @@ export default class Item5e extends Item {
       }
     }
 
+
     // if this item is owned, we prepareFinalAttributes() at the end of actor init
     if (!this.isOwned) this.prepareFinalAttributes();
   }
@@ -255,6 +256,7 @@ export default class Item5e extends Item {
    */
   prepareFinalAttributes() {
     if (this.data.data.hasOwnProperty("actionType")) {
+
       // Saving throws
       this.getSaveDC();
 
@@ -281,7 +283,6 @@ export default class Item5e extends Item {
   getDerivedDamageLabel() {
     const itemData = this.data.data;
     if (!this.hasDamage || !itemData || !this.isOwned) return [];
-
     const rollData = this.getRollData();
 
     const derivedDamage = itemData.damage?.parts?.map((damagePart) => ({
@@ -493,7 +494,7 @@ export default class Item5e extends Item {
 
     // Initiate measured template creation
     if (createMeasuredTemplate) {
-      const template = game.dnd5e.canvas.AbilityTemplate.fromItem(item);
+      const template = game.pergashaFoundryvtt.canvas.AbilityTemplate.fromItem(item);
       if (template) template.drawPreview();
     }
 
@@ -693,7 +694,7 @@ export default class Item5e extends Item {
       hasAreaTarget: this.hasAreaTarget,
       isTool: this.data.type === "tool"
     };
-    const html = await renderTemplate("systems/pergasha-foundryvtt/templates/chat/item-card.html", templateData);
+    const html = await renderTemplate("systems/pergashaFoundryvtt/templates/chat/item-card.html", templateData);
 
     // Create the ChatMessage data object
     const chatData = {
@@ -707,7 +708,7 @@ export default class Item5e extends Item {
 
     // If the Item was destroyed in the process of displaying its card - embed the item data in the chat message
     if ((this.data.type === "consumable") && !this.actor.items.has(this.id)) {
-      chatData.flags["dnd5e.itemData"] = this.data;
+      chatData.flags["pergashaFoundryvtt.itemData"] = this.data;
     }
 
     // Apply the roll mode to adjust message visibility
@@ -880,7 +881,7 @@ export default class Item5e extends Item {
    */
   async rollAttack(options = {}) {
     const itemData = this.data.data;
-    const flags = this.actor.data.flags.dnd5e || {};
+    const flags = this.actor.data.flags.pergashaFoundryvtt || {};
     if (!this.hasAttack) {
       throw new Error("You may not place an Attack Roll with this Item.");
     }
@@ -924,7 +925,7 @@ export default class Item5e extends Item {
         top: options.event ? options.event.clientY - 80 : null,
         left: window.innerWidth - 710
       },
-      messageData: { "flags.dnd5e.roll": { type: "attack", itemId: this.id } }
+      messageData: { "flags.pergashaFoundryvtt.roll": { type: "attack", itemId: this.id } }
     }, options);
     rollConfig.event = options.event;
 
@@ -953,7 +954,7 @@ export default class Item5e extends Item {
   }
 
   /* -------------------------------------------- */
-
+  //--WIP-- for psionic power damage scaling
   /**
    * Place a damage roll using an item (weapon, feat, spell, or equipment)
    * Rely upon the damageRoll logic for the core implementation.
@@ -968,8 +969,7 @@ export default class Item5e extends Item {
     if (!this.hasDamage) throw new Error("You may not make a Damage Roll with this Item.");
     const itemData = this.data.data;
     const actorData = this.actor.data.data;
-    const messageData = { "flags.dnd5e.roll": { type: "damage", itemId: this.id } };
-
+    const messageData = { "flags.pergashaFoundryvtt.roll": { type: "damage", itemId: this.id } };
     // Get roll data
     const parts = itemData.damage.parts.map(d => d[0]);
     const rollData = this.getRollData();
@@ -999,7 +999,7 @@ export default class Item5e extends Item {
     // Adjust damage from versatile usage
     if (versatile && itemData.damage.versatile) {
       parts[0] = itemData.damage.versatile;
-      messageData["flags.dnd5e.roll"].versatile = true;
+      messageData["flags.pergashaFoundryvtt.roll"].versatile = true;
     }
 
 
@@ -1046,7 +1046,7 @@ export default class Item5e extends Item {
 
     // Scale melee critical hit damage
     if (itemData.actionType === "mwak") {
-      rollConfig.criticalBonusDice = this.actor.getFlag("pergasha-foundryvtt", "meleeCriticalDamageDice") ?? 0;
+      rollConfig.criticalBonusDice = this.actor.getFlag("pergashaFoundryvtt", "meleeCriticalDamageDice") ?? 0;
     }
 
     // Call the roll helper utility
@@ -1173,7 +1173,7 @@ export default class Item5e extends Item {
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
       flavor: title,
       rollMode: game.settings.get("core", "rollMode"),
-      messageData: { "flags.dnd5e.roll": { type: "other", itemId: this.id } }
+      messageData: { "flags.pergashaFoundryvtt.roll": { type: "other", itemId: this.id } }
     });
     return roll;
   }
@@ -1238,9 +1238,9 @@ export default class Item5e extends Item {
         left: window.innerWidth - 710,
       },
       chooseModifier: true,
-      halflingLucky: this.actor.getFlag("pergasha-foundryvtt", "halflingLucky") || false,
-      reliableTalent: (this.data.data.proficient >= 1) && this.actor.getFlag("pergasha-foundryvtt", "reliableTalent"),
-      messageData: { "flags.dnd5e.roll": { type: "tool", itemId: this.id } }
+      halflingLucky: this.actor.getFlag("pergashaFoundryvtt", "halflingLucky") || false,
+      reliableTalent: (this.data.data.proficient >= 1) && this.actor.getFlag("pergashaFoundryvtt", "reliableTalent"),
+      messageData: { "flags.pergashaFoundryvtt.roll": { type: "tool", itemId: this.id } }
     }, options);
     rollConfig.event = options.event;
 
@@ -1312,7 +1312,7 @@ export default class Item5e extends Item {
     if (!actor) return;
 
     // Get the Item from stored flag data or by the item ID on the Actor
-    const storedData = message.getFlag("pergasha-foundryvtt", "itemData");
+    const storedData = message.getFlag("pergashaFoundryvtt", "itemData");
     const item = storedData ? new this(storedData, { parent: actor }) : actor.items.get(card.dataset.itemId);
     if (!item) {
       return ui.notifications.error(game.i18n.format("DND5E.ActionWarningNoItem", { item: card.dataset.itemId, name: actor.name }))
@@ -1344,7 +1344,7 @@ export default class Item5e extends Item {
       case "toolCheck":
         await item.rollToolCheck({ event }); break;
       case "placeTemplate":
-        const template = game.dnd5e.canvas.AbilityTemplate.fromItem(item);
+        const template = game.pergashaFoundryvtt.canvas.AbilityTemplate.fromItem(item);
         if (template) template.drawPreview();
         break;
     }

@@ -5,7 +5,7 @@
 export default class SelectItemsPrompt extends Dialog {
   constructor(items, dialogData = {}, options = {}) {
     super(dialogData, options);
-    this.options.classes = ["pergasha-foundryvtt", "dialog", "select-items-prompt", "sheet"];
+    this.options.classes = ["pergashaFoundryvtt", "dialog", "select-items-prompt", "sheet"];
 
     /**
      * Store a reference to the Item entities being used
@@ -37,7 +37,7 @@ export default class SelectItemsPrompt extends Dialog {
     hint
   }) {
     // Render the ability usage template
-    const html = await renderTemplate("systems/pergasha-foundryvtt/templates/apps/select-items-prompt.html", { items, hint });
+    const html = await renderTemplate("systems/pergashaFoundryvtt/templates/apps/select-items-prompt.html", { items, hint });
 
     return new Promise((resolve) => {
       const dlg = new this(items, {

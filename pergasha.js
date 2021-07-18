@@ -34,10 +34,10 @@ import * as migrations from "./module/migration.js";
 /* -------------------------------------------- */
 
 Hooks.once("init", function () {
-  console.log(`DnD5e | Initializing the DnD5e Game System\n${DND5E.ASCII}`);
+  console.log(`Pergasha | Initializing the Pergasha Game System\n${DND5E.ASCII}`);
 
   // Create a namespace within the game global
-  game.dnd5e = {
+  game.pergashaFoundryvtt = {
     applications: {
       AbilityUseDialog,
       ActorSheetFlags,
@@ -93,23 +93,23 @@ Hooks.once("init", function () {
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("pergasha-foundryvtt", ActorSheet5eCharacter, {
+  Actors.registerSheet("pergashaFoundryvtt", ActorSheet5eCharacter, {
     types: ["character"],
     makeDefault: true,
     label: "DND5E.SheetClassCharacter"
   });
-  Actors.registerSheet("pergasha-foundryvtt", ActorSheet5eNPC, {
+  Actors.registerSheet("pergashaFoundryvtt", ActorSheet5eNPC, {
     types: ["npc"],
     makeDefault: true,
     label: "DND5E.SheetClassNPC"
   });
-  Actors.registerSheet('pergasha-foundryvtt', ActorSheet5eVehicle, {
+  Actors.registerSheet('pergashaFoundryvtt', ActorSheet5eVehicle, {
     types: ['vehicle'],
     makeDefault: true,
     label: "DND5E.SheetClassVehicle"
   });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("pergasha-foundryvtt", ItemSheet5e, {
+  Items.registerSheet("pergashaFoundryvtt", ItemSheet5e, {
     makeDefault: true,
     label: "DND5E.SheetClassItem"
   });
@@ -169,11 +169,11 @@ Hooks.once("ready", function () {
 
   // Determine whether a system migration is required and feasible
   if (!game.user.isGM) return;
-  const currentVersion = game.settings.get("pergasha-foundryvtt", "systemMigrationVersion");
+  const currentVersion = game.settings.get("pergashaFoundryvtt", "systemMigrationVersion");
   const NEEDS_MIGRATION_VERSION = "1.3.4";
   const COMPATIBLE_MIGRATION_VERSION = 0.80;
   const totalDocuments = game.actors.size + game.scenes.size + game.items.size;
-  if (!currentVersion && totalDocuments === 0) return game.settings.set("pergasha-foundryvtt", "systemMigrationVersion", game.system.data.version);
+  if (!currentVersion && totalDocuments === 0) return game.settings.set("pergashaFoundryvtt", "systemMigrationVersion", game.system.data.version);
   const needsMigration = !currentVersion || isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
   if (!needsMigration) return;
 
@@ -191,7 +191,7 @@ Hooks.once("ready", function () {
 
 Hooks.on("canvasInit", function () {
   // Extend Diagonal Measurement
-  canvas.grid.diagonalRule = game.settings.get("pergasha-foundryvtt", "diagonalMovement");
+  canvas.grid.diagonalRule = game.settings.get("pergashaFoundryvtt", "diagonalMovement");
   SquareGrid.prototype.measureDistances = measureDistances;
 });
 
@@ -209,7 +209,7 @@ Hooks.on("renderChatMessage", (app, html, data) => {
   chat.highlightCriticalSuccessFailure(app, html, data);
 
   // Optionally collapse the content
-  if (game.settings.get("pergasha-foundryvtt", "autoCollapseItemCards")) html.find(".card-content").hide();
+  if (game.settings.get("pergashaFoundryvtt", "autoCollapseItemCards")) html.find(".card-content").hide();
 });
 Hooks.on("getChatLogEntryContext", chat.addChatMessageContextOptions);
 Hooks.on("renderChatLog", (app, html, data) => Item5e.chatListeners(html));
@@ -261,4 +261,9 @@ Handlebars.registerHelper('isTalentSection', function (section) {
     return false;
   }
 });
+
+Handlebars.registerHelper('testData', function (data) {
+  console.log('Data: ', data);
+});
+
 

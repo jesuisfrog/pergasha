@@ -3,9 +3,9 @@
  * @type {Dialog}
  */
 export default class AbilityUseDialog extends Dialog {
-  constructor(item, dialogData={}, options={}) {
+  constructor(item, dialogData = {}, options = {}) {
     super(dialogData, options);
-    this.options.classes = ["pergasha-foundryvtt", "dialog"];
+    this.options.classes = ["pergashaFoundryvtt", "dialog"];
 
     /**
      * Store a reference to the Item entity being used
@@ -25,7 +25,7 @@ export default class AbilityUseDialog extends Dialog {
    * @return {Promise}
    */
   static async create(item) {
-    if ( !item.isOwned ) throw new Error("You cannot display an ability usage dialog for an unowned item");
+    if (!item.isOwned) throw new Error("You cannot display an ability usage dialog for an unowned item");
 
     // Prepare data
     const actorData = item.actor.data.data;
@@ -34,12 +34,12 @@ export default class AbilityUseDialog extends Dialog {
     const quantity = itemData.quantity || 0;
     const recharge = itemData.recharge || {};
     const recharges = !!recharge.value;
-    const sufficientUses = (quantity > 0 && !uses.value) || uses.value > 0; 
+    const sufficientUses = (quantity > 0 && !uses.value) || uses.value > 0;
 
     // Prepare dialog form data
     const data = {
       item: item.data,
-      title: game.i18n.format("DND5E.AbilityUseHint", {type: game.i18n.localize(`DND5E.ItemType${item.type.capitalize()}`), name: item.name}),
+      title: game.i18n.format("DND5E.AbilityUseHint", { type: game.i18n.localize(`DND5E.ItemType${item.type.capitalize()}`), name: item.name }),
       note: this._getAbilityUseNote(item.data, uses, recharge),
       consumeSpellSlot: false,
       consumeRecharge: recharges,
@@ -49,10 +49,10 @@ export default class AbilityUseDialog extends Dialog {
       createTemplate: game.user.can("TEMPLATE_CREATE") && item.hasAreaTarget,
       errors: []
     };
-    if ( item.data.type === "spell" ) this._getSpellData(actorData, itemData, data);
+    if (item.data.type === "spell") this._getSpellData(actorData, itemData, data);
 
     // Render the ability usage template
-    const html = await renderTemplate("systems/pergasha-foundryvtt/templates/apps/ability-use.html", data);
+    const html = await renderTemplate("systems/pergashaFoundryvtt/templates/apps/ability-use.html", data);
 
     // Create the Dialog and return data as a Promise
     const icon = data.isSpell ? "fa-magic" : "fa-fist-raised";
@@ -101,15 +101,15 @@ export default class AbilityUseDialog extends Dialog {
     // Determine the levels which are feasible
     let lmax = 0;
     const spellLevels = Array.fromRange(10).reduce((arr, i) => {
-      if ( i < lvl ) return arr;
+      if (i < lvl) return arr;
       const label = CONFIG.DND5E.spellLevels[i];
-      const l = actorData.spells["spell"+i] || {max: 0, override: null};
+      const l = actorData.spells["spell" + i] || { max: 0, override: null };
       let max = parseInt(l.override || l.max || 0);
       let slots = Math.clamped(parseInt(l.value || 0), 0, max);
-      if ( max > 0 ) lmax = i;
+      if (max > 0) lmax = i;
       arr.push({
         level: i,
-        label: i > 0 ? game.i18n.format('DND5E.SpellLevelSlot', {level: label, n: slots}) : label,
+        label: i > 0 ? game.i18n.format('DND5E.SpellLevelSlot', { level: label, n: slots }) : label,
         canCast: max > 0,
         hasSlots: slots > 0
       });
@@ -121,13 +121,13 @@ export default class AbilityUseDialog extends Dialog {
     if (pact.level >= lvl) {
       spellLevels.push({
         level: 'pact',
-        label: `${game.i18n.format('DND5E.SpellLevelPact', {level: pact.level, n: pact.value})}`,
+        label: `${game.i18n.format('DND5E.SpellLevelPact', { level: pact.level, n: pact.value })}`,
         canCast: true,
         hasSlots: pact.value > 0
       });
     }
     const canCast = spellLevels.some(l => l.hasSlots);
-    if ( !canCast ) data.errors.push(game.i18n.format("DND5E.SpellCastNoSlots", {
+    if (!canCast) data.errors.push(game.i18n.format("DND5E.SpellCastNoSlots", {
       level: CONFIG.DND5E.spellLevels[lvl],
       name: data.item.name
     }));
@@ -146,24 +146,24 @@ export default class AbilityUseDialog extends Dialog {
 
     // Zero quantity
     const quantity = item.data.quantity;
-    if ( quantity <= 0 ) return game.i18n.localize("DND5E.AbilityUseUnavailableHint");
+    if (quantity <= 0) return game.i18n.localize("DND5E.AbilityUseUnavailableHint");
 
     // Abilities which use Recharge
-    if ( !!recharge.value ) {
+    if (!!recharge.value) {
       return game.i18n.format(recharge.charged ? "DND5E.AbilityUseChargedHint" : "DND5E.AbilityUseRechargeHint", {
         type: game.i18n.localize(`DND5E.ItemType${item.type.capitalize()}`),
       })
     }
 
     // Does not use any resource
-    if ( !uses.per || !uses.max ) return "";
+    if (!uses.per || !uses.max) return "";
 
     // Consumables
-    if ( item.type === "consumable" ) {
+    if (item.type === "consumable") {
       let str = "DND5E.AbilityUseNormalHint";
-      if ( uses.value > 1 ) str = "DND5E.AbilityUseConsumableChargeHint";
-      else if ( item.data.quantity === 1 && uses.autoDestroy ) str = "DND5E.AbilityUseConsumableDestroyHint";
-      else if ( item.data.quantity > 1 ) str = "DND5E.AbilityUseConsumableQuantityHint";
+      if (uses.value > 1) str = "DND5E.AbilityUseConsumableChargeHint";
+      else if (item.data.quantity === 1 && uses.autoDestroy) str = "DND5E.AbilityUseConsumableDestroyHint";
+      else if (item.data.quantity > 1) str = "DND5E.AbilityUseConsumableQuantityHint";
       return game.i18n.format(str, {
         type: game.i18n.localize(`DND5E.Consumable${item.data.consumableType.capitalize()}`),
         value: uses.value,

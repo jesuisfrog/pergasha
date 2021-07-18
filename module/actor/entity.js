@@ -42,7 +42,7 @@ export default class Actor5e extends Actor {
    * @type {boolean}
    */
   get isPolymorphed() {
-    return this.getFlag("pergasha-foundryvtt", "isPolymorphed") || false;
+    return this.getFlag("pergashaFoundryvtt", "isPolymorphed") || false;
   }
 
   /* -------------------------------------------- */
@@ -77,15 +77,15 @@ export default class Actor5e extends Actor {
   prepareDerivedData() {
     const actorData = this.data;
     const data = actorData.data;
-    const flags = actorData.flags.dnd5e || {};
+    const flags = actorData.flags.pergashaFoundryvtt || {};
     const bonuses = getProperty(data, "bonuses.abilities") || {};
 
     // Retrieve data for polymorphed actors
     let originalSaves = null;
     let originalSkills = null;
     if (this.isPolymorphed) {
-      const transformOptions = this.getFlag('pergasha-foundryvtt', 'transformOptions');
-      const original = game.actors?.get(this.getFlag('pergasha-foundryvtt', 'originalActor'));
+      const transformOptions = this.getFlag('pergashaFoundryvtt', 'transformOptions');
+      const original = game.actors?.get(this.getFlag('pergashaFoundryvtt', 'originalActor'));
       if (original) {
         if (transformOptions.mergeSaves) {
           originalSaves = original.data.data.abilities;
@@ -354,7 +354,7 @@ export default class Actor5e extends Actor {
     if (actorData.type === 'vehicle') return;
 
     const data = actorData.data;
-    const flags = actorData.flags.dnd5e || {};
+    const flags = actorData.flags.pergashaFoundryvtt || {};
 
     // Skill modifiers
     const feats = DND5E.characterFlags;
@@ -519,7 +519,7 @@ export default class Actor5e extends Actor {
     }, 0);
 
     // [Optional] add Currency Weight (for non-transformed actors)
-    if (game.settings.get("pergasha-foundryvtt", "currencyWeight") && actorData.data.currency) {
+    if (game.settings.get("pergashaFoundryvtt", "currencyWeight") && actorData.data.currency) {
       const currency = actorData.data.currency;
       const numCoins = Object.values(currency).reduce((val, denom) => val += Math.max(denom, 0), 0);
       weight += numCoins / CONFIG.DND5E.encumbrance.currencyPerWeight;
@@ -534,7 +534,7 @@ export default class Actor5e extends Actor {
       huge: 4,
       grg: 8
     }[actorData.data.traits.size] || 1;
-    if (this.getFlag("pergasha-foundryvtt", "powerfulBuild")) mod = Math.min(mod * 2, 8);
+    if (this.getFlag("pergashaFoundryvtt", "powerfulBuild")) mod = Math.min(mod * 2, 8);
 
     // Compute Encumbrance percentage
     weight = weight.toNearest(0.1);
@@ -684,18 +684,18 @@ export default class Actor5e extends Actor {
     }
 
     // Reliable Talent applies to any skill check we have full or better proficiency in
-    const reliableTalent = (skl.value >= 1 && this.getFlag("pergasha-foundryvtt", "reliableTalent"));
+    const reliableTalent = (skl.value >= 1 && this.getFlag("pergashaFoundryvtt", "reliableTalent"));
 
     // Roll and return
     const rollData = foundry.utils.mergeObject(options, {
       parts: parts,
       data: data,
       title: game.i18n.format("DND5E.SkillPromptTitle", { skill: CONFIG.DND5E.skills[skillId] }),
-      halflingLucky: this.getFlag("pergasha-foundryvtt", "halflingLucky"),
+      halflingLucky: this.getFlag("pergashaFoundryvtt", "halflingLucky"),
       reliableTalent: reliableTalent,
       messageData: {
         speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
-        "flags.dnd5e.roll": { type: "skill", skillId }
+        "flags.pergashaFoundryvtt.roll": { type: "skill", skillId }
       }
     });
     return d20Roll(rollData);
@@ -745,7 +745,7 @@ export default class Actor5e extends Actor {
     const data = { mod: abl.mod };
 
     // Add feat-related proficiency bonuses
-    const feats = this.data.flags.dnd5e || {};
+    const feats = this.data.flags.pergashaFoundryvtt || {};
     if (feats.remarkableAthlete && DND5E.characterFlags.remarkableAthlete.abilities.includes(abilityId)) {
       parts.push("@proficiency");
       data.proficiency = Math.ceil(0.5 * this.data.data.attributes.prof);
@@ -775,7 +775,7 @@ export default class Actor5e extends Actor {
       halflingLucky: feats.halflingLucky,
       messageData: {
         speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
-        "flags.dnd5e.roll": { type: "ability", abilityId }
+        "flags.pergashaFoundryvtt.roll": { type: "ability", abilityId }
       }
     });
     return d20Roll(rollData);
@@ -821,10 +821,10 @@ export default class Actor5e extends Actor {
       parts: parts,
       data: data,
       title: game.i18n.format("DND5E.SavePromptTitle", { ability: label }),
-      halflingLucky: this.getFlag("pergasha-foundryvtt", "halflingLucky"),
+      halflingLucky: this.getFlag("pergashaFoundryvtt", "halflingLucky"),
       messageData: {
         speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
-        "flags.dnd5e.roll": { type: "save", abilityId }
+        "flags.pergashaFoundryvtt.roll": { type: "save", abilityId }
       }
     });
     return d20Roll(rollData);
@@ -851,7 +851,7 @@ export default class Actor5e extends Actor {
     const data = {};
 
     // Diamond Soul adds proficiency
-    if (this.getFlag("pergasha-foundryvtt", "diamondSoul")) {
+    if (this.getFlag("pergashaFoundryvtt", "diamondSoul")) {
       parts.push("@prof");
       data.prof = this.data.data.attributes.prof;
     }
@@ -868,11 +868,11 @@ export default class Actor5e extends Actor {
       parts: parts,
       data: data,
       title: game.i18n.localize("DND5E.DeathSavingThrow"),
-      halflingLucky: this.getFlag("pergasha-foundryvtt", "halflingLucky"),
+      halflingLucky: this.getFlag("pergashaFoundryvtt", "halflingLucky"),
       targetValue: 10,
       messageData: {
         speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
-        "flags.dnd5e.roll": { type: "death" }
+        "flags.pergashaFoundryvtt.roll": { type: "death" }
       }
     });
     const roll = await d20Roll(rollData);
@@ -899,6 +899,7 @@ export default class Actor5e extends Actor {
       }
 
       // 3 Successes = survive and reset checks
+      //--WIP-- Death saves reset on long rest only
       else if (successes === 3) {
         await this.update({
           "data.attributes.death.success": 0,
@@ -980,7 +981,7 @@ export default class Actor5e extends Actor {
       dialogOptions: { width: 350 },
       messageData: {
         speaker: ChatMessage.getSpeaker({ actor: this }),
-        "flags.dnd5e.roll": { type: "hitDie" }
+        "flags.pergashaFoundryvtt.roll": { type: "hitDie" }
       }
     });
     if (!roll) return null;
@@ -1067,7 +1068,7 @@ export default class Actor5e extends Actor {
   }
 
   /* -------------------------------------------- */
-
+  //--WIP-- Short and Long rest
   /**
    * Perform all of the changes needed for a short or long rest.
    *
@@ -1137,7 +1138,7 @@ export default class Actor5e extends Actor {
     let restFlavor, message;
 
     // Summarize the rest duration
-    switch (game.settings.get("pergasha-foundryvtt", "restVariant")) {
+    switch (game.settings.get("pergashaFoundryvtt", "restVariant")) {
       case 'normal': restFlavor = (longRest && newDay) ? "DND5E.LongRestOvernight" : `DND5E.${length}RestNormal`; break;
       case 'gritty': restFlavor = (!longRest && newDay) ? "DND5E.ShortRestOvernight" : `DND5E.${length}RestGritty`; break;
       case 'epic': restFlavor = `DND5E.${length}RestEpic`; break;
@@ -1372,15 +1373,15 @@ export default class Actor5e extends Actor {
     keepItems = false, keepBio = false, keepVision = false, transformTokens = true } = {}) {
 
     // Ensure the player is allowed to polymorph
-    const allowed = game.settings.get("pergasha-foundryvtt", "allowPolymorphing");
+    const allowed = game.settings.get("pergashaFoundryvtt", "allowPolymorphing");
     if (!allowed && !game.user.isGM) {
       return ui.notifications.warn(game.i18n.localize("DND5E.PolymorphWarn"));
     }
 
     // Get the original Actor data and the new source data
     const o = this.toJSON();
-    o.flags.dnd5e = o.flags.dnd5e || {};
-    o.flags.dnd5e.transformOptions = { mergeSkills, mergeSaves };
+    o.flags.pergashaFoundryvtt = o.flags.pergashaFoundryvtt || {};
+    o.flags.pergashaFoundryvtt.transformOptions = { mergeSkills, mergeSaves };
     const source = target.toJSON();
 
     // Prepare new data to merge from the source
@@ -1466,8 +1467,8 @@ export default class Actor5e extends Actor {
     if (keepVision) d.data.traits.senses = o.data.traits.senses;
 
     // Set new data flags
-    if (!this.isPolymorphed || !d.flags.dnd5e.originalActor) d.flags.dnd5e.originalActor = this.id;
-    d.flags.dnd5e.isPolymorphed = true;
+    if (!this.isPolymorphed || !d.flags.pergashaFoundryvtt.originalActor) d.flags.pergashaFoundryvtt.originalActor = this.id;
+    d.flags.pergashaFoundryvtt.isPolymorphed = true;
 
     // Update unlinked Tokens in place since they can simply be re-dropped from the base actor
     if (this.isToken) {
@@ -1479,7 +1480,7 @@ export default class Actor5e extends Actor {
 
     // Update regular Actors by creating a new Actor with the Polymorphed data
     await this.sheet.close();
-    Hooks.callAll('dnd5e.transformActor', this, target, d, {
+    Hooks.callAll('pergashaFoundryvtt.transformActor', this, target, d, {
       keepPhysical, keepMental, keepSaves, keepSkills, mergeSaves, mergeSkills,
       keepClass, keepFeats, keepSpells, keepItems, keepBio, keepVision, transformTokens
     });
@@ -1527,7 +1528,7 @@ export default class Actor5e extends Actor {
     }
 
     // Obtain a reference to the original actor
-    const original = game.actors.get(this.getFlag('dnd5e', 'originalActor'));
+    const original = game.actors.get(this.getFlag('pergashaFoundryvtt', 'originalActor'));
     if (!original) return;
 
     // Get the Tokens which represent this actor
@@ -1568,7 +1569,7 @@ export default class Actor5e extends Actor {
         return actor.revertOriginalForm();
       },
       condition: li => {
-        const allowed = game.settings.get("pergasha-foundryvtt", "allowPolymorphing");
+        const allowed = game.settings.get("pergashaFoundryvtt", "allowPolymorphing");
         if (!allowed && !game.user.isGM) return false;
         const actor = game.actors.get(li.data('entityId'));
         return actor && actor.isPolymorphed;

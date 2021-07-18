@@ -20,7 +20,7 @@ export default class DamageRoll extends Roll {
    * The HTML template path used to configure evaluation of this Roll
    * @type {string}
    */
-  static EVALUATION_TEMPLATE = "systems/pergasha-foundryvtt/templates/chat/roll-dialog.html";
+  static EVALUATION_TEMPLATE = "systems/pergashaFoundryvtt/templates/chat/roll-dialog.html";
 
   /* -------------------------------------------- */
 

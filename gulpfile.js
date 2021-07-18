@@ -7,7 +7,7 @@ const less = require('gulp-less');
 
 const DND5E_LESS = ["less/*.less"];
 function compileLESS() {
-  return gulp.src("less/pergasha-foundryvtt.less")
+  return gulp.src("less/pergashaFoundryvtt.less")
     .pipe(less())
     .pipe(gulp.dest("./"))
 }

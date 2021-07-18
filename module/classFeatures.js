@@ -5,55 +5,55 @@ export const ClassFeatures = {
         "label": "Ancestral Guardian",
         "source": "Dreadful Odysseys: Pergasha",
         "features": {
-          "3": ["Compendium.pergasha-foundryvtt.class-features.SyTDdGt7xsh3vITW"],
-          "6": ["Compendium.pergasha-foundryvtt.class-features.DTQTFB1VwNQQ3i9C"],
-          "10": ["Compendium.pergasha-foundryvtt.class-features.zJiBwSZMNSvGZ1RY"],
-          "14": ["Compendium.pergasha-foundryvtt.class-features.F2yEXtO6gS91FcBk"]
+          "3": ["Compendium.pergashaFoundryvtt.class-features.SyTDdGt7xsh3vITW"],
+          "6": ["Compendium.pergashaFoundryvtt.class-features.DTQTFB1VwNQQ3i9C"],
+          "10": ["Compendium.pergashaFoundryvtt.class-features.zJiBwSZMNSvGZ1RY"],
+          "14": ["Compendium.pergashaFoundryvtt.class-features.F2yEXtO6gS91FcBk"]
         }
       },
       "beast": {
         "label": "Beast",
         "source": "Dreadful Odysseys: Pergasha",
         "features": {
-          "3": ["Compendium.pergasha-foundryvtt.class-features.Cql36lDfb7ZGIzVl"],
-          "6": ["Compendium.pergasha-foundryvtt.class-features.4BmpAtw79sndY23G"],
-          "10": ["Compendium.pergasha-foundryvtt.class-features.N2H5kxrEl69y80Jp"],
-          "14": ["Compendium.pergasha-foundryvtt.class-features.RPiX43lXgi7sa5st"]
+          "3": ["Compendium.pergashaFoundryvtt.class-features.Cql36lDfb7ZGIzVl"],
+          "6": ["Compendium.pergashaFoundryvtt.class-features.4BmpAtw79sndY23G"],
+          "10": ["Compendium.pergashaFoundryvtt.class-features.N2H5kxrEl69y80Jp"],
+          "14": ["Compendium.pergashaFoundryvtt.class-features.RPiX43lXgi7sa5st"]
         }
       },
       "primal-warrior": {
         "label": "Primal Warrior",
         "source": "Dreadful Odysseys: Pergasha",
         "features": {
-          "3": ["Compendium.pergasha-foundryvtt.class-features.ZvUYBUtIoUDUjK7V", "Compendium.pergasha-foundryvtt.class-features.dm3FFEchFlYbgFT7", "Compendium.pergasha-foundryvtt.class-features.e3V4SIhBpNApXYiz"],
-          "6": ["Compendium.pergasha-foundryvtt.class-features.WSIE9bAVocZMwold"],
-          "10": ["Compendium.pergasha-foundryvtt.class-features.uNgFnnnLjSgJEuaq"],
-          "14": ["Compendium.pergasha-foundryvtt.class-features.vW6yKwrU5pvGVBWn"]
+          "3": ["Compendium.pergashaFoundryvtt.class-features.ZvUYBUtIoUDUjK7V", "Compendium.pergashaFoundryvtt.class-features.dm3FFEchFlYbgFT7", "Compendium.pergashaFoundryvtt.class-features.e3V4SIhBpNApXYiz"],
+          "6": ["Compendium.pergashaFoundryvtt.class-features.WSIE9bAVocZMwold"],
+          "10": ["Compendium.pergashaFoundryvtt.class-features.uNgFnnnLjSgJEuaq"],
+          "14": ["Compendium.pergashaFoundryvtt.class-features.vW6yKwrU5pvGVBWn"]
         }
       },
       "totem-warrior": {
         "label": "Totem Warrior",
         "source": "Dreadful Odysseys: Pergasha",
         "features": {
-          "3": ["Compendium.pergasha-foundryvtt.class-features.vdnnVyLnK4tNY7Jg", "Compendium.pergasha-foundryvtt.class-features.dp4L8SA3Y39DyMjF"],
-          "6": ["Compendium.pergasha-foundryvtt.class-features.sY6TXrZoygFvnTdH"],
-          "10": ["Compendium.pergasha-foundryvtt.class-features.d43smTgofqUn3rNc"],
-          "14": ["Compendium.pergasha-foundryvtt.class-features.RHXUnTJQfREH1eIK"]
+          "3": ["Compendium.pergashaFoundryvtt.class-features.vdnnVyLnK4tNY7Jg", "Compendium.pergashaFoundryvtt.class-features.dp4L8SA3Y39DyMjF"],
+          "6": ["Compendium.pergashaFoundryvtt.class-features.sY6TXrZoygFvnTdH"],
+          "10": ["Compendium.pergashaFoundryvtt.class-features.d43smTgofqUn3rNc"],
+          "14": ["Compendium.pergashaFoundryvtt.class-features.RHXUnTJQfREH1eIK"]
         }
       },
 
     },
     "features": {
-      "1": ["Compendium.pergasha-foundryvtt.class-features.Wt9JY5lX5kMOI6oY", "Compendium.pergasha-foundryvtt.class-features.yxBxcrphuLAS72NZ"],
-      "2": ["Compendium.pergasha-foundryvtt.class-features.wKwhEnf461xbm19f", "Compendium.pergasha-foundryvtt.class-features.SyTarkNv3I8P1672", "Compendium.pergasha-foundryvtt.class-features.iK149jUJCG1K3seU"],
-      "3": ["Compendium.pergasha-foundryvtt.class-features.ihl1grD9kmgGbocd"],
-      "5": ["Compendium.pergasha-foundryvtt.class-features.5mA4Q2t7VLjtQxSB", "Compendium.pergasha-foundryvtt.class-features.C3KcjuprET1WxgGy", "Compendium.pergasha-foundryvtt.class-features.UZzddhXaiAhQ4y0j"],
-      "7": ["Compendium.pergasha-foundryvtt.class-features.9jOPft6JJnscO6rM"],
-      "9": ["Compendium.pergasha-foundryvtt.class-features.g3QVc70F7d8J44cw"],
-      "11": ["Compendium.pergasha-foundryvtt.class-features.CuqDJrpjWjpMVZFj"],
-      "15": ["Compendium.pergasha-foundryvtt.class-features.LlyvVYyuruvjR2CR"],
-      "18": ["Compendium.pergasha-foundryvtt.class-features.kdKRhL558qjKnPXz"],
-      "20": ["Compendium.pergasha-foundryvtt.class-features.FvVwCoVivBv9MXhP"]
+      "1": ["Compendium.pergashaFoundryvtt.class-features.Wt9JY5lX5kMOI6oY", "Compendium.pergashaFoundryvtt.class-features.yxBxcrphuLAS72NZ"],
+      "2": ["Compendium.pergashaFoundryvtt.class-features.wKwhEnf461xbm19f", "Compendium.pergashaFoundryvtt.class-features.SyTarkNv3I8P1672", "Compendium.pergashaFoundryvtt.class-features.iK149jUJCG1K3seU"],
+      "3": ["Compendium.pergashaFoundryvtt.class-features.ihl1grD9kmgGbocd"],
+      "5": ["Compendium.pergashaFoundryvtt.class-features.5mA4Q2t7VLjtQxSB", "Compendium.pergashaFoundryvtt.class-features.C3KcjuprET1WxgGy", "Compendium.pergashaFoundryvtt.class-features.UZzddhXaiAhQ4y0j"],
+      "7": ["Compendium.pergashaFoundryvtt.class-features.9jOPft6JJnscO6rM"],
+      "9": ["Compendium.pergashaFoundryvtt.class-features.g3QVc70F7d8J44cw"],
+      "11": ["Compendium.pergashaFoundryvtt.class-features.CuqDJrpjWjpMVZFj"],
+      "15": ["Compendium.pergashaFoundryvtt.class-features.LlyvVYyuruvjR2CR"],
+      "18": ["Compendium.pergashaFoundryvtt.class-features.kdKRhL558qjKnPXz"],
+      "20": ["Compendium.pergashaFoundryvtt.class-features.FvVwCoVivBv9MXhP"]
     }
   },
   "fighter": {

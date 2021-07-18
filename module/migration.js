@@ -2,64 +2,64 @@
  * Perform a system migration for the entire World, applying migrations for Actors, Items, and Compendium packs
  * @return {Promise}      A Promise which resolves once the migration is completed
  */
-export const migrateWorld = async function() {
-  ui.notifications.info(`Applying DnD5E System Migration for version ${game.system.data.version}. Please be patient and do not close your game or shut down your server.`, {permanent: true});
+export const migrateWorld = async function () {
+  ui.notifications.info(`Applying DnD5E System Migration for version ${game.system.data.version}. Please be patient and do not close your game or shut down your server.`, { permanent: true });
 
   // Migrate World Actors
-  for ( let a of game.actors.contents ) {
+  for (let a of game.actors.contents) {
     try {
       const updateData = migrateActorData(a.data);
-      if ( !foundry.utils.isObjectEmpty(updateData) ) {
+      if (!foundry.utils.isObjectEmpty(updateData)) {
         console.log(`Migrating Actor entity ${a.name}`);
-        await a.update(updateData, {enforceTypes: false});
+        await a.update(updateData, { enforceTypes: false });
       }
-    } catch(err) {
+    } catch (err) {
       err.message = `Failed dnd5e system migration for Actor ${a.name}: ${err.message}`;
       console.error(err);
     }
   }
 
   // Migrate World Items
-  for ( let i of game.items.contents ) {
+  for (let i of game.items.contents) {
     try {
       const updateData = migrateItemData(i.toObject());
-      if ( !foundry.utils.isObjectEmpty(updateData) ) {
+      if (!foundry.utils.isObjectEmpty(updateData)) {
         console.log(`Migrating Item entity ${i.name}`);
-        await i.update(updateData, {enforceTypes: false});
+        await i.update(updateData, { enforceTypes: false });
       }
-    } catch(err) {
+    } catch (err) {
       err.message = `Failed dnd5e system migration for Item ${i.name}: ${err.message}`;
       console.error(err);
     }
   }
 
   // Migrate Actor Override Tokens
-  for ( let s of game.scenes.contents ) {
+  for (let s of game.scenes.contents) {
     try {
       const updateData = migrateSceneData(s.data);
-      if ( !foundry.utils.isObjectEmpty(updateData) ) {
+      if (!foundry.utils.isObjectEmpty(updateData)) {
         console.log(`Migrating Scene entity ${s.name}`);
-        await s.update(updateData, {enforceTypes: false});
+        await s.update(updateData, { enforceTypes: false });
         // If we do not do this, then synthetic token actors remain in cache
         // with the un-updated actorData.
         s.tokens.contents.forEach(t => t._actor = null);
       }
-    } catch(err) {
+    } catch (err) {
       err.message = `Failed dnd5e system migration for Scene ${s.name}: ${err.message}`;
       console.error(err);
     }
   }
 
   // Migrate World Compendium Packs
-  for ( let p of game.packs ) {
-    if ( p.metadata.package !== "world" ) continue;
-    if ( !["Actor", "Item", "Scene"].includes(p.metadata.entity) ) continue;
+  for (let p of game.packs) {
+    if (p.metadata.package !== "world") continue;
+    if (!["Actor", "Item", "Scene"].includes(p.metadata.entity)) continue;
     await migrateCompendium(p);
   }
 
   // Set the migration as complete
-  game.settings.set("pergasha-foundryvtt", "systemMigrationVersion", game.system.data.version);
-  ui.notifications.info(`DnD5E System Migration to version ${game.system.data.version} completed!`, {permanent: true});
+  game.settings.set("pergashaFoundryvtt", "systemMigrationVersion", game.system.data.version);
+  ui.notifications.info(`DnD5E System Migration to version ${game.system.data.version} completed!`, { permanent: true });
 };
 
 /* -------------------------------------------- */
@@ -69,20 +69,20 @@ export const migrateWorld = async function() {
  * @param pack
  * @return {Promise}
  */
-export const migrateCompendium = async function(pack) {
+export const migrateCompendium = async function (pack) {
   const entity = pack.metadata.entity;
-  if ( !["Actor", "Item", "Scene"].includes(entity) ) return;
+  if (!["Actor", "Item", "Scene"].includes(entity)) return;
 
   // Unlock the pack for editing
   const wasLocked = pack.locked;
-  await pack.configure({locked: false});
+  await pack.configure({ locked: false });
 
   // Begin by requesting server-side data model migration and get the migrated content
   await pack.migrate();
   const documents = await pack.getDocuments();
 
   // Iterate over compendium entries - applying fine-tuned migration functions
-  for ( let doc of documents ) {
+  for (let doc of documents) {
     let updateData = {};
     try {
       switch (entity) {
@@ -98,20 +98,20 @@ export const migrateCompendium = async function(pack) {
       }
 
       // Save the entry, if data was changed
-      if ( foundry.utils.isObjectEmpty(updateData) ) continue;
+      if (foundry.utils.isObjectEmpty(updateData)) continue;
       await doc.update(updateData);
       console.log(`Migrated ${entity} entity ${doc.name} in Compendium ${pack.collection}`);
     }
 
     // Handle migration failures
-    catch(err) {
+    catch (err) {
       err.message = `Failed dnd5e system migration for entity ${doc.name} in pack ${pack.collection}: ${err.message}`;
       console.error(err);
     }
   }
 
   // Apply the original locked status for the pack
-  await pack.configure({locked: wasLocked});
+  await pack.configure({ locked: wasLocked });
   console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`);
 };
 
@@ -125,7 +125,7 @@ export const migrateCompendium = async function(pack) {
  * @param {object} actor    The actor data object to update
  * @return {Object}         The updateData to apply
  */
-export const migrateActorData = function(actor) {
+export const migrateActorData = function (actor) {
   const updateData = {};
 
   // Actor Data Updates
@@ -136,28 +136,28 @@ export const migrateActorData = function(actor) {
   }
 
   // Migrate Owned Items
-  if ( !actor.items ) return updateData;
+  if (!actor.items) return updateData;
   const items = actor.items.reduce((arr, i) => {
     // Migrate the Owned Item
     const itemData = i instanceof CONFIG.Item.documentClass ? i.toObject() : i;
     let itemUpdate = migrateItemData(itemData);
 
     // Prepared, Equipped, and Proficient for NPC actors
-    if ( actor.type === "npc" ) {
+    if (actor.type === "npc") {
       if (getProperty(itemData.data, "preparation.prepared") === false) itemUpdate["data.preparation.prepared"] = true;
       if (getProperty(itemData.data, "equipped") === false) itemUpdate["data.equipped"] = true;
       if (getProperty(itemData.data, "proficient") === false) itemUpdate["data.proficient"] = true;
     }
 
     // Update the Owned Item
-    if ( !isObjectEmpty(itemUpdate) ) {
+    if (!isObjectEmpty(itemUpdate)) {
       itemUpdate._id = itemData._id;
       arr.push(expandObject(itemUpdate));
     }
 
     return arr;
   }, []);
-  if ( items.length > 0 ) updateData.items = items;
+  if (items.length > 0) updateData.items = items;
   return updateData;
 };
 
@@ -180,8 +180,8 @@ function cleanActorData(actorData) {
     obj[f] = null;
     return obj;
   }, {});
-  if ( actorData.flags.dnd5e ) {
-    actorData.flags.dnd5e = filterObject(actorData.flags.dnd5e, allowedFlags);
+  if (actorData.flags.pergashaFoundryvtt) {
+    actorData.flags.pergashaFoundryvtt = filterObject(actorData.flags.pergashaFoundryvtt, allowedFlags);
   }
 
   // Return the scrubbed data
@@ -197,7 +197,7 @@ function cleanActorData(actorData) {
  * @param {object} item  Item data to migrate
  * @return {object}      The updateData to apply
  */
-export const migrateItemData = function(item) {
+export const migrateItemData = function (item) {
   const updateData = {};
   _migrateItemAttunement(item, updateData);
   _migrateItemSpellcasting(item, updateData);
@@ -212,17 +212,17 @@ export const migrateItemData = function(item) {
  * @param {Object} scene  The Scene data to Update
  * @return {Object}       The updateData to apply
  */
-export const migrateSceneData = function(scene) {
+export const migrateSceneData = function (scene) {
   const tokens = scene.tokens.map(token => {
     const t = token.toJSON();
     if (!t.actorId || t.actorLink) {
       t.actorData = {};
     }
-    else if ( !game.actors.has(t.actorId) ){
+    else if (!game.actors.has(t.actorId)) {
       t.actorId = null;
       t.actorData = {};
     }
-    else if ( !t.actorLink ) {
+    else if (!t.actorLink) {
       const actorData = duplicate(t.actorData);
       actorData.type = token.actor?.type;
       const update = migrateActorData(actorData);
@@ -240,7 +240,7 @@ export const migrateSceneData = function(scene) {
     }
     return t;
   });
-  return {tokens};
+  return { tokens };
 };
 
 /* -------------------------------------------- */
@@ -257,13 +257,13 @@ function _migrateActorMovement(actorData, updateData) {
   // Work is needed if old data is present
   const old = actorData.type === 'vehicle' ? ad?.attributes?.speed : ad?.attributes?.speed?.value;
   const hasOld = old !== undefined;
-  if ( hasOld ) {
+  if (hasOld) {
 
     // If new data is not present, migrate the old data
     const hasNew = ad?.attributes?.movement?.walk !== undefined;
-    if ( !hasNew && (typeof old === "string") ) {
+    if (!hasNew && (typeof old === "string")) {
       const s = (old || "").split(" ");
-      if ( s.length > 0 ) updateData["data.attributes.movement.walk"] = Number.isNumeric(s[0]) ? parseInt(s[0]) : null;
+      if (s.length > 0) updateData["data.attributes.movement.walk"] = Number.isNumeric(s[0]) ? parseInt(s[0]) : null;
     }
 
     // Remove the old attribute
@@ -280,28 +280,28 @@ function _migrateActorMovement(actorData, updateData) {
  */
 function _migrateActorSenses(actor, updateData) {
   const ad = actor.data;
-  if ( ad?.traits?.senses === undefined ) return;
+  if (ad?.traits?.senses === undefined) return;
   const original = ad.traits.senses || "";
-  if ( typeof original !== "string" ) return;
+  if (typeof original !== "string") return;
 
   // Try to match old senses with the format like "Darkvision 60 ft, Blindsight 30 ft"
   const pattern = /([A-z]+)\s?([0-9]+)\s?([A-z]+)?/;
   let wasMatched = false;
 
   // Match each comma-separated term
-  for ( let s of original.split(",") ) {
+  for (let s of original.split(",")) {
     s = s.trim();
     const match = s.match(pattern);
-    if ( !match ) continue;
+    if (!match) continue;
     const type = match[1].toLowerCase();
-    if ( type in CONFIG.DND5E.senses ) {
+    if (type in CONFIG.DND5E.senses) {
       updateData[`data.attributes.senses.${type}`] = Number(match[2]).toNearest(0.5);
       wasMatched = true;
     }
   }
 
   // If nothing was matched, but there was an old string - put the whole thing in "special"
-  if ( !wasMatched && !!original ) {
+  if (!wasMatched && !!original) {
     updateData["data.attributes.senses.special"] = original;
   }
 
@@ -319,7 +319,7 @@ function _migrateActorSenses(actor, updateData) {
 function _migrateActorType(actor, updateData) {
   const ad = actor.data;
   const original = ad.details?.type;
-  if ( typeof original !== "string" ) return;
+  if (typeof original !== "string") return;
 
   // New default data structure
   let data = {
@@ -332,7 +332,7 @@ function _migrateActorType(actor, updateData) {
   // Match the existing string
   const pattern = /^(?:swarm of (?<size>[\w\-]+) )?(?<type>[^(]+?)(?:\((?<subtype>[^)]+)\))?$/i;
   const match = original.trim().match(pattern);
-  if ( match ) {
+  if (match) {
 
     // Match a known creature type
     const typeLc = match.groups.type.trim().toLowerCase();
@@ -350,7 +350,7 @@ function _migrateActorType(actor, updateData) {
 
     // Match a swarm
     const isNamedSwarm = actor.name.startsWith(game.i18n.localize("DND5E.CreatureSwarm"));
-    if ( match.groups.size || isNamedSwarm ) {
+    if (match.groups.size || isNamedSwarm) {
       const sizeLc = match.groups.size ? match.groups.size.trim().toLowerCase() : "tiny";
       const sizeMatch = Object.entries(CONFIG.DND5E.actorSizes).find(([k, v]) => {
         return (sizeLc === k) || (sizeLc === game.i18n.localize(v).toLowerCase());
@@ -382,7 +382,7 @@ function _migrateActorType(actor, updateData) {
  * @private
  */
 function _migrateItemAttunement(item, updateData) {
-  if ( item.data?.attuned === undefined ) return updateData;
+  if (item.data?.attuned === undefined) return updateData;
   updateData["data.attunement"] = CONFIG.DND5E.attunementTypes.NONE;
   updateData["data.-=attuned"] = null;
   return updateData;
@@ -399,7 +399,7 @@ function _migrateItemAttunement(item, updateData) {
  * @private
  */
 function _migrateItemSpellcasting(item, updateData) {
-  if ( item.type !== "class" || (foundry.utils.getType(item.data.spellcasting) === "Object") ) return updateData;
+  if (item.type !== "class" || (foundry.utils.getType(item.data.spellcasting) === "Object")) return updateData;
   updateData["data.spellcasting"] = {
     progression: item.data.spellcasting,
     ability: ""
@@ -417,23 +417,23 @@ function _migrateItemSpellcasting(item, updateData) {
  */
 export async function purgeFlags(pack) {
   const cleanFlags = (flags) => {
-    const flags5e = flags.dnd5e || null;
-    return flags5e ? {dnd5e: flags5e} : {};
+    const flags5e = flags.pergashaFoundryvtt || null;
+    return flags5e ? { pergashaFoundryvtt: flags5e } : {};
   };
-  await pack.configure({locked: false});
+  await pack.configure({ locked: false });
   const content = await pack.getContent();
-  for ( let entity of content ) {
-    const update = {_id: entity.id, flags: cleanFlags(entity.data.flags)};
-    if ( pack.entity === "Actor" ) {
+  for (let entity of content) {
+    const update = { _id: entity.id, flags: cleanFlags(entity.data.flags) };
+    if (pack.entity === "Actor") {
       update.items = entity.data.items.map(i => {
         i.flags = cleanFlags(i.flags);
         return i;
       })
     }
-    await pack.updateEntity(update, {recursive: false});
+    await pack.updateEntity(update, { recursive: false });
     console.log(`Purged flags from ${entity.name}`);
   }
-  await pack.configure({locked: true});
+  await pack.configure({ locked: true });
 }
 
 /* -------------------------------------------- */
@@ -445,8 +445,8 @@ export async function purgeFlags(pack) {
  * @private
  */
 export function removeDeprecatedObjects(data) {
-  for ( let [k, v] of Object.entries(data) ) {
-    if ( getType(v) === "Object" ) {
+  for (let [k, v] of Object.entries(data)) {
+    if (getType(v) === "Object") {
       if (v._deprecated === true) {
         console.log(`Deleting deprecated object key ${k}`);
         delete data[k];
