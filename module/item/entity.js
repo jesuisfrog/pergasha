@@ -182,7 +182,25 @@ export default class Item5e extends Item {
     else if (itemData.type === "psionicPower") {
       labels.psionicOrder = C.psionicOrders[data.psionicOrder];
       labels.psicost = C.psionicPowerCosts[data.psicost];
-      labels.psionicDiscipline = C.psionicDisciplines[data.psionicDiscipline];
+      switch (data.psionicOrder) {
+        case "avatar":
+          labels.psionicDiscipline = C.avatarDisciplines[data.psionicDiscipline];
+          break;
+        case "awakened":
+          labels.psionicDiscipline = C.awakenedDisciplines[data.psionicDiscipline];
+          break;
+        case "farhand":
+          labels.psionicDiscipline = C.farhandDisciplines[data.psionicDiscipline];
+          break;
+        case "immortal":
+          labels.psionicDiscipline = C.immortalDisciplines[data.psionicDiscipline];
+          break;
+        case "nomad":
+          labels.psionicDiscipline = C.nomadDisciplines[data.psionicDiscipline];
+          break;
+        default:
+          break;
+      }
       labels.concentration = data.concentration;
     }
 

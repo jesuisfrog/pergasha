@@ -905,6 +905,31 @@
   flex: 0 0 20px;
   justify-content: flex-end;
 }
+
+.pergashaFoundryvtt.sheet.actor .psionics-filters {
+  margin: 0 8px;
+  flex: 0 0 20px;
+  font-size: 15px;
+}
+
+.pergashaFoundryvtt.sheet.actor .psionics-filters .psionics-points label{
+  max-width: fit-content;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.pergashaFoundryvtt.sheet.actor .psionics-filters .psionics-points input{
+  max-width: 2rem;
+  text-align: center;
+}
+.pergashaFoundryvtt.sheet.actor .psionics-filters .psionics-limit{
+  max-width: fit-content;
+}
+.pergashaFoundryvtt.sheet.actor .psionics-filters .psionics-limit select{
+  max-width: fit-content; 
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .pergashaFoundryvtt.sheet.actor .inventory-filters .currency {
   flex: 0 0 100%;
   list-style: none;
@@ -913,7 +938,8 @@
   font-size: 12px;
 }
 .pergashaFoundryvtt.sheet.actor .inventory-filters .currency label {
-  flex: 0;
+  font-weight: bold;
+  font-size: 14px;
   margin-left: 8px;
   text-align: right;
   line-height: 20px;
@@ -921,8 +947,9 @@
 }
 .pergashaFoundryvtt.sheet.actor .inventory-filters .currency input[type="text"] {
   flex: 0 0 48px;
+  font-size: 14px;
+  margin-left: 5px;
   text-align: center;
-  margin-left: 8px;
   border-bottom: 2px groove #eeede0;
 }
 .pergashaFoundryvtt.sheet.actor .inventory-list {

@@ -103,7 +103,9 @@
           "psionics": {
             "psionicsAbility": "int",
             "psiPoints": 0,
-            "psiLimit": 2
+            "psiPointsMax": 0,
+            "psiLimit": 2,
+            "activeFocus": null
           },
           "spellcasting": "int"
         },
@@ -682,7 +684,7 @@
       ],
       "psionicOrder": null,
       "psionicDiscipline": null,
-      "psicost": 2,
+      "psicost": 0,
       "concentration": false,
       "variableCost": {
         "baseCost": null,

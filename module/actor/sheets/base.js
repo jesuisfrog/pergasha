@@ -393,10 +393,13 @@ export default class ActorSheet5e extends ActorSheet {
       // Add the psionic power to the relevant heading
       psionics[cost].psionicPowers.push(psionicPower);
     });
-
     // Sort the psionics by section cost
+
     const sorted = Object.values(psionics);
     sorted.sort((a, b) => a.order - b.order);
+    if (sorted[sorted.length - 1].order === "focus") {
+      sorted.unshift(sorted.pop());
+    }
     return sorted;
   }
 

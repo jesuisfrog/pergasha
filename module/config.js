@@ -14,7 +14,6 @@ ______      ______ _____ _____
 _______________________________`;
 
 
-
 /**
  * The set of Ability Scores used within the system
  * @type {Object}
@@ -321,8 +320,8 @@ DND5E.creatureTypes = {
 DND5E.itemActionTypes = {
   "mwak": "DND5E.ActionMWAK",
   "rwak": "DND5E.ActionRWAK",
-  "msak": "DND5E.ActionMSAK",
-  "rsak": "DND5E.ActionRSAK",
+  // "msak": "DND5E.ActionMSAK",
+  // "rsak": "DND5E.ActionRSAK",
   "mpak": "DND5E.ActionMPAK",
   "rpak": "DND5E.ActionRPAK",
   "save": "DND5E.ActionSave",
@@ -714,7 +713,6 @@ DND5E.spellComponents = {
 };
 
 // Spell Schools
-// In Pergasha - Orders
 DND5E.spellSchools = {
   "abj": "DND5E.SchoolAbj",
   "con": "DND5E.SchoolCon",
@@ -726,62 +724,6 @@ DND5E.spellSchools = {
   "trs": "DND5E.SchoolTrs"
 };
 
-DND5E.psionicOrders = {
-  "avatar": "DND5E.AvatarOrder",
-  "awakened": "DND5E.AwakenedOrder",
-  "farhand": "DND5E.FarHandOrder",
-  "immortal": "DND5E.ImmortalOrder",
-  "nomad": "DND5E.NomadOrder",
-};
-
-DND5E.psionicDisciplines = {
-  "adaptiveBody": "DND5E.AdaptiveBody",
-  "auraOfCommand": "DND5E.AuraOfCommand",
-  "auraOfFury": "DND5E.AuraOfFury",
-  "auraSight": "DND5E.AuraSight"
-};
-
-DND5E.psionicPowerCosts = {
-  0: "DND5E.PsiCost0",
-  1: "DND5E.PsiCost1",
-  2: "DND5E.PsiCost2",
-  3: "DND5E.PsiCost3",
-  4: "DND5E.PsiCost4",
-  5: "DND5E.PsiCost5",
-  6: "DND5E.PsiCost6",
-  7: "DND5E.PsiCost7",
-  8: "DND5E.PsiCostVar"
-}
-
-DND5E.basePsionicPowerCosts = {
-  1: "DND5E.PsiCost1",
-  2: "DND5E.PsiCost2",
-  3: "DND5E.PsiCost3",
-  4: "DND5E.PsiCost4",
-  5: "DND5E.PsiCost5",
-  6: "DND5E.PsiCost6"
-}
-
-DND5E.maxPsionicPowerCosts = {
-  2: "DND5E.PsiCost2",
-  3: "DND5E.PsiCost3",
-  4: "DND5E.PsiCost4",
-  5: "DND5E.PsiCost5",
-  6: "DND5E.PsiCost6",
-  7: "DND5E.PsiCost7"
-}
-
-/* -------------------------------------------- */
-
-/**
- * The available choices for how psionic power damage scaling may be computed
- * @type {Object}
- */
-DND5E.psionicPowerScaling = {
-  "none": "DND5E.PsionicPowerNone",
-  "talent": "DND5E.PsionicPowerTalent",
-  "variableCost": "DND5E.PsionicPowerVariableCost"
-};
 
 /* -------------------------------------------- */
 
@@ -1052,3 +994,180 @@ DND5E.characterFlags = {
 
 // Configure allowed status flags
 DND5E.allowedActorFlags = ["isPolymorphed", "originalActor"].concat(Object.keys(DND5E.characterFlags));
+
+/* -------------------------------------------- */
+
+DND5E.psionicOrders = {
+  "avatar": "DND5E.AvatarOrder",
+  "awakened": "DND5E.AwakenedOrder",
+  "farhand": "DND5E.FarHandOrder",
+  "immortal": "DND5E.ImmortalOrder",
+  "nomad": "DND5E.NomadOrder",
+};
+
+DND5E.avatarDisciplines = {
+  "auraOfCommand": "DND5E.AuraOfCommand",
+  "auraOfFury": "DND5E.AuraOfFury",
+  "beaconOfCourage": "DND5E.BeaconOfCourage",
+  "crownOfDespair": "DND5E.CrownOfDespair",
+  "crownOfRage": "DND5E.CrownOfRage",
+  "disgust": "DND5E.Disgust",
+  "mantleOfAwe": "DND5E.MantleOfAwe",
+  "mantleOfFear": "DND5E.MantleOfFear",
+  "mantleOfJoy": "DND5E.MantleOfJoy"
+}
+
+DND5E.awakenedDisciplines = {
+  "auraSight": "DND5E.AuraSight",
+  "intellectFortress": "DND5E.IntellectFortress",
+  "precognition": "DND5E.Precognition",
+  "psychicAssault": "DND5E.PsychicAssault",
+  "psychicDisruption": "DND5E.PsychicDisruption",
+  "telepathicContact": "DND5E.TelepathicContact",
+  "thirdEye": "DND5E.ThirdEye"
+}
+DND5E.farhandDisciplines = {
+  "enhancedForce": "DND5E.EnhancedForce",
+  "forceFields": "DND5E.ForceFields",
+  "graviturgy": "DND5E.Graviturgy",
+  "illumination": "DND5E.Illumination",
+  "livingKnives": "DND5E.LivingKnives",
+  "massManipulation": "DND5E.MassManipulation",
+  "psychokinesis": "DND5E.Psychokinesis",
+  "telemacheia": "DND5E.Telemacheia"
+}
+DND5E.immortalDisciplines = {
+  "adaptiveBody": "DND5E.AdaptiveBody",
+  "beastialForm": "DND5E.BeastialForm",
+  "bruteForce": "DND5E.BruteForce",
+  "celerity": "DND5E.Celerity",
+  "chakraManipulation": "DND5E.ChakraManipulation",
+  "corrosiveMetabolism": "DND5E.CorrosiveMetabolism",
+  "ironDurability": "DND5E.IronDurability",
+  "psionicWeapon": "DND5E.PsionicWeapon",
+  "venomousMetabolism": "DND5E.VenomousMetabolism"
+}
+DND5E.nomadDisciplines = {
+  "chameleon": "DND5E.Chameleon",
+  "chronoweaver": "DND5E.Chronoweaver",
+  "continuumManipulation": "DND5E.ContinuumManipulation",
+  "intelligentArrow": "DND5E.IntelligentArrow",
+  "nomadicMind": "DND5E.NomadicMind",
+  "nomadicStep": "DND5E.NomadicStep",
+  "sonokinesis": "DND5E.Sonokinesis"
+}
+
+DND5E.psionicDisciplines = {
+  "avatar": {
+    "auraOfCommand": "DND5E.AuraOfCommand",
+    "auraOfFury": "DND5E.AuraOfFury",
+    "beaconOfCourage": "DND5E.BeaconOfCourage",
+    "crownOfDespair": "DND5E.CrownOfDespair",
+    "crownOfRage": "DND5E.CrownOfRage",
+    "disgust": "DND5E.Disgust",
+    "mantleOfAwe": "DND5E.MantleOfAwe",
+    "mantleOfFear": "DND5E.MantleOfFear",
+    "mantleOfJoy": "DND5E.MantleOfJoy"
+  },
+  "awakened": {
+    "auraSight": "DND5E.AuraSight",
+    "intellectFortress": "DND5E.IntellectFortress",
+    "precognition": "DND5E.Precognition",
+    "psychicAssault": "DND5E.PsychicAssault",
+    "psychicDisruption": "DND5E.PsychicDisruption",
+    "telepathicContact": "DND5E.TelepathicContact",
+    "thirdEye": "DND5E.ThirdEye"
+  },
+  "farhand": {
+    "enhancedForce": "DND5E.EnhancedForce",
+    "forceFields": "DND5E.ForceFields",
+    "graviturgy": "DND5E.Graviturgy",
+    "illumination": "DND5E.Illumination",
+    "livingKnives": "DND5E.LivingKnives",
+    "massManipulation": "DND5E.MassManipulation",
+    "psychokinesis": "DND5E.Psychokinesis",
+    "telemacheia": "DND5E.Telemacheia"
+  },
+  "immortal": {
+    "adaptiveBody": "DND5E.AdaptiveBody",
+    "beastialForm": "DND5E.BeastialForm",
+    "bruteForce": "DND5E.BruteForce",
+    "celerity": "DND5E.Celerity",
+    "chakraManipulation": "DND5E.ChakraManipulation",
+    "corrosiveMetabolism": "DND5E.CorrosiveMetabolism",
+    "ironDurability": "DND5E.IronDurability",
+    "psionicWeapon": "DND5E.PsionicWeapon",
+    "venomousMetabolism": "DND5E.VenomousMetabolism"
+  },
+  "nomad": {
+    "chameleon": "DND5E.Chameleon",
+    "chronoweaver": "DND5E.Chronoweaver",
+    "continuumManipulation": "DND5E.ContinuumManipulation",
+    "intelligentArrow": "DND5E.IntelligentArrow",
+    "nomadicMind": "DND5E.NomadicMind",
+    "nomadicStep": "DND5E.NomadicStep",
+    "sonokinesis": "DND5E.Sonokinesis"
+  }
+};
+
+DND5E.psionicPowerCosts = {
+  "focus": "DND5E.Focuses&Masteries",
+  0: "DND5E.PsiCost0",
+  1: "DND5E.PsiCost1",
+  2: "DND5E.PsiCost2",
+  3: "DND5E.PsiCost3",
+  4: "DND5E.PsiCost4",
+  5: "DND5E.PsiCost5",
+  6: "DND5E.PsiCost6",
+  7: "DND5E.PsiCost7",
+  8: "DND5E.PsiCostVar"
+}
+
+DND5E.basePsionicPowerCosts = {
+  1: "DND5E.PsiCost1",
+  2: "DND5E.PsiCost2",
+  3: "DND5E.PsiCost3",
+  4: "DND5E.PsiCost4",
+  5: "DND5E.PsiCost5",
+  6: "DND5E.PsiCost6"
+}
+
+DND5E.maxPsionicPowerCosts = {
+  2: "DND5E.PsiCost2",
+  3: "DND5E.PsiCost3",
+  4: "DND5E.PsiCost4",
+  5: "DND5E.PsiCost5",
+  6: "DND5E.PsiCost6",
+  7: "DND5E.PsiCost7"
+}
+
+
+
+/**
+ * The available choices for how psionic power damage scaling may be computed
+ * @type {Object}
+ */
+DND5E.psionicPowerScaling = {
+  "none": "DND5E.PsionicPowerNone",
+  "talent": "DND5E.PsionicPowerTalent",
+  "variableCost": "DND5E.PsionicPowerVariableCost"
+};
+
+DND5E.exhaustionEffects = {
+  0: "For each level of exhaustion you have, any psionic abilities require 1 extra Psi Point to activate, including Talents.",
+  1: "Disadvantage on Strength and Dexterity Ability and Skill checks. You can’t perform the Dash action during combat.",
+  2: "Disadvantage on all Ability and Skill checks. Your Speed is halved.",
+  3: "Disadvantage on Attack rolls and Saving Throws. Rolling a 1 on attack rolls exhausts 1 Hit Die.",
+  4: "You can only take an action or a bonus action during your turn, and you can’t take reactions. You can concentrate on one thing only, such as a psionic ability or enemy target, and ignore all else. You’re limited to simple mental tasks.",
+  5: "Hit Point maximum reduce by half. Speed reduced to 5 feet. You cannot use abilities requiring Concentration.",
+  6: "You are Dying. Any additional Exhaustion counts as two failed death saves.",
+}
+
+DND5E.fatigueEffects = {
+  1: "Take 1d4 damage when activating psionics.",
+  2: "Psi Limit Reduced by 1.",
+  3: "Unable to maintain a Psychic Focus.",
+  4: "Gain 1 level of exhaustion.",
+  5: "Unable to maintain concentration.",
+  6: "Overdrive.",
+}

@@ -34,14 +34,25 @@
                     <input type="text" name="data.details.race" value="{{data.details.race}}"
                         placeholder="{{ localize 'DND5E.Race' }}" />
                 </li>
-                <li>
+                <li class="flexrow">
+                    <span>{{localize "DND5E.Focus"}}</span>
+                    <select name="data.attributes.psionics.activeFocus" style="margin-right: 5px;">
+                        {{#select data.attributes.psionics.activeFocus}}
+                        <option value="">None</option>
+                        {{#each (focusArray psionics) as |focus|}}
+                        <option value="{{focus.name}}">{{focus.name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </li>
+                <!-- <li>
                     <input type="text" name="data.details.background" value="{{data.details.background}}"
                         placeholder="{{ localize 'DND5E.Background' }}" />
                 </li>
                 <li>
                     <input type="text" name="data.details.alignment" value="{{data.details.alignment}}"
                         placeholder="{{ localize 'DND5E.Alignment' }}" />
-                </li>
+                </li> -->
                 <li class="proficiency">
                     <span>{{ localize "DND5E.Proficiency" }} {{numberFormat data.attributes.prof decimals=0
                         sign=true}}</span>
@@ -230,17 +241,58 @@
                     <div class="counter flexrow exhaustion">
                         <h4>{{ localize "DND5E.Exhaustion" }}</h4>
                         <div class="counter-value">
-                            <input name="data.attributes.exhaustion" type="number" placeholder="0"
-                                value="{{data.attributes.exhaustion}}" />
+                            <select name="data.attributes.exhaustion">
+                                {{#select data.attributes.exhaustion}}
+                                <option></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                {{/select}}
+                            </select>
+                            <!-- <input name="data.attributes.exhaustion" type="number" placeholder="0"
+                                value="{{data.attributes.exhaustion}}" /> -->
                         </div>
+
+
                     </div>
+                    {{#if data.attributes.exhaustion}}
+                    <div class="flexrow exhaustion-effects">
+                        <ul>
+                            {{#displayEffects data.attributes.exhaustion "exhaustion"}}{{/displayEffects}}
+                        </ul>
+                    </div>
+                    <hr>
+                    {{/if}}
                     <div class="counter flexrow fatigue">
                         <h4>{{ localize "DND5E.Fatigue" }}</h4>
                         <div class="counter-value">
-                            <input name="data.attributes.fatigue" type="number" placeholder="0"
-                                value="{{data.attributes.fatigue}}" />
+                            <select name="data.attributes.fatigue">
+                                {{#select data.attributes.fatigue}}
+                                <option></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                {{/select}}
+                            </select>
+                            <!-- <input name="data.attributes.fatigue" type="number" placeholder="0"
+                                value="{{data.attributes.fatigue}}" /> -->
                         </div>
+
                     </div>
+                    {{#if data.attributes.fatigue}}
+                    <div class="flexrow fatigue-effects">
+                        <ul>
+                            {{#displayEffects data.attributes.fatigue "fatigue"}}{{/displayEffects}}
+                        </ul>
+                    </div>
+                    <hr>
+                    {{/if}}
                     <div class="counter flexrow inspiration">
                         <h4>{{ localize "DND5E.Inspiration" }}</h4>
                         <div class="counter-value">
@@ -248,9 +300,10 @@
                                 value="{{data.attributes.inspiration}}" />
                         </div>
                     </div>
+                </div>
 
-                    {{!-- Traits --}}
-                    {{> "systems/pergashaFoundryvtt/templates/actors/parts/actor-traits.html"}}
+                {{!-- Traits --}}
+                {{> "systems/pergashaFoundryvtt/templates/actors/parts/actor-traits.html"}}
             </section>
         </div>
 

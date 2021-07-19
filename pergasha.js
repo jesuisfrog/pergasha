@@ -133,7 +133,7 @@ Hooks.once("setup", function () {
     "abilities", "abilityAbbreviations", "abilityActivationTypes", "abilityConsumptionTypes", "actorSizes", "alignments",
     "armorProficiencies", "conditionTypes", "consumableTypes", "cover", "currencies", "damageResistanceTypes",
     "damageTypes", "distanceUnits", "equipmentTypes", "healingTypes", "itemActionTypes", "languages",
-    "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "psionicOrders", "psionicDisciplines", "psionicPowerCosts", "psionicPowerScaling", "basePsionicPowerCosts", "maxPsionicPowerCosts", "senses", "skills",
+    "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "psionicOrders", "avatarDisciplines", "awakenedDisciplines", "farhandDisciplines", "immortalDisciplines", "nomadDisciplines", "psionicPowerCosts", "psionicPowerScaling", "basePsionicPowerCosts", "maxPsionicPowerCosts", "senses", "skills",
     "spellComponents", "spellLevels", "spellPreparationModes", "spellScalingModes", "spellSchools", "targetTypes",
     "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "weaponTypes"
   ];
@@ -254,16 +254,66 @@ Handlebars.registerHelper('maxHigherThanBase', function (psionicPower) {
   }
 });
 
-Handlebars.registerHelper('isTalentSection', function (section) {
-  if (section.label === "Talent") {
+Handlebars.registerHelper('isTalentSection', function (label) {
+  if (label === "Talent") {
     return true;
   } else {
     return false;
   }
 });
 
+Handlebars.registerHelper('isFocusSection', function (label) {
+  if (label === "Focuses & Masteries") {
+    return true;
+  } else {
+    return false;
+  }
+});
+
+Handlebars.registerHelper('isFocus', function (data) {
+  if (data === "focus") {
+    return true;
+  } else {
+    return false;
+  }
+});
+
+Handlebars.registerHelper('focusArray', function (data) {
+  let array = [];
+  data.forEach(element => {
+    if (element.order === "focus") {
+      array = element.psionicPowers;
+    }
+  });
+  return array;
+});
+
+Handlebars.registerHelper('disciplinesArray', function (data) {
+  const orderArray = `${data}Disciplines`;
+  return CONFIG.DND5E[orderArray];
+});
+
+Handlebars.registerHelper('displayEffects', function (effectIndex, type) {
+  let effects = "";
+  if (type === "exhaustion") {
+    for (let index = 0; index <= effectIndex; index++) {
+      effects += `<li>${CONFIG.DND5E.exhaustionEffects[index]}</li>`;
+    }
+  } else if (type === "fatigue") {
+    for (let index = 1; index <= effectIndex; index++) {
+      effects += `<li>${CONFIG.DND5E.fatigueEffects[index]}</li>`;
+    }
+  }
+  return effects;
+});
+
 Handlebars.registerHelper('testData', function (data) {
+  console.log('Datatype: ', typeof (data));
   console.log('Data: ', data);
 });
+
+
+
+
 
 
