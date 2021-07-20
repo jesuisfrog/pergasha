@@ -232,6 +232,14 @@ Handlebars.registerHelper('isVariableCost', function (psionicPower) {
   }
 });
 
+Handlebars.registerHelper('isVariableSection', function (label) {
+  if (label === "Variable") {
+    return true;
+  } else {
+    return false;
+  }
+});
+
 Handlebars.registerHelper('isTalent', function (psionicPower) {
   if (psionicPower.psicost == 0) {
     psionicPower.psionicOrder = null;

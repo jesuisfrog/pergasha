@@ -1683,6 +1683,7 @@
 .pergashaFoundryvtt.sheet.actor .psionics-order,
 .pergashaFoundryvtt.sheet.actor .psionics-discipline,
 .pergashaFoundryvtt.sheet.actor .psionics-action,
+.pergashaFoundryvtt.sheet.actor .psionics-psicost,
 .pergashaFoundryvtt.sheet.actor .psionics-target {
   flex: 0 0 100px;
   font-size: 12px;

@@ -55,9 +55,12 @@
             {{#if (isTalentSection section.label)}}
             <h3>{{localize "DND5E.Talents"}}</h3>
             {{else}}
-            <h3>{{section.label}}s</h3>
+            <h3>{{section.label}}</h3>
             {{/if}}
         </div>
+        {{#if (isVariableSection section.label)}}
+        <div class="psionics-order">{{localize "DND5E.PsiCost"}}</div>
+        {{/if}}
         {{#unless (isTalentSection section.label)}}
         <div class="psionics-order">{{localize "DND5E.PsionicOrder"}}</div>
         <div class="psionics-discipline">{{localize "DND5E.PsionicDiscipline"}}</div>
@@ -83,8 +86,13 @@
                 <div class="item-image" style="background-image: url('{{item.img}}')"></div>
                 <h4>{{item.name}}</h4>
             </div>
+            {{#if (isVariableSection section.label)}}
+            <div class="psionics-psicost">{{item.data.variableCost.baseCost}}-{{item.data.variableCost.maxCost}}</div>
+            {{/if}}
+            {{#unless (isTalentSection section.label)}}
             <div class="psionics-order">{{labels.psionicOrder}}</div>
             <div class="psionics-discipline">{{labels.psionicDiscipline}}</div>
+            {{/unless}}
             {{#unless (isFocusSection section.label)}}
             <div class="psionics-action">{{labels.activation}}</div>
             <div class="psionics-target" title="{{localize 'DND5E.Range'}}: {{labels.range}}">

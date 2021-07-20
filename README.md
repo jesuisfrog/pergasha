@@ -13,3 +13,7 @@ Features to implement
 * Throw an alert if the user is trying to use more points than their psi limit 
 
 * Have the variable cost powers scale with additional psi points
+
+* Find a way to drag and drop a whole discipline into a sheet
+
+* Populate compendiums

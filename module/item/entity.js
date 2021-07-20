@@ -458,20 +458,25 @@ export default class Item5e extends Item {
     const recharge = id.recharge || {};       // Recharge mechanic
     const uses = id?.uses ?? {};              // Limited uses
     const isSpell = this.type === "spell";    // Does the item require a spell slot?
+    const isPsionicPower = this.type === "psionicPower";
+    const requirePsiPoints = isPsionicPower && (id.psicost > 0 && id.psicost != "focus");
     const requireSpellSlot = isSpell && (id.level > 0) && CONFIG.DND5E.spellUpcastModes.includes(id.preparation.mode);
 
     // Define follow-up actions resulting from the item usage
     let createMeasuredTemplate = hasArea;       // Trigger a template creation
     let consumeRecharge = !!recharge.value;     // Consume recharge
     let consumeResource = !!resource.target && (resource.type !== "ammo") // Consume a linked (non-ammo) resource
+    let consumePsiPoints = requirePsiPoints;
     let consumeSpellSlot = requireSpellSlot;    // Consume a spell slot
     let consumeUsage = !!uses.per;              // Consume limited uses
     let consumeQuantity = uses.autoDestroy;     // Consume quantity of the item in lieu of uses
+    let consumePsiPointsAmount = null;
+    if (requirePsiPoints) consumePsiPointsAmount = (id.psicost == 8) ? id.variableCost.baseCost : id.psicost;
     let consumeSpellLevel = null;               // Consume a specific category of spell slot
     if (requireSpellSlot) consumeSpellLevel = id.preparation.mode === "pact" ? "pact" : `spell${id.level}`;
 
     // Display a configuration dialog to customize the usage
-    const needsConfiguration = createMeasuredTemplate || consumeRecharge || consumeResource || consumeSpellSlot || consumeUsage;
+    const needsConfiguration = createMeasuredTemplate || consumeRecharge || consumeResource || consumePsiPoints || consumeSpellSlot || consumeUsage;
     if (configureDialog && needsConfiguration) {
       const configuration = await AbilityUseDialog.create(this);
       if (!configuration) return;
@@ -482,6 +487,7 @@ export default class Item5e extends Item {
       consumeRecharge = Boolean(configuration.consumeRecharge);
       consumeResource = Boolean(configuration.consumeResource);
       consumeSpellSlot = Boolean(configuration.consumeSlot);
+      consumePsiPoints = Boolean(configuration.consumePsi);
 
       // Handle spell upcasting
       if (requireSpellSlot) {
@@ -494,10 +500,21 @@ export default class Item5e extends Item {
           item.prepareFinalAttributes(); // Spell save DC, etc...
         }
       }
+
+      //Psi Points upcast
+      if (requirePsiPoints) {
+        if (consumePsiPoints === false) consumePsiPointsAmount = null;
+        if (id.psicost == 8 && configuration.psipoints != consumePsiPointsAmount) {
+          const upcastPsionics = parseInt(configuration.psipoints);
+          item = this.clone({ "data.psicost": upcastPsionics }, { keepId: true });
+          item.data.update({ _id: this.id }); // Retain the original ID (needed until 0.8.2+)
+          item.prepareFinalAttributes(); // Spell save DC, etc...
+        }
+      }
     }
 
     // Determine whether the item can be used by testing for resource consumption
-    const usage = item._getUsageUpdates({ consumeRecharge, consumeResource, consumeSpellLevel, consumeUsage, consumeQuantity });
+    const usage = item._getUsageUpdates({ consumeRecharge, consumeResource, consumePsiPointsAmount, consumeSpellLevel, consumeUsage, consumeQuantity });
     if (!usage) return;
     const { actorUpdates, itemUpdates, resourceUpdates } = usage;
 
@@ -529,11 +546,12 @@ export default class Item5e extends Item {
    * @param {boolean} consumeRecharge     Whether the item consumes the recharge mechanic
    * @param {boolean} consumeResource     Whether the item consumes a limited resource
    * @param {string|null} consumeSpellLevel The category of spell slot to consume, or null
+   * @param {number|null} consumePsiPointsAmount The amount of psi points being used
    * @param {boolean} consumeUsage        Whether the item consumes a limited usage
    * @returns {object|boolean}            A set of data changes to apply when the item is used, or false
    * @private
    */
-  _getUsageUpdates({ consumeQuantity, consumeRecharge, consumeResource, consumeSpellLevel, consumeUsage }) {
+  _getUsageUpdates({ consumeQuantity, consumeRecharge, consumeResource, consumePsiPointsAmount, consumeSpellLevel, consumeUsage }) {
 
     // Reference item data
     const id = this.data.data;
@@ -568,6 +586,22 @@ export default class Item5e extends Item {
         return false;
       }
       actorUpdates[`data.spells.${consumeSpellLevel}.value`] = Math.max(spells - 1, 0);
+    }
+
+    // Consume Psi Points
+    if (consumePsiPointsAmount) {
+      const psiLimit = this.actor?.data.data.psionics.psiLimit;
+      const psiPoints = this.actor?.data.data.psionics.psiPoints;
+      const pointsAfterCast = psiPoints - consumePsiPointsAmount;
+      if (pointsAfterCast < 0) {
+        ui.notifications.warn(game.i18n.format("DND5E.NotEnoughPsiPoints", { name: this.name }));
+        return false;
+      }
+      if (consumePsiPointsAmount > psiLimit) {
+        ui.notifications.warn(game.i18n.format("DND5E.PsiCostHigherThanPsiLimit", { name: this.name }));
+        return false;
+      }
+      actorUpdates[`data.psionics.psiPoints`] = Math.max(pointsAfterCast, 0);
     }
 
     // Consume Limited Usage

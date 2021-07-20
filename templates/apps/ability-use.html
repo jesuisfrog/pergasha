@@ -20,32 +20,66 @@
     </div>
 
     <div class="form-group">
-        <label class="checkbox"><input type="checkbox" name="consumeSlot" checked/>{{ localize "DND5E.SpellCastConsume" }}</label>
+        <label class="checkbox"><input type="checkbox" name="consumeSlot" checked />{{ localize "DND5E.SpellCastConsume"
+            }}</label>
     </div>
     {{/if}}
 
+    {{#if consumePsiPoints}}
+    {{#unless (isVariableCost item.data)}}
+    <div class="form-group">
+        <label>{{ localize "DND5E.PsiPointsSpent" }} {{ localize psiCostLabel }}</label>
+    </div>
+    {{/unless}}
+    {{#if (isVariableCost item.data)}}
+    <div class="form-group">
+        <label>{{ localize "DND5E.PsiPointsSpent" }}</label>
+        <div class="form-fields">
+            <select name="psipoints">
+                <!-- {{#select item.data.level}}
+                {{#each psiPointsRange as |p|}}
+                <option value="{{p.psicost}}" {{#unless p.canSpend}}disabled{{/unless}}>{{p.label}}</option>
+                {{/each}}
+                {{/select}} -->
+                <option>TEST</option>
+            </select>
+        </div>
+    </div>
+    {{/if}}
+
+    <div class="form-group">
+        <label class="checkbox"><input type="checkbox" name="consumePsi" checked />{{ localize "DND5E.PsiPointsConsume"
+            }}</label>
+    </div>
+    {{/if}}
+
+    <!-- Add  Psionic Focused Bonus-->
+
     {{#if consumeUses}}
     <div class="form-group">
-        <label class="checkbox"><input type="checkbox" name="consumeUse" checked/>{{ localize "DND5E.AbilityUseConsume" }}</label>
+        <label class="checkbox"><input type="checkbox" name="consumeUse" checked />{{ localize "DND5E.AbilityUseConsume"
+            }}</label>
     </div>
     {{/if}}
 
     {{#if consumeResource}}
     <div class="form-group">
-        <label class="checkbox"><input type="checkbox" name="consumeResource" checked/>{{ localize "DND5E.ConsumeResource" }}</label>
+        <label class="checkbox"><input type="checkbox" name="consumeResource" checked />{{ localize
+            "DND5E.ConsumeResource" }}</label>
     </div>
     {{/if}}
 
     {{#if consumeRecharge}}
     <div class="form-group">
-        <label class="checkbox"><input type="checkbox" name="consumeRecharge" checked/>{{ localize "DND5E.ConsumeRecharge" }}</label>
+        <label class="checkbox"><input type="checkbox" name="consumeRecharge" checked />{{ localize
+            "DND5E.ConsumeRecharge" }}</label>
     </div>
     {{/if}}
-    
+
     {{#if createTemplate}}
     <div class="form-group">
         <label class="checkbox">
-            <input type="checkbox" name="placeTemplate" checked/>
+            <input type="checkbox" name="placeTemplate" checked />
             {{ localize "DND5E.PlaceTemplate" }}
         </label>
     </div>

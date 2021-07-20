@@ -1057,58 +1057,58 @@ DND5E.nomadDisciplines = {
   "sonokinesis": "DND5E.Sonokinesis"
 }
 
-DND5E.psionicDisciplines = {
-  "avatar": {
-    "auraOfCommand": "DND5E.AuraOfCommand",
-    "auraOfFury": "DND5E.AuraOfFury",
-    "beaconOfCourage": "DND5E.BeaconOfCourage",
-    "crownOfDespair": "DND5E.CrownOfDespair",
-    "crownOfRage": "DND5E.CrownOfRage",
-    "disgust": "DND5E.Disgust",
-    "mantleOfAwe": "DND5E.MantleOfAwe",
-    "mantleOfFear": "DND5E.MantleOfFear",
-    "mantleOfJoy": "DND5E.MantleOfJoy"
-  },
-  "awakened": {
-    "auraSight": "DND5E.AuraSight",
-    "intellectFortress": "DND5E.IntellectFortress",
-    "precognition": "DND5E.Precognition",
-    "psychicAssault": "DND5E.PsychicAssault",
-    "psychicDisruption": "DND5E.PsychicDisruption",
-    "telepathicContact": "DND5E.TelepathicContact",
-    "thirdEye": "DND5E.ThirdEye"
-  },
-  "farhand": {
-    "enhancedForce": "DND5E.EnhancedForce",
-    "forceFields": "DND5E.ForceFields",
-    "graviturgy": "DND5E.Graviturgy",
-    "illumination": "DND5E.Illumination",
-    "livingKnives": "DND5E.LivingKnives",
-    "massManipulation": "DND5E.MassManipulation",
-    "psychokinesis": "DND5E.Psychokinesis",
-    "telemacheia": "DND5E.Telemacheia"
-  },
-  "immortal": {
-    "adaptiveBody": "DND5E.AdaptiveBody",
-    "beastialForm": "DND5E.BeastialForm",
-    "bruteForce": "DND5E.BruteForce",
-    "celerity": "DND5E.Celerity",
-    "chakraManipulation": "DND5E.ChakraManipulation",
-    "corrosiveMetabolism": "DND5E.CorrosiveMetabolism",
-    "ironDurability": "DND5E.IronDurability",
-    "psionicWeapon": "DND5E.PsionicWeapon",
-    "venomousMetabolism": "DND5E.VenomousMetabolism"
-  },
-  "nomad": {
-    "chameleon": "DND5E.Chameleon",
-    "chronoweaver": "DND5E.Chronoweaver",
-    "continuumManipulation": "DND5E.ContinuumManipulation",
-    "intelligentArrow": "DND5E.IntelligentArrow",
-    "nomadicMind": "DND5E.NomadicMind",
-    "nomadicStep": "DND5E.NomadicStep",
-    "sonokinesis": "DND5E.Sonokinesis"
-  }
-};
+// DND5E.psionicDisciplines = {
+//   "avatar": {
+//     "auraOfCommand": "DND5E.AuraOfCommand",
+//     "auraOfFury": "DND5E.AuraOfFury",
+//     "beaconOfCourage": "DND5E.BeaconOfCourage",
+//     "crownOfDespair": "DND5E.CrownOfDespair",
+//     "crownOfRage": "DND5E.CrownOfRage",
+//     "disgust": "DND5E.Disgust",
+//     "mantleOfAwe": "DND5E.MantleOfAwe",
+//     "mantleOfFear": "DND5E.MantleOfFear",
+//     "mantleOfJoy": "DND5E.MantleOfJoy"
+//   },
+//   "awakened": {
+//     "auraSight": "DND5E.AuraSight",
+//     "intellectFortress": "DND5E.IntellectFortress",
+//     "precognition": "DND5E.Precognition",
+//     "psychicAssault": "DND5E.PsychicAssault",
+//     "psychicDisruption": "DND5E.PsychicDisruption",
+//     "telepathicContact": "DND5E.TelepathicContact",
+//     "thirdEye": "DND5E.ThirdEye"
+//   },
+//   "farhand": {
+//     "enhancedForce": "DND5E.EnhancedForce",
+//     "forceFields": "DND5E.ForceFields",
+//     "graviturgy": "DND5E.Graviturgy",
+//     "illumination": "DND5E.Illumination",
+//     "livingKnives": "DND5E.LivingKnives",
+//     "massManipulation": "DND5E.MassManipulation",
+//     "psychokinesis": "DND5E.Psychokinesis",
+//     "telemacheia": "DND5E.Telemacheia"
+//   },
+//   "immortal": {
+//     "adaptiveBody": "DND5E.AdaptiveBody",
+//     "beastialForm": "DND5E.BeastialForm",
+//     "bruteForce": "DND5E.BruteForce",
+//     "celerity": "DND5E.Celerity",
+//     "chakraManipulation": "DND5E.ChakraManipulation",
+//     "corrosiveMetabolism": "DND5E.CorrosiveMetabolism",
+//     "ironDurability": "DND5E.IronDurability",
+//     "psionicWeapon": "DND5E.PsionicWeapon",
+//     "venomousMetabolism": "DND5E.VenomousMetabolism"
+//   },
+//   "nomad": {
+//     "chameleon": "DND5E.Chameleon",
+//     "chronoweaver": "DND5E.Chronoweaver",
+//     "continuumManipulation": "DND5E.ContinuumManipulation",
+//     "intelligentArrow": "DND5E.IntelligentArrow",
+//     "nomadicMind": "DND5E.NomadicMind",
+//     "nomadicStep": "DND5E.NomadicStep",
+//     "sonokinesis": "DND5E.Sonokinesis"
+//   }
+// };
 
 DND5E.psionicPowerCosts = {
   "focus": "DND5E.Focuses&Masteries",
