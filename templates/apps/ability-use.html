@@ -28,20 +28,20 @@
     {{#if consumePsiPoints}}
     {{#unless (isVariableCost item.data)}}
     <div class="form-group">
-        <label>{{ localize "DND5E.PsiPointsSpent" }} {{ localize psiCostLabel }}</label>
+        <label>{{ localize "DND5E.SpendPsi" }} {{ localize psiCostLabel }}</label>
     </div>
     {{/unless}}
     {{#if (isVariableCost item.data)}}
     <div class="form-group">
-        <label>{{ localize "DND5E.PsiPointsSpent" }}</label>
+        <label>{{ localize "DND5E.SpendPsi" }}</label>
         <div class="form-fields">
             <select name="psipoints">
-                <!-- {{#select item.data.level}}
+                {{#select item.data.psicost}}
                 {{#each psiPointsRange as |p|}}
-                <option value="{{p.psicost}}" {{#unless p.canSpend}}disabled{{/unless}}>{{p.label}}</option>
+                <option value="{{p.psicost}}">{{p.label}}</option>
                 {{/each}}
-                {{/select}} -->
-                <option>TEST</option>
+                {{/select}}
+
             </select>
         </div>
     </div>

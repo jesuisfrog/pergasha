@@ -315,6 +315,12 @@ Handlebars.registerHelper('displayEffects', function (effectIndex, type) {
   return effects;
 });
 
+Handlebars.registerHelper('setPsiSpent', function (data, cost) {
+  console.log("data:", data);
+  console.log("cost:", cost);
+});
+
+
 Handlebars.registerHelper('testData', function (data) {
   console.log('Datatype: ', typeof (data));
   console.log('Data: ', data);
