@@ -63,9 +63,16 @@
     },
     {
       "name": "races",
-      "label": "Racial Features (SRD)",
+      "label": "Races",
       "system": "pergashaFoundryvtt",
       "path": "./packs/races.db",
+      "entity": "Item"
+    },
+    {
+      "name": "racial-features",
+      "label": "Racial Features",
+      "system": "pergashaFoundryvtt",
+      "path": "./packs/racial-features.db",
       "entity": "Item"
     },
     {
