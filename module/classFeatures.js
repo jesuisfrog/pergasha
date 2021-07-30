@@ -61,35 +61,69 @@ export const ClassFeatures = {
       "battle-master": {
         "label": "Battle Master",
         "source": "Dreadful Odysseys: Pergasha",
-        "features": {}
+        "features": {
+          "3": ["Compendium.pergashaFoundryvtt.class-features.EB9Sk1SM7s39Vsnc", "Compendium.pergashaFoundryvtt.class-features.NFU1aIfoSL20PWyM"],
+          "7": ["Compendium.pergashaFoundryvtt.class-features.p0ndEpc2nHsIbZ7V", "Compendium.pergashaFoundryvtt.class-features.UkcWoAyNUphnBZvQ", "Compendium.pergashaFoundryvtt.class-features.WK9Psu9zbXdhVAKH"],
+          "10": ["Compendium.pergashaFoundryvtt.class-features.p0ndEpc2nHsIbZ7V", "Compendium.pergashaFoundryvtt.class-features.k8j0uqkxC2P6OoiB"],
+          "15": ["Compendium.pergashaFoundryvtt.class-features.p0ndEpc2nHsIbZ7V", "Compendium.pergashaFoundryvtt.class-features.UkcWoAyNUphnBZvQ", "Compendium.pergashaFoundryvtt.class-features.wCqWNDcTFw2Qlmam"],
+          "18": ["Compendium.pergashaFoundryvtt.class-features.k8j0uqkxC2P6OoiB"]
+        }
       },
       "brute": {
         "label": "Brute",
         "source": "Dreadful Odysseys: Pergasha",
-        "features": {}
+        "features": {
+          "3": ["Compendium.pergashaFoundryvtt.class-features.Z73wLyryHeGlp1Kk"],
+          "7": ["Compendium.pergashaFoundryvtt.class-features.so31Nfb1ce78lB6m"],
+          "10": ["Compendium.pergashaFoundryvtt.class-features.HVDgLedjDBJK1OU8"],
+          "15": ["Compendium.pergashaFoundryvtt.class-features.La5N0XhdhNo3s9dR"],
+          "18": ["Compendium.pergashaFoundryvtt.class-features.ZoTKq273lEL6Pq1A"]
+        }
       },
       "psi-knight": {
         "label": "Psi Knight",
         "source": "Dreadful Odysseys: Pergasha",
-        "features": {}
+        "features": {
+          "3": ["Compendium.pergashaFoundryvtt.class-features.xDualMwsokHt0G7K"],
+          "7": ["Compendium.pergashaFoundryvtt.class-features.FpdFXuGXPijuJ1IR"],
+          "10": ["Compendium.pergashaFoundryvtt.class-features.eAccpwcz7vDIlODi"],
+          "15": ["Compendium.pergashaFoundryvtt.class-features.JsQvGBiOKrXVxEpq"],
+          "18": ["Compendium.pergashaFoundryvtt.class-features.tuKALqOQRLIBi02Z"]
+        }
       },
       "sharpshooter": {
         "label": "Sharpshooter",
         "source": "Dreadful Odysseys: Pergasha",
-        "features": {}
+        "features": {
+          "3": ["Compendium.pergashaFoundryvtt.class-features.z6IcgDGqBHpafPI4"],
+          "7": ["Compendium.pergashaFoundryvtt.class-features.Re7v1Mhyx6MVMGQy"],
+          "10": ["Compendium.pergashaFoundryvtt.class-features.qKJuQZ7ykLEUScTv"],
+          "15": ["Compendium.pergashaFoundryvtt.class-features.wbX7fWqB1HyOdBoC"],
+          "18": ["Compendium.pergashaFoundryvtt.class-features.ZazjrW1uTAFyHg78"]
+        }
       },
       "warcaller": {
         "label": "Warcaller",
         "source": "Dreadful Odysseys: Pergasha",
-        "features": {}
+        "features": {
+          "3": ["Compendium.pergashaFoundryvtt.class-features.r0PqGJaoQgiIkzNd", "Compendium.pergashaFoundryvtt.class-features.cyw4849q50QV1Erq"],
+          "7": ["Compendium.pergashaFoundryvtt.class-features.Eo0OxWUqBqkqXV5f"],
+          "10": ["Compendium.pergashaFoundryvtt.class-features.aOGg5yl3pKLxnmsi"],
+          "15": ["Compendium.pergashaFoundryvtt.class-features.JZxF6x80mQG9KdFs"],
+          "18": ["Compendium.pergashaFoundryvtt.class-features.7taMNcHjagzY8KDd"]
+        }
       },
     },
     "features": {
-      "1": ["Compendium.dnd5e.classfeatures.fbExzwNwEAl2kW9c", "Compendium.dnd5e.classfeatures.nTjmWbyHweXuIqwc"],
-      "2": ["Compendium.dnd5e.classfeatures.xF1VTcJ3AdkbTsdQ"],
-      "3": ["Compendium.dnd5e.classfeatures.ax8M0X0q1GGWM26j"],
-      "5": ["Compendium.dnd5e.classfeatures.q9g1MLXuLZyxjQMg"],
-      "9": ["Compendium.dnd5e.classfeatures.653ZHbNcmm7ZGXbw"]
+      "1": ["Compendium.pergashaFoundryvtt.class-features.7LaPhgTJKjHOcLzt", "Compendium.pergashaFoundryvtt.class-features.ualWQ6eSiXmO2YC6"],
+      "2": ["Compendium.pergashaFoundryvtt.class-features.o1M57LvkUmDOwRUq"],
+      "3": ["Compendium.pergashaFoundryvtt.class-features.H27GoHVLHARgDr6Q"],
+      "5": ["Compendium.pergashaFoundryvtt.class-features.KMwULpVi4O54G8Vf"],
+      "9": ["Compendium.pergashaFoundryvtt.class-features.O3OvEXEF0TJq4BL7"],
+      "11": ["Compendium.pergashaFoundryvtt.class-features.KMwULpVi4O54G8Vf"],
+      "13": ["Compendium.pergashaFoundryvtt.class-features.O3OvEXEF0TJq4BL7"],
+      "17": ["Compendium.pergashaFoundryvtt.class-features.o1M57LvkUmDOwRUq", "Compendium.pergashaFoundryvtt.class-features.O3OvEXEF0TJq4BL7"],
+      "20": ["Compendium.pergashaFoundryvtt.class-features.KMwULpVi4O54G8Vf"],
     },
   },
   "monk": {
@@ -97,48 +131,68 @@ export const ClassFeatures = {
       "drunken-master": {
         "label": "Drunken Master",
         "source": "Dreadful Odysseys: Pergasha",
-        "features": {}
+        "features": {
+          "3": ["Compendium.pergashaFoundryvtt.class-features.gSRm3LEwQxYiW50q", "Compendium.pergashaFoundryvtt.class-features.0ivgVRrmadH2rqam"],
+          "6": ["Compendium.pergashaFoundryvtt.class-features.yJxBZIVzYhdP98qV"],
+          "11": ["Compendium.pergashaFoundryvtt.class-features.WzrJydGPXf6jAY8R"],
+          "17": ["Compendium.pergashaFoundryvtt.class-features.eJ0dBctxnn6yi1h4"]
+        }
       },
       "kensei": {
         "label": "Kensei",
         "source": "Dreadful Odysseys: Pergasha",
-        "features": {}
+        "features": {
+          "3": ["Compendium.pergashaFoundryvtt.class-features.EpIv5tm7eJK4u9jJ"],
+          "6": ["Compendium.pergashaFoundryvtt.class-features.ZuYtCCoGFWxEv6Y9"],
+          "11": ["Compendium.pergashaFoundryvtt.class-features.pmm7JEfkEdQgudOd"],
+          "17": ["Compendium.pergashaFoundryvtt.class-features.7TOTqyOGnJYQNEd7"]
+        }
       },
       "long-death": {
         "label": "Long Death",
         "source": "Dreadful Odysseys: Pergasha",
-        "features": {}
+        "features": {
+          "3": ["Compendium.pergashaFoundryvtt.class-features.Mgnm0RVKMIVCBbVH"],
+          "6": ["Compendium.pergashaFoundryvtt.class-features.ovOvRmEBx9dgAHPj"],
+          "11": ["Compendium.pergashaFoundryvtt.class-features.FMVvQqxwd09hFuOr"],
+          "17": ["Compendium.pergashaFoundryvtt.class-features.xD9mDZvr0NK4Qjqg"]
+        }
       },
       "open-hand": {
         "label": "Open Hand",
         "source": "Dreadful Odysseys: Pergasha",
         "features": {
-          "3": ["Compendium.dnd5e.classfeatures.iQxLNydNLlCHNKbp"],
-          "6": ["Compendium.dnd5e.classfeatures.Q7mOdk4b1lgjcptF"],
-          "11": ["Compendium.dnd5e.classfeatures.rBDZLatuoolT2FUW"],
-          "17": ["Compendium.dnd5e.classfeatures.h1gM8SH3BNRtFevE"]
+          "3": ["Compendium.pergashaFoundryvtt.class-features.qlMQQzaQhCdBxgus"],
+          "6": ["Compendium.pergashaFoundryvtt.class-features.YyJBUuERyYNPngbv"],
+          "11": ["Compendium.pergashaFoundryvtt.class-features.zGHaWoJNgWuGekSw"],
+          "17": ["Compendium.pergashaFoundryvtt.class-features.Ipo18FDCZ5sROdJO"]
         }
       },
       "knife": {
         "label": "Soul Knife",
         "source": "Dreadful Odysseys: Pergasha",
-        "features": {}
+        "features": {
+          "3": ["Compendium.pergashaFoundryvtt.class-features.xO9sh1dNQMr7UhIv", "Compendium.pergashaFoundryvtt.class-features.f4cQ3eWcdfoe7iSA"],
+          "6": ["Compendium.pergashaFoundryvtt.class-features.518VI1YvkPrJC8DG"],
+          "11": ["Compendium.pergashaFoundryvtt.class-features.9IF4Out4ggxup676"],
+          "17": ["Compendium.pergashaFoundryvtt.class-features.uAoFxvpRMZo4rTxm"]
+        }
       }
     },
     "features": {
-      "1": ["Compendium.dnd5e.classfeatures.UAvV7N7T4zJhxdfI", "Compendium.dnd5e.classfeatures.l50hjTxO2r0iecKw"],
-      "2": ["Compendium.dnd5e.classfeatures.10b6z2W1txNkrGP7", "Compendium.dnd5e.classfeatures.7vSrGc0MP5Vzm9Ac"],
-      "3": ["Compendium.dnd5e.classfeatures.rtpQdX77dYWbDIOH", "Compendium.dnd5e.classfeatures.mzweVbnsJPQiVkAe"],
-      "4": ["Compendium.dnd5e.classfeatures.KQz9bqxVkXjDl8gK"],
-      "5": ["Compendium.dnd5e.classfeatures.XogoBnFWmCAHXppo", "Compendium.dnd5e.classfeatures.pvRc6GAu1ok6zihC"],
-      "6": ["Compendium.dnd5e.classfeatures.7flZKruSSu6dHg6D"],
-      "7": ["Compendium.dnd5e.classfeatures.a4P4DNMmH8CqSNkC", "Compendium.dnd5e.classfeatures.ZmC31XKS4YNENnoc"],
-      "10": ["Compendium.dnd5e.classfeatures.bqWA7t9pDELbNRkp"],
-      "13": ["Compendium.dnd5e.classfeatures.XjuGBeB8Y0C3A5D4"],
-      "14": ["Compendium.dnd5e.classfeatures.7D2EkLdISwShEDlN"],
-      "15": ["Compendium.dnd5e.classfeatures.gDH8PMrKvLHaNmEI"],
-      "18": ["Compendium.dnd5e.classfeatures.3jwFt3hSqDswBlOH"],
-      "20": ["Compendium.dnd5e.classfeatures.mQNPg89YIs7g5tG4"]
+      "1": ["Compendium.pergashaFoundryvtt.class-features.K1FtuKrqJoc4z7oT", "Compendium.pergashaFoundryvtt.class-features.EogoE9EvsI1wEmmY"],
+      "2": ["Compendium.pergashaFoundryvtt.class-features.XyW8J3HDMAKWIG4x", "Compendium.pergashaFoundryvtt.class-features.lzk8aFnCWBryT8N7"],
+      "3": ["Compendium.pergashaFoundryvtt.class-features.GUSiS7O7oP1qSsAn", "Compendium.pergashaFoundryvtt.class-features.fO9qmEkXOmWqBQEY"],
+      "4": ["Compendium.pergashaFoundryvtt.class-features.3mO0T5feER1175Gh"],
+      "5": ["Compendium.pergashaFoundryvtt.class-features.5mA4Q2t7VLjtQxSB", "Compendium.pergashaFoundryvtt.class-features.lDUo1H0heIecvZZO"],
+      "6": ["Compendium.pergashaFoundryvtt.class-features.RKKLH92Dy0DlTF2Y"],
+      "7": ["Compendium.pergashaFoundryvtt.class-features.8JHHoXLLGMuapxEC", "Compendium.pergashaFoundryvtt.class-features.AF8f16JX5F4FKPj9"],
+      "10": ["Compendium.pergashaFoundryvtt.class-features.ncYqQFObFaxZCn9s"],
+      "13": ["Compendium.pergashaFoundryvtt.class-features.9ihD8LElrbYWjmll"],
+      "14": ["Compendium.pergashaFoundryvtt.class-features.SPel3ACTQOXgqc5V"],
+      "15": ["Compendium.pergashaFoundryvtt.class-features.p54WKV2muE4bOlJ6"],
+      "18": ["Compendium.pergashaFoundryvtt.class-features.iClkXaZm2qmxKF7x"],
+      "20": ["Compendium.pergashaFoundryvtt.class-features.odBGDMgzt17Aqoaw"]
     },
   },
   "ranger": {
@@ -146,24 +200,36 @@ export const ClassFeatures = {
       "dervish": {
         "label": "Dervish",
         "source": "Dreadful Odysseys: Pergasha",
-        "features": {}
+        "features": {
+          "3": ["Compendium.pergashaFoundryvtt.class-features.yXWstzmuqcel5y08", "Compendium.pergashaFoundryvtt.class-features.H2Zho7JX8mn5u1Y7"],
+          "7": ["Compendium.pergashaFoundryvtt.class-features.DvKmLz042KoUSfLA"],
+          "11": ["Compendium.pergashaFoundryvtt.class-features.6IiqK3K7zyaf0NAl"],
+          "15": ["Compendium.pergashaFoundryvtt.class-features.orwNN0Iogv6eYlxl"]
+        }
       },
       "doppelkin-master": {
         "label": "Doppelkin Master",
         "source": "Dreadful Odysseys: Pergasha",
-        "features": {}
+        "features": {
+          "3": ["Compendium.pergashaFoundryvtt.class-features.mIAknivWk6bQhsec", "Compendium.pergashaFoundryvtt.class-features.sNphZDCRjuf5VW38"],
+          "7": ["Compendium.pergashaFoundryvtt.class-features.pAoI2onPF8Fk9A0w"],
+          "11": ["Compendium.pergashaFoundryvtt.class-features.F99LWfHfEd7kRtnE"],
+          "15": ["Compendium.pergashaFoundryvtt.class-features.BVfad5wLUiGIVwhk"]
+        }
       }
     },
     "features": {
-      "1": ["Compendium.dnd5e.classfeatures.4Vpj9vCOB37GtXk6", "Compendium.dnd5e.classfeatures.8fbZt2Qh7ZttwIan"],
-      "2": ["Compendium.dnd5e.classfeatures.fbExzwNwEAl2kW9c", "Compendium.dnd5e.classfeatures.u6xV3Ki3TXRrD7zg"],
-      "3": ["Compendium.dnd5e.classfeatures.1dJHU48yNqn3lcfx", "Compendium.dnd5e.classfeatures.kaHcUGiwi8AtfZIm"],
-      "5": ["Compendium.dnd5e.classfeatures.XogoBnFWmCAHXppo"],
-      "8": ["Compendium.dnd5e.classfeatures.C5fzaOBc6HxyOWRn"],
-      "10": ["Compendium.dnd5e.classfeatures.r0unvWK0lPsDthDx"],
-      "14": ["Compendium.dnd5e.classfeatures.DhU2dWCNnX78TstR"],
-      "18": ["Compendium.dnd5e.classfeatures.QBVmY56RMQuh6C8h"],
-      "20": ["Compendium.dnd5e.classfeatures.3CaP1vFHVR8LgHjx"]
+      "1": ["Compendium.pergashaFoundryvtt.class-features.W9jfcj1HQrxcK3jj", "Compendium.pergashaFoundryvtt.class-features.1Hw9VVY8H7H1mlSV", "Compendium.pergashaFoundryvtt.class-features.7DYd9dAJFfgWSYnW"],
+      "2": ["Compendium.pergashaFoundryvtt.class-features.j5u2RhlOWIsHTEwb"],
+      "3": ["Compendium.pergashaFoundryvtt.class-features.awBxWwVN93n1wgVr"],
+      "5": ["Compendium.pergashaFoundryvtt.class-features.5mA4Q2t7VLjtQxSB"],
+      "6": ["Compendium.pergashaFoundryvtt.class-features.btFzVYnrJvQYql7d"],
+      "9": ["Compendium.pergashaFoundryvtt.class-features.jY779Cwl2daIzQ6k"],
+      "10": ["Compendium.pergashaFoundryvtt.class-features.jlg9MlOF6Mn7AoRx"],
+      "13": ["Compendium.pergashaFoundryvtt.class-features.Pzs2q3ZRIORA2ZOB"],
+      "17": ["Compendium.pergashaFoundryvtt.class-features.wCqWNDcTFw2Qlmam"],
+      "18": ["Compendium.pergashaFoundryvtt.class-features.YFpZP4L3NWS7IKAP"],
+      "20": ["Compendium.pergashaFoundryvtt.class-features.jc477hqqMHU5xG6D"]
     },
   },
   "rogue": {
@@ -171,35 +237,56 @@ export const ClassFeatures = {
       "assassin": {
         "label": "Assassin",
         "source": "Dreadful Odysseys: Pergasha",
-        "features": {}
+        "features": {
+          "3": ["Compendium.pergashaFoundryvtt.class-features.IacO3IyyQfnK2cpx", "Compendium.pergashaFoundryvtt.class-features.DswgboYGpLbScfUU"],
+          "9": ["Compendium.pergashaFoundryvtt.class-features.cd1EvJ62dGk20ETP"],
+          "13": ["Compendium.pergashaFoundryvtt.class-features.6WO1eCcPw9EUj7Vj"],
+          "17": ["Compendium.pergashaFoundryvtt.class-features.7Cxc1J2OheApYSmh"]
+        }
       },
       "inquisitive": {
         "label": "Inquisitive",
         "source": "Dreadful Odysseys: Pergasha",
-        "features": {}
+        "features": {
+          "3": ["Compendium.pergashaFoundryvtt.class-features.3l87tkmG1ZFmcrLW", "Compendium.pergashaFoundryvtt.class-features.tDibZAuN0h0TLop8", "Compendium.pergashaFoundryvtt.class-features.Nb3aK3sgqgwyT3on"],
+          "9": ["Compendium.pergashaFoundryvtt.class-features.8QPA8TH3BbOiOoH1"],
+          "13": ["Compendium.pergashaFoundryvtt.class-features.gMgm5kqK2XfPX68G"],
+          "17": ["Compendium.pergashaFoundryvtt.class-features.U4aDvjJFvDBkEiIt"]
+        }
       },
       "psi-assassin": {
         "label": "Psi Assassin",
         "source": "Dreadful Odysseys: Pergasha",
-        "features": {}
+        "features": {
+          "3": ["Compendium.pergashaFoundryvtt.class-features.fH7k9vnLKEV6ct0p", "Compendium.pergashaFoundryvtt.class-features.4J11pzhSLumqSSMC"],
+          "9": ["Compendium.pergashaFoundryvtt.class-features.e5kKJrGXqoDZvq5v"],
+          "13": ["Compendium.pergashaFoundryvtt.class-features.NkOVTR0VUAkl96Ye"],
+          "17": ["Compendium.pergashaFoundryvtt.class-features.ARnSdrV7WUHumKSV"]
+        }
       },
       "scout": {
         "label": "Scout",
         "source": "Dreadful Odysseys: Pergasha",
-        "features": {}
+        "features": {
+          "3": ["Compendium.pergashaFoundryvtt.class-features.Ermhyr21QaqiIK24", "Compendium.pergashaFoundryvtt.class-features.ulQ2AjR8hEUUo86w"],
+          "9": ["Compendium.pergashaFoundryvtt.class-features.QjEy7k6sqNTpGYc4"],
+          "13": ["Compendium.pergashaFoundryvtt.class-features.kJtVHym4c1QMZNjr"],
+          "17": ["Compendium.pergashaFoundryvtt.class-features.SQz9hXlJ6baNmIg8"]
+        }
       }
     },
     "features": {
-      "1": ["Compendium.dnd5e.classfeatures.3sYPftQKnbbVnHrh", "Compendium.dnd5e.classfeatures.DPN2Gfk8yi1Z5wp7", "Compendium.dnd5e.classfeatures.ohwfuwnvuoBWlSQr"],
-      "2": ["Compendium.dnd5e.classfeatures.01pcLg6PRu5zGrsb"],
-      "3": ["Compendium.dnd5e.classfeatures.80USV8ZFPIahpLd0"],
-      "5": ["Compendium.dnd5e.classfeatures.Mm64SKAHJWYecgXS"],
-      "7": ["Compendium.dnd5e.classfeatures.a4P4DNMmH8CqSNkC"],
-      "11": ["Compendium.dnd5e.classfeatures.YN9xm6MCvse4Y60u"],
-      "14": ["Compendium.dnd5e.classfeatures.fjsBk7zxoAbLf8ZI"],
-      "15": ["Compendium.dnd5e.classfeatures.V4pwFxlwHtNeB4w9"],
-      "18": ["Compendium.dnd5e.classfeatures.L7nJSRosos8sHJH9"],
-      "20": ["Compendium.dnd5e.classfeatures.rQhWDaMHMn7iU4f2"]
+      "1": ["Compendium.pergashaFoundryvtt.class-features.LXG1jtFKJowTvXhi", "Compendium.pergashaFoundryvtt.class-features.g5UPamx6aU0O6XwL", "Compendium.pergashaFoundryvtt.class-features.O4xnSxv3tAfKvtzO"],
+      "2": ["Compendium.pergashaFoundryvtt.class-features.OR2TM2jIljwicQMy", "Compendium.pergashaFoundryvtt.class-features.mNlWphAdAyIKbo2u"],
+      "3": ["Compendium.pergashaFoundryvtt.class-features.W6qDFXrOcO0T9CEG"],
+      "5": ["Compendium.pergashaFoundryvtt.class-features.mPNRXdtCB9BQCNAe"],
+      "6": ["Compendium.pergashaFoundryvtt.class-features.LXG1jtFKJowTvXhi"],
+      "7": ["Compendium.pergashaFoundryvtt.class-features.8JHHoXLLGMuapxEC"],
+      "11": ["Compendium.pergashaFoundryvtt.class-features.8whjNJmoVyvqeJkD"],
+      "14": ["Compendium.pergashaFoundryvtt.class-features.QyFR4WyAN3JeYUzk"],
+      "15": ["Compendium.pergashaFoundryvtt.class-features.RL4fs3ObKZ0O4NOT"],
+      "18": ["Compendium.pergashaFoundryvtt.class-features.dFX2JEl57cRvYBM2"],
+      "20": ["Compendium.pergashaFoundryvtt.class-features.KUeuhSc5uaaBlg5C"]
     },
   }
 };
