@@ -471,6 +471,7 @@ export default class Item5e extends Item {
     let consumeUsage = !!uses.per;              // Consume limited uses
     let consumeQuantity = uses.autoDestroy;     // Consume quantity of the item in lieu of uses
     let consumePsiPointsAmount = null;
+    let psiSpent = 0;
     if (requirePsiPoints) consumePsiPointsAmount = (id.psicost == 8) ? id.variableCost.baseCost : id.psicost;
     let consumeSpellLevel = null;               // Consume a specific category of spell slot
     if (requireSpellSlot) consumeSpellLevel = id.preparation.mode === "pact" ? "pact" : `spell${id.level}`;
@@ -503,19 +504,26 @@ export default class Item5e extends Item {
 
       //Psi Points upcast
       if (requirePsiPoints) {
-        if (consumePsiPoints === false) consumePsiPointsAmount = null;
-        if (id.psicost == 8 && configuration.psipoints != consumePsiPointsAmount) {
-          const upcastPsionics = parseInt(configuration.psipoints);
-          item = this.clone({ "data.psicost": upcastPsionics }, { keepId: true });
+
+        if (id.psicost == 8) {
+
+          const upCostPsionics = parseInt(configuration.psipoints);
+          consumePsiPointsAmount = upCostPsionics;
+          item = this.clone({ "data.psicost": upCostPsionics }, { keepId: true });
+
           item.data.update({ _id: this.id }); // Retain the original ID (needed until 0.8.2+)
+
           item.prepareFinalAttributes(); // Spell save DC, etc...
         }
+        if (consumePsiPoints === false) consumePsiPointsAmount = null;
+
       }
     }
 
     // Determine whether the item can be used by testing for resource consumption
     const usage = item._getUsageUpdates({ consumeRecharge, consumeResource, consumePsiPointsAmount, consumeSpellLevel, consumeUsage, consumeQuantity });
     if (!usage) return;
+    if (psiSpent > 0) id.variableCost.psiSpent = psiSpent;
     const { actorUpdates, itemUpdates, resourceUpdates } = usage;
 
     // Commit pending data updates
@@ -590,8 +598,8 @@ export default class Item5e extends Item {
 
     // Consume Psi Points
     if (consumePsiPointsAmount) {
-      const psiLimit = this.actor?.data.data.psionics.psiLimit;
-      const psiPoints = this.actor?.data.data.psionics.psiPoints;
+      const psiLimit = this.actor?.data.data.attributes.psionics.psiLimit;
+      const psiPoints = this.actor?.data.data.attributes.psionics.psiPoints;
       const pointsAfterCast = psiPoints - consumePsiPointsAmount;
       if (pointsAfterCast < 0) {
         ui.notifications.warn(game.i18n.format("DND5E.NotEnoughPsiPoints", { name: this.name }));
@@ -601,7 +609,10 @@ export default class Item5e extends Item {
         ui.notifications.warn(game.i18n.format("DND5E.PsiCostHigherThanPsiLimit", { name: this.name }));
         return false;
       }
-      actorUpdates[`data.psionics.psiPoints`] = Math.max(pointsAfterCast, 0);
+      if (id.variableCost.baseCost > 0) {
+        itemUpdates[`data.variableCost.psiSpent`] = consumePsiPointsAmount;
+      }
+      actorUpdates[`data.attributes.psionics.psiPoints`] = Math.max(pointsAfterCast, 0);
     }
 
     // Consume Limited Usage
@@ -1061,9 +1072,9 @@ export default class Item5e extends Item {
         const level = this.actor.data.type === "character" ? actorData.details.level : 1;
         this._scaleTalentDamage(parts, itemData.scaling.formula, level, rollData);
       }
-      else if (itemData.variableCost && (itemData.scaling.mode === "variableCost") && itemData.scaling.formula) {
+      else if (itemData.variableCost.baseCost && (itemData.scaling.mode === "variableCost") && itemData.scaling.formula) {
         const scaling = itemData.scaling.formula;
-        this._scalePsionicPowerDamage(parts, itemData.baseCost, psiPointsSpent, scaling, rollData);
+        this._scalePsionicPowerDamage(parts, itemData.variableCost.baseCost, itemData.variableCost.psiSpent, scaling, rollData);
       }
     }
 
@@ -1152,16 +1163,16 @@ export default class Item5e extends Item {
   /**
    * Adjust the psionic power damage formula to scale it for variable cost powers
    * @param {Array} parts         The original damage parts
-   * @param {number} baseCost    The default spell level
-   * @param {number} psiPointsSpent   The casted spell level
+   * @param {number} baseCost    The default psicost
+   * @param {number} psiSpent   The actual psicost
    * @param {string} formula      The scaling formula
    * @param {object} rollData     A data object that should be applied to the scaled damage roll
    * @return {string[]}           The scaled roll parts
    * @private
    */
-  _scalePsionicPowerDamage(parts, baseCost, psiPointsSpent, formula, rollData) {
-    const upCost = Math.max(psiPointsSpent - baseCost, 0);
-    if (upCost === 0) return parts;
+  _scalePsionicPowerDamage(parts, baseCost, psiSpent, formula, rollData) {
+    const upCost = Math.max(psiSpent - baseCost, 0);
+    if (!upCost) return parts;
     this._scaleDamage(parts, formula, upCost, rollData);
   }
 
@@ -1380,6 +1391,7 @@ export default class Item5e extends Item {
         await item.rollDamage({
           critical: event.altKey,
           event: event,
+          // psiCost: psicost,
           spellLevel: spellLevel,
           versatile: action === "versatile"
         });

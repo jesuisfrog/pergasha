@@ -833,7 +833,7 @@
     "DND5E.ThirdEye": "Third Eye",
     "DND5E.VenomousMetabolism": "Venomous Metabolism",
     "DND5E.Sonokinesis": "Sonokinesis",
-    "DND5E.PsiPointsSpent": "Psi Points Spent",
+    "DND5E.SpendPsi": "Spend: ",
     "DND5E.PsiPointsConsume": "Consume Psi Points?",
     "SETTINGS.5eAllowPolymorphingL": "Allow players to polymorph their own actors.",
     "SETTINGS.5eAllowPolymorphingN": "Allow Polymorphing",

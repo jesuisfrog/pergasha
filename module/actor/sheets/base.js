@@ -397,7 +397,6 @@ export default class ActorSheet5e extends ActorSheet {
 
     const sorted = Object.values(psionics);
     sorted.sort((a, b) => a.order - b.order);
-    console.log(sorted)
     if (sorted.length && (sorted[sorted.length - 1].order === "focus")) {
       sorted.unshift(sorted.pop());
     }

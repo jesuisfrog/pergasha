@@ -688,7 +688,8 @@
       "concentration": false,
       "variableCost": {
         "baseCost": null,
-        "maxCost": null
+        "maxCost": null,
+        "psiSpent": 0
       },
       "scaling": {
         "mode": "none",

@@ -50,6 +50,7 @@ export default class AbilityUseDialog extends Dialog {
       createTemplate: game.user.can("TEMPLATE_CREATE") && item.hasAreaTarget,
       errors: []
     };
+    if (item.data.type === "psionicPower") this._getPsionicsData(actorData, itemData, data);
     if (item.data.type === "spell") this._getSpellData(actorData, itemData, data);
 
     // Render the ability usage template
@@ -144,7 +145,6 @@ export default class AbilityUseDialog extends Dialog {
  * @private
  */
   static _getPsionicsData(actorData, itemData, data) {
-
     const consumePsiPoints = (itemData.psicost > 0 && itemData.psicost != "focus");
     // If power is Talent or Focus, return early
     if (!consumePsiPoints) {
@@ -154,33 +154,30 @@ export default class AbilityUseDialog extends Dialog {
       mergeObject(data, { isPsionicPower: true, consumePsiPoints, psiCostLabel: CONFIG.DND5E.psionicPowerCosts[itemData.psicost] });
       return;
     } else if (itemData.psicost == 8) { // Determine whether the power is of variable cost
-      const baseCost = itemData.variableCost.baseCost;
-      const maxCost = itemData.variableCost.maxCost;
-      const psiLimit = actorData.psionics.psiLimit;
-      const currentPsiPoints = actorData.psionics.psiPoints;
-      const maxPsiAvailable = null;
+      const baseCost = parseInt(itemData.variableCost.baseCost);
+      const maxCost = parseInt(itemData.variableCost.maxCost);
+      const psiLimit = parseInt(actorData.attributes.psionics.psiLimit);
+      const currentPsiPoints = parseInt(actorData.attributes.psionics.psiPoints);
+      let maxPsiAvailable = 0;
 
       if (currentPsiPoints > 0) {
         maxPsiAvailable = (maxCost > psiLimit) ? psiLimit : maxCost;
       }
 
-      if (maxPsiAvailable && maxPsiAvailable > baseCost) {
-        const psiPointsRange = Array.fromRange(9).reduce((arr, i) => {
-          if (i < baseCost) return arr;
-          const label = CONFIG.DND5E.psionicPowerCosts[i];
-          arr.push({
-            psicost: i,
-            label: label,
-            canSpend: (maxPsiAvailable >= i) && (currentPsiPoints >= maxPsiAvailable),
-          });
-          return arr;
-        }, []);
-        // Merge psionics evoking data
-        return foundry.utils.mergeObject(data, { isPsionicPower: true, consumePsiPoints, psiPointsRange });
-      } else if (maxPsiAvailable === baseCost) {
-        // Merge psionics evoking data
-        return foundry.utils.mergeObject(data, { isPsionicPower: true, consumePsiPoints, psiPointsSpent: { psicost: baseCost, label: CONFIG.DND5E.psionicPowerCosts[baseCost] } });
-      }
+      const psiPointsRange = Array.fromRange((maxCost - baseCost) + 1).reduce((arr, i) => {
+        const currentCost = baseCost + i;
+        if (currentCost > maxCost) return arr;
+        const label = CONFIG.DND5E.psionicPowerCosts[currentCost];
+
+        arr.push({
+          psicost: currentCost,
+          label: label
+        });
+        return arr;
+      }, []);
+      // Merge psionics evoking data
+      return foundry.utils.mergeObject(data, { isPsionicPower: true, consumePsiPoints, psiPointsRange });
+
 
     }
 
