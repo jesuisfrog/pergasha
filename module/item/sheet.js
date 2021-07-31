@@ -153,7 +153,7 @@ export default class ItemSheet5e extends ItemSheet {
    * @return {string}
    * @private
    */
-  _getItemStatus(item) { //Add Focus here ? --WIP--
+  _getItemStatus(item) {
     if (item.type === "spell") {
       return CONFIG.DND5E.spellPreparationModes[item.data.preparation];
     }
@@ -191,7 +191,7 @@ export default class ItemSheet5e extends ItemSheet {
       )
     }
 
-    else if (item.type === "psionicPower") { //Revisit after data structure is finished for psionicPower --WIP--
+    else if (item.type === "psionicPower") {
       props.push(
         item.data.concentration ? game.i18n.localize("DND5E.Concentration") : null
       )

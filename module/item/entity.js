@@ -446,7 +446,7 @@ export default class Item5e extends Item {
    *                                        the prepared chat message data (if false).
    * @return {Promise<ChatMessage|object|void>}
    */
-  async roll({ configureDialog = true, rollMode, createMessage = true } = {}) { //Automated Psipoint cost goes here --WIP--
+  async roll({ configureDialog = true, rollMode, createMessage = true } = {}) {
     let item = this;
     const id = this.data.data;                // Item system data
     const actor = this.actor;
@@ -467,6 +467,7 @@ export default class Item5e extends Item {
     let consumeRecharge = !!recharge.value;     // Consume recharge
     let consumeResource = !!resource.target && (resource.type !== "ammo") // Consume a linked (non-ammo) resource
     let consumePsiPoints = requirePsiPoints;
+    let reducePsiPointsCost = false;
     let consumeSpellSlot = requireSpellSlot;    // Consume a spell slot
     let consumeUsage = !!uses.per;              // Consume limited uses
     let consumeQuantity = uses.autoDestroy;     // Consume quantity of the item in lieu of uses
@@ -489,6 +490,7 @@ export default class Item5e extends Item {
       consumeResource = Boolean(configuration.consumeResource);
       consumeSpellSlot = Boolean(configuration.consumeSlot);
       consumePsiPoints = Boolean(configuration.consumePsi);
+      reducePsiPointsCost = Boolean(configuration.reducePsiCost);
 
       // Handle spell upcasting
       if (requireSpellSlot) {
@@ -516,7 +518,7 @@ export default class Item5e extends Item {
           item.prepareFinalAttributes(); // Spell save DC, etc...
         }
         if (consumePsiPoints === false) consumePsiPointsAmount = null;
-
+        if (consumePsiPoints && consumePsiPointsAmount > 1 && reducePsiPointsCost) consumePsiPointsAmount--;
       }
     }
 
@@ -1017,7 +1019,6 @@ export default class Item5e extends Item {
   }
 
   /* -------------------------------------------- */
-  //--WIP-- for psionic power damage scaling
   /**
    * Place a damage roll using an item (weapon, feat, spell, or equipment)
    * Rely upon the damageRoll logic for the core implementation.
@@ -1066,7 +1067,6 @@ export default class Item5e extends Item {
     }
 
 
-    // --WIP-- Psionic Powers boosted psicost goes here
     if ((this.data.type === "psionicPower")) {
       if ((itemData.scaling.mode === "talent")) {
         const level = this.actor.data.type === "character" ? actorData.details.level : 1;

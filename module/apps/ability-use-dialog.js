@@ -24,7 +24,7 @@ export default class AbilityUseDialog extends Dialog {
    * @param {Item5e} item
    * @return {Promise}
    */
-  static async create(item) { // --WIP-- Consume Psi Points
+  static async create(item) {
     if (!item.isOwned) throw new Error("You cannot display an ability usage dialog for an unowned item");
 
     // Prepare data

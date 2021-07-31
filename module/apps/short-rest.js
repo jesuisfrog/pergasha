@@ -51,9 +51,9 @@ export default class ShortRestDialog extends Dialog {
     data.denomination = this._denom;
 
     // Determine rest type
-    const variant = game.settings.get("pergashaFoundryvtt", "restVariant");
-    data.promptNewDay = variant !== "epic";     // It's never a new day when only resting 1 minute
-    data.newDay = false;                        // It may be a new day, but not by default
+    // const variant = game.settings.get("pergashaFoundryvtt", "restVariant");
+    // data.promptNewDay = variant !== "epic";     // It's never a new day when only resting 1 minute
+    // data.newDay = false;                        // It may be a new day, but not by default
     return data;
   }
 
@@ -98,12 +98,12 @@ export default class ShortRestDialog extends Dialog {
           rest: {
             icon: '<i class="fas fa-bed"></i>',
             label: game.i18n.localize("DND5E.Rest"),
-            callback: html => {
-              let newDay = false;
-              if (game.settings.get("pergashaFoundryvtt", "restVariant") === "gritty")
-                newDay = html.find('input[name="newDay"]')[0].checked;
-              resolve(newDay);
-            }
+            // callback: html => {
+            //   let newDay = false;
+            //   if (game.settings.get("pergashaFoundryvtt", "restVariant") === "gritty")
+            //     newDay = html.find('input[name="newDay"]')[0].checked;
+            //   resolve(newDay);
+            // }
           },
           cancel: {
             icon: '<i class="fas fa-times"></i>',

@@ -582,7 +582,7 @@ export default class Actor5e extends Actor {
     const isDead = this.data.data.attributes.hp.value <= 0;
     if (isDead && (foundry.utils.getProperty(changed, "data.attributes.hp.value") > 0)) {
       foundry.utils.setProperty(changed, "data.attributes.death.success", 0);
-      foundry.utils.setProperty(changed, "data.attributes.death.failure", 0);
+      // foundry.utils.setProperty(changed, "data.attributes.death.failure", 0);
     }
   }
 
@@ -892,18 +892,14 @@ export default class Actor5e extends Actor {
       if (d20 === 20) {
         await this.update({
           "data.attributes.death.success": 0,
-          "data.attributes.death.failure": 0,
           "data.attributes.hp.value": 1
         });
         chatString = "DND5E.DeathSaveCriticalSuccess";
       }
-
-      // 3 Successes = survive and reset checks
-      //--WIP-- Death saves reset on long rest only
+      // "data.attributes.death.failure": 0,
       else if (successes === 3) {
         await this.update({
-          "data.attributes.death.success": 0,
-          "data.attributes.death.failure": 0
+          "data.attributes.death.success": 0
         });
         chatString = "DND5E.DeathSaveSuccess";
       }
@@ -923,6 +919,7 @@ export default class Actor5e extends Actor {
 
     // Display success/failure chat message
     if (chatString) {
+      const speaker = ChatMessage.getSpeaker({ actor: this });
       let chatData = { content: game.i18n.format(chatString, { name: this.name }), speaker };
       ChatMessage.applyRollMode(chatData, roll.options.rollMode);
       await ChatMessage.create(chatData);
@@ -1004,7 +1001,6 @@ export default class Actor5e extends Actor {
    * @property {number} dhd                  Hit dice recovered or spent during the rest.
    * @property {object} updateData           Updates applied to the actor.
    * @property {Array.<object>} updateItems  Updates applied to actor's items.
-   * @property {boolean} newDay              Whether a new day occurred during the rest.
    */
 
   /* -------------------------------------------- */
@@ -1051,20 +1047,20 @@ export default class Actor5e extends Actor {
    * @param {object} [options]
    * @param {boolean} [options.dialog=true]  Present a confirmation dialog window whether or not to take a long rest.
    * @param {boolean} [options.chat=true]    Summarize the results of the rest workflow as a chat message.
-   * @param {boolean} [options.newDay=true]  Whether the long rest carries over to a new day.
+   * @param {boolean} [options.fullRest=false]  Whether the long rest is part of a full rest.
    * @return {Promise.<RestResult>}          A Promise which resolves once the long rest workflow has completed.
    */
-  async longRest({ dialog = true, chat = true, newDay = true } = {}) {
+  async longRest({ dialog = true, chat = true, fullRest = false } = {}) {
     // Maybe present a confirmation dialog
     if (dialog) {
       try {
-        newDay = await LongRestDialog.longRestDialog({ actor: this });
+        fullRest = await LongRestDialog.longRestDialog({ actor: this });
       } catch (err) {
         return;
       }
     }
 
-    return this._rest(chat, newDay, true);
+    return this._rest(chat, fullRest, true);
   }
 
   /* -------------------------------------------- */
@@ -1073,23 +1069,30 @@ export default class Actor5e extends Actor {
    * Perform all of the changes needed for a short or long rest.
    *
    * @param {boolean} chat           Summarize the results of the rest workflow as a chat message.
-   * @param {boolean} newDay         Has a new day occurred during this rest?
+   * @param {boolean} fullRest       Is this rest a 24h one?
    * @param {boolean} longRest       Is this a long rest?
    * @param {number} [dhd=0]         Number of hit dice spent during so far during the rest.
    * @param {number} [dhp=0]         Number of hit points recovered so far during the rest.
    * @return {Promise.<RestResult>}  Consolidated results of the rest workflow.
    * @private
    */
-  async _rest(chat, newDay, longRest, dhd = 0, dhp = 0) {
+  async _rest(chat, fullRest, longRest, dhd = 0, dhp = 0) {
     let hitPointsRecovered = 0;
     let hitPointUpdates = {};
     let hitDiceRecovered = 0;
     let hitDiceUpdates = [];
+    let psiPointRecovered = 0;
+    let psiPointUpdates = [];
 
     // Recover hit points & hit dice on long rest
+    // if (fullRest) {
+    //   ({ updates: hitPointUpdates, hitPointsRecovered } = this._getRestHitPointRecovery());
+    //   ({ updates: hitDiceUpdates, hitDiceRecovered } = this._getRestHitDiceRecovery());
+    //   ({ updates: psiPointUpdates, psiPointRecovered } = this._getPsiPointRecovery());
+    // }else 
     if (longRest) {
-      ({ updates: hitPointUpdates, hitPointsRecovered } = this._getRestHitPointRecovery());
-      ({ updates: hitDiceUpdates, hitDiceRecovered } = this._getRestHitDiceRecovery());
+      ({ updates: hitPointUpdates, hitPointsRecovered } = this._getRestHitPointRecovery(fullRest));
+      ({ updates: hitDiceUpdates, hitDiceRecovered } = this._getRestHitDiceRecovery(fullRest));
     }
 
     // Figure out the rest of the changes
@@ -1103,13 +1106,13 @@ export default class Actor5e extends Actor {
       },
       updateItems: [
         ...hitDiceUpdates,
-        ...this._getRestItemUsesRecovery({ recoverLongRestUses: longRest, recoverDailyUses: newDay })
+        ...this._getRestItemUsesRecovery({ recoverLongRestUses: longRest })
       ],
-      newDay: newDay
     }
 
     // Perform updates
     await this.update(result.updateData);
+    if (longRest) await this.update({ "data.attributes.death.failure": 0 });
     await this.updateEmbeddedDocuments("Item", result.updateItems);
 
     // Display a Chat Message summarizing the rest effects
@@ -1130,19 +1133,21 @@ export default class Actor5e extends Actor {
    * @protected
    */
   async _displayRestResultMessage(result, longRest = false) {
-    const { dhd, dhp, newDay } = result;
+    const { dhd, dhp } = result;
     const diceRestored = dhd !== 0;
     const healthRestored = dhp !== 0;
     const length = longRest ? "Long" : "Short";
 
     let restFlavor, message;
 
+    restFlavor = `DND5E.${length}RestNormal`;
+
     // Summarize the rest duration
-    switch (game.settings.get("pergashaFoundryvtt", "restVariant")) {
-      case 'normal': restFlavor = (longRest && newDay) ? "DND5E.LongRestOvernight" : `DND5E.${length}RestNormal`; break;
-      case 'gritty': restFlavor = (!longRest && newDay) ? "DND5E.ShortRestOvernight" : `DND5E.${length}RestGritty`; break;
-      case 'epic': restFlavor = `DND5E.${length}RestEpic`; break;
-    }
+    // switch (game.settings.get("pergashaFoundryvtt", "restVariant")) {
+    //   case 'normal': restFlavor = (longRest && newDay) ? "DND5E.LongRestOvernight" : `DND5E.${length}RestNormal`; break;
+    //   case 'gritty': restFlavor = (!longRest && newDay) ? "DND5E.ShortRestOvernight" : `DND5E.${length}RestGritty`; break;
+    //   case 'epic': restFlavor = `DND5E.${length}RestEpic`; break;
+    // }
 
     // Determine the chat message to display
     if (diceRestored && healthRestored) message = `DND5E.${length}RestResult`;
@@ -1195,25 +1200,56 @@ export default class Actor5e extends Actor {
    * @param {object} [options]
    * @param {boolean} [options.recoverTemp=true]     Reset temp HP to zero.
    * @param {boolean} [options.recoverTempMax=true]  Reset temp max HP to zero.
+   * @param {boolean} fullRest 
    * @return {object)                                Updates to the actor and change in hit points.
    * @protected
    */
-  _getRestHitPointRecovery({ recoverTemp = true, recoverTempMax = true } = {}) {
+  _getRestHitPointRecovery(fullRest, { recoverTemp = true, recoverTempMax = true } = {}) {
     const data = this.data.data;
     let updates = {};
     let max = data.attributes.hp.max;
+    let hitPointsRecovered = 0;
 
     if (recoverTempMax) {
       updates["data.attributes.hp.tempmax"] = 0;
     } else {
       max += data.attributes.hp.tempmax;
     }
-    updates["data.attributes.hp.value"] = max;
+    if (fullRest) {
+      updates["data.attributes.hp.value"] = max;
+      hitPointsRecovered = max - data.attributes.hp.value;
+    } else {
+      updates["data.attributes.hp.value"] = Math.min((data.attributes.hp.value + data.abilities.con.mod), max);
+      const hpDiff = max - data.attributes.hp.value;
+      hitPointsRecovered = Math.min(hpDiff, data.abilities.con.mod);
+    }
     if (recoverTemp) {
       updates["data.attributes.hp.temp"] = 0;
     }
 
-    return { updates, hitPointsRecovered: max - data.attributes.hp.value };
+    return { updates, hitPointsRecovered: hitPointsRecovered };
+  }
+
+  /* -------------------------------------------- */
+  /**
+     * Recovers actor hit points and eliminates any temp HP.
+     * @param {boolean} fullRest
+     * @return {object)                                Updates to the actor and change in hit points.
+     * @protected
+     */
+
+  _getPsiPointRecovery(fullRest) {
+    const data = this.data.data;
+    let updates = {};
+    let max = data.attributes.psionics.psiPointsMax;
+
+    if (fullRest) {
+      updates["data.attributes.psionics.psiPoints"] = max;
+    } else {
+      const psiRecovery = Math.max(data.abilities.int.mod * 2, 1);
+      updates["data.attributes.psionics.psiPoints"] = Math.min((data.attributes.psionics.psiPoints + psiRecovery), max);
+    }
+    return { updates, psiPointsRecovered: max - data.attributes.psionics.psiPoints };
   }
 
   /* -------------------------------------------- */
@@ -1273,10 +1309,11 @@ export default class Actor5e extends Actor {
    * @return {object}                      Array of item updates and number of hit dice recovered.
    * @protected
    */
-  _getRestHitDiceRecovery({ maxHitDice = undefined } = {}) {
+  _getRestHitDiceRecovery(fullRest, { maxHitDice = undefined } = {}) {
     // Determine the number of hit dice which may be recovered
     if (maxHitDice === undefined) {
-      maxHitDice = Math.max(Math.floor(this.data.data.details.level / 2), 1);
+      const conMod = this.data.data.abilities.con.mod;
+      maxHitDice = Math.max(conMod, 1);
     }
 
     // Sort classes which can recover HD, assuming players prefer recovering larger HD first.
@@ -1286,15 +1323,20 @@ export default class Actor5e extends Actor {
 
     let updates = [];
     let hitDiceRecovered = 0;
-    for (let item of sortedClasses) {
-      const d = item.data.data;
-      if ((hitDiceRecovered < maxHitDice) && (d.hitDiceUsed > 0)) {
-        let delta = Math.min(d.hitDiceUsed || 0, maxHitDice - hitDiceRecovered);
-        hitDiceRecovered += delta;
-        updates.push({ _id: item.id, "data.hitDiceUsed": d.hitDiceUsed - delta });
+    if (fullRest) {
+      for (let item of sortedClasses) {
+        updates.push({ _id: item.id, "data.hitDiceUsed": 0 });
+      }
+    } else {
+      for (let item of sortedClasses) {
+        const d = item.data.data;
+        if ((hitDiceRecovered < maxHitDice) && (d.hitDiceUsed > 0)) {
+          let delta = Math.min(d.hitDiceUsed || 0, maxHitDice - hitDiceRecovered);
+          hitDiceRecovered += delta;
+          updates.push({ _id: item.id, "data.hitDiceUsed": d.hitDiceUsed - delta });
+        }
       }
     }
-
     return { updates, hitDiceRecovered };
   }
 
@@ -1368,9 +1410,11 @@ export default class Actor5e extends Actor {
    * @param {boolean} [keepVision]      Keep vision
    * @param {boolean} [transformTokens] Transform linked tokens too
    */
-  async transformInto(target, { keepPhysical = false, keepMental = false, keepSaves = false, keepSkills = false,
+  async transformInto(target, {
+    keepPhysical = false, keepMental = false, keepSaves = false, keepSkills = false,
     mergeSaves = false, mergeSkills = false, keepClass = false, keepFeats = false, keepSpells = false,
-    keepItems = false, keepBio = false, keepVision = false, transformTokens = true } = {}) {
+    keepItems = false, keepBio = false, keepVision = false, transformTokens = true
+  } = {}) {
 
     // Ensure the player is allowed to polymorph
     const allowed = game.settings.get("pergashaFoundryvtt", "allowPolymorphing");

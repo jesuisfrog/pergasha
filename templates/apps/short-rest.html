@@ -19,14 +19,6 @@
         {{/unless}}
     </div>
 
-    {{#if promptNewDay}}
-    <div class="form-group">
-        <label>{{ localize "DND5E.NewDay" }}</label>
-        <input type="checkbox" name="newDay" {{checked newDay}}/>
-        <p class="hint">{{ localize "DND5E.NewDayHint" }}</p>
-    </div>
-    {{/if}}
-
     <div class="dialog-buttons">
         {{#each buttons as |button id|}}
         <button class="dialog-button" data-button="{{id}}">
