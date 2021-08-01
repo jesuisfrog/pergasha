@@ -7,8 +7,6 @@
  * @param {number} [options.critical]                  The value of d20 result which represents a critical success
  * @param {number} [options.fumble]                    The value of d20 result which represents a critical failure
  * @param {(number)} [options.targetValue]             Assign a target value against which the result of this roll should be compared
- * @param {boolean} [options.elvenAccuracy=false]      Allow Elven Accuracy to modify this roll?
- * @param {boolean} [options.halflingLucky=false]      Allow Halfling Luck to modify this roll?
  * @param {boolean} [options.reliableTalent=false]     Allow Reliable Talent to modify this roll?
  */
 export default class D20Roll extends Roll {
@@ -68,15 +66,12 @@ export default class D20Roll extends Roll {
     const d20 = this.terms[0];
     d20.modifiers = [];
 
-    // Halfling Lucky
-    if (this.options.halflingLucky) d20.modifiers.push("r1=1");
-
     // Reliable Talent
     if (this.options.reliableTalent) d20.modifiers.push("min10");
 
     // Handle Advantage or Disadvantage
     if (this.hasAdvantage) {
-      d20.number = this.options.elvenAccuracy ? 3 : 2;
+      d20.number = 2;
       d20.modifiers.push("kh");
       d20.options.advantage = true;
     }

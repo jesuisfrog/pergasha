@@ -127,12 +127,8 @@ export default class Actor5e extends Actor {
 
     // Determine Initiative Modifier
     const init = data.attributes.init;
-    const athlete = flags.remarkableAthlete;
-    const joat = flags.jackOfAllTrades;
     init.mod = data.abilities.dex.mod;
-    if (joat) init.prof = Math.floor(0.5 * data.attributes.prof);
-    else if (athlete) init.prof = Math.ceil(0.5 * data.attributes.prof);
-    else init.prof = 0;
+    init.prof = 0;
     init.value = init.value ?? 0;
     init.bonus = init.value + (flags.initiativeAlert ? 5 : 0);
     init.total = init.mod + init.prof + init.bonus;
@@ -358,24 +354,12 @@ export default class Actor5e extends Actor {
 
     // Skill modifiers
     const feats = DND5E.characterFlags;
-    const athlete = flags.remarkableAthlete;
-    const joat = flags.jackOfAllTrades;
     const observant = flags.observantFeat;
     const skillBonus = Number.isNumeric(bonuses.skill) ? parseInt(bonuses.skill) : 0;
     for (let [id, skl] of Object.entries(data.skills)) {
       skl.value = Math.clamped(Number(skl.value).toNearest(0.5), 0, 2) ?? 0;
       let round = Math.floor;
 
-      // Remarkable
-      if (athlete && (skl.value < 0.5) && feats.remarkableAthlete.abilities.includes(skl.ability)) {
-        skl.value = 0.5;
-        round = Math.ceil;
-      }
-
-      // Jack of All Trades
-      if (joat && (skl.value < 0.5)) {
-        skl.value = 0.5;
-      }
 
       // Polymorph Skill Proficiencies
       if (originalSkills) {
@@ -747,7 +731,6 @@ export default class Actor5e extends Actor {
       parts: parts,
       data: data,
       title: game.i18n.format("DND5E.SkillPromptTitle", { skill: CONFIG.DND5E.skills[skillId] }),
-      halflingLucky: this.getFlag("pergashaFoundryvtt", "halflingLucky"),
       reliableTalent: reliableTalent,
       messageData: {
         speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
@@ -800,17 +783,6 @@ export default class Actor5e extends Actor {
     const parts = ["@mod"];
     const data = { mod: abl.mod };
 
-    // Add feat-related proficiency bonuses
-    const feats = this.data.flags.pergashaFoundryvtt || {};
-    if (feats.remarkableAthlete && DND5E.characterFlags.remarkableAthlete.abilities.includes(abilityId)) {
-      parts.push("@proficiency");
-      data.proficiency = Math.ceil(0.5 * this.data.data.attributes.prof);
-    }
-    else if (feats.jackOfAllTrades) {
-      parts.push("@proficiency");
-      data.proficiency = Math.floor(0.5 * this.data.data.attributes.prof);
-    }
-
     // Add global actor bonus
     const bonuses = getProperty(this.data.data, "bonuses.abilities") || {};
     if (bonuses.check) {
@@ -828,7 +800,6 @@ export default class Actor5e extends Actor {
       parts: parts,
       data: data,
       title: game.i18n.format("DND5E.AbilityPromptTitle", { ability: label }),
-      halflingLucky: feats.halflingLucky,
       messageData: {
         speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
         "flags.pergashaFoundryvtt.roll": { type: "ability", abilityId }
@@ -877,7 +848,6 @@ export default class Actor5e extends Actor {
       parts: parts,
       data: data,
       title: game.i18n.format("DND5E.SavePromptTitle", { ability: label }),
-      halflingLucky: this.getFlag("pergashaFoundryvtt", "halflingLucky"),
       messageData: {
         speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
         "flags.pergashaFoundryvtt.roll": { type: "save", abilityId }
@@ -924,7 +894,6 @@ export default class Actor5e extends Actor {
       parts: parts,
       data: data,
       title: game.i18n.localize("DND5E.DeathSavingThrow"),
-      halflingLucky: this.getFlag("pergashaFoundryvtt", "halflingLucky"),
       targetValue: 10,
       messageData: {
         speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),

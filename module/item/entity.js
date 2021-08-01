@@ -1001,14 +1001,6 @@ export default class Item5e extends Item {
       rollConfig.critical = parseInt(flags.spellCriticalThreshold);
     }
 
-    // Elven Accuracy
-    if (flags.elvenAccuracy && ["dex", "int", "wis", "cha"].includes(this.abilityMod)) {
-      rollConfig.elvenAccuracy = true;
-    }
-
-    // Apply Halfling Lucky
-    if (flags.halflingLucky) rollConfig.halflingLucky = true;
-
     // Invoke the d20 roll helper
     const roll = await d20Roll(rollConfig);
     if (roll === false) return null;
@@ -1301,7 +1293,6 @@ export default class Item5e extends Item {
         left: window.innerWidth - 710,
       },
       chooseModifier: true,
-      halflingLucky: this.actor.getFlag("pergashaFoundryvtt", "halflingLucky") || false,
       reliableTalent: (this.data.data.proficient >= 1) && this.actor.getFlag("pergashaFoundryvtt", "reliableTalent"),
       messageData: { "flags.pergashaFoundryvtt.roll": { type: "tool", itemId: this.id } }
     }, options);

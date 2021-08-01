@@ -252,8 +252,14 @@
             "attack": "",
             "damage": ""
           },
-          "mpak": {},
-          "rpak": {},
+          "mpak": {
+            "attack": "",
+            "damage": ""
+          },
+          "rpak": {
+            "attack": "",
+            "damage": ""
+          },
           "abilities": {
             "check": "",
             "save": "",

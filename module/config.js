@@ -913,18 +913,6 @@ DND5E.characterFlags = {
     section: "DND5E.Feats",
     type: Boolean
   },
-  "elvenAccuracy": {
-    name: "DND5E.FlagsElvenAccuracy",
-    hint: "DND5E.FlagsElvenAccuracyHint",
-    section: "DND5E.RacialTraits",
-    type: Boolean
-  },
-  "halflingLucky": {
-    name: "DND5E.FlagsHalflingLucky",
-    hint: "DND5E.FlagsHalflingLuckyHint",
-    section: "DND5E.RacialTraits",
-    type: Boolean
-  },
   "initiativeAdv": {
     name: "DND5E.FlagsInitiativeAdv",
     hint: "DND5E.FlagsInitiativeAdvHint",
@@ -934,12 +922,6 @@ DND5E.characterFlags = {
   "initiativeAlert": {
     name: "DND5E.FlagsAlert",
     hint: "DND5E.FlagsAlertHint",
-    section: "DND5E.Feats",
-    type: Boolean
-  },
-  "jackOfAllTrades": {
-    name: "DND5E.FlagsJOAT",
-    hint: "DND5E.FlagsJOATHint",
     section: "DND5E.Feats",
     type: Boolean
   },
@@ -959,13 +941,6 @@ DND5E.characterFlags = {
   "reliableTalent": {
     name: "DND5E.FlagsReliableTalent",
     hint: "DND5E.FlagsReliableTalentHint",
-    section: "DND5E.Feats",
-    type: Boolean
-  },
-  "remarkableAthlete": {
-    name: "DND5E.FlagsRemarkableAthlete",
-    hint: "DND5E.FlagsRemarkableAthleteHint",
-    abilities: ['str', 'dex', 'con'],
     section: "DND5E.Feats",
     type: Boolean
   },

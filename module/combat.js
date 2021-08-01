@@ -13,7 +13,6 @@ export const _getInitiativeFormula = function () {
   // Construct initiative formula parts
   let nd = 1;
   let mods = "";
-  if (actor.getFlag("pergashaFoundryvtt", "halflingLucky")) mods += "r1=1";
   if (actor.getFlag("pergashaFoundryvtt", "initiativeAdv")) {
     nd = 2;
     mods += "kh";

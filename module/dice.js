@@ -90,8 +90,6 @@ function _isUnsupportedTerm(term) {
  * @param {number} [critical]         The value of d20 result which represents a critical success
  * @param {number} [fumble]           The value of d20 result which represents a critical failure
  * @param {number} [targetValue]      Assign a target value against which the result of this roll should be compared
- * @param {boolean} [elvenAccuracy]   Allow Elven Accuracy to modify this roll?
- * @param {boolean} [halflingLucky]   Allow Halfling Luck to modify this roll?
  * @param {boolean} [reliableTalent]  Allow Reliable Talent to modify this roll?
 
  * @param {boolean} [chooseModifier=false] Choose the ability modifier that should be used when the roll is made
@@ -112,7 +110,7 @@ function _isUnsupportedTerm(term) {
  */
 export async function d20Roll({
   parts = [], data = {}, // Roll creation
-  advantage, disadvantage, fumble = 1, critical = 20, targetValue, elvenAccuracy, halflingLucky, reliableTalent, // Roll customization
+  advantage, disadvantage, fumble = 1, critical = 20, targetValue, reliableTalent, // Roll customization
   chooseModifier = false, fastForward = false, event, template, title, dialogOptions, // Dialog configuration
   chatMessage = true, messageData = {}, rollMode, speaker, flavor // Chat Message customization
 } = {}) {
@@ -131,8 +129,6 @@ export async function d20Roll({
     critical,
     fumble,
     targetValue,
-    elvenAccuracy,
-    halflingLucky,
     reliableTalent
   });
 
