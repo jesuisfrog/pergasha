@@ -83,10 +83,10 @@ export default class ActorSheetFlags extends DocumentSheet {
       { name: "data.bonuses.mwak.damage", label: "DND5E.BonusMWDamage" },
       { name: "data.bonuses.rwak.attack", label: "DND5E.BonusRWAttack" },
       { name: "data.bonuses.rwak.damage", label: "DND5E.BonusRWDamage" },
-      { name: "data.bonuses.msak.attack", label: "DND5E.BonusMSAttack" },
-      { name: "data.bonuses.msak.damage", label: "DND5E.BonusMSDamage" },
-      { name: "data.bonuses.rsak.attack", label: "DND5E.BonusRSAttack" },
-      { name: "data.bonuses.rsak.damage", label: "DND5E.BonusRSDamage" },
+      // { name: "data.bonuses.msak.attack", label: "DND5E.BonusMSAttack" },
+      // { name: "data.bonuses.msak.damage", label: "DND5E.BonusMSDamage" },
+      // { name: "data.bonuses.rsak.attack", label: "DND5E.BonusRSAttack" },
+      // { name: "data.bonuses.rsak.damage", label: "DND5E.BonusRSDamage" },
       { name: "data.bonuses.mpak.attack", label: "DND5E.BonusMPAttack" },
       { name: "data.bonuses.mpak.damage", label: "DND5E.BonusMPDamage" },
       { name: "data.bonuses.rpak.attack", label: "DND5E.BonusRPAttack" },
@@ -94,7 +94,7 @@ export default class ActorSheetFlags extends DocumentSheet {
       { name: "data.bonuses.abilities.check", label: "DND5E.BonusAbilityCheck" },
       { name: "data.bonuses.abilities.save", label: "DND5E.BonusAbilitySave" },
       { name: "data.bonuses.abilities.skill", label: "DND5E.BonusAbilitySkill" },
-      { name: "data.bonuses.spell.dc", label: "DND5E.BonusSpellDC" },
+      // { name: "data.bonuses.spell.dc", label: "DND5E.BonusSpellDC" },
       { name: "data.bonuses.psionics.dc", label: "DND5E.BonusPsionicDC" }
     ];
     for (let b of bonuses) {

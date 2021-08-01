@@ -951,13 +951,6 @@ DND5E.characterFlags = {
     type: Number,
     placeholder: 20
   },
-  "spellCriticalThreshold": {
-    name: "DND5E.FlagsSpellCritThreshold",
-    hint: "DND5E.FlagsSpellCritThresholdHint",
-    section: "DND5E.Feats",
-    type: Number,
-    placeholder: 20
-  },
   "meleeCriticalDamageDice": {
     name: "DND5E.FlagsMeleeCriticalDice",
     hint: "DND5E.FlagsMeleeCriticalDiceHint",
