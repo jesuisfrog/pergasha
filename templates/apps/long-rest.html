@@ -2,7 +2,7 @@
     <p>{{ localize "DND5E.LongRestHint" }}</p>
 
     <div class="form-group">
-        <label>Full Rest</label>
+        <label>{{ localize "DND5E.FullRest" }}</label>
         <input type="checkbox" name="fullRest" />
         <p class="hint">Resting for 24 hours.</p>
     </div>
@@ -24,6 +24,12 @@
         {{#unless canRoll}}
         <p class="notes">{{ localize "DND5E.ShortRestNoHD" }}</p>
         {{/unless}}
+    </div>
+
+    <div class="form-group">
+        <label>{{ localize "DND5E.UsedHitDice" }}</label>
+        <input type="checkbox" name="usedHitDice" />
+        <p class="hint">Did you roll any hit dice during your long rest?</p>
     </div>
 
     <div class="dialog-buttons">

@@ -464,10 +464,12 @@
       "physicalItem": {
         "quantity": 1,
         "weight": 0,
+        "slots": 0,
         "price": 0,
         "attuned": false,
         "attunement": 0,
         "equipped": false,
+        "quickdraw": false,
         "rarity": "",
         "identified": true
       },
@@ -562,6 +564,7 @@
       "subclass": "",
       "hitDice": "d6",
       "hitDiceUsed": 0,
+      "hitDiceTapped": 0,
       "saves": [],
       "skills": {
         "number": 2,

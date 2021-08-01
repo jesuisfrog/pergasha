@@ -446,6 +446,10 @@ export default class ActorSheet5e extends ActorSheet {
       if (filters.has("equipped")) {
         if (data.equipped !== true) return false;
       }
+
+      if (filters.has("quickdraw")) {
+        if (data.quickdraw !== true) return false;
+      }
       return true;
     });
   }
@@ -721,7 +725,7 @@ export default class ActorSheet5e extends ActorSheet {
 
     if (itemData.data) {
       // Ignore certain statuses
-      ["equipped", "proficient", "prepared"].forEach(k => delete itemData.data[k]);
+      ["equipped", "quickdraw", "proficient", "prepared"].forEach(k => delete itemData.data[k]);
 
       // Downgrade ATTUNED to REQUIRED
       itemData.data.attunement = Math.min(itemData.data.attunement, CONFIG.DND5E.attunementTypes.REQUIRED);

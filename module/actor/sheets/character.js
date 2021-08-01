@@ -172,6 +172,8 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     }
     else {
       const isActive = getProperty(item.data, "equipped");
+      const isInQuickdraw = getProperty(item.data, "quickdraw");
+      item.toggleQuickdraw = isInQuickdraw ? "active" : "";
       item.toggleClass = isActive ? "active" : "";
       item.toggleTitle = game.i18n.localize(isActive ? "DND5E.Equipped" : "DND5E.Unequipped");
     }
@@ -235,7 +237,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     event.preventDefault();
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
     const item = this.actor.items.get(itemId);
-    const attr = item.data.type === "spell" ? "data.preparation.prepared" : "data.equipped";
+    let attr = null;
+    if (event.currentTarget.attributes[0].value.includes("item-quickdraw")) attr = "data.quickdraw";
+    else attr = item.data.type === "spell" ? "data.preparation.prepared" : "data.equipped";
     return item.update({ [attr]: !getProperty(item.data, attr) });
   }
 

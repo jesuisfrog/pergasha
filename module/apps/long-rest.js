@@ -72,7 +72,7 @@ export default class LongRestDialog extends Dialog {
     event.preventDefault();
     const btn = event.currentTarget;
     this._denom = btn.form.hd.value;
-    await this.actor.rollHitDie(this._denom);
+    await this.actor.rollHitDie(this._denom, true);
     this.render();
   }
 
@@ -97,7 +97,11 @@ export default class LongRestDialog extends Dialog {
               // resolve(newDay);
               let fullRest = true;
               fullRest = html.find('input[name="fullRest"]')[0].checked;
-              resolve(fullRest);
+              let usedHitDice = true;
+              usedHitDice = html.find('input[name="usedHitDice"]')[0].checked;
+              resolve([fullRest, usedHitDice]);
+
+              // resolve(usedHitDice);
             }
           },
           cancel: {

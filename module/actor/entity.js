@@ -117,7 +117,7 @@ export default class Actor5e extends Actor {
     }
 
     // Inventory encumbrance
-    data.attributes.encumbrance = this._computeEncumbrance(actorData);
+    data.attributes.encumbrance = this._computeNewEncumbrance(actorData);
 
     // Prepare skills
     this._prepareSkills(actorData, bonuses, checkBonus, originalSkills);
@@ -292,7 +292,7 @@ export default class Actor5e extends Actor {
       if (item.type === "class") {
         const classLevels = parseInt(item.data.data.levels) || 1;
         arr[0] += classLevels;
-        arr[1] += classLevels - (parseInt(item.data.data.hitDiceUsed) || 0);
+        arr[1] += classLevels - (parseInt(item.data.data.hitDiceUsed) || 0) - (parseInt(item.data.data.hitDiceTapped) || 0);
       }
       return arr;
     }, [0, 0]);
@@ -507,6 +507,62 @@ export default class Actor5e extends Actor {
    * @returns {{max: number, value: number, pct: number}}  An object describing the character's encumbrance level
    * @private
    */
+  _computeNewEncumbrance(actorData) { //WIP Inventory slots
+
+    // Get the total weight from items
+    const physicalItems = ["weapon", "equipment", "consumable", "tool", "backpack", "loot"];
+    let weight = actorData.items.reduce((weight, i) => {
+      if (!physicalItems.includes(i.type)) return weight;
+      const q = i.data.data.quantity || 0;
+      const w = i.data.data.weight || 0;
+      return weight + (q * w);
+    }, 0);
+
+    // Determine the encumbrance size class
+    let mod = {
+      tiny: 9,
+      sm: 15,
+      med: 18,
+      lg: 21,
+      huge: 27,
+      grg: 39
+    }[actorData.data.traits.size] || 1;
+
+    let strSlotMod = {
+      2: -4,
+      3: -4,
+      4: -3,
+      5: -3,
+      6: -2,
+      7: -2,
+      8: -1,
+      9: -1,
+      10: 0,
+      11: 0,
+      12: 1,
+      13: 2,
+      14: 2,
+      15: 3,
+      16: 3,
+      17: 4,
+      18: 4,
+      19: 5,
+      20: 5,
+      21: 6,
+      22: 6,
+      23: 7,
+      24: 7,
+    }[actorData.data.abilities.str.value] || 0;
+
+    // if (this.getFlag("pergashaFoundryvtt", "powerfulBuild")) mod = Math.min(mod * 2, 8);
+
+    // Compute Encumbrance percentage
+    weight = weight.toNearest(0.1);
+    const max = strSlotMod + mod;
+    const pct = Math.clamped((weight * 100) / max, 0, 100);
+    return { value: weight.toNearest(0.1), max, pct, encumbered: pct > (2 / 3) };
+  }
+
   _computeEncumbrance(actorData) {
 
     // Get the total weight from items
@@ -936,9 +992,10 @@ export default class Actor5e extends Actor {
    * @param {string} [denomination]   The hit denomination of hit die to roll. Example "d8".
    *                                  If no denomination is provided, the first available HD will be used
    * @param {boolean} [dialog]        Show a dialog prompt for configuring the hit die roll?
+   * @param {boolean} longRestDialog            Did the roll occur from a long rest ?
    * @return {Promise<Roll|null>}     The created Roll instance, or null if no hit die was rolled
    */
-  async rollHitDie(denomination, { dialog = true } = {}) {
+  async rollHitDie(denomination, { dialog = true } = {}, longRestDialog = false) {
 
     // If no denomination was provided, choose the first available
     let cls = null;
@@ -1048,19 +1105,20 @@ export default class Actor5e extends Actor {
    * @param {boolean} [options.dialog=true]  Present a confirmation dialog window whether or not to take a long rest.
    * @param {boolean} [options.chat=true]    Summarize the results of the rest workflow as a chat message.
    * @param {boolean} [options.fullRest=false]  Whether the long rest is part of a full rest.
+   * @param {boolean} [options.usedHitDice=false] Whether hit dices were used in the long rest.
    * @return {Promise.<RestResult>}          A Promise which resolves once the long rest workflow has completed.
    */
-  async longRest({ dialog = true, chat = true, fullRest = false } = {}) {
+  async longRest({ dialog = true, chat = true, fullRest = false, usedHitDice = false } = {}) {
     // Maybe present a confirmation dialog
     if (dialog) {
       try {
-        fullRest = await LongRestDialog.longRestDialog({ actor: this });
+        [fullRest, usedHitDice] = await LongRestDialog.longRestDialog({ actor: this });
       } catch (err) {
         return;
       }
     }
 
-    return this._rest(chat, fullRest, true);
+    return this._rest(chat, fullRest, usedHitDice, true);
   }
 
   /* -------------------------------------------- */
@@ -1070,37 +1128,38 @@ export default class Actor5e extends Actor {
    *
    * @param {boolean} chat           Summarize the results of the rest workflow as a chat message.
    * @param {boolean} fullRest       Is this rest a 24h one?
+   * @param {boolean} usedHitDice    Were Hit Dice used as part of the long rest?
    * @param {boolean} longRest       Is this a long rest?
    * @param {number} [dhd=0]         Number of hit dice spent during so far during the rest.
    * @param {number} [dhp=0]         Number of hit points recovered so far during the rest.
+   * @param {number} [dpp=0]         Number of psi points recovered so far during the rest.
    * @return {Promise.<RestResult>}  Consolidated results of the rest workflow.
    * @private
    */
-  async _rest(chat, fullRest, longRest, dhd = 0, dhp = 0) {
+  async _rest(chat, fullRest, usedHitDice, longRest, dhd = 0, dhp = 0, dpp = 0) {
     let hitPointsRecovered = 0;
     let hitPointUpdates = {};
     let hitDiceRecovered = 0;
     let hitDiceUpdates = [];
-    let psiPointRecovered = 0;
+    let psiPointsRecovered = 0;
     let psiPointUpdates = [];
 
     // Recover hit points & hit dice on long rest
-    // if (fullRest) {
-    //   ({ updates: hitPointUpdates, hitPointsRecovered } = this._getRestHitPointRecovery());
-    //   ({ updates: hitDiceUpdates, hitDiceRecovered } = this._getRestHitDiceRecovery());
-    //   ({ updates: psiPointUpdates, psiPointRecovered } = this._getPsiPointRecovery());
-    // }else 
     if (longRest) {
-      ({ updates: hitPointUpdates, hitPointsRecovered } = this._getRestHitPointRecovery(fullRest));
+      ({ updates: hitPointUpdates, hitPointsRecovered } = this._getRestHitPointRecovery(fullRest, usedHitDice));
       ({ updates: hitDiceUpdates, hitDiceRecovered } = this._getRestHitDiceRecovery(fullRest));
+      ({ updates: psiPointUpdates, psiPointsRecovered } = this._getPsiPointRecovery(fullRest));
     }
 
     // Figure out the rest of the changes
     const result = {
       dhd: dhd + hitDiceRecovered,
       dhp: dhp + hitPointsRecovered,
+      dpp: dpp + psiPointsRecovered,
+      fullRest: fullRest,
       updateData: {
         ...hitPointUpdates,
+        ...psiPointUpdates,
         ...this._getRestResourceRecovery({ recoverShortRestResources: !longRest, recoverLongRestResources: longRest }),
         ...this._getRestSpellRecovery({ recoverSpells: longRest })
       },
@@ -1133,10 +1192,10 @@ export default class Actor5e extends Actor {
    * @protected
    */
   async _displayRestResultMessage(result, longRest = false) {
-    const { dhd, dhp } = result;
+    const { dhd, dhp, dpp, fullRest } = result;
     const diceRestored = dhd !== 0;
     const healthRestored = dhp !== 0;
-    const length = longRest ? "Long" : "Short";
+    const length = fullRest ? "Full" : (longRest ? "Long" : "Short");
 
     let restFlavor, message;
 
@@ -1150,11 +1209,11 @@ export default class Actor5e extends Actor {
     // }
 
     // Determine the chat message to display
-    if (diceRestored && healthRestored) message = `DND5E.${length}RestResult`;
+    if (fullRest) message = "DND5E.FullRestResult";
+    else if (diceRestored && healthRestored) message = `DND5E.${length}RestResult`;
     else if (longRest && !diceRestored && healthRestored) message = "DND5E.LongRestResultHitPoints";
     else if (longRest && diceRestored && !healthRestored) message = "DND5E.LongRestResultHitDice";
     else message = `DND5E.${length}RestResultShort`;
-
     // Create a chat message
     let chatData = {
       user: game.user.id,
@@ -1163,7 +1222,8 @@ export default class Actor5e extends Actor {
       content: game.i18n.format(message, {
         name: this.name,
         dice: longRest ? dhd : -dhd,
-        health: dhp
+        health: dhp,
+        psiPoints: (dpp > 0) ? ((dhd !== 0 || dhp !== 0) ? ` ${this.name} also recovers ${dpp} Psi Points.` : ` ${this.name} recovers ${dpp} Psi Points.`) : '',
       })
     };
     ChatMessage.applyRollMode(chatData, game.settings.get("core", "rollMode"));
@@ -1204,7 +1264,7 @@ export default class Actor5e extends Actor {
    * @return {object)                                Updates to the actor and change in hit points.
    * @protected
    */
-  _getRestHitPointRecovery(fullRest, { recoverTemp = true, recoverTempMax = true } = {}) {
+  _getRestHitPointRecovery(fullRest, usedHitDice, { recoverTemp = true, recoverTempMax = true } = {}) {
     const data = this.data.data;
     let updates = {};
     let max = data.attributes.hp.max;
@@ -1218,7 +1278,7 @@ export default class Actor5e extends Actor {
     if (fullRest) {
       updates["data.attributes.hp.value"] = max;
       hitPointsRecovered = max - data.attributes.hp.value;
-    } else {
+    } else if (!usedHitDice) {
       updates["data.attributes.hp.value"] = Math.min((data.attributes.hp.value + data.abilities.con.mod), max);
       const hpDiff = max - data.attributes.hp.value;
       hitPointsRecovered = Math.min(hpDiff, data.abilities.con.mod);
@@ -1242,14 +1302,18 @@ export default class Actor5e extends Actor {
     const data = this.data.data;
     let updates = {};
     let max = data.attributes.psionics.psiPointsMax;
-
+    let psiPointsRecovered = 0;
     if (fullRest) {
       updates["data.attributes.psionics.psiPoints"] = max;
+      psiPointsRecovered = max - data.attributes.psionics.psiPoints;
     } else {
       const psiRecovery = Math.max(data.abilities.int.mod * 2, 1);
-      updates["data.attributes.psionics.psiPoints"] = Math.min((data.attributes.psionics.psiPoints + psiRecovery), max);
+      const currentPsi = parseInt(data.attributes.psionics.psiPoints) || 0;
+      updates["data.attributes.psionics.psiPoints"] = Math.min((currentPsi + psiRecovery), max);
+      const ppDiff = max - currentPsi;
+      psiPointsRecovered = Math.min(ppDiff, psiRecovery);
     }
-    return { updates, psiPointsRecovered: max - data.attributes.psionics.psiPoints };
+    return { updates, psiPointsRecovered: psiPointsRecovered };
   }
 
   /* -------------------------------------------- */
