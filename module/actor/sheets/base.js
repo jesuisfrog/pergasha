@@ -5,7 +5,7 @@ import ActorHitDiceConfig from "../../apps/hit-dice-config.js";
 import ActorMovementConfig from "../../apps/movement-config.js";
 import ActorSensesConfig from "../../apps/senses-config.js";
 import ActorTypeConfig from "../../apps/actor-type.js";
-import { DND5E } from '../../config.js';
+import { PERGASHA } from '../../config.js';
 import { onManageActiveEffect, prepareActiveEffectCategories } from "../../effects.js";
 
 /**
@@ -78,7 +78,7 @@ export default class ActorSheet5e extends ActorSheet {
       isCharacter: this.actor.type === "character",
       isNPC: this.actor.type === "npc",
       isVehicle: this.actor.type === 'vehicle',
-      config: CONFIG.DND5E,
+      config: CONFIG.PERGASHA,
       rollData: this.actor.getRollData.bind(this.actor)
     };
 
@@ -102,17 +102,17 @@ export default class ActorSheet5e extends ActorSheet {
     // Ability Scores
     for (let [a, abl] of Object.entries(actorData.data.abilities)) {
       abl.icon = this._getProficiencyIcon(abl.proficient);
-      abl.hover = CONFIG.DND5E.proficiencyLevels[abl.proficient];
-      abl.label = CONFIG.DND5E.abilities[a];
+      abl.hover = CONFIG.PERGASHA.proficiencyLevels[abl.proficient];
+      abl.label = CONFIG.PERGASHA.abilities[a];
     }
 
     // Skills
     if (actorData.data.skills) {
       for (let [s, skl] of Object.entries(actorData.data.skills)) {
-        skl.ability = CONFIG.DND5E.abilityAbbreviations[skl.ability];
+        skl.ability = CONFIG.PERGASHA.abilityAbbreviations[skl.ability];
         skl.icon = this._getProficiencyIcon(skl.value);
-        skl.hover = CONFIG.DND5E.proficiencyLevels[skl.value];
-        skl.label = CONFIG.DND5E.skills[s];
+        skl.hover = CONFIG.PERGASHA.proficiencyLevels[skl.value];
+        skl.label = CONFIG.PERGASHA.skills[s];
       }
     }
 
@@ -149,13 +149,13 @@ export default class ActorSheet5e extends ActorSheet {
 
     // Prepare an array of available movement speeds
     let speeds = [
-      [movement.burrow, `${game.i18n.localize("DND5E.MovementBurrow")} ${movement.burrow}`],
-      [movement.climb, `${game.i18n.localize("DND5E.MovementClimb")} ${movement.climb}`],
-      [movement.fly, `${game.i18n.localize("DND5E.MovementFly")} ${movement.fly}` + (movement.hover ? ` (${game.i18n.localize("DND5E.MovementHover")})` : "")],
-      [movement.swim, `${game.i18n.localize("DND5E.MovementSwim")} ${movement.swim}`]
+      [movement.burrow, `${game.i18n.localize("PERGASHA.MovementBurrow")} ${movement.burrow}`],
+      [movement.climb, `${game.i18n.localize("PERGASHA.MovementClimb")} ${movement.climb}`],
+      [movement.fly, `${game.i18n.localize("PERGASHA.MovementFly")} ${movement.fly}` + (movement.hover ? ` (${game.i18n.localize("PERGASHA.MovementHover")})` : "")],
+      [movement.swim, `${game.i18n.localize("PERGASHA.MovementSwim")} ${movement.swim}`]
     ]
     if (largestPrimary) {
-      speeds.push([movement.walk, `${game.i18n.localize("DND5E.MovementWalk")} ${movement.walk}`]);
+      speeds.push([movement.walk, `${game.i18n.localize("PERGASHA.MovementWalk")} ${movement.walk}`]);
     }
 
     // Filter and sort speeds on their values
@@ -184,7 +184,7 @@ export default class ActorSheet5e extends ActorSheet {
   _getSenses(actorData) {
     const senses = actorData.data.attributes.senses || {};
     const tags = {};
-    for (let [k, label] of Object.entries(CONFIG.DND5E.senses)) {
+    for (let [k, label] of Object.entries(CONFIG.PERGASHA.senses)) {
       const v = senses[k] ?? 0
       if (v === 0) continue;
       tags[k] = `${game.i18n.localize(label)} ${v} ${senses.units}`;
@@ -202,14 +202,14 @@ export default class ActorSheet5e extends ActorSheet {
    */
   _prepareTraits(traits) {
     const map = {
-      "dr": CONFIG.DND5E.damageResistanceTypes,
-      "di": CONFIG.DND5E.damageResistanceTypes,
-      "dv": CONFIG.DND5E.damageResistanceTypes,
-      "ci": CONFIG.DND5E.conditionTypes,
-      "languages": CONFIG.DND5E.languages,
-      "armorProf": CONFIG.DND5E.armorProficiencies,
-      "weaponProf": CONFIG.DND5E.weaponProficiencies,
-      "toolProf": CONFIG.DND5E.toolProficiencies
+      "dr": CONFIG.PERGASHA.damageResistanceTypes,
+      "di": CONFIG.PERGASHA.damageResistanceTypes,
+      "dv": CONFIG.PERGASHA.damageResistanceTypes,
+      "ci": CONFIG.PERGASHA.conditionTypes,
+      "languages": CONFIG.PERGASHA.languages,
+      "armorProf": CONFIG.PERGASHA.armorProficiencies,
+      "weaponProf": CONFIG.PERGASHA.weaponProficiencies,
+      "toolProf": CONFIG.PERGASHA.toolProficiencies
     };
     for (let [t, choices] of Object.entries(map)) {
       const trait = traits[t];
@@ -285,19 +285,19 @@ export default class ActorSheet5e extends ActorSheet {
 
     // Level-based spellcasters have cantrips and leveled slots
     if (maxLevel > 0) {
-      registerSection("spell0", 0, CONFIG.DND5E.spellLevels[0]);
+      registerSection("spell0", 0, CONFIG.PERGASHA.spellLevels[0]);
       for (let lvl = 1; lvl <= maxLevel; lvl++) {
         const sl = `spell${lvl}`;
-        registerSection(sl, lvl, CONFIG.DND5E.spellLevels[lvl], levels[sl]);
+        registerSection(sl, lvl, CONFIG.PERGASHA.spellLevels[lvl], levels[sl]);
       }
     }
 
     // Pact magic users have cantrips and a pact magic section
     if (levels.pact && levels.pact.max) {
-      if (!spellbook["0"]) registerSection("spell0", 0, CONFIG.DND5E.spellLevels[0]);
+      if (!spellbook["0"]) registerSection("spell0", 0, CONFIG.PERGASHA.spellLevels[0]);
       const l = levels.pact;
-      const config = CONFIG.DND5E.spellPreparationModes.pact;
-      const level = game.i18n.localize(`DND5E.SpellLevel${levels.pact.level}`);
+      const config = CONFIG.PERGASHA.spellPreparationModes.pact;
+      const level = game.i18n.localize(`PERGASHA.SpellLevel${levels.pact.level}`);
       const label = `${config} — ${level}`;
       registerSection("pact", sections.pact, label, {
         prepMode: "pact",
@@ -318,7 +318,7 @@ export default class ActorSheet5e extends ActorSheet {
         s = sections[mode];
         if (!spellbook[s]) {
           const l = levels[mode] || {};
-          const config = CONFIG.DND5E.spellPreparationModes[mode];
+          const config = CONFIG.PERGASHA.spellPreparationModes[mode];
           registerSection(mode, s, config, {
             prepMode: mode,
             value: l.value,
@@ -330,7 +330,7 @@ export default class ActorSheet5e extends ActorSheet {
 
       // Sections for higher-level spells which the caster "should not" have, but spell items exist for
       else if (!spellbook[s]) {
-        registerSection(sl, s, CONFIG.DND5E.spellLevels[s], { levels: levels[sl] });
+        registerSection(sl, s, CONFIG.PERGASHA.spellLevels[s], { levels: levels[sl] });
       }
 
       // Add the spell to the relevant heading
@@ -375,10 +375,10 @@ export default class ActorSheet5e extends ActorSheet {
     };
 
     // // // Talent + section up to psi limit + Variable section
-    // registerSection(0, CONFIG.DND5E.psionicPowerCosts[0]);
-    // registerSection(8, CONFIG.DND5E.psionicPowerCosts[8]);
+    // registerSection(0, CONFIG.PERGASHA.psionicPowerCosts[0]);
+    // registerSection(8, CONFIG.PERGASHA.psionicPowerCosts[8]);
     // for (let cost = 1; cost <= psiLimit; cost++) {
-    //   registerSection(cost, CONFIG.DND5E.psionicPowerCosts[cost]);
+    //   registerSection(cost, CONFIG.PERGASHA.psionicPowerCosts[cost]);
     // }
 
     // Iterate over every psionic power item, adding psionic powers to the psionics by section
@@ -387,7 +387,7 @@ export default class ActorSheet5e extends ActorSheet {
 
       // Sections for higher-cost psionic powers which the character "should not" have, but psionic power items exist for
       if (!psionics[cost]) {
-        registerSection(cost, CONFIG.DND5E.psionicPowerCosts[cost]);
+        registerSection(cost, CONFIG.PERGASHA.psionicPowerCosts[cost]);
       }
 
       // Add the psionic power to the relevant heading
@@ -660,22 +660,22 @@ export default class ActorSheet5e extends ActorSheet {
 
     // Create and render the Dialog
     return new Dialog({
-      title: game.i18n.localize('DND5E.PolymorphPromptTitle'),
+      title: game.i18n.localize('PERGASHA.PolymorphPromptTitle'),
       content: {
         options: game.settings.get('pergashaFoundryvtt', 'polymorphSettings'),
-        i18n: DND5E.polymorphSettings,
+        i18n: PERGASHA.polymorphSettings,
         isToken: this.actor.isToken
       },
       default: 'accept',
       buttons: {
         accept: {
           icon: '<i class="fas fa-check"></i>',
-          label: game.i18n.localize('DND5E.PolymorphAcceptSettings'),
+          label: game.i18n.localize('PERGASHA.PolymorphAcceptSettings'),
           callback: html => this.actor.transformInto(sourceActor, rememberOptions(html))
         },
         wildshape: {
           icon: '<i class="fas fa-paw"></i>',
-          label: game.i18n.localize('DND5E.PolymorphWildShape'),
+          label: game.i18n.localize('PERGASHA.PolymorphWildShape'),
           callback: html => this.actor.transformInto(sourceActor, {
             keepBio: true,
             keepClass: true,
@@ -687,7 +687,7 @@ export default class ActorSheet5e extends ActorSheet {
         },
         polymorph: {
           icon: '<i class="fas fa-pastafarianism"></i>',
-          label: game.i18n.localize('DND5E.Polymorph'),
+          label: game.i18n.localize('PERGASHA.Polymorph'),
           callback: html => this.actor.transformInto(sourceActor, {
             transformTokens: rememberOptions(html).transformTokens
           })
@@ -711,7 +711,7 @@ export default class ActorSheet5e extends ActorSheet {
 
     // Check to make sure items of this type are allowed on this actor
     if (this.constructor.unsupportedItemTypes.has(itemData.type)) {
-      return ui.notifications.warn(game.i18n.format("DND5E.ActorWarningInvalidItem", {
+      return ui.notifications.warn(game.i18n.format("PERGASHA.ActorWarningInvalidItem", {
         itemType: game.i18n.localize(CONFIG.Item.typeLabels[itemData.type]),
         actorType: game.i18n.localize(CONFIG.Actor.typeLabels[this.actor.type])
       }));
@@ -728,7 +728,7 @@ export default class ActorSheet5e extends ActorSheet {
       ["equipped", "quickdraw", "proficient", "prepared"].forEach(k => delete itemData.data[k]);
 
       // Downgrade ATTUNED to REQUIRED
-      itemData.data.attunement = Math.min(itemData.data.attunement, CONFIG.DND5E.attunementTypes.REQUIRED);
+      itemData.data.attunement = Math.min(itemData.data.attunement, CONFIG.PERGASHA.attunementTypes.REQUIRED);
     }
 
     // Stack identical consumables
@@ -855,7 +855,7 @@ export default class ActorSheet5e extends ActorSheet {
     const header = event.currentTarget;
     const type = header.dataset.type;
     const itemData = {
-      name: game.i18n.format("DND5E.ItemNew", { type: game.i18n.localize(`DND5E.ItemType${type.capitalize()}`) }),
+      name: game.i18n.format("PERGASHA.ItemNew", { type: game.i18n.localize(`PERGASHA.ItemType${type.capitalize()}`) }),
       type: type,
       data: foundry.utils.deepClone(header.dataset)
     };
@@ -958,7 +958,7 @@ export default class ActorSheet5e extends ActorSheet {
     event.preventDefault();
     const a = event.currentTarget;
     const label = a.parentElement.querySelector("label");
-    const choices = CONFIG.DND5E[a.dataset.options];
+    const choices = CONFIG.PERGASHA[a.dataset.options];
     const options = { name: a.dataset.target, title: label.innerText, choices };
     return new TraitSelector(this.actor, options).render(true)
   }
@@ -970,7 +970,7 @@ export default class ActorSheet5e extends ActorSheet {
     let buttons = super._getHeaderButtons();
     if (this.actor.isPolymorphed) {
       buttons.unshift({
-        label: 'DND5E.PolymorphRestoreTransformation',
+        label: 'PERGASHA.PolymorphRestoreTransformation',
         class: "restore-transformation",
         icon: "fas fa-backward",
         onclick: () => this.actor.revertOriginalForm()

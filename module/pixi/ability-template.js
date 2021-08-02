@@ -1,4 +1,4 @@
-import { DND5E } from "../config.js";
+import { PERGASHA } from "../config.js";
 
 /**
  * A helper class for building MeasuredTemplates for 5e spells and abilities
@@ -13,8 +13,8 @@ export default class AbilityTemplate extends MeasuredTemplate {
    */
   static fromItem(item) {
     const target = getProperty(item.data, "data.target") || {};
-    const templateShape = DND5E.areaTargetTypes[target.type];
-    if ( !templateShape ) return null;
+    const templateShape = PERGASHA.areaTargetTypes[target.type];
+    if (!templateShape) return null;
 
     // Prepare template data
     const templateData = {
@@ -28,7 +28,7 @@ export default class AbilityTemplate extends MeasuredTemplate {
     };
 
     // Additional type-specific data
-    switch ( templateShape ) {
+    switch (templateShape) {
       case "cone":
         templateData.angle = CONFIG.MeasuredTemplate.defaults.angle;
         break;
@@ -46,7 +46,7 @@ export default class AbilityTemplate extends MeasuredTemplate {
 
     // Return the template constructed from the item data
     const cls = CONFIG.MeasuredTemplate.documentClass;
-    const template = new cls(templateData, {parent: canvas.scene});
+    const template = new cls(templateData, { parent: canvas.scene });
     const object = new this(template);
     object.item = item;
     object.actorSheet = item.actor?.sheet || null;
@@ -67,7 +67,7 @@ export default class AbilityTemplate extends MeasuredTemplate {
     this.layer.preview.addChild(this);
 
     // Hide the sheet that originated the preview
-    if ( this.actorSheet ) this.actorSheet.minimize();
+    if (this.actorSheet) this.actorSheet.minimize();
 
     // Activate interactivity
     this.activatePreviewListeners(initialLayer);
@@ -87,10 +87,10 @@ export default class AbilityTemplate extends MeasuredTemplate {
     handlers.mm = event => {
       event.stopPropagation();
       let now = Date.now(); // Apply a 20ms throttle
-      if ( now - moveTime <= 20 ) return;
+      if (now - moveTime <= 20) return;
       const center = event.data.getLocalPosition(this.layer);
       const snapped = canvas.grid.getSnappedPosition(center.x, center.y, 2);
-      this.data.update({x: snapped.x, y: snapped.y});
+      this.data.update({ x: snapped.x, y: snapped.y });
       this.refresh();
       moveTime = now;
     };
@@ -116,11 +116,11 @@ export default class AbilityTemplate extends MeasuredTemplate {
 
     // Rotate the template by 3 degree increments (mouse-wheel)
     handlers.mw = event => {
-      if ( event.ctrlKey ) event.preventDefault(); // Avoid zooming the browser window
+      if (event.ctrlKey) event.preventDefault(); // Avoid zooming the browser window
       event.stopPropagation();
       let delta = canvas.grid.type > CONST.GRID_TYPES.SQUARE ? 30 : 15;
       let snap = event.shiftKey ? delta : 5;
-      this.data.update({direction: this.data.direction + (snap * Math.sign(event.deltaY))});
+      this.data.update({ direction: this.data.direction + (snap * Math.sign(event.deltaY)) });
       this.refresh();
     };
 

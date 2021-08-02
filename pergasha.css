@@ -1440,7 +1440,7 @@
 /*  Basic Structure                          */
 /* ----------------------------------------- */
 .pergashaFoundryvtt.sheet.actor.character {
-  min-width: 720px;
+  min-width: 750px;
   min-height: 680px;
   /* ----------------------------------------- */
   /*  Sheet Header                             */
@@ -1586,9 +1586,9 @@
   border: 1px solid #c9c7b8;
   resize: none;
 }
-.pergashaFoundryvtt.sheet.actor.character .biography {
+/* .pergashaFoundryvtt.sheet.actor.character .biography {
   max-width: calc(100% - 180px);
-}
+} */
 /* ----------------------------------------- */
 /*  Basic Structure                          */
 /* ----------------------------------------- */
@@ -1694,4 +1694,164 @@
 
 .pergashaFoundryvtt.sheet.actor .psionics-empty .item-controls {
   flex: 1;
+}
+
+.pergashaFoundryvtt.sheet.actor .window-content .tab.biography, 
+.pergashaFoundryvtt.sheet.actor .window-content .tab.journal {
+  align-items: flex-start;
+  flex-direction: row;
+  padding-right: .75rem;
+  overflow-y: scroll;
+}
+
+.pergashaFoundryvtt.sheet.actor .window-content .tab.biography, 
+.pergashaFoundryvtt.sheet.actor .window-content .tab.journal {
+  font-size: 13px;
+}
+
+.pergashaFoundryvtt.sheet.actor .window-content .tab.biography {
+  flex-wrap: wrap;
+}
+
+
+.pergashaFoundryvtt.sheet.actor .note-entries article.biography-notes .editor {
+  min-height: 271px;
+}
+
+.pergashaFoundryvtt.sheet.actor .note-entries article.journal-notes .editor {
+  min-height: 382px;
+}
+
+
+.pergashaFoundryvtt.sheet.actor .window-content .tab.biography, 
+.pergashaFoundryvtt.sheet.actor .window-content .tab.journal {
+  align-items: flex-start;
+  flex-direction: row;
+  padding-right: .75rem;
+  overflow-y: scroll;
+}
+
+.pergashaFoundryvtt.sheet.actor .window-content .tab.biography, 
+.pergashaFoundryvtt.sheet.actor .window-content .tab.journal {
+  font-size: 13px;
+}
+
+.pergashaFoundryvtt.sheet.actor .note-entries article.journal-notes .editor {
+  min-height: 382px;
+}
+
+.pergashaFoundryvtt.sheet.actor .note-entries article {
+  background: rgba(0,0,0,.05);;
+  border-radius: 5px;
+  padding: 8px;
+  margin-bottom: 1rem;
+  position: relative;
+  flex: 1;
+}
+
+.pergashaFoundryvtt.sheet.actor .note-entries article:last-child {
+  margin-bottom: 0;
+}
+
+.pergashaFoundryvtt.sheet.actor .note-entries article:hover .editor .editor-edit {
+  display: block;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.pergashaFoundryvtt.sheet.actor .note-entries article .section-titles {
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255, 255, 255, .25);
+  padding-bottom: .25rem;
+  margin-bottom: .5rem;
+}
+
+.pergashaFoundryvtt.sheet.actor .note-entries article .section-titles input {
+  height: 16px;
+  width: calc(100% - 26px);
+  font-weight: 700;
+}
+
+.pergashaFoundryvtt.sheet.actor .note-entries article .editor,
+.pergashaFoundryvtt.sheet.actor .note-entries article .editor .editor-content {
+  min-height: 50px;
+  padding: 0;
+  position: static;
+}
+
+.pergashaFoundryvtt.sheet.actor .note-entries article .editor .tox .tox-tbtn {
+  width: 24px;
+  height: 24px;
+}
+
+.pergashaFoundryvtt.sheet.actor .note-entries article .editor .tox.tox-tinymce .tox-tbtn[title="Formats"] {
+  width: 90px;
+}
+
+.pergashaFoundryvtt.sheet.actor .note-entries article .editor .tox .tox-tbtn--select {
+  width: auto;
+}
+
+.pergashaFoundryvtt.sheet.actor .note-entries article .editor .editor-content ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.pergashaFoundryvtt.sheet.actor .note-entries article .editor .editor-content,
+.pergashaFoundryvtt.sheet.actor .note-entries article .editor .tox .tox-toolbar__group {
+  padding: 0;
+}
+
+.pergashaFoundryvtt.sheet.actor .note-entries article.biography-notes .editor {
+  min-height: 271px;
+}
+
+.pergashaFoundryvtt.sheet.actor .note-entries article.journal-notes .editor {
+  min-height: 382px;
+}
+
+.pergashaFoundryvtt.sheet.actor .top-notes {
+  flex: 0 0 100%;
+  margin-bottom: 1rem;
+}
+
+.pergashaFoundryvtt.sheet.actor .top-notes .character-details {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.pergashaFoundryvtt.sheet.actor .top-notes li {
+  display: flex;
+  flex: 0 0 calc(100% / 3 - 4px);
+}
+
+.pergashaFoundryvtt.sheet.actor .top-notes li span {
+  flex: 1;
+  margin: 0 8px 0 4px;
+}
+
+.pergashaFoundryvtt.sheet.actor .top-notes li span:first-child {
+  flex: 0 0 1px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.pergashaFoundryvtt.sheet.actor .left-notes,
+.pergashaFoundryvtt.sheet.actor .right-notes {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pergashaFoundryvtt.sheet.actor .left-notes {
+  margin-right: 1rem;
+}
+
+.pergashaFoundryvtt.sheet.actor .window-content .tab.active {
+    display: flex;
 }

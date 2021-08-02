@@ -1,5 +1,5 @@
 // Import Modules
-import { DND5E } from "./module/config.js";
+import { PERGASHA } from "./module/config.js";
 import { registerSystemSettings } from "./module/settings.js";
 import { preloadHandlebarsTemplates } from "./module/templates.js";
 import { _getInitiativeFormula } from "./module/combat.js";
@@ -34,7 +34,7 @@ import * as migrations from "./module/migration.js";
 /* -------------------------------------------- */
 
 Hooks.once("init", function () {
-  console.log(`Pergasha | Initializing the Pergasha Game System\n${DND5E.ASCII}`);
+  console.log(`Pergasha | Initializing the Pergasha Game System\n${PERGASHA.ASCII}`);
 
   // Create a namespace within the game global
   game.pergashaFoundryvtt = {
@@ -53,7 +53,7 @@ Hooks.once("init", function () {
     canvas: {
       AbilityTemplate
     },
-    config: DND5E,
+    config: PERGASHA,
     dice: dice,
     entities: {
       Actor5e,
@@ -67,7 +67,7 @@ Hooks.once("init", function () {
   };
 
   // Record Configuration Values
-  CONFIG.DND5E = DND5E;
+  CONFIG.PERGASHA = PERGASHA;
   CONFIG.Actor.documentClass = Actor5e;
   CONFIG.Item.documentClass = Item5e;
   CONFIG.Token.documentClass = TokenDocument5e;
@@ -96,22 +96,22 @@ Hooks.once("init", function () {
   Actors.registerSheet("pergashaFoundryvtt", ActorSheet5eCharacter, {
     types: ["character"],
     makeDefault: true,
-    label: "DND5E.SheetClassCharacter"
+    label: "PERGASHA.SheetClassCharacter"
   });
   Actors.registerSheet("pergashaFoundryvtt", ActorSheet5eNPC, {
     types: ["npc"],
     makeDefault: true,
-    label: "DND5E.SheetClassNPC"
+    label: "PERGASHA.SheetClassNPC"
   });
   Actors.registerSheet('pergashaFoundryvtt', ActorSheet5eVehicle, {
     types: ['vehicle'],
     makeDefault: true,
-    label: "DND5E.SheetClassVehicle"
+    label: "PERGASHA.SheetClassVehicle"
   });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("pergashaFoundryvtt", ItemSheet5e, {
     makeDefault: true,
-    label: "DND5E.SheetClassItem"
+    label: "PERGASHA.SheetClassItem"
   });
 
   // Preload Handlebars Templates
@@ -146,11 +146,11 @@ Hooks.once("setup", function () {
 
   // Localize and sort CONFIG objects
   for (let o of toLocalize) {
-    const localized = Object.entries(CONFIG.DND5E[o]).map(e => {
+    const localized = Object.entries(CONFIG.PERGASHA[o]).map(e => {
       return [e[0], game.i18n.localize(e[1])];
     });
     if (!noSort.includes(o)) localized.sort((a, b) => a[1].localeCompare(b[1]));
-    CONFIG.DND5E[o] = localized.reduce((obj, e) => {
+    CONFIG.PERGASHA[o] = localized.reduce((obj, e) => {
       obj[e[0]] = e[1];
       return obj;
     }, {});
@@ -298,18 +298,18 @@ Handlebars.registerHelper('focusArray', function (data) {
 
 Handlebars.registerHelper('disciplinesArray', function (data) {
   const orderArray = `${data}Disciplines`;
-  return CONFIG.DND5E[orderArray];
+  return CONFIG.PERGASHA[orderArray];
 });
 
 Handlebars.registerHelper('displayEffects', function (effectIndex, type) {
   let effects = "";
   if (type === "exhaustion") {
     for (let index = 0; index <= effectIndex; index++) {
-      effects += `<li>${CONFIG.DND5E.exhaustionEffects[index]}</li>`;
+      effects += `<li>${CONFIG.PERGASHA.exhaustionEffects[index]}</li>`;
     }
   } else if (type === "fatigue") {
     for (let index = 1; index <= effectIndex; index++) {
-      effects += `<li>${CONFIG.DND5E.fatigueEffects[index]}</li>`;
+      effects += `<li>${CONFIG.PERGASHA.fatigueEffects[index]}</li>`;
     }
   }
   return effects;

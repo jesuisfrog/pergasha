@@ -17,7 +17,7 @@ export default class ActorSheetFlags extends DocumentSheet {
 
   /** @override */
   get title() {
-    return `${game.i18n.localize('DND5E.FlagsTitle')}: ${this.object.name}`;
+    return `${game.i18n.localize('PERGASHA.FlagsTitle')}: ${this.object.name}`;
   }
 
   /* -------------------------------------------- */
@@ -58,7 +58,7 @@ export default class ActorSheetFlags extends DocumentSheet {
   _getFlags() {
     const flags = {};
     const baseData = this.document.toJSON();
-    for (let [k, v] of Object.entries(CONFIG.DND5E.characterFlags)) {
+    for (let [k, v] of Object.entries(CONFIG.PERGASHA.characterFlags)) {
       if (!flags.hasOwnProperty(v.section)) flags[v.section] = {};
       let flag = foundry.utils.deepClone(v);
       flag.type = v.type.name;
@@ -79,23 +79,23 @@ export default class ActorSheetFlags extends DocumentSheet {
    */
   _getBonuses() {
     const bonuses = [
-      { name: "data.bonuses.mwak.attack", label: "DND5E.BonusMWAttack" },
-      { name: "data.bonuses.mwak.damage", label: "DND5E.BonusMWDamage" },
-      { name: "data.bonuses.rwak.attack", label: "DND5E.BonusRWAttack" },
-      { name: "data.bonuses.rwak.damage", label: "DND5E.BonusRWDamage" },
-      // { name: "data.bonuses.msak.attack", label: "DND5E.BonusMSAttack" },
-      // { name: "data.bonuses.msak.damage", label: "DND5E.BonusMSDamage" },
-      // { name: "data.bonuses.rsak.attack", label: "DND5E.BonusRSAttack" },
-      // { name: "data.bonuses.rsak.damage", label: "DND5E.BonusRSDamage" },
-      { name: "data.bonuses.mpak.attack", label: "DND5E.BonusMPAttack" },
-      { name: "data.bonuses.mpak.damage", label: "DND5E.BonusMPDamage" },
-      { name: "data.bonuses.rpak.attack", label: "DND5E.BonusRPAttack" },
-      { name: "data.bonuses.rpak.damage", label: "DND5E.BonusRPDamage" },
-      { name: "data.bonuses.abilities.check", label: "DND5E.BonusAbilityCheck" },
-      { name: "data.bonuses.abilities.save", label: "DND5E.BonusAbilitySave" },
-      { name: "data.bonuses.abilities.skill", label: "DND5E.BonusAbilitySkill" },
-      // { name: "data.bonuses.spell.dc", label: "DND5E.BonusSpellDC" },
-      { name: "data.bonuses.psionics.dc", label: "DND5E.BonusPsionicDC" }
+      { name: "data.bonuses.mwak.attack", label: "PERGASHA.BonusMWAttack" },
+      { name: "data.bonuses.mwak.damage", label: "PERGASHA.BonusMWDamage" },
+      { name: "data.bonuses.rwak.attack", label: "PERGASHA.BonusRWAttack" },
+      { name: "data.bonuses.rwak.damage", label: "PERGASHA.BonusRWDamage" },
+      // { name: "data.bonuses.msak.attack", label: "PERGASHA.BonusMSAttack" },
+      // { name: "data.bonuses.msak.damage", label: "PERGASHA.BonusMSDamage" },
+      // { name: "data.bonuses.rsak.attack", label: "PERGASHA.BonusRSAttack" },
+      // { name: "data.bonuses.rsak.damage", label: "PERGASHA.BonusRSDamage" },
+      { name: "data.bonuses.mpak.attack", label: "PERGASHA.BonusMPAttack" },
+      { name: "data.bonuses.mpak.damage", label: "PERGASHA.BonusMPDamage" },
+      { name: "data.bonuses.rpak.attack", label: "PERGASHA.BonusRPAttack" },
+      { name: "data.bonuses.rpak.damage", label: "PERGASHA.BonusRPDamage" },
+      { name: "data.bonuses.abilities.check", label: "PERGASHA.BonusAbilityCheck" },
+      { name: "data.bonuses.abilities.save", label: "PERGASHA.BonusAbilitySave" },
+      { name: "data.bonuses.abilities.skill", label: "PERGASHA.BonusAbilitySkill" },
+      // { name: "data.bonuses.spell.dc", label: "PERGASHA.BonusSpellDC" },
+      { name: "data.bonuses.psionics.dc", label: "PERGASHA.BonusPsionicDC" }
     ];
     for (let b of bonuses) {
       b.value = getProperty(this.object._data, b.name) || "";

@@ -1,14 +1,14 @@
 <form class="{{cssClass}}" autocomplete="off">
     <section class="form-body">
-	    <p class="notes">{{localize 'DND5E.FlagsInstructions'}}</p>
+        <p class="notes">{{localize 'PERGASHA.FlagsInstructions'}}</p>
 
-        <h3 class="form-header">{{localize "DND5E.ItemTypeClass"}}</h3>
+        <h3 class="form-header">{{localize "PERGASHA.ItemTypeClass"}}</h3>
         <div class="form-group">
-            <label>{{localize "DND5E.ClassMakeOriginal"}}</label>
+            <label>{{localize "PERGASHA.ClassMakeOriginal"}}</label>
             <select name="data.details.originalClass" data-dtype="String">
-              {{selectOptions classes selected=actor.data.data.details.originalClass}}
+                {{selectOptions classes selected=actor.data.data.details.originalClass}}
             </select>
-            <p class="notes">{{localize "DND5E.ClassMakeOriginalHint"}}</p>
+            <p class="notes">{{localize "PERGASHA.ClassMakeOriginalHint"}}</p>
         </div>
 
         {{#each flags as |fs section|}}
@@ -19,7 +19,7 @@
             <label>{{localize flag.name}}</label>
 
             {{#if flag.isCheckbox}}
-            <input type="checkbox" name="{{key}}" data-dtype="Boolean" {{checked flag.value}}/>
+            <input type="checkbox" name="{{key}}" data-dtype="Boolean" {{checked flag.value}} />
 
             {{else if flag.isSelect}}
             <select name="{{key}}" data-dtype="{{flag.type}}">
@@ -31,7 +31,8 @@
             </select>
 
             {{else}}
-            <input type="text" name="{{key}}" value="{{flag.value}}" placeholder="{{flag.placeholder}}" data-dtype="{{flag.type}}"/>
+            <input type="text" name="{{key}}" value="{{flag.value}}" placeholder="{{flag.placeholder}}"
+                data-dtype="{{flag.type}}" />
             {{/if}}
 
             <p class="notes">{{localize flag.hint}}</p>
@@ -39,19 +40,19 @@
         {{/each}}
         {{/each}}
 
-        <h3 class="form-header">{{localize "DND5E.Bonuses"}}</h3>
-        <p class="notes">{{localize "DND5E.BonusesHint"}}</p>
+        <h3 class="form-header">{{localize "PERGASHA.Bonuses"}}</h3>
+        <p class="notes">{{localize "PERGASHA.BonusesHint"}}</p>
         {{#each bonuses as |b|}}
         <div class="form-group">
             <label>{{localize b.label}}</label>
-            <input type="text" name="{{b.name}}" value="{{b.value}}"/>
+            <input type="text" name="{{b.name}}" value="{{b.value}}" />
         </div>
         {{/each}}
     </section>
 
     <footer class="form-footer">
         <button type="submit" name="submit">
-            <i class="far fa-save"></i> {{localize 'DND5E.FlagsSave'}}
+            <i class="far fa-save"></i> {{localize 'PERGASHA.FlagsSave'}}
         </button>
     </footer>
 </form>

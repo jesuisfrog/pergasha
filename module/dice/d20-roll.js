@@ -101,14 +101,14 @@ export default class D20Roll extends Roll {
 
     // Add appropriate advantage mode message flavor and dnd5e roll flags
     messageData.flavor = messageData.flavor || this.options.flavor;
-    if (this.hasAdvantage) messageData.flavor += ` (${game.i18n.localize("DND5E.Advantage")})`;
-    else if (this.hasDisadvantage) messageData.flavor += ` (${game.i18n.localize("DND5E.Disadvantage")})`;
+    if (this.hasAdvantage) messageData.flavor += ` (${game.i18n.localize("PERGASHA.Advantage")})`;
+    else if (this.hasDisadvantage) messageData.flavor += ` (${game.i18n.localize("PERGASHA.Disadvantage")})`;
 
     // Add reliable talent to the d20-term flavor text if it applied
     if (this.options.reliableTalent) {
       const d20 = this.dice[0];
       const isRT = d20.results.every(r => !r.active || (r.result < 10));
-      const label = `(${game.i18n.localize("DND5E.FlagsReliableTalent")})`;
+      const label = `(${game.i18n.localize("PERGASHA.FlagsReliableTalent")})`;
       if (isRT) d20.options.flavor = d20.options.flavor ? `${d20.options.flavor} (${label})` : label;
     }
 
@@ -142,7 +142,7 @@ export default class D20Roll extends Roll {
       rollModes: CONFIG.Dice.rollModes,
       chooseModifier,
       defaultAbility,
-      abilities: CONFIG.DND5E.abilities
+      abilities: CONFIG.PERGASHA.abilities
     });
 
     let defaultButton = "normal";
@@ -158,15 +158,15 @@ export default class D20Roll extends Roll {
         content,
         buttons: {
           advantage: {
-            label: game.i18n.localize("DND5E.Advantage"),
+            label: game.i18n.localize("PERGASHA.Advantage"),
             callback: html => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.ADVANTAGE))
           },
           normal: {
-            label: game.i18n.localize("DND5E.Normal"),
+            label: game.i18n.localize("PERGASHA.Normal"),
             callback: html => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.NORMAL))
           },
           disadvantage: {
-            label: game.i18n.localize("DND5E.Disadvantage"),
+            label: game.i18n.localize("PERGASHA.Disadvantage"),
             callback: html => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.DISADVANTAGE))
           }
         },
@@ -198,7 +198,7 @@ export default class D20Roll extends Roll {
     if (form.ability?.value) {
       const abl = this.data.abilities[form.ability.value];
       this.terms.findSplice(t => t.term === "@mod", new NumericTerm({ number: abl.mod }));
-      this.options.flavor += ` (${CONFIG.DND5E.abilities[form.ability.value]})`;
+      this.options.flavor += ` (${CONFIG.PERGASHA.abilities[form.ability.value]})`;
     }
 
     // Apply advantage or disadvantage

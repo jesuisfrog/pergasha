@@ -7,7 +7,7 @@
 
     {{#if consumeSpellSlot}}
     <div class="form-group">
-        <label>{{ localize "DND5E.SpellCastUpcast" }}</label>
+        <label>{{ localize "PERGASHA.SpellCastUpcast" }}</label>
         <div class="form-fields">
             <select name="level">
                 {{#select item.data.level}}
@@ -20,7 +20,8 @@
     </div>
 
     <div class="form-group">
-        <label class="checkbox"><input type="checkbox" name="consumeSlot" checked />{{ localize "DND5E.SpellCastConsume"
+        <label class="checkbox"><input type="checkbox" name="consumeSlot" checked />{{ localize
+            "PERGASHA.SpellCastConsume"
             }}</label>
     </div>
     {{/if}}
@@ -28,12 +29,12 @@
     {{#if consumePsiPoints}}
     {{#unless (isVariableCost item.data)}}
     <div class="form-group">
-        <label>{{ localize "DND5E.SpendPsi" }} {{ localize psiCostLabel }}</label>
+        <label>{{ localize "PERGASHA.SpendPsi" }} {{ localize psiCostLabel }}</label>
     </div>
     {{/unless}}
     {{#if (isVariableCost item.data)}}
     <div class="form-group">
-        <label>{{ localize "DND5E.SpendPsi" }}</label>
+        <label>{{ localize "PERGASHA.SpendPsi" }}</label>
         <div class="form-fields">
             <select name="psipoints">
                 {{#select item.data.psicost}}
@@ -48,11 +49,12 @@
     {{/if}}
 
     <div class="form-group">
-        <label class="checkbox"><input type="checkbox" name="consumePsi" checked />{{ localize "DND5E.PsiPointsConsume"
+        <label class="checkbox"><input type="checkbox" name="consumePsi" checked />{{ localize
+            "PERGASHA.PsiPointsConsume"
             }}</label>
     </div>
     <div class="form-group">
-        <label class="checkbox"><input type="checkbox" name="reducePsiCost" />{{ localize "DND5E.ReducePsiCost"
+        <label class="checkbox"><input type="checkbox" name="reducePsiCost" />{{ localize "PERGASHA.ReducePsiCost"
             }}</label>
     </div>
     {{/if}}
@@ -61,7 +63,8 @@
 
     {{#if consumeUses}}
     <div class="form-group">
-        <label class="checkbox"><input type="checkbox" name="consumeUse" checked />{{ localize "DND5E.AbilityUseConsume"
+        <label class="checkbox"><input type="checkbox" name="consumeUse" checked />{{ localize
+            "PERGASHA.AbilityUseConsume"
             }}</label>
     </div>
     {{/if}}
@@ -69,14 +72,14 @@
     {{#if consumeResource}}
     <div class="form-group">
         <label class="checkbox"><input type="checkbox" name="consumeResource" checked />{{ localize
-            "DND5E.ConsumeResource" }}</label>
+            "PERGASHA.ConsumeResource" }}</label>
     </div>
     {{/if}}
 
     {{#if consumeRecharge}}
     <div class="form-group">
         <label class="checkbox"><input type="checkbox" name="consumeRecharge" checked />{{ localize
-            "DND5E.ConsumeRecharge" }}</label>
+            "PERGASHA.ConsumeRecharge" }}</label>
     </div>
     {{/if}}
 
@@ -84,7 +87,7 @@
     <div class="form-group">
         <label class="checkbox">
             <input type="checkbox" name="placeTemplate" checked />
-            {{ localize "DND5E.PlaceTemplate" }}
+            {{ localize "PERGASHA.PlaceTemplate" }}
         </label>
     </div>
     {{/if}}

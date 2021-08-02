@@ -39,7 +39,7 @@ export default class AbilityUseDialog extends Dialog {
     // Prepare dialog form data
     const data = {
       item: item.data,
-      title: game.i18n.format("DND5E.AbilityUseHint", { type: game.i18n.localize(`DND5E.ItemType${item.type.capitalize()}`), name: item.name }),
+      title: game.i18n.format("PERGASHA.AbilityUseHint", { type: game.i18n.localize(`PERGASHA.ItemType${item.type.capitalize()}`), name: item.name }),
       note: this._getAbilityUseNote(item.data, uses, recharge),
       consumePsi: false,
       consumeSpellSlot: false,
@@ -58,10 +58,10 @@ export default class AbilityUseDialog extends Dialog {
 
     // Create the Dialog and return data as a Promise
     const icon = data.isSpell ? "fa-magic" : "fa-fist-raised";
-    const label = game.i18n.localize("DND5E.AbilityUse" + (data.isSpell ? "Cast" : "Use"));
+    const label = game.i18n.localize("PERGASHA.AbilityUse" + (data.isSpell ? "Cast" : "Use"));
     return new Promise((resolve) => {
       const dlg = new this(item, {
-        title: `${item.name}: ${game.i18n.localize("DND5E.AbilityUseConfig")}`,
+        title: `${item.name}: ${game.i18n.localize("PERGASHA.AbilityUseConfig")}`,
         content: html,
         buttons: {
           use: {
@@ -92,7 +92,7 @@ export default class AbilityUseDialog extends Dialog {
 
     // Determine whether the spell may be up-cast
     const lvl = itemData.level;
-    const consumeSpellSlot = (lvl > 0) && CONFIG.DND5E.spellUpcastModes.includes(itemData.preparation.mode);
+    const consumeSpellSlot = (lvl > 0) && CONFIG.PERGASHA.spellUpcastModes.includes(itemData.preparation.mode);
 
     // If can't upcast, return early and don't bother calculating available spell slots
     if (!consumeSpellSlot) {
@@ -104,14 +104,14 @@ export default class AbilityUseDialog extends Dialog {
     let lmax = 0;
     const spellLevels = Array.fromRange(10).reduce((arr, i) => {
       if (i < lvl) return arr;
-      const label = CONFIG.DND5E.spellLevels[i];
+      const label = CONFIG.PERGASHA.spellLevels[i];
       const l = actorData.spells["spell" + i] || { max: 0, override: null };
       let max = parseInt(l.override || l.max || 0);
       let slots = Math.clamped(parseInt(l.value || 0), 0, max);
       if (max > 0) lmax = i;
       arr.push({
         level: i,
-        label: i > 0 ? game.i18n.format('DND5E.SpellLevelSlot', { level: label, n: slots }) : label,
+        label: i > 0 ? game.i18n.format('PERGASHA.SpellLevelSlot', { level: label, n: slots }) : label,
         canCast: max > 0,
         hasSlots: slots > 0
       });
@@ -123,14 +123,14 @@ export default class AbilityUseDialog extends Dialog {
     if (pact.level >= lvl) {
       spellLevels.push({
         level: 'pact',
-        label: `${game.i18n.format('DND5E.SpellLevelPact', { level: pact.level, n: pact.value })}`,
+        label: `${game.i18n.format('PERGASHA.SpellLevelPact', { level: pact.level, n: pact.value })}`,
         canCast: true,
         hasSlots: pact.value > 0
       });
     }
     const canCast = spellLevels.some(l => l.hasSlots);
-    if (!canCast) data.errors.push(game.i18n.format("DND5E.SpellCastNoSlots", {
-      level: CONFIG.DND5E.spellLevels[lvl],
+    if (!canCast) data.errors.push(game.i18n.format("PERGASHA.SpellCastNoSlots", {
+      level: CONFIG.PERGASHA.spellLevels[lvl],
       name: data.item.name
     }));
 
@@ -151,7 +151,7 @@ export default class AbilityUseDialog extends Dialog {
       mergeObject(data, { isPsionicPower: true, consumePsiPoints });
       return;
     } else if (consumePsiPoints && itemData.psicost != 8) {
-      mergeObject(data, { isPsionicPower: true, consumePsiPoints, psiCostLabel: CONFIG.DND5E.psionicPowerCosts[itemData.psicost] });
+      mergeObject(data, { isPsionicPower: true, consumePsiPoints, psiCostLabel: CONFIG.PERGASHA.psionicPowerCosts[itemData.psicost] });
       return;
     } else if (itemData.psicost == 8) { // Determine whether the power is of variable cost
       const baseCost = parseInt(itemData.variableCost.baseCost);
@@ -167,7 +167,7 @@ export default class AbilityUseDialog extends Dialog {
       const psiPointsRange = Array.fromRange((maxCost - baseCost) + 1).reduce((arr, i) => {
         const currentCost = baseCost + i;
         if (currentCost > maxCost) return arr;
-        const label = CONFIG.DND5E.psionicPowerCosts[currentCost];
+        const label = CONFIG.PERGASHA.psionicPowerCosts[currentCost];
 
         arr.push({
           psicost: currentCost,
@@ -198,12 +198,12 @@ export default class AbilityUseDialog extends Dialog {
 
     // Zero quantity
     const quantity = item.data.quantity;
-    if (quantity <= 0) return game.i18n.localize("DND5E.AbilityUseUnavailableHint");
+    if (quantity <= 0) return game.i18n.localize("PERGASHA.AbilityUseUnavailableHint");
 
     // Abilities which use Recharge
     if (!!recharge.value) {
-      return game.i18n.format(recharge.charged ? "DND5E.AbilityUseChargedHint" : "DND5E.AbilityUseRechargeHint", {
-        type: game.i18n.localize(`DND5E.ItemType${item.type.capitalize()}`),
+      return game.i18n.format(recharge.charged ? "PERGASHA.AbilityUseChargedHint" : "PERGASHA.AbilityUseRechargeHint", {
+        type: game.i18n.localize(`PERGASHA.ItemType${item.type.capitalize()}`),
       })
     }
 
@@ -212,26 +212,26 @@ export default class AbilityUseDialog extends Dialog {
 
     // Consumables
     if (item.type === "consumable") {
-      let str = "DND5E.AbilityUseNormalHint";
-      if (uses.value > 1) str = "DND5E.AbilityUseConsumableChargeHint";
-      else if (item.data.quantity === 1 && uses.autoDestroy) str = "DND5E.AbilityUseConsumableDestroyHint";
-      else if (item.data.quantity > 1) str = "DND5E.AbilityUseConsumableQuantityHint";
+      let str = "PERGASHA.AbilityUseNormalHint";
+      if (uses.value > 1) str = "PERGASHA.AbilityUseConsumableChargeHint";
+      else if (item.data.quantity === 1 && uses.autoDestroy) str = "PERGASHA.AbilityUseConsumableDestroyHint";
+      else if (item.data.quantity > 1) str = "PERGASHA.AbilityUseConsumableQuantityHint";
       return game.i18n.format(str, {
-        type: game.i18n.localize(`DND5E.Consumable${item.data.consumableType.capitalize()}`),
+        type: game.i18n.localize(`PERGASHA.Consumable${item.data.consumableType.capitalize()}`),
         value: uses.value,
         quantity: item.data.quantity,
         max: uses.max,
-        per: CONFIG.DND5E.limitedUsePeriods[uses.per]
+        per: CONFIG.PERGASHA.limitedUsePeriods[uses.per]
       });
     }
 
     // Other Items
     else {
-      return game.i18n.format("DND5E.AbilityUseNormalHint", {
-        type: game.i18n.localize(`DND5E.ItemType${item.type.capitalize()}`),
+      return game.i18n.format("PERGASHA.AbilityUseNormalHint", {
+        type: game.i18n.localize(`PERGASHA.ItemType${item.type.capitalize()}`),
         value: uses.value,
         max: uses.max,
-        per: CONFIG.DND5E.limitedUsePeriods[uses.per]
+        per: CONFIG.PERGASHA.limitedUsePeriods[uses.per]
       });
     }
   }

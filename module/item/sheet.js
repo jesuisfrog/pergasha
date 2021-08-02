@@ -45,7 +45,7 @@ export default class ItemSheet5e extends ItemSheet {
     const data = super.getData(options);
     const itemData = data.data;
     data.labels = this.item.labels;
-    data.config = CONFIG.DND5E;
+    data.config = CONFIG.PERGASHA;
 
     // Item Type, Status, and Details
     data.itemType = game.i18n.localize(`ITEM.Type${data.item.type.titleCase()}`);
@@ -132,14 +132,14 @@ export default class ItemSheet5e extends ItemSheet {
         const uses = i.data.data.uses || {};
         if (uses.per && uses.max) {
           const label = uses.per === "charges" ?
-            ` (${game.i18n.format("DND5E.AbilityUseChargesLabel", { value: uses.value })})` :
-            ` (${game.i18n.format("DND5E.AbilityUseConsumableLabel", { max: uses.max, per: uses.per })})`;
+            ` (${game.i18n.format("PERGASHA.AbilityUseChargesLabel", { value: uses.value })})` :
+            ` (${game.i18n.format("PERGASHA.AbilityUseConsumableLabel", { max: uses.max, per: uses.per })})`;
           obj[i.id] = i.name + label;
         }
 
         // Recharging items
         const recharge = i.data.data.recharge || {};
-        if (recharge.value) obj[i.id] = `${i.name} (${game.i18n.format("DND5E.Recharge")})`;
+        if (recharge.value) obj[i.id] = `${i.name} (${game.i18n.format("PERGASHA.Recharge")})`;
         return obj;
       }, {})
     }
@@ -155,13 +155,13 @@ export default class ItemSheet5e extends ItemSheet {
    */
   _getItemStatus(item) {
     if (item.type === "spell") {
-      return CONFIG.DND5E.spellPreparationModes[item.data.preparation];
+      return CONFIG.PERGASHA.spellPreparationModes[item.data.preparation];
     }
     else if (["weapon", "equipment"].includes(item.type)) {
-      return game.i18n.localize(item.data.equipped ? "DND5E.Equipped" : "DND5E.Unequipped");
+      return game.i18n.localize(item.data.equipped ? "PERGASHA.Equipped" : "PERGASHA.Unequipped");
     }
     else if (item.type === "tool") {
-      return game.i18n.localize(item.data.proficient ? "DND5E.Proficient" : "DND5E.NotProficient");
+      return game.i18n.localize(item.data.proficient ? "PERGASHA.Proficient" : "PERGASHA.NotProficient");
     }
   }
 
@@ -179,26 +179,26 @@ export default class ItemSheet5e extends ItemSheet {
     if (item.type === "weapon") {
       props.push(...Object.entries(item.data.properties)
         .filter(e => e[1] === true)
-        .map(e => CONFIG.DND5E.weaponProperties[e[0]]));
+        .map(e => CONFIG.PERGASHA.weaponProperties[e[0]]));
     }
 
     else if (item.type === "spell") {
       props.push(
         labels.components,
         labels.materials,
-        item.data.components.concentration ? game.i18n.localize("DND5E.Concentration") : null,
-        item.data.components.ritual ? game.i18n.localize("DND5E.Ritual") : null
+        item.data.components.concentration ? game.i18n.localize("PERGASHA.Concentration") : null,
+        item.data.components.ritual ? game.i18n.localize("PERGASHA.Ritual") : null
       )
     }
 
     else if (item.type === "psionicPower") {
       props.push(
-        item.data.concentration ? game.i18n.localize("DND5E.Concentration") : null
+        item.data.concentration ? game.i18n.localize("PERGASHA.Concentration") : null
       )
     }
 
     else if (item.type === "equipment") {
-      props.push(CONFIG.DND5E.equipmentTypes[item.data.armor.type]);
+      props.push(CONFIG.PERGASHA.equipmentTypes[item.data.armor.type]);
       props.push(labels.armor);
     }
 
@@ -208,7 +208,7 @@ export default class ItemSheet5e extends ItemSheet {
 
     // Action type
     if (item.data.actionType) {
-      props.push(CONFIG.DND5E.itemActionTypes[item.data.actionType]);
+      props.push(CONFIG.PERGASHA.itemActionTypes[item.data.actionType]);
     }
 
     // Action usage
@@ -332,13 +332,13 @@ export default class ItemSheet5e extends ItemSheet {
     };
     switch (a.dataset.options) {
       case 'saves':
-        options.choices = CONFIG.DND5E.abilities;
+        options.choices = CONFIG.PERGASHA.abilities;
         options.valueKey = null;
         break;
       case 'skills':
         const skills = this.item.data.data.skills;
-        const choiceSet = skills.choices && skills.choices.length ? skills.choices : Object.keys(CONFIG.DND5E.skills);
-        options.choices = Object.fromEntries(Object.entries(CONFIG.DND5E.skills).filter(skill => choiceSet.includes(skill[0])));
+        const choiceSet = skills.choices && skills.choices.length ? skills.choices : Object.keys(CONFIG.PERGASHA.skills);
+        options.choices = Object.fromEntries(Object.entries(CONFIG.PERGASHA.skills).filter(skill => choiceSet.includes(skill[0])));
         options.maximum = skills.number;
         break;
     }

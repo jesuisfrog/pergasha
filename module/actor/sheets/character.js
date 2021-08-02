@@ -37,7 +37,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     sheetData["resources"] = ["primary", "secondary", "tertiary"].reduce((arr, r) => {
       const res = sheetData.data.resources[r] || {};
       res.name = r;
-      res.placeholder = game.i18n.localize("DND5E.Resource" + r.titleCase());
+      res.placeholder = game.i18n.localize("PERGASHA.Resource" + r.titleCase());
       if (res && res.value === 0) delete res.value;
       if (res && res.max === 0) delete res.max;
       return arr.concat([res]);
@@ -64,12 +64,12 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
     // Categorize items as inventory, spellbook, features, and classes
     const inventory = {
-      weapon: { label: "DND5E.ItemTypeWeaponPl", items: [], dataset: { type: "weapon" } },
-      equipment: { label: "DND5E.ItemTypeEquipmentPl", items: [], dataset: { type: "equipment" } },
-      consumable: { label: "DND5E.ItemTypeConsumablePl", items: [], dataset: { type: "consumable" } },
-      tool: { label: "DND5E.ItemTypeToolPl", items: [], dataset: { type: "tool" } },
-      backpack: { label: "DND5E.ItemTypeContainerPl", items: [], dataset: { type: "backpack" } },
-      loot: { label: "DND5E.ItemTypeLootPl", items: [], dataset: { type: "loot" } }
+      weapon: { label: "PERGASHA.ItemTypeWeaponPl", items: [], dataset: { type: "weapon" } },
+      equipment: { label: "PERGASHA.ItemTypeEquipmentPl", items: [], dataset: { type: "equipment" } },
+      consumable: { label: "PERGASHA.ItemTypeConsumablePl", items: [], dataset: { type: "consumable" } },
+      tool: { label: "PERGASHA.ItemTypeToolPl", items: [], dataset: { type: "tool" } },
+      backpack: { label: "PERGASHA.ItemTypeContainerPl", items: [], dataset: { type: "backpack" } },
+      loot: { label: "PERGASHA.ItemTypeLootPl", items: [], dataset: { type: "loot" } }
     };
 
     // Partition items by category
@@ -78,15 +78,15 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       item.img = item.img || CONST.DEFAULT_TOKEN;
       item.isStack = Number.isNumeric(item.data.quantity) && (item.data.quantity !== 1);
       item.attunement = {
-        [CONFIG.DND5E.attunementTypes.REQUIRED]: {
+        [CONFIG.PERGASHA.attunementTypes.REQUIRED]: {
           icon: "fa-sun",
           cls: "not-attuned",
-          title: "DND5E.AttunementRequired"
+          title: "PERGASHA.AttunementRequired"
         },
-        [CONFIG.DND5E.attunementTypes.ATTUNED]: {
+        [CONFIG.PERGASHA.attunementTypes.ATTUNED]: {
           icon: "fa-sun",
           cls: "attuned",
-          title: "DND5E.AttunementAttuned"
+          title: "PERGASHA.AttunementAttuned"
         }
       }[item.data.attunement];
 
@@ -134,9 +134,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
     // Organize Features
     const features = {
-      classes: { label: "DND5E.ItemTypeClassPl", items: [], hasActions: false, dataset: { type: "class" }, isClass: true },
-      active: { label: "DND5E.FeatureActive", items: [], hasActions: true, dataset: { type: "feat", "activation.type": "action" } },
-      passive: { label: "DND5E.FeaturePassive", items: [], hasActions: false, dataset: { type: "feat" } }
+      classes: { label: "PERGASHA.ItemTypeClassPl", items: [], hasActions: false, dataset: { type: "class" }, isClass: true },
+      active: { label: "PERGASHA.FeatureActive", items: [], hasActions: true, dataset: { type: "feat", "activation.type": "action" } },
+      passive: { label: "PERGASHA.FeaturePassive", items: [], hasActions: false, dataset: { type: "feat" } }
     };
     for (let f of feats) {
       if (f.data.activation.type) features.active.items.push(f);
@@ -166,16 +166,16 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       const isPrepared = getProperty(item.data, "preparation.prepared");
       item.toggleClass = isPrepared ? "active" : "";
       if (isAlways) item.toggleClass = "fixed";
-      if (isAlways) item.toggleTitle = CONFIG.DND5E.spellPreparationModes.always;
-      else if (isPrepared) item.toggleTitle = CONFIG.DND5E.spellPreparationModes.prepared;
-      else item.toggleTitle = game.i18n.localize("DND5E.SpellUnprepared");
+      if (isAlways) item.toggleTitle = CONFIG.PERGASHA.spellPreparationModes.always;
+      else if (isPrepared) item.toggleTitle = CONFIG.PERGASHA.spellPreparationModes.prepared;
+      else item.toggleTitle = game.i18n.localize("PERGASHA.SpellUnprepared");
     }
     else {
       const isActive = getProperty(item.data, "equipped");
       const isInQuickdraw = getProperty(item.data, "quickdraw");
       item.toggleQuickdraw = isInQuickdraw ? "active" : "";
       item.toggleClass = isActive ? "active" : "";
-      item.toggleTitle = game.i18n.localize(isActive ? "DND5E.Equipped" : "DND5E.Unequipped");
+      item.toggleTitle = game.i18n.localize(isActive ? "PERGASHA.Equipped" : "PERGASHA.Unequipped");
     }
   }
 
@@ -215,8 +215,8 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     switch (button.dataset.action) {
       case "convertCurrency":
         return Dialog.confirm({
-          title: `${game.i18n.localize("DND5E.CurrencyConvert")}`,
-          content: `<p>${game.i18n.localize("DND5E.CurrencyConvertHint")}</p>`,
+          title: `${game.i18n.localize("PERGASHA.CurrencyConvert")}`,
+          content: `<p>${game.i18n.localize("PERGASHA.CurrencyConvertHint")}</p>`,
           yes: () => this.actor.convertCurrency()
         });
       case "rollDeathSave":

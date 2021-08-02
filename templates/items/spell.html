@@ -6,7 +6,8 @@
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'DND5E.SpellName' }}" />
+                <input name="name" type="text" value="{{item.name}}"
+                    placeholder="{{ localize 'PERGASHA.SpellName' }}" />
             </h1>
 
             <div class="item-subtitle">
@@ -23,7 +24,7 @@
                 </li>
                 <li>
                     <input type="text" name="data.source" value="{{data.source}}"
-                        placeholder="{{ localize 'DND5E.Source' }}" />
+                        placeholder="{{ localize 'PERGASHA.Source' }}" />
                 </li>
             </ul>
         </div>
@@ -31,9 +32,9 @@
 
     {{!-- Item Sheet Navigation --}}
     <nav class="sheet-navigation tabs" data-group="primary">
-        <a class="item active" data-tab="description">{{ localize "DND5E.Description" }}</a>
-        <a class="item" data-tab="details">{{ localize "DND5E.Details" }}</a>
-        <a class="item" data-tab="effects">{{ localize "DND5E.Effects" }}</a>
+        <a class="item active" data-tab="description">{{ localize "PERGASHA.Description" }}</a>
+        <a class="item" data-tab="details">{{ localize "PERGASHA.Details" }}</a>
+        <a class="item" data-tab="effects">{{ localize "PERGASHA.Effects" }}</a>
     </nav>
 
     {{!-- Item Sheet Body --}}
@@ -44,11 +45,11 @@
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
-            <h3 class="form-header">{{ localize "DND5E.SpellDetails" }}</h3>
+            <h3 class="form-header">{{ localize "PERGASHA.SpellDetails" }}</h3>
 
             {{!-- Spell Level --}}
             <div class="form-group">
-                <label>{{ localize "DND5E.SpellLevel" }}</label>
+                <label>{{ localize "PERGASHA.SpellLevel" }}</label>
                 <select name="data.level" data-dtype="Number">
                     {{#select data.level}}
                     {{#each config.spellLevels as |name lvl|}}
@@ -60,7 +61,7 @@
 
             {{!-- Spell School --}}
             <div class="form-group">
-                <label>{{ localize "DND5E.SpellSchool" }}</label>
+                <label>{{ localize "PERGASHA.SpellSchool" }}</label>
                 <select name="data.school">
                     {{#select data.school}}
                     {{#each config.spellSchools as |name sch|}}
@@ -72,42 +73,42 @@
 
             {{!-- Spell Components --}}
             <div class="spell-components form-group stacked">
-                <label>{{ localize "DND5E.SpellComponents" }}</label>
+                <label>{{ localize "PERGASHA.SpellComponents" }}</label>
                 <label class="checkbox">
                     <input type="checkbox" name="data.components.vocal" {{checked data.components.vocal}} /> {{ localize
-                    "DND5E.ComponentVerbal" }}
+                    "PERGASHA.ComponentVerbal" }}
                 </label>
                 <label class="checkbox">
                     <input type="checkbox" name="data.components.somatic" {{checked data.components.somatic}} /> {{
-                    localize "DND5E.ComponentSomatic" }}
+                    localize "PERGASHA.ComponentSomatic" }}
                 </label>
                 <label class="checkbox">
                     <input type="checkbox" name="data.components.material" {{checked data.components.material}} /> {{
-                    localize "DND5E.ComponentMaterial" }}
+                    localize "PERGASHA.ComponentMaterial" }}
                 </label>
                 <label class="checkbox">
                     <input type="checkbox" name="data.components.concentration" {{checked
-                        data.components.concentration}} /> {{ localize "DND5E.Concentration" }}
+                        data.components.concentration}} /> {{ localize "PERGASHA.Concentration" }}
                 </label>
                 <label class="checkbox">
                     <input type="checkbox" name="data.components.ritual" {{checked data.components.ritual}} /> {{
-                    localize "DND5E.Ritual" }}
+                    localize "PERGASHA.Ritual" }}
                 </label>
             </div>
 
             {{!-- Material Components --}}
             <div class="form-group stacked">
-                <label>{{ localize "DND5E.SpellMaterials" }}</label>
+                <label>{{ localize "PERGASHA.SpellMaterials" }}</label>
                 <input class="materials" type="text" name="data.materials.value" value="{{data.materials.value}}" />
                 {{#if data.materials.value}}
                 <div class="spell-materials flexrow">
-                    <label>{{ localize "DND5E.Supply" }}</label>
+                    <label>{{ localize "PERGASHA.Supply" }}</label>
                     <input type="text" name="data.materials.supply" value="{{data.materials.supply}}"
                         data-dtype="Number" Placeholder="0" />
-                    <label>{{ localize "DND5E.CostGP" }}</label>
+                    <label>{{ localize "PERGASHA.CostGP" }}</label>
                     <input type="text" name="data.materials.cost" value="{{data.materials.cost}}" data-dtype="Number"
                         Placeholder="-" />
-                    <label>{{ localize "DND5E.Consumed" }}</label>
+                    <label>{{ localize "PERGASHA.Consumed" }}</label>
                     <input type="checkbox" name="data.materials.consumed" {{checked data.materials.consumed}} />
                 </div>
                 {{/if}}
@@ -115,10 +116,10 @@
 
             {{!-- Preparation Mode --}}
             <div class="form-group input-select">
-                <label>{{ localize "DND5E.SpellPreparationMode" }}</label>
+                <label>{{ localize "PERGASHA.SpellPreparationMode" }}</label>
                 <div class="form-fields">
                     <label class="checkbox prepared">
-                        {{ localize "DND5E.SpellPrepared" }} <input type="checkbox" name="data.preparation.prepared"
+                        {{ localize "PERGASHA.SpellPrepared" }} <input type="checkbox" name="data.preparation.prepared"
                             {{checked data.preparation.prepared}} />
                     </label>
                     <select name="data.preparation.mode">
@@ -127,19 +128,19 @@
                 </div>
             </div>
 
-            <h3 class="form-header">{{ localize "DND5E.SpellCastingHeader" }}</h3>
+            <h3 class="form-header">{{ localize "PERGASHA.SpellCastingHeader" }}</h3>
 
             {{!-- Item Activation Template --}}
             {{> "systems/pergashaFoundryvtt/templates/items/parts/item-activation.html"}}
 
-            <h3 class="form-header">{{ localize "DND5E.SpellEffects" }}</h3>
+            <h3 class="form-header">{{ localize "PERGASHA.SpellEffects" }}</h3>
 
             {{!-- Item Action Template --}}
             {{> "systems/pergashaFoundryvtt/templates/items/parts/item-action.html"}}
 
             {{!-- Spell Level Scaling --}}
             <div class="form-group">
-                <label>{{ localize "DND5E.LevelScaling" }}</label>
+                <label>{{ localize "PERGASHA.LevelScaling" }}</label>
                 <div class="form-fields">
                     <select name="data.scaling.mode">
                         {{#select data.scaling.mode}}
@@ -149,7 +150,7 @@
                         {{/select}}
                     </select>
                     <input type="text" name="data.scaling.formula" value="{{data.scaling.formula}}"
-                        placeholder="{{ localize 'DND5E.ScalingFormula' }}" />
+                        placeholder="{{ localize 'PERGASHA.ScalingFormula' }}" />
                 </div>
             </div>
         </div>

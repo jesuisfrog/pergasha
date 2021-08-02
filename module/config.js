@@ -1,10 +1,10 @@
 import { ClassFeatures } from "./classFeatures.js"
 
 // Namespace Configuration Values
-export const DND5E = {};
+export const PERGASHA = {};
 
 // ASCII Artwork
-DND5E.ASCII = `_______________________________
+PERGASHA.ASCII = `_______________________________
 ______      ______ _____ _____
 |  _  \\___  |  _  \\  ___|  ___|
 | | | ( _ ) | | | |___ \\| |__
@@ -18,22 +18,22 @@ _______________________________`;
  * The set of Ability Scores used within the system
  * @type {Object}
  */
-DND5E.abilities = {
-  "str": "DND5E.AbilityStr",
-  "dex": "DND5E.AbilityDex",
-  "con": "DND5E.AbilityCon",
-  "int": "DND5E.AbilityInt",
-  "wis": "DND5E.AbilityWis",
-  "cha": "DND5E.AbilityCha"
+PERGASHA.abilities = {
+  "str": "PERGASHA.AbilityStr",
+  "dex": "PERGASHA.AbilityDex",
+  "con": "PERGASHA.AbilityCon",
+  "int": "PERGASHA.AbilityInt",
+  "wis": "PERGASHA.AbilityWis",
+  "cha": "PERGASHA.AbilityCha"
 };
 
-DND5E.abilityAbbreviations = {
-  "str": "DND5E.AbilityStrAbbr",
-  "dex": "DND5E.AbilityDexAbbr",
-  "con": "DND5E.AbilityConAbbr",
-  "int": "DND5E.AbilityIntAbbr",
-  "wis": "DND5E.AbilityWisAbbr",
-  "cha": "DND5E.AbilityChaAbbr"
+PERGASHA.abilityAbbreviations = {
+  "str": "PERGASHA.AbilityStrAbbr",
+  "dex": "PERGASHA.AbilityDexAbbr",
+  "con": "PERGASHA.AbilityConAbbr",
+  "int": "PERGASHA.AbilityIntAbbr",
+  "wis": "PERGASHA.AbilityWisAbbr",
+  "cha": "PERGASHA.AbilityChaAbbr"
 };
 
 /* -------------------------------------------- */
@@ -42,16 +42,16 @@ DND5E.abilityAbbreviations = {
  * Character alignment options
  * @type {Object}
  */
-DND5E.alignments = {
-  'lg': "DND5E.AlignmentLG",
-  'ng': "DND5E.AlignmentNG",
-  'cg': "DND5E.AlignmentCG",
-  'ln': "DND5E.AlignmentLN",
-  'tn': "DND5E.AlignmentTN",
-  'cn': "DND5E.AlignmentCN",
-  'le': "DND5E.AlignmentLE",
-  'ne': "DND5E.AlignmentNE",
-  'ce': "DND5E.AlignmentCE"
+PERGASHA.alignments = {
+  'lg': "PERGASHA.AlignmentLG",
+  'ng': "PERGASHA.AlignmentNG",
+  'cg': "PERGASHA.AlignmentCG",
+  'ln': "PERGASHA.AlignmentLN",
+  'tn': "PERGASHA.AlignmentTN",
+  'cn': "PERGASHA.AlignmentCN",
+  'le': "PERGASHA.AlignmentLE",
+  'ne': "PERGASHA.AlignmentNE",
+  'ce': "PERGASHA.AlignmentCE"
 };
 
 /* -------------------------------------------- */
@@ -60,7 +60,7 @@ DND5E.alignments = {
  * An enumeration of item attunement types
  * @enum {number}
  */
-DND5E.attunementTypes = {
+PERGASHA.attunementTypes = {
   NONE: 0,
   REQUIRED: 1,
   ATTUNED: 2,
@@ -70,18 +70,18 @@ DND5E.attunementTypes = {
  * An enumeration of item attunement states
  * @type {{"0": string, "1": string, "2": string}}
  */
-DND5E.attunements = {
-  0: "DND5E.AttunementNone",
-  1: "DND5E.AttunementRequired",
-  2: "DND5E.AttunementAttuned"
+PERGASHA.attunements = {
+  0: "PERGASHA.AttunementNone",
+  1: "PERGASHA.AttunementRequired",
+  2: "PERGASHA.AttunementAttuned"
 };
 
 /* -------------------------------------------- */
 
 
-DND5E.weaponProficiencies = {
-  "sim": "DND5E.WeaponSimpleProficiency",
-  "mar": "DND5E.WeaponMartialProficiency"
+PERGASHA.weaponProficiencies = {
+  "sim": "PERGASHA.WeaponSimpleProficiency",
+  "mar": "PERGASHA.WeaponMartialProficiency"
 };
 
 /**
@@ -89,7 +89,7 @@ DND5E.weaponProficiencies = {
  * Used when a new player owned item is created
  * @type {Object}
  */
-DND5E.weaponProficienciesMap = {
+PERGASHA.weaponProficienciesMap = {
   "natural": true,
   "simpleM": "sim",
   "simpleR": "sim",
@@ -103,7 +103,7 @@ DND5E.weaponProficienciesMap = {
  *
  * @enum {string}
  */
-DND5E.weaponIds = {
+PERGASHA.weaponIds = {
   "battleaxe": "I0WocDSuNpGJayPb",
   "blowgun": "wNWK6yJMHG9ANqQV",
   "club": "nfIRTECQIG81CvM4",
@@ -145,20 +145,50 @@ DND5E.weaponIds = {
 
 /* -------------------------------------------- */
 
+// Artist's Supplies
+// Brewer's Supplies
+// Builder's Tools
+// Cook's Utensils
+// Harvester's Tools
+// Herbalism Kit
+// Jeweler's Tools
+// Leatherworker's Tools
+// Musical Instrument
+// Poisoner's Kit
+// Smith's Tools
+// Thieves' Tools
+// Tinker's Tools
 
-
-DND5E.toolProficiencies = {
-  "art": "DND5E.ToolArtisans",
-  "disg": "DND5E.ToolDisguiseKit",
-  "forg": "DND5E.ToolForgeryKit",
-  "game": "DND5E.ToolGamingSet",
-  "herb": "DND5E.ToolHerbalismKit",
-  "music": "DND5E.ToolMusicalInstrument",
-  "navg": "DND5E.ToolNavigators",
-  "pois": "DND5E.ToolPoisonersKit",
-  "thief": "DND5E.ToolThieves",
-  "vehicle": "DND5E.ToolVehicle"
+PERGASHA.toolProficiencies = {
+  "art": "PERGASHA.ToolArtist",
+  "brew": "PERGASHA.ToolBrewer",
+  "build": "PERGASHA.ToolBuilder",
+  "cook": "PERGASHA.ToolCook",
+  "harvest": "PERGASHA.ToolHarvester",
+  "herb": "PERGASHA.ToolHerbalismKit",
+  "jewel": "PERGASHA.ToolJeweler",
+  "leather": "PERGASHA.ToolLeather",
+  "music": "PERGASHA.ToolMusicalInstrument",
+  "pois": "PERGASHA.ToolPoisonersKit",
+  "smith": "PERGASHA.ToolSmith",
+  "thief": "PERGASHA.ToolThieves",
+  "tinker": "PERGASHA.ToolTinker"
 };
+
+
+
+// PERGASHA.toolProficiencies = {
+//   "art": "PERGASHA.ToolArtisans",
+//   "disg": "PERGASHA.ToolDisguiseKit",
+//   "forg": "PERGASHA.ToolForgeryKit",
+//   "game": "PERGASHA.ToolGamingSet",
+//   "herb": "PERGASHA.ToolHerbalismKit",
+//   "music": "PERGASHA.ToolMusicalInstrument",
+//   "navg": "PERGASHA.ToolNavigators",
+//   "pois": "PERGASHA.ToolPoisonersKit",
+//   "thief": "PERGASHA.ToolThieves",
+//   "vehicle": "PERGASHA.ToolVehicle"
+// };
 
 /**
  * The basic tool types in 5e. This enables specific tool proficiencies or
@@ -166,7 +196,7 @@ DND5E.toolProficiencies = {
  *
  * @enum {string}
  */
-DND5E.toolIds = {
+PERGASHA.toolIds = {
   "alchemist": "SztwZhbhZeCqyAes",
   "bagpipes": "yxHi57T5mmVt0oDr",
   "brewer": "Y9S75go1hLMXUD48",
@@ -211,17 +241,17 @@ DND5E.toolIds = {
  * This Object defines the various lengths of time which can occur
  * @type {Object}
  */
-DND5E.timePeriods = {
-  "inst": "DND5E.TimeInst",
-  "turn": "DND5E.TimeTurn",
-  "round": "DND5E.TimeRound",
-  "minute": "DND5E.TimeMinute",
-  "hour": "DND5E.TimeHour",
-  "day": "DND5E.TimeDay",
-  "month": "DND5E.TimeMonth",
-  "year": "DND5E.TimeYear",
-  "perm": "DND5E.TimePerm",
-  "spec": "DND5E.Special"
+PERGASHA.timePeriods = {
+  "inst": "PERGASHA.TimeInst",
+  "turn": "PERGASHA.TimeTurn",
+  "round": "PERGASHA.TimeRound",
+  "minute": "PERGASHA.TimeMinute",
+  "hour": "PERGASHA.TimeHour",
+  "day": "PERGASHA.TimeDay",
+  "month": "PERGASHA.TimeMonth",
+  "year": "PERGASHA.TimeYear",
+  "perm": "PERGASHA.TimePerm",
+  "spec": "PERGASHA.Special"
 };
 
 
@@ -231,44 +261,44 @@ DND5E.timePeriods = {
  * This describes the ways that an ability can be activated
  * @type {Object}
  */
-DND5E.abilityActivationTypes = {
-  "none": "DND5E.None",
-  "action": "DND5E.Action",
-  "bonus": "DND5E.BonusAction",
-  "reaction": "DND5E.Reaction",
-  "minute": DND5E.timePeriods.minute,
-  "hour": DND5E.timePeriods.hour,
-  "day": DND5E.timePeriods.day,
-  "special": DND5E.timePeriods.spec,
-  "legendary": "DND5E.LegendaryActionLabel",
-  "lair": "DND5E.LairActionLabel",
-  "crew": "DND5E.VehicleCrewAction"
+PERGASHA.abilityActivationTypes = {
+  "none": "PERGASHA.None",
+  "action": "PERGASHA.Action",
+  "bonus": "PERGASHA.BonusAction",
+  "reaction": "PERGASHA.Reaction",
+  "minute": PERGASHA.timePeriods.minute,
+  "hour": PERGASHA.timePeriods.hour,
+  "day": PERGASHA.timePeriods.day,
+  "special": PERGASHA.timePeriods.spec,
+  "legendary": "PERGASHA.LegendaryActionLabel",
+  "lair": "PERGASHA.LairActionLabel",
+  "crew": "PERGASHA.VehicleCrewAction"
 };
 
 /* -------------------------------------------- */
 
 
-DND5E.abilityConsumptionTypes = {
-  "ammo": "DND5E.ConsumeAmmunition",
-  "attribute": "DND5E.ConsumeAttribute",
-  "material": "DND5E.ConsumeMaterial",
-  "charges": "DND5E.ConsumeCharges"
+PERGASHA.abilityConsumptionTypes = {
+  "ammo": "PERGASHA.ConsumeAmmunition",
+  "attribute": "PERGASHA.ConsumeAttribute",
+  "material": "PERGASHA.ConsumeMaterial",
+  "charges": "PERGASHA.ConsumeCharges"
 };
 
 
 /* -------------------------------------------- */
 
 // Creature Sizes
-DND5E.actorSizes = {
-  "tiny": "DND5E.SizeTiny",
-  "sm": "DND5E.SizeSmall",
-  "med": "DND5E.SizeMedium",
-  "lg": "DND5E.SizeLarge",
-  "huge": "DND5E.SizeHuge",
-  "grg": "DND5E.SizeGargantuan"
+PERGASHA.actorSizes = {
+  "tiny": "PERGASHA.SizeTiny",
+  "sm": "PERGASHA.SizeSmall",
+  "med": "PERGASHA.SizeMedium",
+  "lg": "PERGASHA.SizeLarge",
+  "huge": "PERGASHA.SizeHuge",
+  "grg": "PERGASHA.SizeGargantuan"
 };
 
-DND5E.tokenSizes = {
+PERGASHA.tokenSizes = {
   "tiny": 1,
   "sm": 1,
   "med": 1,
@@ -281,7 +311,7 @@ DND5E.tokenSizes = {
  * Colors used to visualize temporary and temporary maximum HP in token health bars
  * @enum {number}
  */
-DND5E.tokenHPColors = {
+PERGASHA.tokenHPColors = {
   temp: 0x66CCFF,
   tempmax: 0x440066,
   negmax: 0x550000
@@ -293,21 +323,21 @@ DND5E.tokenHPColors = {
  * Creature types
  * @type {Object}
  */
-DND5E.creatureTypes = {
-  "aberration": "DND5E.CreatureAberration",
-  "beast": "DND5E.CreatureBeast",
-  "celestial": "DND5E.CreatureCelestial",
-  "construct": "DND5E.CreatureConstruct",
-  "dragon": "DND5E.CreatureDragon",
-  "elemental": "DND5E.CreatureElemental",
-  "fey": "DND5E.CreatureFey",
-  "fiend": "DND5E.CreatureFiend",
-  "giant": "DND5E.CreatureGiant",
-  "humanoid": "DND5E.CreatureHumanoid",
-  "monstrosity": "DND5E.CreatureMonstrosity",
-  "ooze": "DND5E.CreatureOoze",
-  "plant": "DND5E.CreaturePlant",
-  "undead": "DND5E.CreatureUndead"
+PERGASHA.creatureTypes = {
+  "aberration": "PERGASHA.CreatureAberration",
+  "beast": "PERGASHA.CreatureBeast",
+  "celestial": "PERGASHA.CreatureCelestial",
+  "construct": "PERGASHA.CreatureConstruct",
+  "dragon": "PERGASHA.CreatureDragon",
+  "elemental": "PERGASHA.CreatureElemental",
+  "fey": "PERGASHA.CreatureFey",
+  "fiend": "PERGASHA.CreatureFiend",
+  "giant": "PERGASHA.CreatureGiant",
+  "humanoid": "PERGASHA.CreatureHumanoid",
+  "monstrosity": "PERGASHA.CreatureMonstrosity",
+  "ooze": "PERGASHA.CreatureOoze",
+  "plant": "PERGASHA.CreaturePlant",
+  "undead": "PERGASHA.CreatureUndead"
 };
 
 
@@ -317,25 +347,25 @@ DND5E.creatureTypes = {
  * Classification types for item action types
  * @type {Object}
  */
-DND5E.itemActionTypes = {
-  "mwak": "DND5E.ActionMWAK",
-  "rwak": "DND5E.ActionRWAK",
-  // "msak": "DND5E.ActionMSAK",
-  // "rsak": "DND5E.ActionRSAK",
-  "mpak": "DND5E.ActionMPAK",
-  "rpak": "DND5E.ActionRPAK",
-  "save": "DND5E.ActionSave",
-  "heal": "DND5E.ActionHeal",
-  "abil": "DND5E.ActionAbil",
-  "util": "DND5E.ActionUtil",
-  "other": "DND5E.ActionOther"
+PERGASHA.itemActionTypes = {
+  "mwak": "PERGASHA.ActionMWAK",
+  "rwak": "PERGASHA.ActionRWAK",
+  // "msak": "PERGASHA.ActionMSAK",
+  // "rsak": "PERGASHA.ActionRSAK",
+  "mpak": "PERGASHA.ActionMPAK",
+  "rpak": "PERGASHA.ActionRPAK",
+  "save": "PERGASHA.ActionSave",
+  "heal": "PERGASHA.ActionHeal",
+  "abil": "PERGASHA.ActionAbil",
+  "util": "PERGASHA.ActionUtil",
+  "other": "PERGASHA.ActionOther"
 };
 
 /* -------------------------------------------- */
 
-DND5E.itemCapacityTypes = {
-  "items": "DND5E.ItemContainerCapacityItems",
-  "weight": "DND5E.ItemContainerCapacityWeight"
+PERGASHA.itemCapacityTypes = {
+  "items": "PERGASHA.ItemContainerCapacityItems",
+  "weight": "PERGASHA.ItemContainerCapacityWeight"
 };
 
 /* -------------------------------------------- */
@@ -344,11 +374,11 @@ DND5E.itemCapacityTypes = {
  * Enumerate the lengths of time over which an item can have limited use ability
  * @type {Object}
  */
-DND5E.limitedUsePeriods = {
-  "sr": "DND5E.ShortRest",
-  "lr": "DND5E.LongRest",
-  "day": "DND5E.Day",
-  "charges": "DND5E.Charges"
+PERGASHA.limitedUsePeriods = {
+  "sr": "PERGASHA.ShortRest",
+  "lr": "PERGASHA.LongRest",
+  "day": "PERGASHA.Day",
+  "charges": "PERGASHA.Charges"
 };
 
 
@@ -358,16 +388,16 @@ DND5E.limitedUsePeriods = {
  * The set of equipment types for armor, clothing, and other objects which can be worn by the character
  * @type {Object}
  */
-DND5E.equipmentTypes = {
-  "light": "DND5E.EquipmentLight",
-  "medium": "DND5E.EquipmentMedium",
-  "heavy": "DND5E.EquipmentHeavy",
-  "bonus": "DND5E.EquipmentBonus",
-  "natural": "DND5E.EquipmentNatural",
-  "shield": "DND5E.EquipmentShield",
-  "clothing": "DND5E.EquipmentClothing",
-  "trinket": "DND5E.EquipmentTrinket",
-  "vehicle": "DND5E.EquipmentVehicle"
+PERGASHA.equipmentTypes = {
+  "light": "PERGASHA.EquipmentLight",
+  "medium": "PERGASHA.EquipmentMedium",
+  "heavy": "PERGASHA.EquipmentHeavy",
+  "bonus": "PERGASHA.EquipmentBonus",
+  "natural": "PERGASHA.EquipmentNatural",
+  "shield": "PERGASHA.EquipmentShield",
+  "clothing": "PERGASHA.EquipmentClothing",
+  "trinket": "PERGASHA.EquipmentTrinket",
+  "vehicle": "PERGASHA.EquipmentVehicle"
 };
 
 
@@ -377,11 +407,11 @@ DND5E.equipmentTypes = {
  * The set of Armor Proficiencies which a character may have
  * @type {Object}
  */
-DND5E.armorProficiencies = {
-  "lgt": DND5E.equipmentTypes.light,
-  "med": DND5E.equipmentTypes.medium,
-  "hvy": DND5E.equipmentTypes.heavy,
-  "shl": "DND5E.EquipmentShieldProficiency"
+PERGASHA.armorProficiencies = {
+  "lgt": PERGASHA.equipmentTypes.light,
+  "med": PERGASHA.equipmentTypes.medium,
+  "hvy": PERGASHA.equipmentTypes.heavy,
+  "shl": "PERGASHA.EquipmentShieldProficiency"
 };
 
 /**
@@ -389,7 +419,7 @@ DND5E.armorProficiencies = {
  * Used when a new player owned item is created
  * @type {Object}
  */
-DND5E.armorProficienciesMap = {
+PERGASHA.armorProficienciesMap = {
   "natural": true,
   "clothing": true,
   "light": "lgt",
@@ -405,15 +435,15 @@ DND5E.armorProficienciesMap = {
  * Enumerate the valid consumable types which are recognized by the system
  * @type {Object}
  */
-DND5E.consumableTypes = {
-  "ammo": "DND5E.ConsumableAmmunition",
-  "potion": "DND5E.ConsumablePotion",
-  "poison": "DND5E.ConsumablePoison",
-  "food": "DND5E.ConsumableFood",
-  "scroll": "DND5E.ConsumableScroll",
-  "wand": "DND5E.ConsumableWand",
-  "rod": "DND5E.ConsumableRod",
-  "trinket": "DND5E.ConsumableTrinket"
+PERGASHA.consumableTypes = {
+  "ammo": "PERGASHA.ConsumableAmmunition",
+  "potion": "PERGASHA.ConsumablePotion",
+  "poison": "PERGASHA.ConsumablePoison",
+  "food": "PERGASHA.ConsumableFood",
+  "scroll": "PERGASHA.ConsumableScroll",
+  "wand": "PERGASHA.ConsumableWand",
+  "rod": "PERGASHA.ConsumableRod",
+  "trinket": "PERGASHA.ConsumableTrinket"
 };
 
 /* -------------------------------------------- */
@@ -422,11 +452,11 @@ DND5E.consumableTypes = {
  * The valid currency denominations supported by the 5e system
  * @type {Object}
  */
-DND5E.currencies = {
-  "pb": "DND5E.CurrencyPB",
-  "gb": "DND5E.CurrencyGB",
-  "ub": "DND5E.CurrencyUB",
-  "cb": "DND5E.CurrencyCB",
+PERGASHA.currencies = {
+  "pb": "PERGASHA.CurrencyPB",
+  "gb": "PERGASHA.CurrencyGB",
+  "ub": "PERGASHA.CurrencyUB",
+  "cb": "PERGASHA.CurrencyCB",
 };
 
 
@@ -436,7 +466,7 @@ DND5E.currencies = {
  * Auto conversion mechanic not meant to be used in Pergasha - adjusted terms
  * just so things wouldn't break catastrophically
  */
-DND5E.currencyConversion = {
+PERGASHA.currencyConversion = {
   cb: { into: "up", each: 10 },
   ub: { into: "gp", each: 10 },
   gb: { into: "pp", each: 10 },
@@ -446,25 +476,25 @@ DND5E.currencyConversion = {
 
 
 // Damage Types
-DND5E.damageTypes = {
-  "acid": "DND5E.DamageAcid",
-  "bludgeoning": "DND5E.DamageBludgeoning",
-  "cold": "DND5E.DamageCold",
-  "fire": "DND5E.DamageFire",
-  "force": "DND5E.DamageForce",
-  "lightning": "DND5E.DamageLightning",
-  "necrotic": "DND5E.DamageNecrotic",
-  "piercing": "DND5E.DamagePiercing",
-  "poison": "DND5E.DamagePoison",
-  "psychic": "DND5E.DamagePsychic",
-  "radiant": "DND5E.DamageRadiant",
-  "slashing": "DND5E.DamageSlashing",
-  "thunder": "DND5E.DamageThunder"
+PERGASHA.damageTypes = {
+  "acid": "PERGASHA.DamageAcid",
+  "bludgeoning": "PERGASHA.DamageBludgeoning",
+  "cold": "PERGASHA.DamageCold",
+  "fire": "PERGASHA.DamageFire",
+  "force": "PERGASHA.DamageForce",
+  "lightning": "PERGASHA.DamageLightning",
+  "necrotic": "PERGASHA.DamageNecrotic",
+  "piercing": "PERGASHA.DamagePiercing",
+  "poison": "PERGASHA.DamagePoison",
+  "psychic": "PERGASHA.DamagePsychic",
+  "radiant": "PERGASHA.DamageRadiant",
+  "slashing": "PERGASHA.DamageSlashing",
+  "thunder": "PERGASHA.DamageThunder"
 };
 
 // Damage Resistance Types
-DND5E.damageResistanceTypes = mergeObject(foundry.utils.deepClone(DND5E.damageTypes), {
-  "physical": "DND5E.DamagePhysical"
+PERGASHA.damageResistanceTypes = mergeObject(foundry.utils.deepClone(PERGASHA.damageTypes), {
+  "physical": "PERGASHA.DamagePhysical"
 });
 
 
@@ -475,12 +505,12 @@ DND5E.damageResistanceTypes = mergeObject(foundry.utils.deepClone(DND5E.damageTy
  * By default this uses the imperial units of feet and miles.
  * @type {Object<string,string>}
  */
-DND5E.movementTypes = {
-  "burrow": "DND5E.MovementBurrow",
-  "climb": "DND5E.MovementClimb",
-  "fly": "DND5E.MovementFly",
-  "swim": "DND5E.MovementSwim",
-  "walk": "DND5E.MovementWalk",
+PERGASHA.movementTypes = {
+  "burrow": "PERGASHA.MovementBurrow",
+  "climb": "PERGASHA.MovementClimb",
+  "fly": "PERGASHA.MovementFly",
+  "swim": "PERGASHA.MovementSwim",
+  "walk": "PERGASHA.MovementWalk",
 };
 
 /**
@@ -488,25 +518,25 @@ DND5E.movementTypes = {
  * By default this uses the imperial units of feet and miles.
  * @type {Object<string,string>}
  */
-DND5E.movementUnits = {
-  "ft": "DND5E.DistFt",
-  "mi": "DND5E.DistMi"
+PERGASHA.movementUnits = {
+  "ft": "PERGASHA.DistFt",
+  "mi": "PERGASHA.DistMi"
 };
 
 /**
  * The valid units of measure for the range of an action or effect.
- * This object automatically includes the movement units from DND5E.movementUnits
+ * This object automatically includes the movement units from PERGASHA.movementUnits
  * @type {Object<string,string>}
  */
-DND5E.distanceUnits = {
-  "none": "DND5E.None",
-  "self": "DND5E.DistSelf",
-  "touch": "DND5E.DistTouch",
-  "spec": "DND5E.Special",
-  "any": "DND5E.DistAny"
+PERGASHA.distanceUnits = {
+  "none": "PERGASHA.None",
+  "self": "PERGASHA.DistSelf",
+  "touch": "PERGASHA.DistTouch",
+  "spec": "PERGASHA.Special",
+  "any": "PERGASHA.DistAny"
 };
-for (let [k, v] of Object.entries(DND5E.movementUnits)) {
-  DND5E.distanceUnits[k] = v;
+for (let [k, v] of Object.entries(PERGASHA.movementUnits)) {
+  PERGASHA.distanceUnits[k] = v;
 }
 
 /* -------------------------------------------- */
@@ -516,7 +546,7 @@ for (let [k, v] of Object.entries(DND5E.movementUnits)) {
  * Configure aspects of encumbrance calculation so that it could be configured by modules
  * @type {Object}
  */
-DND5E.encumbrance = {
+PERGASHA.encumbrance = {
   currencyPerWeight: 50,
   strMultiplier: 15,
   vehicleWeightMultiplier: 2000 // 2000 lbs in a ton
@@ -528,22 +558,22 @@ DND5E.encumbrance = {
  * This Object defines the types of single or area targets which can be applied
  * @type {Object}
  */
-DND5E.targetTypes = {
-  "none": "DND5E.None",
-  "self": "DND5E.TargetSelf",
-  "creature": "DND5E.TargetCreature",
-  "ally": "DND5E.TargetAlly",
-  "enemy": "DND5E.TargetEnemy",
-  "object": "DND5E.TargetObject",
-  "space": "DND5E.TargetSpace",
-  "radius": "DND5E.TargetRadius",
-  "sphere": "DND5E.TargetSphere",
-  "cylinder": "DND5E.TargetCylinder",
-  "cone": "DND5E.TargetCone",
-  "square": "DND5E.TargetSquare",
-  "cube": "DND5E.TargetCube",
-  "line": "DND5E.TargetLine",
-  "wall": "DND5E.TargetWall"
+PERGASHA.targetTypes = {
+  "none": "PERGASHA.None",
+  "self": "PERGASHA.TargetSelf",
+  "creature": "PERGASHA.TargetCreature",
+  "ally": "PERGASHA.TargetAlly",
+  "enemy": "PERGASHA.TargetEnemy",
+  "object": "PERGASHA.TargetObject",
+  "space": "PERGASHA.TargetSpace",
+  "radius": "PERGASHA.TargetRadius",
+  "sphere": "PERGASHA.TargetSphere",
+  "cylinder": "PERGASHA.TargetCylinder",
+  "cone": "PERGASHA.TargetCone",
+  "square": "PERGASHA.TargetSquare",
+  "cube": "PERGASHA.TargetCube",
+  "line": "PERGASHA.TargetLine",
+  "wall": "PERGASHA.TargetWall"
 };
 
 
@@ -552,10 +582,10 @@ DND5E.targetTypes = {
 
 /**
  * Map the subset of target types which produce a template area of effect
- * The keys are DND5E target types and the values are MeasuredTemplate shape types
+ * The keys are PERGASHA target types and the values are MeasuredTemplate shape types
  * @type {Object}
  */
-DND5E.areaTargetTypes = {
+PERGASHA.areaTargetTypes = {
   cone: "cone",
   cube: "rect",
   cylinder: "circle",
@@ -570,9 +600,9 @@ DND5E.areaTargetTypes = {
 /* -------------------------------------------- */
 
 // Healing Types
-DND5E.healingTypes = {
-  "healing": "DND5E.Healing",
-  "temphp": "DND5E.HealingTemp"
+PERGASHA.healingTypes = {
+  "healing": "PERGASHA.Healing",
+  "temphp": "PERGASHA.HealingTemp"
 };
 
 
@@ -583,7 +613,7 @@ DND5E.healingTypes = {
  * Enumerate the denominations of hit dice which can apply to classes
  * @type {string[]}
  */
-DND5E.hitDieTypes = ["d6", "d8", "d10", "d12"];
+PERGASHA.hitDieTypes = ["d6", "d8", "d10", "d12"];
 
 
 /* -------------------------------------------- */
@@ -592,11 +622,11 @@ DND5E.hitDieTypes = ["d6", "d8", "d10", "d12"];
  * The set of possible sensory perception types which an Actor may have
  * @enum {string}
  */
-DND5E.senses = {
-  "blindsight": "DND5E.SenseBlindsight",
-  "darkvision": "DND5E.SenseDarkvision",
-  "tremorsense": "DND5E.SenseTremorsense",
-  "truesight": "DND5E.SenseTruesight"
+PERGASHA.senses = {
+  "blindsight": "PERGASHA.SenseBlindsight",
+  "darkvision": "PERGASHA.SenseDarkvision",
+  "tremorsense": "PERGASHA.SenseTremorsense",
+  "truesight": "PERGASHA.SenseTruesight"
 };
 
 /* -------------------------------------------- */
@@ -605,47 +635,47 @@ DND5E.senses = {
  * The set of skill which can be trained
  * @type {Object}
  */
-DND5E.skills = {
-  "acr": "DND5E.SkillAcr",
-  "ani": "DND5E.SkillAni",
-  "ath": "DND5E.SkillAth",
-  "dec": "DND5E.SkillDec",
-  "his": "DND5E.SkillHis",
-  "ins": "DND5E.SkillIns",
-  "itm": "DND5E.SkillItm",
-  "inv": "DND5E.SkillInv",
-  "med": "DND5E.SkillMed",
-  "mys": "DND5E.SkillMys",
-  "nat": "DND5E.SkillNat",
-  "prc": "DND5E.SkillPrc",
-  "prf": "DND5E.SkillPrf",
-  "per": "DND5E.SkillPer",
-  "psi": "DND5E.SkillPsi",
-  "slt": "DND5E.SkillSlt",
-  "ste": "DND5E.SkillSte",
-  "sur": "DND5E.SkillSur"
+PERGASHA.skills = {
+  "acr": "PERGASHA.SkillAcr",
+  "ani": "PERGASHA.SkillAni",
+  "ath": "PERGASHA.SkillAth",
+  "dec": "PERGASHA.SkillDec",
+  "his": "PERGASHA.SkillHis",
+  "ins": "PERGASHA.SkillIns",
+  "itm": "PERGASHA.SkillItm",
+  "inv": "PERGASHA.SkillInv",
+  "med": "PERGASHA.SkillMed",
+  "mys": "PERGASHA.SkillMys",
+  "nat": "PERGASHA.SkillNat",
+  "prc": "PERGASHA.SkillPrc",
+  "prf": "PERGASHA.SkillPrf",
+  "per": "PERGASHA.SkillPer",
+  "psi": "PERGASHA.SkillPsi",
+  "slt": "PERGASHA.SkillSlt",
+  "ste": "PERGASHA.SkillSte",
+  "sur": "PERGASHA.SkillSur"
 };
 
 
 /* -------------------------------------------- */
 
-DND5E.spellPreparationModes = {
-  "prepared": "DND5E.SpellPrepPrepared",
-  "pact": "DND5E.PactMagic",
-  "always": "DND5E.SpellPrepAlways",
-  "atwill": "DND5E.SpellPrepAtWill",
-  "innate": "DND5E.SpellPrepInnate"
+PERGASHA.spellPreparationModes = {
+  "prepared": "PERGASHA.SpellPrepPrepared",
+  "pact": "PERGASHA.PactMagic",
+  "always": "PERGASHA.SpellPrepAlways",
+  "atwill": "PERGASHA.SpellPrepAtWill",
+  "innate": "PERGASHA.SpellPrepInnate"
 };
 
-DND5E.spellUpcastModes = ["always", "pact", "prepared"];
+PERGASHA.spellUpcastModes = ["always", "pact", "prepared"];
 
-DND5E.spellProgression = {
-  "none": "DND5E.SpellNone",
-  "full": "DND5E.SpellProgFull",
-  "half": "DND5E.SpellProgHalf",
-  "third": "DND5E.SpellProgThird",
-  "pact": "DND5E.SpellProgPact",
-  "artificer": "DND5E.SpellProgArt"
+PERGASHA.spellProgression = {
+  "none": "PERGASHA.SpellNone",
+  "full": "PERGASHA.SpellProgFull",
+  "half": "PERGASHA.SpellProgHalf",
+  "third": "PERGASHA.SpellProgThird",
+  "pact": "PERGASHA.SpellProgPact",
+  "artificer": "PERGASHA.SpellProgArt"
 };
 
 /* -------------------------------------------- */
@@ -654,10 +684,10 @@ DND5E.spellProgression = {
  * The available choices for how spell damage scaling may be computed
  * @type {Object}
  */
-DND5E.spellScalingModes = {
-  "none": "DND5E.SpellNone",
-  "cantrip": "DND5E.SpellCantrip",
-  "level": "DND5E.SpellLevel"
+PERGASHA.spellScalingModes = {
+  "none": "PERGASHA.SpellNone",
+  "cantrip": "PERGASHA.SpellCantrip",
+  "level": "PERGASHA.SpellLevel"
 };
 
 /* -------------------------------------------- */
@@ -667,14 +697,14 @@ DND5E.spellScalingModes = {
  * Define the set of types which a weapon item can take
  * @type {Object}
  */
-DND5E.weaponTypes = {
-  "simpleM": "DND5E.WeaponSimpleM",
-  "simpleR": "DND5E.WeaponSimpleR",
-  "martialM": "DND5E.WeaponMartialM",
-  "martialR": "DND5E.WeaponMartialR",
-  "natural": "DND5E.WeaponNatural",
-  "improv": "DND5E.WeaponImprov",
-  "siege": "DND5E.WeaponSiege"
+PERGASHA.weaponTypes = {
+  "simpleM": "PERGASHA.WeaponSimpleM",
+  "simpleR": "PERGASHA.WeaponSimpleR",
+  "martialM": "PERGASHA.WeaponMartialM",
+  "martialR": "PERGASHA.WeaponMartialR",
+  "natural": "PERGASHA.WeaponNatural",
+  "improv": "PERGASHA.WeaponImprov",
+  "siege": "PERGASHA.WeaponSiege"
 };
 
 
@@ -684,65 +714,65 @@ DND5E.weaponTypes = {
  * Define the set of weapon property flags which can exist on a weapon
  * @type {Object}
  */
-DND5E.weaponProperties = {
-  "ada": "DND5E.WeaponPropertiesAda",
-  "amm": "DND5E.WeaponPropertiesAmm",
-  "fin": "DND5E.WeaponPropertiesFin",
-  "fir": "DND5E.WeaponPropertiesFir",
-  "foc": "DND5E.WeaponPropertiesFoc",
-  "hvy": "DND5E.WeaponPropertiesHvy",
-  "lgt": "DND5E.WeaponPropertiesLgt",
-  "lod": "DND5E.WeaponPropertiesLod",
-  "mgc": "DND5E.WeaponPropertiesMgc",
-  "rch": "DND5E.WeaponPropertiesRch",
-  "rel": "DND5E.WeaponPropertiesRel",
-  "ret": "DND5E.WeaponPropertiesRet",
-  "sil": "DND5E.WeaponPropertiesSil",
-  "spc": "DND5E.WeaponPropertiesSpc",
-  "thr": "DND5E.WeaponPropertiesThr",
-  "two": "DND5E.WeaponPropertiesTwo",
-  "ver": "DND5E.WeaponPropertiesVer"
+PERGASHA.weaponProperties = {
+  "ada": "PERGASHA.WeaponPropertiesAda",
+  "amm": "PERGASHA.WeaponPropertiesAmm",
+  "fin": "PERGASHA.WeaponPropertiesFin",
+  "fir": "PERGASHA.WeaponPropertiesFir",
+  "foc": "PERGASHA.WeaponPropertiesFoc",
+  "hvy": "PERGASHA.WeaponPropertiesHvy",
+  "lgt": "PERGASHA.WeaponPropertiesLgt",
+  "lod": "PERGASHA.WeaponPropertiesLod",
+  "mgc": "PERGASHA.WeaponPropertiesMgc",
+  "rch": "PERGASHA.WeaponPropertiesRch",
+  "rel": "PERGASHA.WeaponPropertiesRel",
+  "ret": "PERGASHA.WeaponPropertiesRet",
+  "sil": "PERGASHA.WeaponPropertiesSil",
+  "spc": "PERGASHA.WeaponPropertiesSpc",
+  "thr": "PERGASHA.WeaponPropertiesThr",
+  "two": "PERGASHA.WeaponPropertiesTwo",
+  "ver": "PERGASHA.WeaponPropertiesVer"
 };
 
 
 // Spell Components
-DND5E.spellComponents = {
-  "V": "DND5E.ComponentVerbal",
-  "S": "DND5E.ComponentSomatic",
-  "M": "DND5E.ComponentMaterial"
+PERGASHA.spellComponents = {
+  "V": "PERGASHA.ComponentVerbal",
+  "S": "PERGASHA.ComponentSomatic",
+  "M": "PERGASHA.ComponentMaterial"
 };
 
 // Spell Schools
-DND5E.spellSchools = {
-  "abj": "DND5E.SchoolAbj",
-  "con": "DND5E.SchoolCon",
-  "div": "DND5E.SchoolDiv",
-  "enc": "DND5E.SchoolEnc",
-  "evo": "DND5E.SchoolEvo",
-  "ill": "DND5E.SchoolIll",
-  "nec": "DND5E.SchoolNec",
-  "trs": "DND5E.SchoolTrs"
+PERGASHA.spellSchools = {
+  "abj": "PERGASHA.SchoolAbj",
+  "con": "PERGASHA.SchoolCon",
+  "div": "PERGASHA.SchoolDiv",
+  "enc": "PERGASHA.SchoolEnc",
+  "evo": "PERGASHA.SchoolEvo",
+  "ill": "PERGASHA.SchoolIll",
+  "nec": "PERGASHA.SchoolNec",
+  "trs": "PERGASHA.SchoolTrs"
 };
 
 
 /* -------------------------------------------- */
 
 // Spell Levels
-DND5E.spellLevels = {
-  0: "DND5E.SpellLevel0",
-  1: "DND5E.SpellLevel1",
-  2: "DND5E.SpellLevel2",
-  3: "DND5E.SpellLevel3",
-  4: "DND5E.SpellLevel4",
-  5: "DND5E.SpellLevel5",
-  6: "DND5E.SpellLevel6",
-  7: "DND5E.SpellLevel7",
-  8: "DND5E.SpellLevel8",
-  9: "DND5E.SpellLevel9"
+PERGASHA.spellLevels = {
+  0: "PERGASHA.SpellLevel0",
+  1: "PERGASHA.SpellLevel1",
+  2: "PERGASHA.SpellLevel2",
+  3: "PERGASHA.SpellLevel3",
+  4: "PERGASHA.SpellLevel4",
+  5: "PERGASHA.SpellLevel5",
+  6: "PERGASHA.SpellLevel6",
+  7: "PERGASHA.SpellLevel7",
+  8: "PERGASHA.SpellLevel8",
+  9: "PERGASHA.SpellLevel9"
 };
 
 // Spell Scroll Compendium UUIDs
-DND5E.spellScrollIds = {
+PERGASHA.spellScrollIds = {
   0: "rQ6sO7HDWzqMhSI3",
   1: "9GSfMg0VOA2b4uFN",
   2: "XdDp6CKh9qEvPTuS",
@@ -759,7 +789,7 @@ DND5E.spellScrollIds = {
  * Compendium packs used for localized items.
  * @enum {string}
  */
-DND5E.sourcePacks = {
+PERGASHA.sourcePacks = {
   ITEMS: "pergashaFoundryvtt.items"
 }
 
@@ -768,7 +798,7 @@ DND5E.sourcePacks = {
  * The entries of this array represent the spell slot progression for a full spell-caster.
  * @type {Array[]}
  */
-DND5E.SPELL_SLOT_TABLE = [
+PERGASHA.SPELL_SLOT_TABLE = [
   [2],
   [3],
   [4, 2],
@@ -794,19 +824,19 @@ DND5E.SPELL_SLOT_TABLE = [
 /* -------------------------------------------- */
 
 // Polymorph options.
-DND5E.polymorphSettings = {
-  keepPhysical: 'DND5E.PolymorphKeepPhysical',
-  keepMental: 'DND5E.PolymorphKeepMental',
-  keepSaves: 'DND5E.PolymorphKeepSaves',
-  keepSkills: 'DND5E.PolymorphKeepSkills',
-  mergeSaves: 'DND5E.PolymorphMergeSaves',
-  mergeSkills: 'DND5E.PolymorphMergeSkills',
-  keepClass: 'DND5E.PolymorphKeepClass',
-  keepFeats: 'DND5E.PolymorphKeepFeats',
-  keepSpells: 'DND5E.PolymorphKeepSpells',
-  keepItems: 'DND5E.PolymorphKeepItems',
-  keepBio: 'DND5E.PolymorphKeepBio',
-  keepVision: 'DND5E.PolymorphKeepVision'
+PERGASHA.polymorphSettings = {
+  keepPhysical: 'PERGASHA.PolymorphKeepPhysical',
+  keepMental: 'PERGASHA.PolymorphKeepMental',
+  keepSaves: 'PERGASHA.PolymorphKeepSaves',
+  keepSkills: 'PERGASHA.PolymorphKeepSkills',
+  mergeSaves: 'PERGASHA.PolymorphMergeSaves',
+  mergeSkills: 'PERGASHA.PolymorphMergeSkills',
+  keepClass: 'PERGASHA.PolymorphKeepClass',
+  keepFeats: 'PERGASHA.PolymorphKeepFeats',
+  keepSpells: 'PERGASHA.PolymorphKeepSpells',
+  keepItems: 'PERGASHA.PolymorphKeepItems',
+  keepBio: 'PERGASHA.PolymorphKeepBio',
+  keepVision: 'PERGASHA.PolymorphKeepVision'
 };
 
 /* -------------------------------------------- */
@@ -816,11 +846,11 @@ DND5E.polymorphSettings = {
  * Each level provides a proficiency multiplier
  * @type {Object}
  */
-DND5E.proficiencyLevels = {
-  0: "DND5E.NotProficient",
-  1: "DND5E.Proficient",
-  0.5: "DND5E.HalfProficient",
-  2: "DND5E.Expertise"
+PERGASHA.proficiencyLevels = {
+  0: "PERGASHA.NotProficient",
+  1: "PERGASHA.Proficient",
+  0.5: "PERGASHA.HalfProficient",
+  2: "PERGASHA.Expertise"
 };
 
 /* -------------------------------------------- */
@@ -830,283 +860,298 @@ DND5E.proficiencyLevels = {
  * In cases where multiple pieces of cover are
  * in play, we take the highest value.
  */
-DND5E.cover = {
-  0: 'DND5E.None',
-  .5: 'DND5E.CoverHalf',
-  .75: 'DND5E.CoverThreeQuarters',
-  1: 'DND5E.CoverTotal'
+PERGASHA.cover = {
+  0: 'PERGASHA.None',
+  .5: 'PERGASHA.CoverHalf',
+  .75: 'PERGASHA.CoverThreeQuarters',
+  1: 'PERGASHA.CoverTotal'
 };
 
 /* -------------------------------------------- */
 
 
 // Condition Types
-DND5E.conditionTypes = {
-  "blinded": "DND5E.ConBlinded",
-  "charmed": "DND5E.ConCharmed",
-  "deafened": "DND5E.ConDeafened",
-  "diseased": "DND5E.ConDiseased",
-  "exhaustion": "DND5E.ConExhaustion",
-  "fatigue": "DND5E.ConFatigue",
-  "frightened": "DND5E.ConFrightened",
-  "grappled": "DND5E.ConGrappled",
-  "incapacitated": "DND5E.ConIncapacitated",
-  "invisible": "DND5E.ConInvisible",
-  "paralyzed": "DND5E.ConParalyzed",
-  "petrified": "DND5E.ConPetrified",
-  "poisoned": "DND5E.ConPoisoned",
-  "prone": "DND5E.ConProne",
-  "restrained": "DND5E.ConRestrained",
-  "stunned": "DND5E.ConStunned",
-  "unconscious": "DND5E.ConUnconscious"
+PERGASHA.conditionTypes = {
+  "blinded": "PERGASHA.ConBlinded",
+  "charmed": "PERGASHA.ConCharmed",
+  "deafened": "PERGASHA.ConDeafened",
+  "diseased": "PERGASHA.ConDiseased",
+  "exhaustion": "PERGASHA.ConExhaustion",
+  "fatigue": "PERGASHA.ConFatigue",
+  "frightened": "PERGASHA.ConFrightened",
+  "grappled": "PERGASHA.ConGrappled",
+  "incapacitated": "PERGASHA.ConIncapacitated",
+  "invisible": "PERGASHA.ConInvisible",
+  "paralyzed": "PERGASHA.ConParalyzed",
+  "petrified": "PERGASHA.ConPetrified",
+  "poisoned": "PERGASHA.ConPoisoned",
+  "prone": "PERGASHA.ConProne",
+  "restrained": "PERGASHA.ConRestrained",
+  "stunned": "PERGASHA.ConStunned",
+  "unconscious": "PERGASHA.ConUnconscious"
 };
 
 // Languages
-DND5E.languages = {
-  "common": "DND5E.LanguagesCommon",
-  "aarakocra": "DND5E.LanguagesAarakocra",
-  "abyssal": "DND5E.LanguagesAbyssal",
-  "aquan": "DND5E.LanguagesAquan",
-  "auran": "DND5E.LanguagesAuran",
-  "celestial": "DND5E.LanguagesCelestial",
-  "deep": "DND5E.LanguagesDeepSpeech",
-  "draconic": "DND5E.LanguagesDraconic",
-  "druidic": "DND5E.LanguagesDruidic",
-  "dwarvish": "DND5E.LanguagesDwarvish",
-  "elvish": "DND5E.LanguagesElvish",
-  "giant": "DND5E.LanguagesGiant",
-  "gith": "DND5E.LanguagesGith",
-  "gnomish": "DND5E.LanguagesGnomish",
-  "goblin": "DND5E.LanguagesGoblin",
-  "gnoll": "DND5E.LanguagesGnoll",
-  "halfling": "DND5E.LanguagesHalfling",
-  "ignan": "DND5E.LanguagesIgnan",
-  "infernal": "DND5E.LanguagesInfernal",
-  "orc": "DND5E.LanguagesOrc",
-  "primordial": "DND5E.LanguagesPrimordial",
-  "sylvan": "DND5E.LanguagesSylvan",
-  "terran": "DND5E.LanguagesTerran",
-  "cant": "DND5E.LanguagesThievesCant",
-  "undercommon": "DND5E.LanguagesUndercommon"
-};
+// PERGASHA.languages = {
+//   "common": "PERGASHA.LanguagesCommon",
+//   "aarakocra": "PERGASHA.LanguagesAarakocra",
+//   "abyssal": "PERGASHA.LanguagesAbyssal",
+//   "aquan": "PERGASHA.LanguagesAquan",
+//   "auran": "PERGASHA.LanguagesAuran",
+//   "celestial": "PERGASHA.LanguagesCelestial",
+//   "deep": "PERGASHA.LanguagesDeepSpeech",
+//   "draconic": "PERGASHA.LanguagesDraconic",
+//   "druidic": "PERGASHA.LanguagesDruidic",
+//   "dwarvish": "PERGASHA.LanguagesDwarvish",
+//   "elvish": "PERGASHA.LanguagesElvish",
+//   "giant": "PERGASHA.LanguagesGiant",
+//   "gith": "PERGASHA.LanguagesGith",
+//   "gnomish": "PERGASHA.LanguagesGnomish",
+//   "goblin": "PERGASHA.LanguagesGoblin",
+//   "gnoll": "PERGASHA.LanguagesGnoll",
+//   "halfling": "PERGASHA.LanguagesHalfling",
+//   "ignan": "PERGASHA.LanguagesIgnan",
+//   "infernal": "PERGASHA.LanguagesInfernal",
+//   "orc": "PERGASHA.LanguagesOrc",
+//   "primordial": "PERGASHA.LanguagesPrimordial",
+//   "sylvan": "PERGASHA.LanguagesSylvan",
+//   "terran": "PERGASHA.LanguagesTerran",
+//   "cant": "PERGASHA.LanguagesThievesCant",
+//   "undercommon": "PERGASHA.LanguagesUndercommon"
+// };
+
+PERGASHA.languages = {
+  "pergashan": "PERGASHA.LanguagesPergashan",
+  "dwarvish": "PERGASHA.LanguagesDwarvish",
+  "giant": "PERGASHA.LanguagesGiant",
+  "draconic": "PERGASHA.LanguagesDraconic",
+  "primordial": "PERGASHA.LanguagesPrimordial"
+}
 
 // Character Level XP Requirements
-DND5E.CHARACTER_EXP_LEVELS = [
+PERGASHA.CHARACTER_EXP_LEVELS = [
   0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000,
   120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000]
   ;
 
 // Challenge Rating XP Levels
-DND5E.CR_EXP_LEVELS = [
+PERGASHA.CR_EXP_LEVELS = [
   10, 200, 450, 700, 1100, 1800, 2300, 2900, 3900, 5000, 5900, 7200, 8400, 10000, 11500, 13000, 15000, 18000,
   20000, 22000, 25000, 33000, 41000, 50000, 62000, 75000, 90000, 105000, 120000, 135000, 155000
 ];
 
 // Character Features Per Class And Level
-DND5E.classFeatures = ClassFeatures;
+PERGASHA.classFeatures = ClassFeatures;
 
 // Configure Optional Character Flags
-DND5E.characterFlags = {
+PERGASHA.characterFlags = {
   "diamondSoul": {
-    name: "DND5E.FlagsDiamondSoul",
-    hint: "DND5E.FlagsDiamondSoulHint",
-    section: "DND5E.Feats",
+    name: "PERGASHA.FlagsDiamondSoul",
+    hint: "PERGASHA.FlagsDiamondSoulHint",
+    section: "PERGASHA.Feats",
     type: Boolean
   },
   "initiativeAdv": {
-    name: "DND5E.FlagsInitiativeAdv",
-    hint: "DND5E.FlagsInitiativeAdvHint",
-    section: "DND5E.Feats",
+    name: "PERGASHA.FlagsInitiativeAdv",
+    hint: "PERGASHA.FlagsInitiativeAdvHint",
+    section: "PERGASHA.Feats",
     type: Boolean
   },
   "initiativeAlert": {
-    name: "DND5E.FlagsAlert",
-    hint: "DND5E.FlagsAlertHint",
-    section: "DND5E.Feats",
+    name: "PERGASHA.FlagsAlert",
+    hint: "PERGASHA.FlagsAlertHint",
+    section: "PERGASHA.Feats",
     type: Boolean
   },
   "observantFeat": {
-    name: "DND5E.FlagsObservant",
-    hint: "DND5E.FlagsObservantHint",
+    name: "PERGASHA.FlagsObservant",
+    hint: "PERGASHA.FlagsObservantHint",
     skills: ['prc', 'inv'],
-    section: "DND5E.Feats",
+    section: "PERGASHA.Feats",
     type: Boolean
   },
-  "powerfulBuild": {
-    name: "DND5E.FlagsPowerfulBuild",
-    hint: "DND5E.FlagsPowerfulBuildHint",
-    section: "DND5E.RacialTraits",
-    type: Boolean
-  },
+  // "powerfulBuild": {
+  //   name: "PERGASHA.FlagsPowerfulBuild",
+  //   hint: "PERGASHA.FlagsPowerfulBuildHint",
+  //   section: "PERGASHA.RacialTraits",
+  //   type: Boolean
+  // },
   "reliableTalent": {
-    name: "DND5E.FlagsReliableTalent",
-    hint: "DND5E.FlagsReliableTalentHint",
-    section: "DND5E.Feats",
+    name: "PERGASHA.FlagsReliableTalent",
+    hint: "PERGASHA.FlagsReliableTalentHint",
+    section: "PERGASHA.Feats",
     type: Boolean
   },
   "weaponCriticalThreshold": {
-    name: "DND5E.FlagsWeaponCritThreshold",
-    hint: "DND5E.FlagsWeaponCritThresholdHint",
-    section: "DND5E.Feats",
+    name: "PERGASHA.FlagsWeaponCritThreshold",
+    hint: "PERGASHA.FlagsWeaponCritThresholdHint",
+    section: "PERGASHA.Feats",
     type: Number,
     placeholder: 20
   },
   "meleeCriticalDamageDice": {
-    name: "DND5E.FlagsMeleeCriticalDice",
-    hint: "DND5E.FlagsMeleeCriticalDiceHint",
-    section: "DND5E.Feats",
+    name: "PERGASHA.FlagsMeleeCriticalDice",
+    hint: "PERGASHA.FlagsMeleeCriticalDiceHint",
+    section: "PERGASHA.Feats",
+    type: Number,
+    placeholder: 0
+  },
+  "inventorySlotModifier": {
+    name: "PERGASHA.InventorySlotMod",
+    hint: "PERGASHA.InventorySlotModHint",
+    section: "PERGASHA.Feats",
     type: Number,
     placeholder: 0
   },
 };
 
 // Configure allowed status flags
-DND5E.allowedActorFlags = ["isPolymorphed", "originalActor"].concat(Object.keys(DND5E.characterFlags));
+PERGASHA.allowedActorFlags = ["isPolymorphed", "originalActor"].concat(Object.keys(PERGASHA.characterFlags));
 
 /* -------------------------------------------- */
 
-DND5E.psionicOrders = {
-  "avatar": "DND5E.AvatarOrder",
-  "awakened": "DND5E.AwakenedOrder",
-  "farhand": "DND5E.FarHandOrder",
-  "immortal": "DND5E.ImmortalOrder",
-  "nomad": "DND5E.NomadOrder",
+PERGASHA.psionicOrders = {
+  "avatar": "PERGASHA.AvatarOrder",
+  "awakened": "PERGASHA.AwakenedOrder",
+  "farhand": "PERGASHA.FarHandOrder",
+  "immortal": "PERGASHA.ImmortalOrder",
+  "nomad": "PERGASHA.NomadOrder",
 };
 
-DND5E.avatarDisciplines = {
-  "auraOfCommand": "DND5E.AuraOfCommand",
-  "auraOfFury": "DND5E.AuraOfFury",
-  "beaconOfCourage": "DND5E.BeaconOfCourage",
-  "crownOfDespair": "DND5E.CrownOfDespair",
-  "crownOfRage": "DND5E.CrownOfRage",
-  "disgust": "DND5E.Disgust",
-  "mantleOfAwe": "DND5E.MantleOfAwe",
-  "mantleOfFear": "DND5E.MantleOfFear",
-  "mantleOfJoy": "DND5E.MantleOfJoy"
+PERGASHA.avatarDisciplines = {
+  "auraOfCommand": "PERGASHA.AuraOfCommand",
+  "auraOfFury": "PERGASHA.AuraOfFury",
+  "beaconOfCourage": "PERGASHA.BeaconOfCourage",
+  "crownOfDespair": "PERGASHA.CrownOfDespair",
+  "crownOfRage": "PERGASHA.CrownOfRage",
+  "disgust": "PERGASHA.Disgust",
+  "mantleOfAwe": "PERGASHA.MantleOfAwe",
+  "mantleOfFear": "PERGASHA.MantleOfFear",
+  "mantleOfJoy": "PERGASHA.MantleOfJoy"
 }
 
-DND5E.awakenedDisciplines = {
-  "auraSight": "DND5E.AuraSight",
-  "intellectFortress": "DND5E.IntellectFortress",
-  "precognition": "DND5E.Precognition",
-  "psychicAssault": "DND5E.PsychicAssault",
-  "psychicDisruption": "DND5E.PsychicDisruption",
-  "telepathicContact": "DND5E.TelepathicContact",
-  "thirdEye": "DND5E.ThirdEye"
+PERGASHA.awakenedDisciplines = {
+  "auraSight": "PERGASHA.AuraSight",
+  "intellectFortress": "PERGASHA.IntellectFortress",
+  "precognition": "PERGASHA.Precognition",
+  "psychicAssault": "PERGASHA.PsychicAssault",
+  "psychicDisruption": "PERGASHA.PsychicDisruption",
+  "telepathicContact": "PERGASHA.TelepathicContact",
+  "thirdEye": "PERGASHA.ThirdEye"
 }
-DND5E.farhandDisciplines = {
-  "enhancedForce": "DND5E.EnhancedForce",
-  "forceFields": "DND5E.ForceFields",
-  "graviturgy": "DND5E.Graviturgy",
-  "illumination": "DND5E.Illumination",
-  "livingKnives": "DND5E.LivingKnives",
-  "massManipulation": "DND5E.MassManipulation",
-  "psychokinesis": "DND5E.Psychokinesis",
-  "telemacheia": "DND5E.Telemacheia"
+PERGASHA.farhandDisciplines = {
+  "enhancedForce": "PERGASHA.EnhancedForce",
+  "forceFields": "PERGASHA.ForceFields",
+  "graviturgy": "PERGASHA.Graviturgy",
+  "illumination": "PERGASHA.Illumination",
+  "livingKnives": "PERGASHA.LivingKnives",
+  "massManipulation": "PERGASHA.MassManipulation",
+  "psychokinesis": "PERGASHA.Psychokinesis",
+  "telemacheia": "PERGASHA.Telemacheia"
 }
-DND5E.immortalDisciplines = {
-  "adaptiveBody": "DND5E.AdaptiveBody",
-  "beastialForm": "DND5E.BeastialForm",
-  "bruteForce": "DND5E.BruteForce",
-  "celerity": "DND5E.Celerity",
-  "chakraManipulation": "DND5E.ChakraManipulation",
-  "corrosiveMetabolism": "DND5E.CorrosiveMetabolism",
-  "ironDurability": "DND5E.IronDurability",
-  "psionicWeapon": "DND5E.PsionicWeapon",
-  "venomousMetabolism": "DND5E.VenomousMetabolism"
+PERGASHA.immortalDisciplines = {
+  "adaptiveBody": "PERGASHA.AdaptiveBody",
+  "beastialForm": "PERGASHA.BeastialForm",
+  "bruteForce": "PERGASHA.BruteForce",
+  "celerity": "PERGASHA.Celerity",
+  "chakraManipulation": "PERGASHA.ChakraManipulation",
+  "corrosiveMetabolism": "PERGASHA.CorrosiveMetabolism",
+  "ironDurability": "PERGASHA.IronDurability",
+  "psionicWeapon": "PERGASHA.PsionicWeapon",
+  "venomousMetabolism": "PERGASHA.VenomousMetabolism"
 }
-DND5E.nomadDisciplines = {
-  "chameleon": "DND5E.Chameleon",
-  "chronoweaver": "DND5E.Chronoweaver",
-  "continuumManipulation": "DND5E.ContinuumManipulation",
-  "intelligentArrow": "DND5E.IntelligentArrow",
-  "nomadicMind": "DND5E.NomadicMind",
-  "nomadicStep": "DND5E.NomadicStep",
-  "sonokinesis": "DND5E.Sonokinesis"
+PERGASHA.nomadDisciplines = {
+  "chameleon": "PERGASHA.Chameleon",
+  "chronoweaver": "PERGASHA.Chronoweaver",
+  "continuumManipulation": "PERGASHA.ContinuumManipulation",
+  "intelligentArrow": "PERGASHA.IntelligentArrow",
+  "nomadicMind": "PERGASHA.NomadicMind",
+  "nomadicStep": "PERGASHA.NomadicStep",
+  "sonokinesis": "PERGASHA.Sonokinesis"
 }
 
-// DND5E.psionicDisciplines = {
+// PERGASHA.psionicDisciplines = {
 //   "avatar": {
-//     "auraOfCommand": "DND5E.AuraOfCommand",
-//     "auraOfFury": "DND5E.AuraOfFury",
-//     "beaconOfCourage": "DND5E.BeaconOfCourage",
-//     "crownOfDespair": "DND5E.CrownOfDespair",
-//     "crownOfRage": "DND5E.CrownOfRage",
-//     "disgust": "DND5E.Disgust",
-//     "mantleOfAwe": "DND5E.MantleOfAwe",
-//     "mantleOfFear": "DND5E.MantleOfFear",
-//     "mantleOfJoy": "DND5E.MantleOfJoy"
+//     "auraOfCommand": "PERGASHA.AuraOfCommand",
+//     "auraOfFury": "PERGASHA.AuraOfFury",
+//     "beaconOfCourage": "PERGASHA.BeaconOfCourage",
+//     "crownOfDespair": "PERGASHA.CrownOfDespair",
+//     "crownOfRage": "PERGASHA.CrownOfRage",
+//     "disgust": "PERGASHA.Disgust",
+//     "mantleOfAwe": "PERGASHA.MantleOfAwe",
+//     "mantleOfFear": "PERGASHA.MantleOfFear",
+//     "mantleOfJoy": "PERGASHA.MantleOfJoy"
 //   },
 //   "awakened": {
-//     "auraSight": "DND5E.AuraSight",
-//     "intellectFortress": "DND5E.IntellectFortress",
-//     "precognition": "DND5E.Precognition",
-//     "psychicAssault": "DND5E.PsychicAssault",
-//     "psychicDisruption": "DND5E.PsychicDisruption",
-//     "telepathicContact": "DND5E.TelepathicContact",
-//     "thirdEye": "DND5E.ThirdEye"
+//     "auraSight": "PERGASHA.AuraSight",
+//     "intellectFortress": "PERGASHA.IntellectFortress",
+//     "precognition": "PERGASHA.Precognition",
+//     "psychicAssault": "PERGASHA.PsychicAssault",
+//     "psychicDisruption": "PERGASHA.PsychicDisruption",
+//     "telepathicContact": "PERGASHA.TelepathicContact",
+//     "thirdEye": "PERGASHA.ThirdEye"
 //   },
 //   "farhand": {
-//     "enhancedForce": "DND5E.EnhancedForce",
-//     "forceFields": "DND5E.ForceFields",
-//     "graviturgy": "DND5E.Graviturgy",
-//     "illumination": "DND5E.Illumination",
-//     "livingKnives": "DND5E.LivingKnives",
-//     "massManipulation": "DND5E.MassManipulation",
-//     "psychokinesis": "DND5E.Psychokinesis",
-//     "telemacheia": "DND5E.Telemacheia"
+//     "enhancedForce": "PERGASHA.EnhancedForce",
+//     "forceFields": "PERGASHA.ForceFields",
+//     "graviturgy": "PERGASHA.Graviturgy",
+//     "illumination": "PERGASHA.Illumination",
+//     "livingKnives": "PERGASHA.LivingKnives",
+//     "massManipulation": "PERGASHA.MassManipulation",
+//     "psychokinesis": "PERGASHA.Psychokinesis",
+//     "telemacheia": "PERGASHA.Telemacheia"
 //   },
 //   "immortal": {
-//     "adaptiveBody": "DND5E.AdaptiveBody",
-//     "beastialForm": "DND5E.BeastialForm",
-//     "bruteForce": "DND5E.BruteForce",
-//     "celerity": "DND5E.Celerity",
-//     "chakraManipulation": "DND5E.ChakraManipulation",
-//     "corrosiveMetabolism": "DND5E.CorrosiveMetabolism",
-//     "ironDurability": "DND5E.IronDurability",
-//     "psionicWeapon": "DND5E.PsionicWeapon",
-//     "venomousMetabolism": "DND5E.VenomousMetabolism"
+//     "adaptiveBody": "PERGASHA.AdaptiveBody",
+//     "beastialForm": "PERGASHA.BeastialForm",
+//     "bruteForce": "PERGASHA.BruteForce",
+//     "celerity": "PERGASHA.Celerity",
+//     "chakraManipulation": "PERGASHA.ChakraManipulation",
+//     "corrosiveMetabolism": "PERGASHA.CorrosiveMetabolism",
+//     "ironDurability": "PERGASHA.IronDurability",
+//     "psionicWeapon": "PERGASHA.PsionicWeapon",
+//     "venomousMetabolism": "PERGASHA.VenomousMetabolism"
 //   },
 //   "nomad": {
-//     "chameleon": "DND5E.Chameleon",
-//     "chronoweaver": "DND5E.Chronoweaver",
-//     "continuumManipulation": "DND5E.ContinuumManipulation",
-//     "intelligentArrow": "DND5E.IntelligentArrow",
-//     "nomadicMind": "DND5E.NomadicMind",
-//     "nomadicStep": "DND5E.NomadicStep",
-//     "sonokinesis": "DND5E.Sonokinesis"
+//     "chameleon": "PERGASHA.Chameleon",
+//     "chronoweaver": "PERGASHA.Chronoweaver",
+//     "continuumManipulation": "PERGASHA.ContinuumManipulation",
+//     "intelligentArrow": "PERGASHA.IntelligentArrow",
+//     "nomadicMind": "PERGASHA.NomadicMind",
+//     "nomadicStep": "PERGASHA.NomadicStep",
+//     "sonokinesis": "PERGASHA.Sonokinesis"
 //   }
 // };
 
-DND5E.psionicPowerCosts = {
-  "focus": "DND5E.Focuses&Masteries",
-  0: "DND5E.PsiCost0",
-  1: "DND5E.PsiCost1",
-  2: "DND5E.PsiCost2",
-  3: "DND5E.PsiCost3",
-  4: "DND5E.PsiCost4",
-  5: "DND5E.PsiCost5",
-  6: "DND5E.PsiCost6",
-  7: "DND5E.PsiCost7",
-  8: "DND5E.PsiCostVar"
+PERGASHA.psionicPowerCosts = {
+  "focus": "PERGASHA.Focuses&Masteries",
+  0: "PERGASHA.PsiCost0",
+  1: "PERGASHA.PsiCost1",
+  2: "PERGASHA.PsiCost2",
+  3: "PERGASHA.PsiCost3",
+  4: "PERGASHA.PsiCost4",
+  5: "PERGASHA.PsiCost5",
+  6: "PERGASHA.PsiCost6",
+  7: "PERGASHA.PsiCost7",
+  8: "PERGASHA.PsiCostVar"
 }
 
-DND5E.basePsionicPowerCosts = {
-  1: "DND5E.PsiCost1",
-  2: "DND5E.PsiCost2",
-  3: "DND5E.PsiCost3",
-  4: "DND5E.PsiCost4",
-  5: "DND5E.PsiCost5",
-  6: "DND5E.PsiCost6"
+PERGASHA.basePsionicPowerCosts = {
+  1: "PERGASHA.PsiCost1",
+  2: "PERGASHA.PsiCost2",
+  3: "PERGASHA.PsiCost3",
+  4: "PERGASHA.PsiCost4",
+  5: "PERGASHA.PsiCost5",
+  6: "PERGASHA.PsiCost6"
 }
 
-DND5E.maxPsionicPowerCosts = {
-  2: "DND5E.PsiCost2",
-  3: "DND5E.PsiCost3",
-  4: "DND5E.PsiCost4",
-  5: "DND5E.PsiCost5",
-  6: "DND5E.PsiCost6",
-  7: "DND5E.PsiCost7"
+PERGASHA.maxPsionicPowerCosts = {
+  2: "PERGASHA.PsiCost2",
+  3: "PERGASHA.PsiCost3",
+  4: "PERGASHA.PsiCost4",
+  5: "PERGASHA.PsiCost5",
+  6: "PERGASHA.PsiCost6",
+  7: "PERGASHA.PsiCost7"
 }
 
 
@@ -1115,13 +1160,13 @@ DND5E.maxPsionicPowerCosts = {
  * The available choices for how psionic power damage scaling may be computed
  * @type {Object}
  */
-DND5E.psionicPowerScaling = {
-  "none": "DND5E.PsionicPowerNone",
-  "talent": "DND5E.PsionicPowerTalent",
-  "variableCost": "DND5E.PsionicPowerVariableCost"
+PERGASHA.psionicPowerScaling = {
+  "none": "PERGASHA.PsionicPowerNone",
+  "talent": "PERGASHA.PsionicPowerTalent",
+  "variableCost": "PERGASHA.PsionicPowerVariableCost"
 };
 
-DND5E.exhaustionEffects = {
+PERGASHA.exhaustionEffects = {
   0: "For each level of exhaustion you have, any psionic abilities require 1 extra Psi Point to activate, including Talents.",
   1: "Disadvantage on Strength and Dexterity Ability and Skill checks. You can’t perform the Dash action during combat.",
   2: "Disadvantage on all Ability and Skill checks. Your Speed is halved.",
@@ -1131,7 +1176,7 @@ DND5E.exhaustionEffects = {
   6: "You are Dying. Any additional Exhaustion counts as two failed death saves.",
 }
 
-DND5E.fatigueEffects = {
+PERGASHA.fatigueEffects = {
   1: "Take 1d4 damage when activating psionics.",
   2: "Psi Limit Reduced by 1.",
   3: "Unable to maintain a Psychic Focus.",

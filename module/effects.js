@@ -8,10 +8,10 @@ export function onManageActiveEffect(event, owner) {
   const a = event.currentTarget;
   const li = a.closest("li");
   const effect = li.dataset.effectId ? owner.effects.get(li.dataset.effectId) : null;
-  switch ( a.dataset.action ) {
+  switch (a.dataset.action) {
     case "create":
       return owner.createEmbeddedDocuments("ActiveEffect", [{
-        label: game.i18n.localize("DND5E.EffectNew"),
+        label: game.i18n.localize("PERGASHA.EffectNew"),
         icon: "icons/svg/aura.svg",
         origin: owner.uuid,
         "duration.rounds": li.dataset.effectType === "temporary" ? 1 : undefined,
@@ -22,7 +22,7 @@ export function onManageActiveEffect(event, owner) {
     case "delete":
       return effect.delete();
     case "toggle":
-      return effect.update({disabled: !effect.data.disabled});
+      return effect.update({ disabled: !effect.data.disabled });
   }
 }
 
@@ -33,31 +33,31 @@ export function onManageActiveEffect(event, owner) {
  */
 export function prepareActiveEffectCategories(effects) {
 
-    // Define effect header categories
-    const categories = {
-      temporary: {
-        type: "temporary",
-        label: game.i18n.localize("DND5E.EffectTemporary"),
-        effects: []
-      },
-      passive: {
-        type: "passive",
-        label: game.i18n.localize("DND5E.EffectPassive"),
-        effects: []
-      },
-      inactive: {
-        type: "inactive",
-        label: game.i18n.localize("DND5E.EffectInactive"),
-        effects: []
-      }
-    };
-
-    // Iterate over active effects, classifying them into categories
-    for ( let e of effects ) {
-      e._getSourceName(); // Trigger a lookup for the source name
-      if ( e.data.disabled ) categories.inactive.effects.push(e);
-      else if ( e.isTemporary ) categories.temporary.effects.push(e);
-      else categories.passive.effects.push(e);
+  // Define effect header categories
+  const categories = {
+    temporary: {
+      type: "temporary",
+      label: game.i18n.localize("PERGASHA.EffectTemporary"),
+      effects: []
+    },
+    passive: {
+      type: "passive",
+      label: game.i18n.localize("PERGASHA.EffectPassive"),
+      effects: []
+    },
+    inactive: {
+      type: "inactive",
+      label: game.i18n.localize("PERGASHA.EffectInactive"),
+      effects: []
     }
-    return categories;
+  };
+
+  // Iterate over active effects, classifying them into categories
+  for (let e of effects) {
+    e._getSourceName(); // Trigger a lookup for the source name
+    if (e.data.disabled) categories.inactive.effects.push(e);
+    else if (e.isTemporary) categories.temporary.effects.push(e);
+    else categories.passive.effects.push(e);
+  }
+  return categories;
 }

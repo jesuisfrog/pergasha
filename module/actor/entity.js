@@ -2,7 +2,7 @@ import { d20Roll, damageRoll } from "../dice.js";
 import SelectItemsPrompt from "../apps/select-items-prompt.js";
 import ShortRestDialog from "../apps/short-rest.js";
 import LongRestDialog from "../apps/long-rest.js";
-import { DND5E } from '../config.js';
+import { PERGASHA } from '../config.js';
 import Item5e from "../item/entity.js";
 
 /**
@@ -151,7 +151,7 @@ export default class Actor5e extends Actor {
    * @return {Number}       The XP required
    */
   getLevelExp(level) {
-    const levels = CONFIG.DND5E.CHARACTER_EXP_LEVELS;
+    const levels = CONFIG.PERGASHA.CHARACTER_EXP_LEVELS;
     return levels[Math.min(level, levels.length - 1)];
   }
 
@@ -164,7 +164,7 @@ export default class Actor5e extends Actor {
    */
   getCRExp(cr) {
     if (cr < 1.0) return Math.max(200 * cr, 10);
-    return CONFIG.DND5E.CR_EXP_LEVELS[cr];
+    return CONFIG.PERGASHA.CR_EXP_LEVELS[cr];
   }
 
   /* -------------------------------------------- */
@@ -198,7 +198,7 @@ export default class Actor5e extends Actor {
     let toCreate = [];
     if (prompt) {
       const itemIdsToAdd = await SelectItemsPrompt.create(items, {
-        hint: game.i18n.localize('DND5E.AddEmbeddedItemPromptHint')
+        hint: game.i18n.localize('PERGASHA.AddEmbeddedItemPromptHint')
       });
       for (let item of items) {
         if (itemIdsToAdd.includes(item.id)) toCreate.push(item.toObject());
@@ -239,7 +239,7 @@ export default class Actor5e extends Actor {
     subclassName = subclassName.slugify();
 
     // Get the configuration of features which may be added
-    const clsConfig = CONFIG.DND5E.classFeatures[className];
+    const clsConfig = CONFIG.PERGASHA.classFeatures[className];
     if (!clsConfig) return [];
 
     // Acquire class features
@@ -353,7 +353,7 @@ export default class Actor5e extends Actor {
     const flags = actorData.flags.pergashaFoundryvtt || {};
 
     // Skill modifiers
-    const feats = DND5E.characterFlags;
+    const feats = PERGASHA.characterFlags;
     const observant = flags.observantFeat;
     const skillBonus = Number.isNumeric(bonuses.skill) ? parseInt(bonuses.skill) : 0;
     for (let [id, skl] of Object.entries(data.skills)) {
@@ -440,7 +440,7 @@ export default class Actor5e extends Actor {
 
     // Look up the number of slots per level from the progression table
     const levels = Math.clamped(progression.slot, 0, 20);
-    const slots = DND5E.SPELL_SLOT_TABLE[levels - 1] || [];
+    const slots = PERGASHA.SPELL_SLOT_TABLE[levels - 1] || [];
     for (let [n, lvl] of Object.entries(spells)) {
       let i = parseInt(n.slice(-1));
       if (Number.isNaN(i)) continue;
@@ -540,9 +540,12 @@ export default class Actor5e extends Actor {
 
     // if (this.getFlag("pergashaFoundryvtt", "powerfulBuild")) mod = Math.min(mod * 2, 8);
 
+    let manualSlotMod = 0;
+    if (this.getFlag("pergashaFoundryvtt", "inventorySlotModifier")) manualSlotMod = this.getFlag("pergashaFoundryvtt", "inventorySlotModifier");
+
     // Compute Encumbrance percentage
     weight = weight.toNearest(0.1);
-    const max = strSlotMod + mod;
+    const max = strSlotMod + mod + manualSlotMod;
     const pct = Math.clamped((weight * 100) / max, 0, 100);
     return { value: weight.toNearest(0.1), max, pct, encumbered: pct > (2 / 3) };
   }
@@ -562,7 +565,7 @@ export default class Actor5e extends Actor {
     if (game.settings.get("pergashaFoundryvtt", "currencyWeight") && actorData.data.currency) {
       const currency = actorData.data.currency;
       const numCoins = Object.values(currency).reduce((val, denom) => val += Math.max(denom, 0), 0);
-      weight += numCoins / CONFIG.DND5E.encumbrance.currencyPerWeight;
+      weight += numCoins / CONFIG.PERGASHA.encumbrance.currencyPerWeight;
     }
 
     // Determine the encumbrance size class
@@ -578,7 +581,7 @@ export default class Actor5e extends Actor {
 
     // Compute Encumbrance percentage
     weight = weight.toNearest(0.1);
-    const max = actorData.data.abilities.str.value * CONFIG.DND5E.encumbrance.strMultiplier * mod;
+    const max = actorData.data.abilities.str.value * CONFIG.PERGASHA.encumbrance.strMultiplier * mod;
     const pct = Math.clamped((weight * 100) / max, 0, 100);
     return { value: weight.toNearest(0.1), max, pct, encumbered: pct > (2 / 3) };
   }
@@ -592,7 +595,7 @@ export default class Actor5e extends Actor {
     await super._preCreate(data, options, user);
 
     // Token size category
-    const s = CONFIG.DND5E.tokenSizes[this.data.data.traits.size || "med"];
+    const s = CONFIG.PERGASHA.tokenSizes[this.data.data.traits.size || "med"];
     this.data.token.update({ width: s, height: s });
 
     // Player character configuration
@@ -610,7 +613,7 @@ export default class Actor5e extends Actor {
     // Apply changes in Actor size to Token width/height
     const newSize = foundry.utils.getProperty(changed, "data.traits.size");
     if (newSize && (newSize !== foundry.utils.getProperty(this.data, "data.traits.size"))) {
-      let size = CONFIG.DND5E.tokenSizes[newSize];
+      let size = CONFIG.PERGASHA.tokenSizes[newSize];
       if (!foundry.utils.hasProperty(changed, "token.width")) {
         changed.token = changed.token || {};
         changed.token.height = size;
@@ -730,7 +733,7 @@ export default class Actor5e extends Actor {
     const rollData = foundry.utils.mergeObject(options, {
       parts: parts,
       data: data,
-      title: game.i18n.format("DND5E.SkillPromptTitle", { skill: CONFIG.DND5E.skills[skillId] }),
+      title: game.i18n.format("PERGASHA.SkillPromptTitle", { skill: CONFIG.PERGASHA.skills[skillId] }),
       reliableTalent: reliableTalent,
       messageData: {
         speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
@@ -749,17 +752,17 @@ export default class Actor5e extends Actor {
    * @param {Object} options      Options which configure how ability tests or saving throws are rolled
    */
   rollAbility(abilityId, options = {}) {
-    const label = CONFIG.DND5E.abilities[abilityId];
+    const label = CONFIG.PERGASHA.abilities[abilityId];
     new Dialog({
-      title: game.i18n.format("DND5E.AbilityPromptTitle", { ability: label }),
-      content: `<p>${game.i18n.format("DND5E.AbilityPromptText", { ability: label })}</p>`,
+      title: game.i18n.format("PERGASHA.AbilityPromptTitle", { ability: label }),
+      content: `<p>${game.i18n.format("PERGASHA.AbilityPromptText", { ability: label })}</p>`,
       buttons: {
         test: {
-          label: game.i18n.localize("DND5E.ActionAbil"),
+          label: game.i18n.localize("PERGASHA.ActionAbil"),
           callback: () => this.rollAbilityTest(abilityId, options)
         },
         save: {
-          label: game.i18n.localize("DND5E.ActionSave"),
+          label: game.i18n.localize("PERGASHA.ActionSave"),
           callback: () => this.rollAbilitySave(abilityId, options)
         }
       }
@@ -776,7 +779,7 @@ export default class Actor5e extends Actor {
    * @return {Promise<Roll>}      A Promise which resolves to the created Roll instance
    */
   rollAbilityTest(abilityId, options = {}) {
-    const label = CONFIG.DND5E.abilities[abilityId];
+    const label = CONFIG.PERGASHA.abilities[abilityId];
     const abl = this.data.data.abilities[abilityId];
 
     // Construct parts
@@ -799,7 +802,7 @@ export default class Actor5e extends Actor {
     const rollData = foundry.utils.mergeObject(options, {
       parts: parts,
       data: data,
-      title: game.i18n.format("DND5E.AbilityPromptTitle", { ability: label }),
+      title: game.i18n.format("PERGASHA.AbilityPromptTitle", { ability: label }),
       messageData: {
         speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
         "flags.pergashaFoundryvtt.roll": { type: "ability", abilityId }
@@ -818,7 +821,7 @@ export default class Actor5e extends Actor {
    * @return {Promise<Roll>}      A Promise which resolves to the created Roll instance
    */
   rollAbilitySave(abilityId, options = {}) {
-    const label = CONFIG.DND5E.abilities[abilityId];
+    const label = CONFIG.PERGASHA.abilities[abilityId];
     const abl = this.data.data.abilities[abilityId];
 
     // Construct parts
@@ -847,7 +850,7 @@ export default class Actor5e extends Actor {
     const rollData = foundry.utils.mergeObject(options, {
       parts: parts,
       data: data,
-      title: game.i18n.format("DND5E.SavePromptTitle", { ability: label }),
+      title: game.i18n.format("PERGASHA.SavePromptTitle", { ability: label }),
       messageData: {
         speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
         "flags.pergashaFoundryvtt.roll": { type: "save", abilityId }
@@ -868,7 +871,7 @@ export default class Actor5e extends Actor {
     // Display a warning if we are not at zero HP or if we already have reached 3
     const death = this.data.data.attributes.death;
     if ((this.data.data.attributes.hp.value > 0) || (death.failure >= 3) || (death.success >= 3)) {
-      ui.notifications.warn(game.i18n.localize("DND5E.DeathSaveUnnecessary"));
+      ui.notifications.warn(game.i18n.localize("PERGASHA.DeathSaveUnnecessary"));
       return null;
     }
 
@@ -893,7 +896,7 @@ export default class Actor5e extends Actor {
     const rollData = foundry.utils.mergeObject(options, {
       parts: parts,
       data: data,
-      title: game.i18n.localize("DND5E.DeathSavingThrow"),
+      title: game.i18n.localize("PERGASHA.DeathSavingThrow"),
       targetValue: 10,
       messageData: {
         speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
@@ -919,14 +922,14 @@ export default class Actor5e extends Actor {
           "data.attributes.death.success": 0,
           "data.attributes.hp.value": 1
         });
-        chatString = "DND5E.DeathSaveCriticalSuccess";
+        chatString = "PERGASHA.DeathSaveCriticalSuccess";
       }
       // "data.attributes.death.failure": 0,
       else if (successes === 3) {
         await this.update({
           "data.attributes.death.success": 0
         });
-        chatString = "DND5E.DeathSaveSuccess";
+        chatString = "PERGASHA.DeathSaveSuccess";
       }
 
       // Increment successes
@@ -938,7 +941,7 @@ export default class Actor5e extends Actor {
       let failures = (death.failure || 0) + (d20 === 1 ? 2 : 1);
       await this.update({ "data.attributes.death.failure": Math.clamped(failures, 0, 3) });
       if (failures >= 3) {  // 3 Failures = death
-        chatString = "DND5E.DeathSaveFailure";
+        chatString = "PERGASHA.DeathSaveFailure";
       }
     }
 
@@ -984,13 +987,13 @@ export default class Actor5e extends Actor {
 
     // If no class is available, display an error notification
     if (!cls) {
-      ui.notifications.error(game.i18n.format("DND5E.HitDiceWarn", { name: this.name, formula: denomination }));
+      ui.notifications.error(game.i18n.format("PERGASHA.HitDiceWarn", { name: this.name, formula: denomination }));
       return null;
     }
 
     // Prepare roll data
     const parts = [`1${denomination}`, "@abilities.con.mod"];
-    const title = game.i18n.localize("DND5E.HitDiceRoll");
+    const title = game.i18n.localize("PERGASHA.HitDiceRoll");
     const rollData = foundry.utils.deepClone(this.data.data);
 
     // Call the roll helper utility
@@ -1168,21 +1171,21 @@ export default class Actor5e extends Actor {
 
     let restFlavor, message;
 
-    restFlavor = `DND5E.${length}RestNormal`;
+    restFlavor = `PERGASHA.${length}RestNormal`;
 
     // Summarize the rest duration
     // switch (game.settings.get("pergashaFoundryvtt", "restVariant")) {
-    //   case 'normal': restFlavor = (longRest && newDay) ? "DND5E.LongRestOvernight" : `DND5E.${length}RestNormal`; break;
-    //   case 'gritty': restFlavor = (!longRest && newDay) ? "DND5E.ShortRestOvernight" : `DND5E.${length}RestGritty`; break;
-    //   case 'epic': restFlavor = `DND5E.${length}RestEpic`; break;
+    //   case 'normal': restFlavor = (longRest && newDay) ? "PERGASHA.LongRestOvernight" : `PERGASHA.${length}RestNormal`; break;
+    //   case 'gritty': restFlavor = (!longRest && newDay) ? "PERGASHA.ShortRestOvernight" : `PERGASHA.${length}RestGritty`; break;
+    //   case 'epic': restFlavor = `PERGASHA.${length}RestEpic`; break;
     // }
 
     // Determine the chat message to display
-    if (fullRest) message = "DND5E.FullRestResult";
-    else if (diceRestored && healthRestored) message = `DND5E.${length}RestResult`;
-    else if (longRest && !diceRestored && healthRestored) message = "DND5E.LongRestResultHitPoints";
-    else if (longRest && diceRestored && !healthRestored) message = "DND5E.LongRestResultHitDice";
-    else message = `DND5E.${length}RestResultShort`;
+    if (fullRest) message = "PERGASHA.FullRestResult";
+    else if (diceRestored && healthRestored) message = `PERGASHA.${length}RestResult`;
+    else if (longRest && !diceRestored && healthRestored) message = "PERGASHA.LongRestResultHitPoints";
+    else if (longRest && diceRestored && !healthRestored) message = "PERGASHA.LongRestResultHitDice";
+    else message = `PERGASHA.${length}RestResultShort`;
     // Create a chat message
     let chatData = {
       user: game.user.id,
@@ -1414,7 +1417,7 @@ export default class Actor5e extends Actor {
    */
   convertCurrency() {
     const curr = foundry.utils.deepClone(this.data.data.currency);
-    const convert = CONFIG.DND5E.currencyConversion;
+    const convert = CONFIG.PERGASHA.currencyConversion;
     for (let [c, t] of Object.entries(convert)) {
       let change = Math.floor(curr[c] / t.each);
       curr[c] -= (change * t.each);
@@ -1452,7 +1455,7 @@ export default class Actor5e extends Actor {
     // Ensure the player is allowed to polymorph
     const allowed = game.settings.get("pergashaFoundryvtt", "allowPolymorphing");
     if (!allowed && !game.user.isGM) {
-      return ui.notifications.warn(game.i18n.localize("DND5E.PolymorphWarn"));
+      return ui.notifications.warn(game.i18n.localize("PERGASHA.PolymorphWarn"));
     }
 
     // Get the original Actor data and the new source data
@@ -1532,7 +1535,7 @@ export default class Actor5e extends Actor {
     if (!keepClass && d.data.details.cr) {
       d.items.push({
         type: 'class',
-        name: game.i18n.localize('DND5E.PolymorphTmpClass'),
+        name: game.i18n.localize('PERGASHA.PolymorphTmpClass'),
         data: { levels: d.data.details.cr }
       });
     }
@@ -1586,7 +1589,7 @@ export default class Actor5e extends Actor {
   async revertOriginalForm() {
     if (!this.isPolymorphed) return;
     if (!this.isOwner) {
-      return ui.notifications.warn(game.i18n.localize("DND5E.PolymorphRevertWarn"));
+      return ui.notifications.warn(game.i18n.localize("PERGASHA.PolymorphRevertWarn"));
     }
 
     // If we are reverting an unlinked token, simply replace it with the base actor prototype
@@ -1639,7 +1642,7 @@ export default class Actor5e extends Actor {
    */
   static addDirectoryContextOptions(html, entryOptions) {
     entryOptions.push({
-      name: 'DND5E.PolymorphRestoreTransformation',
+      name: 'PERGASHA.PolymorphRestoreTransformation',
       icon: '<i class="fas fa-backward"></i>',
       callback: li => {
         const actor = game.actors.get(li.data('entityId'));
@@ -1667,13 +1670,13 @@ export default class Actor5e extends Actor {
     if (typeData.value === "custom") {
       localizedType = typeData.custom;
     } else {
-      let code = CONFIG.DND5E.creatureTypes[typeData.value];
+      let code = CONFIG.PERGASHA.creatureTypes[typeData.value];
       localizedType = game.i18n.localize(!!typeData.swarm ? `${code}Pl` : code);
     }
     let type = localizedType;
     if (!!typeData.swarm) {
-      type = game.i18n.format('DND5E.CreatureSwarmPhrase', {
-        size: game.i18n.localize(CONFIG.DND5E.actorSizes[typeData.swarm]),
+      type = game.i18n.format('PERGASHA.CreatureSwarmPhrase', {
+        size: game.i18n.localize(CONFIG.PERGASHA.actorSizes[typeData.swarm]),
         type: localizedType
       });
     }

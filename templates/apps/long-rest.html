@@ -1,33 +1,33 @@
 <form id="long-rest" class="dialog-content" onsubmit="event.preventDefault();">
-    <p>{{ localize "DND5E.LongRestHint" }}</p>
+    <p>{{ localize "PERGASHA.LongRestHint" }}</p>
 
     <div class="form-group">
-        <label>{{ localize "DND5E.FullRest" }}</label>
+        <label>{{ localize "PERGASHA.FullRest" }}</label>
         <input type="checkbox" name="fullRest" />
         <p class="hint">Resting for 24 hours.</p>
     </div>
 
     <div class="form-group">
-        <label>{{ localize "DND5E.ShortRestSelect" }}</label>
+        <label>{{ localize "PERGASHA.ShortRestSelect" }}</label>
         <div class="form-fields">
             <select name="hd">
                 {{#select denomination}}
                 {{#each availableHD as |num denom|}}
-                <option value="{{denom}}">{{denom}} ({{num}} {{ localize "DND5E.available" }})</option>
+                <option value="{{denom}}">{{denom}} ({{num}} {{ localize "PERGASHA.available" }})</option>
                 {{/each}}
                 {{/select}}
             </select>
             <button id="roll-hd" {{#unless canRoll}}disabled{{/unless}}>
-                <i class="fas fa-dice-d20"></i> {{ localize "DND5E.Roll" }}
+                <i class="fas fa-dice-d20"></i> {{ localize "PERGASHA.Roll" }}
             </button>
         </div>
         {{#unless canRoll}}
-        <p class="notes">{{ localize "DND5E.ShortRestNoHD" }}</p>
+        <p class="notes">{{ localize "PERGASHA.ShortRestNoHD" }}</p>
         {{/unless}}
     </div>
 
     <div class="form-group">
-        <label>{{ localize "DND5E.UsedHitDice" }}</label>
+        <label>{{ localize "PERGASHA.UsedHitDice" }}</label>
         <input type="checkbox" name="usedHitDice" />
         <p class="hint">Did you roll any hit dice during your long rest?</p>
     </div>

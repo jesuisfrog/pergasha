@@ -93,11 +93,11 @@ export default class ShortRestDialog extends Dialog {
   static async shortRestDialog({ actor } = {}) {
     return new Promise((resolve, reject) => {
       const dlg = new this(actor, {
-        title: game.i18n.localize("DND5E.ShortRest"),
+        title: game.i18n.localize("PERGASHA.ShortRest"),
         buttons: {
           rest: {
             icon: '<i class="fas fa-bed"></i>',
-            label: game.i18n.localize("DND5E.Rest"),
+            label: game.i18n.localize("PERGASHA.Rest"),
             // callback: html => {
             //   let newDay = false;
             //   if (game.settings.get("pergashaFoundryvtt", "restVariant") === "gritty")

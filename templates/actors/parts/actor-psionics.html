@@ -1,18 +1,18 @@
 <div class="psionics-filters flexrow">
     <div class="form-group psionics-ability">
-        <label>{{localize "DND5E.Psionics"}}</label>
+        <label>{{localize "PERGASHA.Psionics"}}</label>
         <select name="data.attributes.psionics.psionicsAbility" data-type="String">
             {{#select data.attributes.psionics.psionicsAbility}}
-            <option value="">{{localize "DND5E.None"}}</option>
+            <option value="">{{localize "PERGASHA.None"}}</option>
             {{#each data.abilities as |abl a|}}
             <option value="{{a}}">{{abl.label}}</option>
             {{/each}}
             {{/select}}
         </select>
-        <span><b>{{localize "DND5E.AbbreviationDC"}} {{data.attributes.psionics.psionicsdc}}</b></span>
+        <span><b>{{localize "PERGASHA.AbbreviationDC"}} {{data.attributes.psionics.psionicsdc}}</b></span>
     </div>
     <div class="form-group psionics-limit">
-        <label>{{localize "DND5E.PsionicLimit"}}</label>
+        <label>{{localize "PERGASHA.PsionicLimit"}}</label>
         <select name="data.attributes.psionics.psiLimit" data-type="number">
             {{#select data.attributes.psionics.psiLimit}}
             <option value="2" selected>2</option>
@@ -25,7 +25,7 @@
         </select>
     </div>
     <div class="form-group psionics-points">
-        <label>{{localize "DND5E.PsiPoints"}}: </label>
+        <label>{{localize "PERGASHA.PsiPoints"}}: </label>
         <input name="data.attributes.psionics.psiPoints" value="{{data.attributes.psionics.psiPoints}}" type="text"
             placeholder="0" />
         <span class="sep"> / </span>
@@ -40,11 +40,11 @@
 
 <div class="inventory-filters flexrow">
     <ul class="filter-list flexrow" data-filter="psionics">
-        <li class="filter-item" data-filter="action">{{localize "DND5E.Action"}}</li>
-        <li class="filter-item" data-filter="bonus">{{localize "DND5E.BonusAction"}}</li>
-        <li class="filter-item" data-filter="reaction">{{localize "DND5E.Reaction"}}</li>
-        <li class="filter-item" data-filter="concentration">{{localize "DND5E.AbbreviationConc"}}</li>
-        <li class="filter-item" data-filter="psilimit">{{localize "DND5E.PsiLimit"}}</li>
+        <li class="filter-item" data-filter="action">{{localize "PERGASHA.Action"}}</li>
+        <li class="filter-item" data-filter="bonus">{{localize "PERGASHA.BonusAction"}}</li>
+        <li class="filter-item" data-filter="reaction">{{localize "PERGASHA.Reaction"}}</li>
+        <li class="filter-item" data-filter="concentration">{{localize "PERGASHA.AbbreviationConc"}}</li>
+        <li class="filter-item" data-filter="psilimit">{{localize "PERGASHA.PsiLimit"}}</li>
     </ul>
 </div>
 
@@ -53,27 +53,27 @@
     <li class="items-header flexrow">
         <div class="item-name flexrow">
             {{#if (isTalentSection section.label)}}
-            <h3>{{localize "DND5E.Talents"}}</h3>
+            <h3>{{localize "PERGASHA.Talents"}}</h3>
             {{else}}
             <h3>{{section.label}}</h3>
             {{/if}}
         </div>
         {{#if (isVariableSection section.label)}}
-        <div class="psionics-order">{{localize "DND5E.PsiCost"}}</div>
+        <div class="psionics-order">{{localize "PERGASHA.PsiCost"}}</div>
         {{/if}}
         {{#unless (isTalentSection section.label)}}
-        <div class="psionics-order">{{localize "DND5E.PsionicOrder"}}</div>
-        <div class="psionics-discipline">{{localize "DND5E.PsionicDiscipline"}}</div>
+        <div class="psionics-order">{{localize "PERGASHA.PsionicOrder"}}</div>
+        <div class="psionics-discipline">{{localize "PERGASHA.PsionicDiscipline"}}</div>
         {{/unless}}
         {{#unless (isFocusSection section.label)}}
-        <div class="psionics-action">{{localize "DND5E.EvokingTime"}}</div>
-        <div class="psionics-target">{{localize "DND5E.PsionicTarget"}}</div>
+        <div class="psionics-action">{{localize "PERGASHA.EvokingTime"}}</div>
+        <div class="psionics-target">{{localize "PERGASHA.PsionicTarget"}}</div>
         {{/unless}}
         <div class="item-controls flexrow">
             {{#if section.canCreate}}
-            <a class="item-control item-create" title="{{localize 'DND5E.PsionicPowerCreate'}}" {{#each section.dataset
-                as |v k|}}data-{{k}}="{{v}}" {{/each}}>
-                <i class="fas fa-plus"></i> {{localize "DND5E.Add"}}
+            <a class="item-control item-create" title="{{localize 'PERGASHA.PsionicPowerCreate'}}" {{#each
+                section.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>
+                <i class="fas fa-plus"></i> {{localize "PERGASHA.Add"}}
             </a>
             {{/if}}
         </div>
@@ -95,17 +95,18 @@
             {{/unless}}
             {{#unless (isFocusSection section.label)}}
             <div class="psionics-action">{{labels.activation}}</div>
-            <div class="psionics-target" title="{{localize 'DND5E.Range'}}: {{labels.range}}">
+            <div class="psionics-target" title="{{localize 'PERGASHA.Range'}}: {{labels.range}}">
                 {{#if labels.target}}
                 {{labels.target}}
-                {{else}}{{localize 'DND5E.None'}}
+                {{else}}{{localize 'PERGASHA.None'}}
                 {{/if}}
             </div>
             {{/unless}}
             {{#if ../../owner}}
             <div class="item-controls flexrow">
-                <a class="item-control item-edit" title="{{localize 'DND5E.ItemEdit'}}"><i class="fas fa-edit"></i></a>
-                <a class="item-control item-delete" title="{{localize 'DND5E.ItemDelete'}}"><i
+                <a class="item-control item-edit" title="{{localize 'PERGASHA.ItemEdit'}}"><i
+                        class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="{{localize 'PERGASHA.ItemDelete'}}"><i
                         class="fas fa-trash"></i></a>
             </div>
             {{/if}}
@@ -116,13 +117,14 @@
     {{#if owner}}
     {{#if filters.psionics.size}}
     <li class="item flexrow">
-        <p class="notes">{{localize "DND5E.FilterNoPsionicPowers"}}</p>
+        <p class="notes">{{localize "PERGASHA.FilterNoPsionicPowers"}}</p>
     </li>
     {{else}}
     <li class="item flexrow inventory-header psionics-empty">
         <div class="item-controls flexrow">
-            <a class="item-control item-create" title="{{localize 'DND5E.PsionicPowerCreate'}}" data-type="psionicPower"
-                data-psicost="{{psicost}}"><i class="fas fa-plus"></i> {{localize "DND5E.PsionicPowerCreate"}}</a>
+            <a class="item-control item-create" title="{{localize 'PERGASHA.PsionicPowerCreate'}}"
+                data-type="psionicPower" data-psicost="{{psicost}}"><i class="fas fa-plus"></i> {{localize
+                "PERGASHA.PsionicPowerCreate"}}</a>
         </div>
     </li>
     {{/if}}

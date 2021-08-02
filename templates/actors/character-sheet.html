@@ -6,12 +6,12 @@
 
         <section class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'DND5E.Name' }}" />
+                <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'PERGASHA.Name' }}" />
             </h1>
 
             <aside class="header-exp flexcol">
                 <div class="charlevel" title="{{multiclassLabels}}">
-                    <label>{{ localize "DND5E.Level" }} {{data.details.level}}</label>
+                    <label>{{ localize "PERGASHA.Level" }} {{data.details.level}}</label>
                     <span class="levels">{{classLabels}}</span>
                 </div>
 
@@ -32,10 +32,10 @@
             <ul class="summary flexrow">
                 <li>
                     <input type="text" name="data.details.race" value="{{data.details.race}}"
-                        placeholder="{{ localize 'DND5E.Race' }}" />
+                        placeholder="{{ localize 'PERGASHA.Race' }}" />
                 </li>
                 <li class="flexrow">
-                    <span>{{localize "DND5E.Focus"}}</span>
+                    <span>{{localize "PERGASHA.Focus"}}</span>
                     <select name="data.attributes.psionics.activeFocus" style="margin-right: 5px;">
                         {{#select data.attributes.psionics.activeFocus}}
                         <option value="">None</option>
@@ -47,14 +47,14 @@
                 </li>
                 <!-- <li>
                     <input type="text" name="data.details.background" value="{{data.details.background}}"
-                        placeholder="{{ localize 'DND5E.Background' }}" />
+                        placeholder="{{ localize 'PERGASHA.Background' }}" />
                 </li>
                 <li>
                     <input type="text" name="data.details.alignment" value="{{data.details.alignment}}"
-                        placeholder="{{ localize 'DND5E.Alignment' }}" />
+                        placeholder="{{ localize 'PERGASHA.Alignment' }}" />
                 </li> -->
                 <li class="proficiency">
-                    <span>{{ localize "DND5E.Proficiency" }} {{numberFormat data.attributes.prof decimals=0
+                    <span>{{ localize "PERGASHA.Proficiency" }} {{numberFormat data.attributes.prof decimals=0
                         sign=true}}</span>
                 </li>
             </ul>
@@ -62,7 +62,7 @@
             {{!-- Header Attributes --}}
             <ul class="attributes flexrow">
                 <li class="attribute health">
-                    <h4 class="attribute-name box-title">{{ localize "DND5E.HitPoints" }}</h4>
+                    <h4 class="attribute-name box-title">{{ localize "PERGASHA.HitPoints" }}</h4>
                     <div class="attribute-value multiple">
                         <input name="data.attributes.hp.value" type="text" value="{{data.attributes.hp.value}}"
                             placeholder="10" data-dtype="Number" />
@@ -72,18 +72,18 @@
                     </div>
                     <footer class="attribute-footer">
                         <input name="data.attributes.hp.temp" type="text" class="temphp"
-                            placeholder="+{{ localize 'DND5E.Temp' }}" value="{{data.attributes.hp.temp}}"
+                            placeholder="+{{ localize 'PERGASHA.Temp' }}" value="{{data.attributes.hp.temp}}"
                             data-dtype="Number" />
                         <input name="data.attributes.hp.tempmax" type="text" class="temphp"
-                            placeholder="+{{ localize 'DND5E.Max' }}" value="{{data.attributes.hp.tempmax}}"
+                            placeholder="+{{ localize 'PERGASHA.Max' }}" value="{{data.attributes.hp.tempmax}}"
                             data-dtype="Number" />
                     </footer>
                 </li>
 
                 <li class="attribute hit-dice">
                     <h4 class="attribute-name box-title">
-                        {{ localize "DND5E.HitDice" }}
-                        <a class="config-button" data-action="hit-dice" title="{{localize 'DND5E.HitDiceConfig'}}"><i
+                        {{ localize "PERGASHA.HitDice" }}
+                        <a class="config-button" data-action="hit-dice" title="{{localize 'PERGASHA.HitDiceConfig'}}"><i
                                 class="fas fa-cog"></i></a>
                     </h4>
                     <div class="attribute-value multiple">
@@ -91,31 +91,31 @@
                             {{data.details.level}}</label>
                     </div>
                     <footer class="attribute-footer">
-                        <a class="rest short-rest">{{ localize "DND5E.RestS" }}</a>
-                        <a class="rest long-rest">{{ localize "DND5E.RestL" }}</a>
+                        <a class="rest short-rest">{{ localize "PERGASHA.RestS" }}</a>
+                        <a class="rest long-rest">{{ localize "PERGASHA.RestL" }}</a>
                     </footer>
                 </li>
 
                 <li class="attribute">
-                    <h4 class="attribute-name box-title">{{ localize "DND5E.ArmorClass" }}</h4>
+                    <h4 class="attribute-name box-title">{{ localize "PERGASHA.ArmorClass" }}</h4>
                     <div class="attribute-value">
                         <input name="data.attributes.ac.value" type="number" value="{{data.attributes.ac.value}}"
                             placeholder="10" />
                     </div>
                     <!-- <footer class="attribute-footer">
-                        <span class="spell-dc">{{localize "DND5E.SpellDC"}} {{data.attributes.spelldc}}</span>
+                        <span class="spell-dc">{{localize "PERGASHA.SpellDC"}} {{data.attributes.spelldc}}</span>
                     </footer> -->
                     <footer class="attribute-footer">
-                        <span class="psionics-dc">{{localize "DND5E.PsionicsDC"}}
+                        <span class="psionics-dc">{{localize "PERGASHA.PsionicsDC"}}
                             {{data.attributes.psionics.psionicsdc}}</span>
                     </footer>
                 </li>
 
                 <li class="attribute movement">
                     <h4 class="attribute-name box-title">
-                        {{ localize "DND5E.Movement" }}
-                        <a class="config-button" data-action="movement" title="{{localize 'DND5E.MovementConfig'}}"><i
-                                class="fas fa-cog"></i></a>
+                        {{ localize "PERGASHA.Movement" }}
+                        <a class="config-button" data-action="movement"
+                            title="{{localize 'PERGASHA.MovementConfig'}}"><i class="fas fa-cog"></i></a>
                     </h4>
                     <div class="attribute-value">
                         <span>{{movement.primary}}</span>
@@ -127,12 +127,12 @@
 
                 <li class="attribute initiative">
                     <h4 class="attribute-name box-title rollable" data-action="rollInitiative">{{ localize
-                        "DND5E.Initiative" }}</h4>
+                        "PERGASHA.Initiative" }}</h4>
                     <div class="attribute-value">
                         <span>{{numberFormat data.attributes.init.total decimals=0 sign=true}}</span>
                     </div>
                     <footer class="attribute-footer">
-                        <span>{{ localize "DND5E.Modifier" }}</span>
+                        <span>{{ localize "PERGASHA.Modifier" }}</span>
                         <input name="data.attributes.init.value" type="text" data-dtype="Number" placeholder="0"
                             value="{{numberFormat data.attributes.init.value decimals=0 sign=true}}" />
                     </footer>
@@ -143,13 +143,14 @@
 
     {{!-- Character Sheet Navigation --}}
     <nav class="sheet-navigation tabs" data-group="primary">
-        <a class="item active" data-tab="attributes">{{ localize "DND5E.Attributes" }}</a>
-        <a class="item" data-tab="inventory">{{ localize "DND5E.Inventory" }}</a>
-        <a class="item" data-tab="features">{{ localize "DND5E.Features" }}</a>
-        <!-- <a class="item" data-tab="spellbook">{{ localize "DND5E.Spellbook" }}</a> -->
-        <a class="item" data-tab="psionics">{{ localize "DND5E.Psionics" }}</a>
-        <a class="item" data-tab="effects">{{ localize "DND5E.Effects" }}</a>
-        <a class="item" data-tab="biography">{{ localize "DND5E.Biography" }}</a>
+        <a class="item active" data-tab="attributes">{{ localize "PERGASHA.Attributes" }}</a>
+        <a class="item" data-tab="inventory">{{ localize "PERGASHA.Inventory" }}</a>
+        <a class="item" data-tab="features">{{ localize "PERGASHA.Features" }}</a>
+        <!-- <a class="item" data-tab="spellbook">{{ localize "PERGASHA.Spellbook" }}</a> -->
+        <a class="item" data-tab="psionics">{{ localize "PERGASHA.Psionics" }}</a>
+        <a class="item" data-tab="effects">{{ localize "PERGASHA.Effects" }}</a>
+        <a class="item" data-tab="biography">{{ localize "PERGASHA.Biography" }}</a>
+        <a class="item" data-tab="journal">{{ localize "PERGASHA.Journal" }}</a>
     </nav>
 
     {{!-- Character Sheet Body --}}
@@ -165,13 +166,13 @@
                     <input class="ability-score" name="data.abilities.{{id}}.value" type="number"
                         value="{{ability.value}}" placeholder="10" />
                     <div class="ability-modifiers flexrow">
-                        <span class="ability-mod" title="{{ localize 'DND5E.Modifier' }}">{{numberFormat ability.mod
+                        <span class="ability-mod" title="{{ localize 'PERGASHA.Modifier' }}">{{numberFormat ability.mod
                             decimals=0 sign=true}}</span>
                         <input type="hidden" name="data.abilities.{{id}}.proficient" value="{{ability.proficient}}"
                             data-dtype="Number" />
                         <a class="proficiency-toggle ability-proficiency"
-                            title="{{ localize 'DND5E.Proficiency' }}">{{{ability.icon}}}</a>
-                        <span class="ability-save" title="{{ localize 'DND5E.SavingThrow' }}">{{numberFormat
+                            title="{{ localize 'PERGASHA.Proficiency' }}">{{{ability.icon}}}</a>
+                        <span class="ability-save" title="{{ localize 'PERGASHA.SavingThrow' }}">{{numberFormat
                             ability.save decimals=0 sign=true}}</span>
                     </div>
                 </li>
@@ -206,7 +207,7 @@
                         </h4>
                         <div class="attribute-value">
                             <label class="recharge checkbox flexcol">
-                                <span>{{ localize "DND5E.AbbreviationSR" }}</span><input
+                                <span>{{ localize "PERGASHA.AbbreviationSR" }}</span><input
                                     name="data.resources.{{res.name}}.sr" type="checkbox" {{checked res.sr}} />
                             </label>
 
@@ -217,7 +218,7 @@
                                 placeholder="0" />
 
                             <label class="recharge checkbox flexcol">
-                                <span>{{ localize "DND5E.AbbreviationLR" }}</span><input
+                                <span>{{ localize "PERGASHA.AbbreviationLR" }}</span><input
                                     name="data.resources.{{res.name}}.lr" type="checkbox" {{checked res.lr}} />
                             </label>
                         </div>
@@ -228,7 +229,7 @@
                 {{!-- Counters --}}
                 <div class="counters">
                     <div class="counter flexrow death-saves">
-                        <h4 class="rollable" data-action="rollDeathSave">{{ localize "DND5E.DeathSave" }}</h4>
+                        <h4 class="rollable" data-action="rollDeathSave">{{ localize "PERGASHA.DeathSave" }}</h4>
                         <div class="counter-value">
                             <i class="fas fa-check"></i>
                             <input name="data.attributes.death.success" type="number" placeholder="0"
@@ -239,7 +240,7 @@
                         </div>
                     </div>
                     <div class="counter flexrow exhaustion">
-                        <h4>{{ localize "DND5E.Exhaustion" }}</h4>
+                        <h4>{{ localize "PERGASHA.Exhaustion" }}</h4>
                         <div class="counter-value">
                             <select name="data.attributes.exhaustion">
                                 {{#select data.attributes.exhaustion}}
@@ -267,7 +268,7 @@
                     <hr>
                     {{/if}}
                     <div class="counter flexrow fatigue">
-                        <h4>{{ localize "DND5E.Fatigue" }}</h4>
+                        <h4>{{ localize "PERGASHA.Fatigue" }}</h4>
                         <div class="counter-value">
                             <select name="data.attributes.fatigue">
                                 {{#select data.attributes.fatigue}}
@@ -294,7 +295,7 @@
                     <hr>
                     {{/if}}
                     <div class="counter flexrow inspiration">
-                        <h4>{{ localize "DND5E.Inspiration" }}</h4>
+                        <h4>{{ localize "PERGASHA.Inspiration" }}</h4>
                         <div class="counter-value">
                             <input type="number" name="data.attributes.inspiration" placeholder="0"
                                 value="{{data.attributes.inspiration}}" />
@@ -332,23 +333,151 @@
             {{> "systems/pergashaFoundryvtt/templates/actors/parts/active-effects.html"}}
         </div>
 
-        {{!-- Biography Tab --}}
+        <!-- {{!-- Biography Tab --}}
         <div class="tab flexrow" data-group="primary" data-tab="biography">
             <div class="characteristics flexcol">
-                <label>{{ localize "DND5E.Appearance" }}</label>
+                <label>{{ localize "PERGASHA.Appearance" }}</label>
                 <textarea name="data.details.appearance">{{data.details.appearance}}</textarea>
-                <label>{{ localize "DND5E.PersonalityTraits" }}</label>
+                <label>{{ localize "PERGASHA.PersonalityTraits" }}</label>
                 <textarea name="data.details.trait">{{data.details.trait}}</textarea>
-                <label>{{ localize "DND5E.Ideals" }}</label>
+                <label>{{ localize "PERGASHA.Ideals" }}</label>
                 <textarea name="data.details.ideal">{{data.details.ideal}}</textarea>
-                <label>{{ localize "DND5E.Bonds" }}</label>
+                <label>{{ localize "PERGASHA.Bonds" }}</label>
                 <textarea name="data.details.bond">{{data.details.bond}}</textarea>
-                <label>{{ localize "DND5E.Flaws" }}</label>
+                <label>{{ localize "PERGASHA.Flaws" }}</label>
                 <textarea name="data.details.flaw">{{data.details.flaw}}</textarea>
             </div>
             <div class="biography">
                 {{editor content=data.details.biography.value target="data.details.biography.value" button=true
                 owner=owner editable=editable rollData=rollData}}
+            </div>
+        </div> -->
+
+        {{!-- Biography Tab --}}
+        <div class="tab biography" data-group="primary" data-tab="biography">
+            <div class="top-notes note-entries">
+                <article>
+                    <ul class="character-details">
+                        <li><span>{{ localize "PERGASHA.Gender" }}:</span><span {{#if owner}}contenteditable="true"
+                                {{/if}} spellcheck="false" data-target="{{actor._id}}-gender"
+                                data-maxlength="40">{{data.details.gender}}</span><input
+                                data-input="{{actor._id}}-gender" type="hidden" name="data.details.gender"
+                                value="{{data.details.gender}}"></li>
+                        <li><span>{{ localize "PERGASHA.Age" }}:</span><span {{#if owner}}contenteditable="true" {{/if}}
+                                spellcheck="false" data-target="{{actor._id}}-age"
+                                data-maxlength="5">{{data.details.age}}</span><input data-input="{{actor._id}}-age"
+                                type="hidden" name="data.details.age" value="{{data.details.age}}"></li>
+                        <li><span>{{ localize "PERGASHA.Height" }}:</span><span {{#if owner}}contenteditable="true"
+                                {{/if}} spellcheck="false" data-target="{{actor._id}}-height"
+                                data-maxlength="20">{{data.details.height}}</span><input
+                                data-input="{{actor._id}}-height" type="hidden" name="data.details.height"
+                                value="{{data.details.height}}"></li>
+                        <li><span>{{ localize "PERGASHA.Weight" }}:</span><span {{#if owner}}contenteditable="true"
+                                {{/if}} spellcheck="false" data-target="{{actor._id}}-weight"
+                                data-maxlength="20">{{data.details.weight}}</span><input
+                                data-input="{{actor._id}}-weight" type="hidden" name="data.details.weight"
+                                value="{{data.details.weight}}"></li>
+                        <li><span>{{ localize "PERGASHA.Eyes" }}:</span><span {{#if owner}}contenteditable="true"
+                                {{/if}} spellcheck="false" data-target="{{actor._id}}-eyes"
+                                data-maxlength="40">{{data.details.eyes}}</span><input data-input="{{actor._id}}-eyes"
+                                type="hidden" name="data.details.eyes" value="{{data.details.eyes}}"></li>
+                        <li><span>{{ localize "PERGASHA.Skin" }}:</span><span {{#if owner}}contenteditable="true"
+                                {{/if}} spellcheck="false" data-target="{{actor._id}}-skin"
+                                data-maxlength="40">{{data.details.skin}}</span><input data-input="{{actor._id}}-skin"
+                                type="hidden" name="data.details.skin" value="{{data.details.skin}}"></li>
+                        <li><span>{{ localize "PERGASHA.Hair" }}:</span><span {{#if owner}}contenteditable="true"
+                                {{/if}} spellcheck="false" data-target="{{actor._id}}-hair"
+                                data-maxlength="40">{{data.details.hair}}</span><input data-input="{{actor._id}}-hair"
+                                type="hidden" name="data.details.hair" value="{{data.details.hair}}"></li>
+                    </ul>
+                </article>
+            </div>
+            <div class="left-notes note-entries">
+                <article>
+                    <div class="section-titles biopage">{{ localize "PERGASHA.PersonalityTraits" }}</div>
+                    {{editor content=data.details.trait target="data.details.trait" button=true owner=owner
+                    editable=editable}}
+                </article>
+                <article>
+                    <div class="section-titles biopage">{{ localize "PERGASHA.Ideals" }}</div>
+                    {{editor content=data.details.ideal target="data.details.ideal" button=true owner=owner
+                    editable=editable}}
+                </article>
+                <article>
+                    <div class="section-titles biopage">{{ localize "PERGASHA.Bonds" }}</div>
+                    {{editor content=data.details.bond target="data.details.bond" button=true owner=owner
+                    editable=editable}}
+                </article>
+                <article>
+                    <div class="section-titles biopage">{{ localize "PERGASHA.Flaws" }}</div>
+                    {{editor content=data.details.flaw target="data.details.flaw" button=true owner=owner
+                    editable=editable}}
+                </article>
+            </div>
+
+            <div class="right-notes note-entries">
+                <article>
+                    <div class="section-titles biopage">{{ localize "PERGASHA.Appearance" }}</div>
+                    {{editor content=data.details.appearance target="data.details.appearance" button=true owner=owner
+                    editable=editable}}
+                </article>
+                <article class="biography-notes">
+                    <div class="section-titles">{{ localize "PERGASHA.Background" }}/{{ localize "PERGASHA.Biography" }}
+                    </div>
+                    {{editor content=data.details.biography.value target="data.details.biography.value" button=true
+                    owner=owner
+                    editable=editable}}
+                </article>
+            </div>
+
+        </div>
+
+        {{!-- Journal Tab --}}
+        <div class="tab journal" data-group="primary" data-tab="journal">
+            <div class="left-notes note-entries">
+                <article>
+                    <div class="section-titles">
+                        <input type="text" name="data.details.notes1name" value="{{data.details.notes1name}}"
+                            placeholder="{{ localize 'PERGASHA.JournalPoi' }}" />
+                    </div>
+                    {{editor content=data.details.notes1.value target="data.details.notes1.value" button=true
+                    owner=owner
+                    editable=editable}}
+                </article>
+                <article>
+                    <div class="section-titles">
+                        <input type="text" name="data.details.notes2name" value="{{data.details.notes2name}}"
+                            placeholder="{{ localize 'PERGASHA.JournalLoi' }}" />
+                    </div>
+                    {{editor content=data.details.notes2.value target="data.details.notes2.value" button=true
+                    owner=owner
+                    editable=editable}}
+                </article>
+                <article>
+                    <div class="section-titles">
+                        <input type="text" name="data.details.notes3name" value="{{data.details.notes3name}}"
+                            placeholder="{{ localize 'PERGASHA.JournalQuests' }}" />
+                    </div>
+                    {{editor content=data.details.notes3.value target="data.details.notes3.value" button=true
+                    owner=owner
+                    editable=editable}}
+                </article>
+                <article>
+                    <div class="section-titles">
+                        <input type="text" name="data.details.notes4name" value="{{data.details.notes4name}}"
+                            placeholder="{{ localize 'PERGASHA.JournalMisc' }}" />
+                    </div>
+                    {{editor content=data.details.notes4.value target="data.details.notes4.value" button=true
+                    owner=owner
+                    editable=editable}}
+                </article>
+            </div>
+            <div class="right-notes note-entries">
+                <article class="journal-notes">
+                    <div class="section-titles">{{ localize 'PERGASHA.JournalEntries' }}</div>
+                    {{editor content=data.details.notes.value target="data.details.notes.value" button=true owner=owner
+                    editable=editable}}
+                </article>
             </div>
         </div>
     </section>
