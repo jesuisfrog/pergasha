@@ -13,13 +13,6 @@
   ],
   "packs": [
     {
-      "name": "heroes",
-      "label": "Starter Heroes",
-      "system": "pergashaFoundryvtt",
-      "path": "./packs/heroes.db",
-      "entity": "Actor"
-    },
-    {
       "name": "monsters",
       "label": "Monsters (SRD)",
       "system": "pergashaFoundryvtt",
@@ -88,6 +81,27 @@
       "system": "pergashaFoundryvtt",
       "path": "./packs/rules.db",
       "entity": "JournalEntry"
+    },
+    {
+      "name": "feats",
+      "label": "Feats",
+      "system": "pergashaFoundryvtt",
+      "path": "./packs/feats.db",
+      "entity": "Item"
+    },
+    {
+      "name": "training",
+      "label": "Training",
+      "system": "pergashaFoundryvtt",
+      "path": "./packs/training.db",
+      "entity": "Item"
+    },
+    {
+      "name": "psionics",
+      "label": "Psionics",
+      "system": "pergashaFoundryvtt",
+      "path": "./packs/psionics.db",
+      "entity": "Item"
     }
   ],
   "languages": [

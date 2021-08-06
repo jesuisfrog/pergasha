@@ -1,3 +1,3 @@
 Features to implement
 
-* Populate compendiums (Psionics, items, racial features, races, infusions)
+* Populate compendiums (Psionics, training, feats, items, racial features, races, infusions)
