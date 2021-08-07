@@ -337,6 +337,8 @@
     "PERGASHA.FlagsInitiativeAdvHint": "Provided by feats or magical items.",
     "PERGASHA.FlagsAlert": "Alert Feat",
     "PERGASHA.FlagsAlertHint": "Provides +5 to Initiative.",
+    "PERGASHA.FlagsTemporalAwareness": "Temporal Awareness Training",
+    "PERGASHA.FlagsTemporalAwarenessHint": "Adds your Intelligence modifier to Initiative.",
     "PERGASHA.FlagsObservant": "Observant Feat",
     "PERGASHA.FlagsObservantHint": "Provides a +5 to passive Perception and Investigation.",
     "PERGASHA.FlagsReliableTalent": "Reliable Talent",

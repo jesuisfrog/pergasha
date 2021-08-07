@@ -963,6 +963,12 @@ PERGASHA.characterFlags = {
     section: "PERGASHA.Feats",
     type: Boolean
   },
+  "initiativeTemporalAwareness": {
+    name: "PERGASHA.FlagsTemporalAwareness",
+    hint: "PERGASHA.FlagsTemporalAwarenessHint",
+    section: "PERGASHA.Feats",
+    type: Boolean
+  },
   "observantFeat": {
     name: "PERGASHA.FlagsObservant",
     hint: "PERGASHA.FlagsObservantHint",

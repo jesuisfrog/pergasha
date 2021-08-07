@@ -130,7 +130,7 @@ export default class Actor5e extends Actor {
     init.mod = data.abilities.dex.mod;
     init.prof = 0;
     init.value = init.value ?? 0;
-    init.bonus = init.value + (flags.initiativeAlert ? 5 : 0);
+    init.bonus = init.value + (flags.initiativeAlert ? 5 : 0) + (flags.initiativeTemporalAwareness ? data.abilities.int.mod : 0);
     init.total = init.mod + init.prof + init.bonus;
 
     // Cache labels
