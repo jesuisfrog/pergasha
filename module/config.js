@@ -1057,7 +1057,7 @@ PERGASHA.farhandDisciplines = {
 }
 PERGASHA.immortalDisciplines = {
   "adaptiveBody": "PERGASHA.AdaptiveBody",
-  "beastialForm": "PERGASHA.BeastialForm",
+  "bestialForm": "PERGASHA.BestialForm",
   "bruteForce": "PERGASHA.BruteForce",
   "celerity": "PERGASHA.Celerity",
   "chakraManipulation": "PERGASHA.ChakraManipulation",

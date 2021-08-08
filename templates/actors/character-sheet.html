@@ -97,9 +97,13 @@
                 </li>
 
                 <li class="attribute">
-                    <h4 class="attribute-name box-title">{{ localize "PERGASHA.ArmorClass" }}</h4>
+                    <h4 class="attribute-name box-title">{{ localize "PERGASHA.ArmorClass" }} / {{ localize
+                        "PERGASHA.MentalAC"}}</h4>
                     <div class="attribute-value">
                         <input name="data.attributes.ac.value" type="number" value="{{data.attributes.ac.value}}"
+                            placeholder="10" />
+                        <span> / </span>
+                        <input name="data.attributes.ac.mental" type="number" value="{{data.attributes.ac.mental}}"
                             placeholder="10" />
                     </div>
                     <!-- <footer class="attribute-footer">

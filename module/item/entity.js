@@ -523,7 +523,7 @@ export default class Item5e extends Item {
     }
 
     // Determine whether the item can be used by testing for resource consumption
-    const usage = item._getUsageUpdates({ consumeRecharge, consumeResource, consumePsiPointsAmount, consumeSpellLevel, consumeUsage, consumeQuantity });
+    const usage = item._getUsageUpdates({ consumeRecharge, consumeResource, consumePsiPointsAmount, reducePsiPointsCost, consumeSpellLevel, consumeUsage, consumeQuantity });
     if (!usage) return;
     if (psiSpent > 0) id.variableCost.psiSpent = psiSpent;
     const { actorUpdates, itemUpdates, resourceUpdates } = usage;
@@ -561,7 +561,7 @@ export default class Item5e extends Item {
    * @returns {object|boolean}            A set of data changes to apply when the item is used, or false
    * @private
    */
-  _getUsageUpdates({ consumeQuantity, consumeRecharge, consumeResource, consumePsiPointsAmount, consumeSpellLevel, consumeUsage }) {
+  _getUsageUpdates({ consumeQuantity, consumeRecharge, consumeResource, consumePsiPointsAmount, reducePsiPointsCost, consumeSpellLevel, consumeUsage }) {
 
     // Reference item data
     const id = this.data.data;
@@ -612,6 +612,7 @@ export default class Item5e extends Item {
         return false;
       }
       if (id.variableCost.baseCost > 0) {
+        if (reducePsiPointsCost) consumePsiPointsAmount++;
         itemUpdates[`data.variableCost.psiSpent`] = consumePsiPointsAmount;
       }
       actorUpdates[`data.attributes.psionics.psiPoints`] = Math.max(pointsAfterCast, 0);
