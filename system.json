@@ -102,6 +102,13 @@
       "system": "pergashaFoundryvtt",
       "path": "./packs/psionics.db",
       "entity": "Item"
+    },
+    {
+      "name": "infusions",
+      "label": "Infusions",
+      "system": "pergashaFoundryvtt",
+      "path": "./packs/infusions.db",
+      "entity": "Item"
     }
   ],
   "languages": [
