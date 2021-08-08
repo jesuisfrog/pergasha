@@ -1062,7 +1062,6 @@ PERGASHA.immortalDisciplines = {
   "celerity": "PERGASHA.Celerity",
   "chakraManipulation": "PERGASHA.ChakraManipulation",
   "corrosiveMetabolism": "PERGASHA.CorrosiveMetabolism",
-  "ironDurability": "PERGASHA.IronDurability",
   "psionicWeapon": "PERGASHA.PsionicWeapon",
   "venomousMetabolism": "PERGASHA.VenomousMetabolism"
 }
@@ -1114,7 +1113,6 @@ PERGASHA.nomadDisciplines = {
 //     "celerity": "PERGASHA.Celerity",
 //     "chakraManipulation": "PERGASHA.ChakraManipulation",
 //     "corrosiveMetabolism": "PERGASHA.CorrosiveMetabolism",
-//     "ironDurability": "PERGASHA.IronDurability",
 //     "psionicWeapon": "PERGASHA.PsionicWeapon",
 //     "venomousMetabolism": "PERGASHA.VenomousMetabolism"
 //   },
