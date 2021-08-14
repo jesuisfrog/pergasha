@@ -257,8 +257,6 @@
                                 <option value="6">6</option>
                                 {{/select}}
                             </select>
-                            <!-- <input name="data.attributes.exhaustion" type="number" placeholder="0"
-                                value="{{data.attributes.exhaustion}}" /> -->
                         </div>
 
 
@@ -285,8 +283,6 @@
                                 <option value="6">6</option>
                                 {{/select}}
                             </select>
-                            <!-- <input name="data.attributes.fatigue" type="number" placeholder="0"
-                                value="{{data.attributes.fatigue}}" /> -->
                         </div>
 
                     </div>
@@ -298,12 +294,15 @@
                     </div>
                     <hr>
                     {{/if}}
-                    <div class="counter flexrow inspiration">
+                    <div class="counter flexrow inspiration" style="margin-top:5px">
                         <h4>{{ localize "PERGASHA.Inspiration" }}</h4>
-                        <div class="counter-value">
-                            <input type="number" name="data.attributes.inspiration" placeholder="0"
-                                value="{{data.attributes.inspiration}}" />
+                        <button class="inspirationMinus" type="button">-</button>
+                        <div class="counter-value inspiration-bubbles">
+                            {{#inspirationCounter data.attributes.inspiration}}{{/inspirationCounter}}
+                            <!-- <input type="number" name="data.attributes.inspiration" placeholder="0"
+                                value="{{data.attributes.inspiration}}" /> -->
                         </div>
+                        <button class="inspirationPlus" type="button">+</button>
                     </div>
                 </div>
 

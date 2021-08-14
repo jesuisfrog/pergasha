@@ -1859,3 +1859,21 @@
 .pergashaFoundryvtt.sheet.actor .window-content .tab.active {
     display: flex;
 }
+
+/* ----------------------------------- */
+.pergashaFoundryvtt .inspiration button.inspirationPlus,
+.pergashaFoundryvtt .inspiration button.inspirationMinus {
+  flex: 0 0 1rem;
+  line-height: 1rem;
+}
+.pergashaFoundryvtt .inspiration button.inspirationMinus {
+  margin-right: 5px;
+}
+.pergashaFoundryvtt .inspiration button.inspirationPlus {
+  margin-left: 5px;
+}
+
+.pergashaFoundryvtt .inspiration-bubbles{
+  display: flex;
+  align-items: center;
+}

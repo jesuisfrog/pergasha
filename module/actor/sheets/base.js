@@ -516,6 +516,9 @@ export default class ActorSheet5e extends ActorSheet {
 
       // Active Effect management
       html.find(".effect-control").click(ev => onManageActiveEffect(ev, this.actor));
+
+      //Inspiration bubbles
+      html.find(".inspirationMinus,.inspirationPlus").click(event => this._onInspirationChange(event));
     }
 
     // Owner Only Listeners
@@ -544,7 +547,7 @@ export default class ActorSheet5e extends ActorSheet {
   /* -------------------------------------------- */
 
   /**
-   * Iinitialize Item list filters by activating the set of filters which are currently applied
+   * Initialize Item list filters by activating the set of filters which are currently applied
    * @private
    */
   _initializeFilterItemList(i, ul) {
@@ -961,6 +964,24 @@ export default class ActorSheet5e extends ActorSheet {
     const choices = CONFIG.PERGASHA[a.dataset.options];
     const options = { name: a.dataset.target, title: label.innerText, choices };
     return new TraitSelector(this.actor, options).render(true)
+  }
+
+  /* -------------------------------------------- */
+
+  _onInspirationChange(event) {
+    // Hook up -/+ buttons to adjust the current value in the form
+    const button = event.currentTarget;
+    let current = this.actor.data.data.attributes.inspiration;
+    const direction = button.classList.contains("inspirationPlus") ? 1 : -1;
+    if (!current) {
+      current = 0;
+    }
+    if (current > 0 && current < 3) {
+      current = current + direction;
+    } else if ((direction === -1 && current === 3) || (direction === 1 && current === 0)) {
+      current = current + direction;
+    }
+    this.actor.update({ ['data.attributes.inspiration']: current });
   }
 
   /* -------------------------------------------- */

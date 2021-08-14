@@ -326,6 +326,27 @@ Handlebars.registerHelper('testData', function (data) {
   console.log('Data: ', data);
 });
 
+Handlebars.registerHelper('inspirationCounter', function (count) {
+  const emptyBubble = '<i class="far fa-circle"></i>';
+  const filledBubble = '<i class="fas fa-circle"></i>';
+  let inspirationCount = emptyBubble + emptyBubble + emptyBubble;
+  switch (count) {
+    case 0:
+      inspirationCount = emptyBubble + emptyBubble + emptyBubble;
+      break;
+    case 1:
+      inspirationCount = filledBubble + emptyBubble + emptyBubble;
+      break;
+    case 2:
+      inspirationCount = filledBubble + filledBubble + emptyBubble;
+      break;
+    case 3:
+      inspirationCount = filledBubble + filledBubble + filledBubble;
+      break;
+  }
+  return inspirationCount;
+});
+
 
 
 
