@@ -606,7 +606,9 @@
       "armor": {
         "type": "light",
         "value": 10,
-        "dex": null
+        "dex": null,
+        "properties": {},
+        "layer": ""
       },
       "speed": {
         "value": null,
@@ -684,7 +686,8 @@
       ],
       "weaponType": "simpleM",
       "properties": {},
-      "proficient": true
+      "proficient": true,
+      "masteries": ""
     },
     "psionicPower": {
       "templates": [

@@ -388,11 +388,19 @@ PERGASHA.limitedUsePeriods = {
  * The set of equipment types for armor, clothing, and other objects which can be worn by the character
  * @type {Object}
  */
+
+PERGASHA.armorLayers = {
+  "under": "PERGASHA.ArmorLayerUnder",
+  "meso": "PERGASHA.ArmorLayerMeso",
+  "over": "PERGASHA.ArmorLayerOver",
+  "comp": "PERGASHA.ArmorLayerComp"
+}
+
 PERGASHA.equipmentTypes = {
   "light": "PERGASHA.EquipmentLight",
   "medium": "PERGASHA.EquipmentMedium",
   "heavy": "PERGASHA.EquipmentHeavy",
-  "bonus": "PERGASHA.EquipmentBonus",
+  // "bonus": "PERGASHA.EquipmentBonus",
   "natural": "PERGASHA.EquipmentNatural",
   "shield": "PERGASHA.EquipmentShield",
   "clothing": "PERGASHA.EquipmentClothing",
@@ -440,9 +448,10 @@ PERGASHA.consumableTypes = {
   "potion": "PERGASHA.ConsumablePotion",
   "poison": "PERGASHA.ConsumablePoison",
   "food": "PERGASHA.ConsumableFood",
-  "scroll": "PERGASHA.ConsumableScroll",
-  "wand": "PERGASHA.ConsumableWand",
-  "rod": "PERGASHA.ConsumableRod",
+  // "scroll": "PERGASHA.ConsumableScroll",
+  // "wand": "PERGASHA.ConsumableWand",
+  // "rod": "PERGASHA.ConsumableRod",
+  "mysterium": "PERGASHA.ConsumableMysterium",
   "trinket": "PERGASHA.ConsumableTrinket"
 };
 
@@ -698,6 +707,7 @@ PERGASHA.spellScalingModes = {
  * @type {Object}
  */
 PERGASHA.weaponTypes = {
+  "unarmedG": "PERGASHA.WeaponUnarmedG",
   "simpleM": "PERGASHA.WeaponSimpleM",
   "simpleR": "PERGASHA.WeaponSimpleR",
   "martialM": "PERGASHA.WeaponMartialM",
@@ -715,24 +725,72 @@ PERGASHA.weaponTypes = {
  * @type {Object}
  */
 PERGASHA.weaponProperties = {
-  "ada": "PERGASHA.WeaponPropertiesAda",
+  // "ada": "PERGASHA.WeaponPropertiesAda",
   "amm": "PERGASHA.WeaponPropertiesAmm",
   "fin": "PERGASHA.WeaponPropertiesFin",
-  "fir": "PERGASHA.WeaponPropertiesFir",
-  "foc": "PERGASHA.WeaponPropertiesFoc",
+  // "fir": "PERGASHA.WeaponPropertiesFir",
+  // "foc": "PERGASHA.WeaponPropertiesFoc",
   "hvy": "PERGASHA.WeaponPropertiesHvy",
   "lgt": "PERGASHA.WeaponPropertiesLgt",
   "lod": "PERGASHA.WeaponPropertiesLod",
-  "mgc": "PERGASHA.WeaponPropertiesMgc",
+  // "mgc": "PERGASHA.WeaponPropertiesMgc",
   "rch": "PERGASHA.WeaponPropertiesRch",
-  "rel": "PERGASHA.WeaponPropertiesRel",
+  // "rel": "PERGASHA.WeaponPropertiesRel",
   "ret": "PERGASHA.WeaponPropertiesRet",
-  "sil": "PERGASHA.WeaponPropertiesSil",
+  // "sil": "PERGASHA.WeaponPropertiesSil",
   "spc": "PERGASHA.WeaponPropertiesSpc",
   "thr": "PERGASHA.WeaponPropertiesThr",
   "two": "PERGASHA.WeaponPropertiesTwo",
-  "ver": "PERGASHA.WeaponPropertiesVer"
+  "ver": "PERGASHA.WeaponPropertiesVer",
+  "beat": "PERGASHA.WeaponPropertiesBeatdown",
+  "bleed": "PERGASHA.WeaponPropertiesBleed",
+  "brut": "PERGASHA.WeaponPropertiesBrutal",
+  "bypa": "PERGASHA.WeaponPropertiesBypass",
+  "doub": "PERGASHA.WeaponPropertiesDouble",
+  "effe": "PERGASHA.WeaponPropertiesEffective",
+  "free": "PERGASHA.WeaponPropertiesFreeHanded",
+  "frag": "PERGASHA.WeaponPropertiesFragile",
+  "impa": "PERGASHA.WeaponPropertiesImpact",
+  "limi": "PERGASHA.WeaponPropertiesLimit",
+  // "mast": "PERGASHA.WeaponPropertiesMastery",
+  "mass": "PERGASHA.WeaponPropertiesMassive",
+  "moun": "PERGASHA.WeaponPropertiesMounted",
+  "oppo": "PERGASHA.WeaponPropertiesOpportunistic",
+  "parr": "PERGASHA.WeaponPropertiesParry",
+  "shar": "PERGASHA.WeaponPropertiesSharp",
+  "shie": "PERGASHA.WeaponPropertiesShield",
+  "supe": "PERGASHA.WeaponPropertiesSuperheavy",
+  "swee": "PERGASHA.WeaponPropertiesSweeping",
+  "swit": "PERGASHA.WeaponPropertiesSwitch",
+  "vici": "PERGASHA.WeaponPropertiesVicious",
+  "forc": "PERGASHA.WeaponPropertiesForceful",
+  "poin": "PERGASHA.WeaponPropertiesPointBlank",
+  "quic": "PERGASHA.WeaponPropertiesQuickReload",
+  "stoc": "PERGASHA.WeaponPropertiesStock",
+  "stre": "PERGASHA.WeaponPropertiesStrength",
+  "velo": "PERGASHA.WeaponPropertiesVelocity"
 };
+
+/* -------------------------------------------- */
+
+/**
+ * Define the set of armor property flags which can exist on an armor
+ * @type {Object}
+ */
+PERGASHA.armorProperties = {
+  "bash": "PERGASHA.ArmorPropertiesBashing",
+  "beat": "PERGASHA.WeaponPropertiesBeatdown",
+  "bulk": "PERGASHA.ArmorPropertiesBulky",
+  "conc": "PERGASHA.ArmorPropertiesConceal",
+  "dr": "PERGASHA.ArmorPropertiesDR",
+  "defl": "PERGASHA.ArmorPropertiesDeflect",
+  "free": "PERGASHA.WeaponPropertiesFreeHanded",
+  "lgt": "PERGASHA.WeaponPropertiesLgt",
+  "nois": "PERGASHA.ArmorPropertiesNoisy",
+  "stea": "PERGASHA.ArmorPropertiesStealthy",
+  "soak": "PERGASHA.ArmorPropertiesSoak",
+  "wall": "PERGASHA.ArmorPropertiesSpecialWS"
+}
 
 
 // Spell Components

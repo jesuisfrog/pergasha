@@ -135,13 +135,13 @@ Hooks.once("setup", function () {
     "damageTypes", "distanceUnits", "equipmentTypes", "healingTypes", "itemActionTypes", "languages",
     "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "psionicOrders", "avatarDisciplines", "awakenedDisciplines", "farhandDisciplines", "immortalDisciplines", "nomadDisciplines", "psionicPowerCosts", "psionicPowerScaling", "basePsionicPowerCosts", "maxPsionicPowerCosts", "senses", "skills",
     "spellComponents", "spellLevels", "spellPreparationModes", "spellScalingModes", "spellSchools", "targetTypes",
-    "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "weaponTypes"
+    "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "armorProperties", "weaponTypes", "armorLayers"
   ];
 
   // Exclude some from sorting where the default order matters
   const noSort = [
     "abilities", "alignments", "currencies", "distanceUnits", "movementUnits", "itemActionTypes", "proficiencyLevels",
-    "limitedUsePeriods", "psionicPowerCosts", "basePsionicPowerCosts", "maxPsionicPowerCosts", "spellComponents", "spellLevels", "spellPreparationModes", "weaponTypes"
+    "limitedUsePeriods", "psionicPowerCosts", "basePsionicPowerCosts", "maxPsionicPowerCosts", "spellComponents", "spellLevels", "spellPreparationModes", "weaponTypes", "armorLayers"
   ];
 
   // Localize and sort CONFIG objects

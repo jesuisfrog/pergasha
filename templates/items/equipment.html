@@ -19,12 +19,7 @@
                     {{lookup config.equipmentTypes data.armor.type }}
                 </li>
                 <li>
-                    <input type="text" name="data.rarity" value="{{data.rarity}}"
-                        placeholder="{{ localize 'PERGASHA.Rarity' }}" />
-                </li>
-                <li>
-                    <input type="text" name="data.source" value="{{data.source}}"
-                        placeholder="{{ localize 'PERGASHA.Source' }}" />
+                    {{lookup config.armorLayers data.armor.layer }}
                 </li>
             </ul>
         </div>
@@ -60,12 +55,37 @@
                 </select>
             </div>
 
+            {{!-- Armor Layer --}}
+            <div class="form-group">
+                <label>{{ localize "PERGASHA.ArmorLayer" }}</label>
+                <select name="data.armor.layer">
+                    {{#select data.armor.layer}}
+                    <option value=""></option>
+                    {{#each config.armorLayers as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+
             {{#unless isMountable}}
             <div class="form-group">
                 <label>{{localize "PERGASHA.Attunement"}}</label>
                 <select name="data.attunement" data-dtype="Number">
                     {{selectOptions config.attunements selected=data.attunement localize=true}}
                 </select>
+            </div>
+
+            {{!-- Armor Properties --}}
+            <div class="form-group stacked armor-properties">
+                <label>{{ localize "PERGASHA.ItemArmorProperties" }}</label>
+                {{#each config.armorProperties as |name prop|}}
+                <label class="checkbox">
+                    <input type="checkbox" name="data.armor.properties.{{prop}}" {{checked (lookup
+                        ../data.armor.properties prop)}} /> {{ name
+                    }}
+                </label>
+                {{/each}}
             </div>
 
             {{!-- Equipment Status --}}

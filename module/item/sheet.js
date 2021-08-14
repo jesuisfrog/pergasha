@@ -200,6 +200,9 @@ export default class ItemSheet5e extends ItemSheet {
     else if (item.type === "equipment") {
       props.push(CONFIG.PERGASHA.equipmentTypes[item.data.armor.type]);
       props.push(labels.armor);
+      props.push(...Object.entries(item.data.armor.properties)
+        .filter(e => e[1] === true)
+        .map(e => CONFIG.PERGASHA.armorProperties[e[0]]));
     }
 
     else if (item.type === "feat") {
