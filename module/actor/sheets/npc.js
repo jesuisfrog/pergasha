@@ -39,24 +39,28 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
     };
 
     // Start by classifying items into groups for rendering
-    let [spells, other] = data.items.reduce((arr, item) => {
+    let [psionicPowers, spells, other] = data.items.reduce((arr, item) => {
       item.img = item.img || CONST.DEFAULT_TOKEN;
       item.isStack = Number.isNumeric(item.data.quantity) && (item.data.quantity !== 1);
       item.hasUses = item.data.uses && (item.data.uses.max > 0);
       item.isOnCooldown = item.data.recharge && !!item.data.recharge.value && (item.data.recharge.charged === false);
       item.isDepleted = item.isOnCooldown && (item.data.uses.per && (item.data.uses.value > 0));
       item.hasTarget = !!item.data.target && !(["none", ""].includes(item.data.target.type));
-      if (item.type === "spell") arr[0].push(item);
-      else arr[1].push(item);
+      if (item.type === "psionicPower") arr[0].push(item);
+      else if (item.type === "spell") arr[1].push(item);
+      else arr[2].push(item);
       return arr;
-    }, [[], []]);
+    }, [[], [], []]);
 
     // Apply item filters
     spells = this._filterItems(spells, this._filters.spellbook);
+    psionicPowers = this._filterItems(psionicPowers, this._filters.psionics);
     other = this._filterItems(other, this._filters.features);
 
     // Organize Spellbook
     const spellbook = this._prepareSpellbook(data, spells);
+    //Organize Psionics
+    const psionics = this._preparePsionics(data, psionicPowers);
 
     // Organize Features
     for (let item of other) {
@@ -71,6 +75,7 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
     // Assign and return
     data.features = Object.values(features);
     data.spellbook = spellbook;
+    data.psionics = psionics;
   }
 
   /* -------------------------------------------- */
@@ -86,7 +91,19 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
 
     // Creature Type
     data.labels["type"] = this.actor.labels.creatureType;
+
+    // Resources
+    data["resources"] = ["primary", "secondary", "tertiary"].reduce((arr, r) => {
+      const res = data.data.resources[r] || {};
+      res.name = r;
+      res.placeholder = game.i18n.localize("PERGASHA.Resource" + r.titleCase());
+      if (res && res.value === 0) delete res.value;
+      if (res && res.max === 0) delete res.max;
+      return arr.concat([res]);
+    }, []);
     return data;
+
+
   }
 
   /* -------------------------------------------- */
