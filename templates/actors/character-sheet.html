@@ -35,7 +35,7 @@
                         placeholder="{{ localize 'PERGASHA.Race' }}" />
                 </li>
                 <li class="flexrow">
-                    <span>{{localize "PERGASHA.Focus"}}</span>
+                    <!-- <span>{{localize "PERGASHA.Focus"}}</span> -->
                     <select name="data.attributes.psionics.activeFocus" style="margin-right: 5px;">
                         {{#select data.attributes.psionics.activeFocus}}
                         <option value="">None</option>
@@ -45,14 +45,6 @@
                         {{/select}}
                     </select>
                 </li>
-                <!-- <li>
-                    <input type="text" name="data.details.background" value="{{data.details.background}}"
-                        placeholder="{{ localize 'PERGASHA.Background' }}" />
-                </li>
-                <li>
-                    <input type="text" name="data.details.alignment" value="{{data.details.alignment}}"
-                        placeholder="{{ localize 'PERGASHA.Alignment' }}" />
-                </li> -->
                 <li class="proficiency">
                     <span>{{ localize "PERGASHA.Proficiency" }} {{numberFormat data.attributes.prof decimals=0
                         sign=true}}</span>

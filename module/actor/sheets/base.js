@@ -439,7 +439,7 @@ export default class ActorSheet5e extends ActorSheet {
       }
 
       if (item.type === "psionicPower" && filters.has("psilimit")) {
-        if (data.psicost > this.actor.data.data.attributes.psionics.psiLimit) return false;
+        if ((data.psicost != 8 && data.psicost > this.actor.data.data.attributes.psionics.psiLimit) || (data.psicost == 8 && data.variableCost.baseCost > this.actor.data.data.attributes.psionics.psiLimit)) return false;
       }
 
       // Equipment-specific filters
