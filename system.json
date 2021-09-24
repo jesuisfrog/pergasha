@@ -21,28 +21,21 @@
     },
     {
       "name": "items",
-      "label": "Items (SRD)",
+      "label": "Items",
       "system": "pergashaFoundryvtt",
       "path": "./packs/items.db",
       "entity": "Item"
     },
     {
       "name": "tradegoods",
-      "label": "Trade Goods (SRD)",
+      "label": "Trade Goods",
       "system": "pergashaFoundryvtt",
       "path": "./packs/tradegoods.db",
       "entity": "Item"
     },
     {
-      "name": "spells",
-      "label": "Spells (SRD)",
-      "system": "pergashaFoundryvtt",
-      "path": "./packs/spells.db",
-      "entity": "Item"
-    },
-    {
       "name": "classes",
-      "label": "Classes (SRD)",
+      "label": "Classes",
       "system": "pergashaFoundryvtt",
       "path": "./packs/classes.db",
       "entity": "Item"
@@ -77,7 +70,7 @@
     },
     {
       "name": "rules",
-      "label": "Rules (SRD)",
+      "label": "Rules",
       "system": "pergashaFoundryvtt",
       "path": "./packs/rules.db",
       "entity": "JournalEntry"
