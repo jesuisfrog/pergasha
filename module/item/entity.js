@@ -517,13 +517,13 @@ export default class Item5e extends Item {
 
           item.prepareFinalAttributes(); // Spell save DC, etc...
         }
-        if (consumePsiPoints === false) consumePsiPointsAmount = null;
+        // if (consumePsiPoints === false) consumePsiPointsAmount = null;
         if (consumePsiPoints && consumePsiPointsAmount > 1 && reducePsiPointsCost) consumePsiPointsAmount--;
       }
     }
 
     // Determine whether the item can be used by testing for resource consumption
-    const usage = item._getUsageUpdates({ consumeRecharge, consumeResource, consumePsiPointsAmount, reducePsiPointsCost, consumeSpellLevel, consumeUsage, consumeQuantity });
+    const usage = item._getUsageUpdates({ consumeRecharge, consumeResource, consumePsiPoints, consumePsiPointsAmount, reducePsiPointsCost, consumeSpellLevel, consumeUsage, consumeQuantity });
     if (!usage) return;
     if (psiSpent > 0) id.variableCost.psiSpent = psiSpent;
     const { actorUpdates, itemUpdates, resourceUpdates } = usage;
@@ -561,7 +561,7 @@ export default class Item5e extends Item {
    * @returns {object|boolean}            A set of data changes to apply when the item is used, or false
    * @private
    */
-  _getUsageUpdates({ consumeQuantity, consumeRecharge, consumeResource, consumePsiPointsAmount, reducePsiPointsCost, consumeSpellLevel, consumeUsage }) {
+  _getUsageUpdates({ consumeQuantity, consumeRecharge, consumeResource, consumePsiPoints, consumePsiPointsAmount, reducePsiPointsCost, consumeSpellLevel, consumeUsage }) {
 
     // Reference item data
     const id = this.data.data;
@@ -599,7 +599,7 @@ export default class Item5e extends Item {
     }
 
     // Consume Psi Points
-    if (consumePsiPointsAmount) {
+    if (consumePsiPoints) {
       const psiLimit = this.actor?.data.data.attributes.psionics.psiLimit;
       const psiPoints = this.actor?.data.data.attributes.psionics.psiPoints;
       const pointsAfterCast = psiPoints - consumePsiPointsAmount;
@@ -611,11 +611,11 @@ export default class Item5e extends Item {
         ui.notifications.warn(game.i18n.format("PERGASHA.PsiCostHigherThanPsiLimit", { name: this.name }));
         return false;
       }
-      if (id.variableCost.baseCost > 0) {
-        if (reducePsiPointsCost) consumePsiPointsAmount++;
-        itemUpdates[`data.variableCost.psiSpent`] = consumePsiPointsAmount;
-      }
       actorUpdates[`data.attributes.psionics.psiPoints`] = Math.max(pointsAfterCast, 0);
+    }
+    if (id.variableCost.baseCost > 0) {
+      if (reducePsiPointsCost) consumePsiPointsAmount++;
+      itemUpdates[`data.variableCost.psiSpent`] = consumePsiPointsAmount;
     }
 
     // Consume Limited Usage
