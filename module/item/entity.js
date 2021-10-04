@@ -613,7 +613,7 @@ export default class Item5e extends Item {
       }
       actorUpdates[`data.attributes.psionics.psiPoints`] = Math.max(pointsAfterCast, 0);
     }
-    if (id.variableCost.baseCost > 0) {
+    if (consumePsiPointsAmount && id.variableCost.baseCost > 0) {
       if (reducePsiPointsCost) consumePsiPointsAmount++;
       itemUpdates[`data.variableCost.psiSpent`] = consumePsiPointsAmount;
     }
