@@ -68,6 +68,8 @@ export default class Actor5e extends Actor {
         return this._prepareNPCData(this.data);
       case "vehicle":
         return this._prepareVehicleData(this.data);
+      case "inventory":
+        return this._prepareInventoryData(this.data);
     }
   }
 
@@ -115,10 +117,8 @@ export default class Actor5e extends Actor {
         abl.save = Math.max(abl.save, originalSaves[id].save);
       }
     }
-
     // Inventory encumbrance
     data.attributes.encumbrance = this._computeNewEncumbrance(actorData);
-
     // Prepare skills
     this._prepareSkills(actorData, bonuses, checkBonus, originalSkills);
 
@@ -142,6 +142,7 @@ export default class Actor5e extends Actor {
     // Prepare spell-casting data
     this._computePsionicsDC(this.data);
   }
+
 
   /* -------------------------------------------- */
 
@@ -338,6 +339,17 @@ export default class Actor5e extends Actor {
 
   /* -------------------------------------------- */
 
+  /* -------------------------------------------- */
+
+  /**
+   * Prepare inventory type-specific data
+   * @param actorData
+   * @private
+   */
+  _prepareInventoryData(actorData) { }
+
+  /* -------------------------------------------- */
+
   /**
    * Prepare skill checks.
    * @param actorData
@@ -347,7 +359,7 @@ export default class Actor5e extends Actor {
    * @private
    */
   _prepareSkills(actorData, bonuses, checkBonus, originalSkills) {
-    if (actorData.type === 'vehicle') return;
+    if (actorData.type === 'vehicle' || actorData.type === 'inventory') return;
 
     const data = actorData.data;
     const flags = actorData.flags.pergashaFoundryvtt || {};
@@ -384,87 +396,87 @@ export default class Actor5e extends Actor {
    * Prepare data related to the spell-casting capabilities of the Actor
    * @private
    */
-  _computeSpellcastingProgression(actorData) {
-    if (actorData.type === 'vehicle') return;
-    const ad = actorData.data;
-    const spells = ad.spells;
-    const isNPC = actorData.type === 'npc';
+  // _computeSpellcastingProgression(actorData) {
+  //   if (actorData.type === 'vehicle'  || actorData.type === 'inventory') return;
+  //   const ad = actorData.data;
+  //   const spells = ad.spells;
+  //   const isNPC = actorData.type === 'npc';
 
-    // Spellcasting DC
-    const spellcastingAbility = ad.abilities[ad.attributes.spellcasting];
-    ad.attributes.spelldc = spellcastingAbility ? spellcastingAbility.dc : 8 + ad.attributes.prof;
+  //   // Spellcasting DC
+  //   const spellcastingAbility = ad.abilities[ad.attributes.spellcasting];
+  //   ad.attributes.spelldc = spellcastingAbility ? spellcastingAbility.dc : 8 + ad.attributes.prof;
 
-    // Translate the list of classes into spell-casting progression
-    const progression = {
-      total: 0,
-      slot: 0,
-      pact: 0
-    };
+  //   // Translate the list of classes into spell-casting progression
+  //   const progression = {
+  //     total: 0,
+  //     slot: 0,
+  //     pact: 0
+  //   };
 
-    // Keep track of the last seen caster in case we're in a single-caster situation.
-    let caster = null;
+  //   // Keep track of the last seen caster in case we're in a single-caster situation.
+  //   let caster = null;
 
-    // Tabulate the total spell-casting progression
-    const classes = this.data.items.filter(i => i.type === "class");
-    for (let cls of classes) {
-      const d = cls.data.data;
-      if (d.spellcasting.progression === "none") continue;
-      const levels = d.levels;
-      const prog = d.spellcasting.progression;
+  //   // Tabulate the total spell-casting progression
+  //   const classes = this.data.items.filter(i => i.type === "class");
+  //   for (let cls of classes) {
+  //     const d = cls.data.data;
+  //     if (d.spellcasting.progression === "none") continue;
+  //     const levels = d.levels;
+  //     const prog = d.spellcasting.progression;
 
-      // Accumulate levels
-      if (prog !== "pact") {
-        caster = d;
-        progression.total++;
-      }
-      switch (prog) {
-        case 'third': progression.slot += Math.floor(levels / 3); break;
-        case 'half': progression.slot += Math.floor(levels / 2); break;
-        case 'full': progression.slot += levels; break;
-        case 'artificer': progression.slot += Math.ceil(levels / 2); break;
-        case 'pact': progression.pact += levels; break;
-      }
-    }
+  //     // Accumulate levels
+  //     if (prog !== "pact") {
+  //       caster = d;
+  //       progression.total++;
+  //     }
+  //     switch (prog) {
+  //       case 'third': progression.slot += Math.floor(levels / 3); break;
+  //       case 'half': progression.slot += Math.floor(levels / 2); break;
+  //       case 'full': progression.slot += levels; break;
+  //       case 'artificer': progression.slot += Math.ceil(levels / 2); break;
+  //       case 'pact': progression.pact += levels; break;
+  //     }
+  //   }
 
-    // EXCEPTION: single-classed non-full progression rounds up, rather than down
-    const isSingleClass = (progression.total === 1) && (progression.slot > 0);
-    if (!isNPC && isSingleClass && ['half', 'third'].includes(caster.spellcasting.progression)) {
-      const denom = caster.spellcasting.progression === 'third' ? 3 : 2;
-      progression.slot = Math.ceil(caster.levels / denom);
-    }
+  //   // EXCEPTION: single-classed non-full progression rounds up, rather than down
+  //   const isSingleClass = (progression.total === 1) && (progression.slot > 0);
+  //   if (!isNPC && isSingleClass && ['half', 'third'].includes(caster.spellcasting.progression)) {
+  //     const denom = caster.spellcasting.progression === 'third' ? 3 : 2;
+  //     progression.slot = Math.ceil(caster.levels / denom);
+  //   }
 
-    // EXCEPTION: NPC with an explicit spell-caster level
-    if (isNPC && actorData.data.details.spellLevel) {
-      progression.slot = actorData.data.details.spellLevel;
-    }
+  //   // EXCEPTION: NPC with an explicit spell-caster level
+  //   if (isNPC && actorData.data.details.spellLevel) {
+  //     progression.slot = actorData.data.details.spellLevel;
+  //   }
 
-    // Look up the number of slots per level from the progression table
-    const levels = Math.clamped(progression.slot, 0, 20);
-    const slots = PERGASHA.SPELL_SLOT_TABLE[levels - 1] || [];
-    for (let [n, lvl] of Object.entries(spells)) {
-      let i = parseInt(n.slice(-1));
-      if (Number.isNaN(i)) continue;
-      if (Number.isNumeric(lvl.override)) lvl.max = Math.max(parseInt(lvl.override), 0);
-      else lvl.max = slots[i - 1] || 0;
-      lvl.value = parseInt(lvl.value);
-    }
+  //   // Look up the number of slots per level from the progression table
+  //   const levels = Math.clamped(progression.slot, 0, 20);
+  //   const slots = PERGASHA.SPELL_SLOT_TABLE[levels - 1] || [];
+  //   for (let [n, lvl] of Object.entries(spells)) {
+  //     let i = parseInt(n.slice(-1));
+  //     if (Number.isNaN(i)) continue;
+  //     if (Number.isNumeric(lvl.override)) lvl.max = Math.max(parseInt(lvl.override), 0);
+  //     else lvl.max = slots[i - 1] || 0;
+  //     lvl.value = parseInt(lvl.value);
+  //   }
 
-    // Determine the Actor's pact magic level (if any)
-    let pl = Math.clamped(progression.pact, 0, 20);
-    spells.pact = spells.pact || {};
-    if ((pl === 0) && isNPC && Number.isNumeric(spells.pact.override)) pl = actorData.data.details.spellLevel;
+  //   // Determine the Actor's pact magic level (if any)
+  //   let pl = Math.clamped(progression.pact, 0, 20);
+  //   spells.pact = spells.pact || {};
+  //   if ((pl === 0) && isNPC && Number.isNumeric(spells.pact.override)) pl = actorData.data.details.spellLevel;
 
-    // Determine the number of Warlock pact slots per level
-    if (pl > 0) {
-      spells.pact.level = Math.ceil(Math.min(10, pl) / 2);
-      if (Number.isNumeric(spells.pact.override)) spells.pact.max = Math.max(parseInt(spells.pact.override), 1);
-      else spells.pact.max = Math.max(1, Math.min(pl, 2), Math.min(pl - 8, 3), Math.min(pl - 13, 4));
-      spells.pact.value = Math.min(spells.pact.value, spells.pact.max);
-    } else {
-      spells.pact.max = parseInt(spells.pact.override) || 0
-      spells.pact.level = spells.pact.max > 0 ? 1 : 0;
-    }
-  }
+  //   // Determine the number of Warlock pact slots per level
+  //   if (pl > 0) {
+  //     spells.pact.level = Math.ceil(Math.min(10, pl) / 2);
+  //     if (Number.isNumeric(spells.pact.override)) spells.pact.max = Math.max(parseInt(spells.pact.override), 1);
+  //     else spells.pact.max = Math.max(1, Math.min(pl, 2), Math.min(pl - 8, 3), Math.min(pl - 13, 4));
+  //     spells.pact.value = Math.min(spells.pact.value, spells.pact.max);
+  //   } else {
+  //     spells.pact.max = parseInt(spells.pact.override) || 0
+  //     spells.pact.level = spells.pact.max > 0 ? 1 : 0;
+  //   }
+  // }
 
   /* -------------------------------------------- */
 
@@ -473,7 +485,7 @@ export default class Actor5e extends Actor {
    * @private
    */
   _computePsionicsDC(actorData) {
-    if (actorData.type === 'vehicle') return;
+    if (actorData.type === 'vehicle' || actorData.type === 'inventory') return;
     const ad = actorData.data;
     // Psionics DC
     const psionicsAbility = ad.abilities[ad.attributes.psionics.psionicsAbility];
@@ -496,12 +508,14 @@ export default class Actor5e extends Actor {
     // Get the total weight from items
     const physicalItems = ["weapon", "equipment", "consumable", "tool", "backpack", "loot"];
     let weight = actorData.items.reduce((weight, i) => {
-      if (!physicalItems.includes(i.type)) return weight;
-      const q = i.data.data.quantity || 0;
-      const w = i.data.data.weight || 0;
-      return weight + (q * w);
+      if (i.data.data.equipped && physicalItems.includes(i.type)) {
+        const q = i.data.data.quantity || 0;
+        const w = i.data.data.weight || 0;
+        return weight + (q * w);
+      } else {
+        return weight;
+      }
     }, 0);
-
     // Determine the encumbrance size class
     let mod = {
       tiny: 9,
@@ -538,6 +552,7 @@ export default class Actor5e extends Actor {
       24: 7,
     }[actorData.data.abilities.str.value] || 0;
 
+
     // if (this.getFlag("pergashaFoundryvtt", "powerfulBuild")) mod = Math.min(mod * 2, 8);
 
     let manualSlotMod = 0;
@@ -545,45 +560,9 @@ export default class Actor5e extends Actor {
 
     // Compute Encumbrance percentage
     weight = weight.toNearest(0.1);
-    const max = strSlotMod + mod + manualSlotMod;
+    const max = (actorData.type === "character") ? strSlotMod + mod + manualSlotMod : actorData.data.attributes.max_encumbrance;
     const pct = Math.clamped((weight * 100) / max, 0, 100);
-    return { value: weight.toNearest(0.1), max, pct, encumbered: pct > (2 / 3) };
-  }
-
-  _computeEncumbrance(actorData) {
-
-    // Get the total weight from items
-    const physicalItems = ["weapon", "equipment", "consumable", "tool", "backpack", "loot"];
-    let weight = actorData.items.reduce((weight, i) => {
-      if (!physicalItems.includes(i.type)) return weight;
-      const q = i.data.data.quantity || 0;
-      const w = i.data.data.weight || 0;
-      return weight + (q * w);
-    }, 0);
-
-    // [Optional] add Currency Weight (for non-transformed actors)
-    if (game.settings.get("pergashaFoundryvtt", "currencyWeight") && actorData.data.currency) {
-      const currency = actorData.data.currency;
-      const numCoins = Object.values(currency).reduce((val, denom) => val += Math.max(denom, 0), 0);
-      weight += numCoins / CONFIG.PERGASHA.encumbrance.currencyPerWeight;
-    }
-
-    // Determine the encumbrance size class
-    let mod = {
-      tiny: 0.5,
-      sm: 1,
-      med: 1,
-      lg: 2,
-      huge: 4,
-      grg: 8
-    }[actorData.data.traits.size] || 1;
-    if (this.getFlag("pergashaFoundryvtt", "powerfulBuild")) mod = Math.min(mod * 2, 8);
-
-    // Compute Encumbrance percentage
-    weight = weight.toNearest(0.1);
-    const max = actorData.data.abilities.str.value * CONFIG.PERGASHA.encumbrance.strMultiplier * mod;
-    const pct = Math.clamped((weight * 100) / max, 0, 100);
-    return { value: weight.toNearest(0.1), max, pct, encumbered: pct > (2 / 3) };
+    return { value: weight.toNearest(0.1), max, pct, encumbered: weight > max };
   }
 
   /* -------------------------------------------- */

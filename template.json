@@ -3,7 +3,8 @@
     "types": [
       "character",
       "npc",
-      "vehicle"
+      "vehicle",
+      "inventory"
     ],
     "templates": {
       "common": {
@@ -465,6 +466,14 @@
       "cargo": {
         "crew": [],
         "passengers": []
+      }
+    },
+    "inventory": {
+      "templates": [
+        "common"
+      ],
+      "attributes":{
+        "max_encumbrance": 0
       }
     }
   },

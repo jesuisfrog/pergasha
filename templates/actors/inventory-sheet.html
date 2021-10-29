@@ -1,0 +1,84 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Inventory Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img" />
+
+        <section class="header-details flexrow">
+            <h1 class="charname">
+                <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'PERGASHA.Name' }}" />
+            </h1>
+            <div class="attributes flexrow">
+                <label class="max-encumbrance-label">{{ localize "PERGASHA.MaxEncumbrance" }}</label>
+                <div class="attribute-value">
+                    <input name="data.attributes.max_encumbrance" type="number" value="{{data.attributes.max_encumbrance}}"
+                        placeholder="0" />
+                </div>
+            </div>
+
+        </section>
+    </header>
+
+    {{!-- Inventory Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+        <a class="item" data-tab="inventory">{{ localize "PERGASHA.Inventory" }}</a>
+        <a class="item" data-tab="journal">{{ localize "PERGASHA.Journal" }}</a>
+    </nav>
+
+    {{!-- Inventory Sheet Body --}}
+    <section class="sheet-body">
+        {{!-- Inventory Tab --}}
+        <div class="tab inventory flexcol" data-group="primary" data-tab="inventory">
+            {{> "systems/pergashaFoundryvtt/templates/actors/parts/actor-inventory.html" sections=inventory}}
+        </div>
+
+        {{!-- Journal Tab --}}
+        <div class="tab journal" data-group="primary" data-tab="journal">
+            <div class="left-notes note-entries">
+                <article>
+                    <div class="section-titles">
+                        <input type="text" name="data.details.notes1name" value="{{data.details.notes1name}}"
+                            placeholder="{{ localize 'PERGASHA.JournalPlaceholder' }}" />
+                    </div>
+                    {{editor content=data.details.notes1.value target="data.details.notes1.value" button=true
+                    owner=owner
+                    editable=editable}}
+                </article>
+                <article>
+                    <div class="section-titles">
+                        <input type="text" name="data.details.notes2name" value="{{data.details.notes2name}}"
+                            placeholder="{{ localize 'PERGASHA.JournalPlaceholder' }}" />
+                    </div>
+                    {{editor content=data.details.notes2.value target="data.details.notes2.value" button=true
+                    owner=owner
+                    editable=editable}}
+                </article>
+                <article>
+                    <div class="section-titles">
+                        <input type="text" name="data.details.notes3name" value="{{data.details.notes3name}}"
+                            placeholder="{{ localize 'PERGASHA.JournalPlaceholder' }}" />
+                    </div>
+                    {{editor content=data.details.notes3.value target="data.details.notes3.value" button=true
+                    owner=owner
+                    editable=editable}}
+                </article>
+                <article>
+                    <div class="section-titles">
+                        <input type="text" name="data.details.notes4name" value="{{data.details.notes4name}}"
+                            placeholder="{{ localize 'PERGASHA.JournalPlaceholder' }}" />
+                    </div>
+                    {{editor content=data.details.notes4.value target="data.details.notes4.value" button=true
+                    owner=owner
+                    editable=editable}}
+                </article>
+            </div>
+            <div class="right-notes note-entries">
+                <article class="journal-notes">
+                    <div class="section-titles">{{ localize 'PERGASHA.JournalEntries' }}</div>
+                    {{editor content=data.details.notes.value target="data.details.notes.value" button=true owner=owner
+                    editable=editable}}
+                </article>
+            </div>
+        </div>
+    </section>
+</form>

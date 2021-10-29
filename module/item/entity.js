@@ -1494,7 +1494,7 @@ export default class Item5e extends Item {
 
     // The below options are only needed for character classes
     if (userId !== game.user.id) return;
-    const isCharacterClass = this.parent && (this.parent.type !== "vehicle") && (this.type === "class");
+    const isCharacterClass = this.parent && (this.parent.type !== "vehicle") && (this.parent.type !== "inventory") && (this.type === "class");
     if (!isCharacterClass) return;
 
     // Assign a new primary class
@@ -1520,7 +1520,7 @@ export default class Item5e extends Item {
 
     // The below options are only needed for character classes
     if (userId !== game.user.id) return;
-    const isCharacterClass = this.parent && (this.parent.type !== "vehicle") && (this.type === "class");
+    const isCharacterClass = this.parent && (this.parent.type !== "vehicle") && (this.parent.type !== "inventory") && (this.type === "class");
     if (!isCharacterClass) return;
 
     // Prompt to add new class features

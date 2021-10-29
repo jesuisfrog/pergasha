@@ -78,6 +78,7 @@ export default class ActorSheet5e extends ActorSheet {
       isCharacter: this.actor.type === "character",
       isNPC: this.actor.type === "npc",
       isVehicle: this.actor.type === 'vehicle',
+      isInventory: this.actor.type === 'inventory',
       config: CONFIG.PERGASHA,
       rollData: this.actor.getRollData.bind(this.actor)
     };
@@ -125,11 +126,14 @@ export default class ActorSheet5e extends ActorSheet {
     // Update traits
     this._prepareTraits(actorData.data.traits);
 
-    // Prepare owned items
-    this._prepareItems(data);
+
 
     // Prepare active effects
     data.effects = prepareActiveEffectCategories(this.actor.effects);
+
+    // Prepare owned items
+    this._prepareItems(data);
+
 
     // Return data to the sheet
     return data
@@ -439,7 +443,7 @@ export default class ActorSheet5e extends ActorSheet {
       }
 
       if (item.type === "psionicPower" && filters.has("psilimit")) {
-        if ((data.psicost != 8 && data.psicost > this.actor.data.data.attributes.psionics.psiLimit) || (data.psicost == 8 && data.variableCost.baseCost > this.actor.data.data.attributes.psionics.psiLimit)) return false;
+        if ((data.psicost != "focus" && data.psicost != 8 && data.psicost > this.actor.data.data.attributes.psionics.psiLimit) || (data.psicost == 8 && data.variableCost.baseCost > this.actor.data.data.attributes.psionics.psiLimit)) return false;
       }
 
       // Equipment-specific filters

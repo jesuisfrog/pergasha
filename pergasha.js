@@ -17,6 +17,7 @@ import ActorSheetFlags from "./module/apps/actor-flags.js";
 import ActorSheet5eCharacter from "./module/actor/sheets/character.js";
 import ActorSheet5eNPC from "./module/actor/sheets/npc.js";
 import ActorSheet5eVehicle from "./module/actor/sheets/vehicle.js";
+import ActorSheet5eInventory from "./module/actor/sheets/inventory.js";
 import ItemSheet5e from "./module/item/sheet.js";
 import ShortRestDialog from "./module/apps/short-rest.js";
 import TraitSelector from "./module/apps/trait-selector.js";
@@ -44,6 +45,7 @@ Hooks.once("init", function () {
       ActorSheet5eCharacter,
       ActorSheet5eNPC,
       ActorSheet5eVehicle,
+      ActorSheet5eInventory,
       ItemSheet5e,
       ShortRestDialog,
       TraitSelector,
@@ -107,6 +109,11 @@ Hooks.once("init", function () {
     types: ['vehicle'],
     makeDefault: true,
     label: "PERGASHA.SheetClassVehicle"
+  });
+  Actors.registerSheet('pergashaFoundryvtt', ActorSheet5eInventory, {
+    types: ['inventory'],
+    makeDefault: true,
+    label: "PERGASHA.SheetClassInventory"
   });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("pergashaFoundryvtt", ItemSheet5e, {

@@ -1037,6 +1037,11 @@
   border: 1px solid #cde4ff;
   border-radius: 2px;
 }
+
+.pergashaFoundryvtt.sheet.actor .encumbrance .encumbrance-bar.encumbered{
+  background: #b51428!important;
+}
+
 .pergashaFoundryvtt.sheet.actor .encumbrance .encumbrance-label {
   height: 10px;
   padding: 0 5px;
@@ -1075,10 +1080,10 @@
   border-right: 4px solid transparent;
   border-top: 4px solid #666;
 }
-.pergashaFoundryvtt.sheet.actor .encumbrance.encumbered .arrow-up {
+.pergashaFoundryvtt.sheet.actor .encumbrance .arrow-up {
   border-bottom: 4px solid #000;
 }
-.pergashaFoundryvtt.sheet.actor .encumbrance.encumbered .arrow-down {
+.pergashaFoundryvtt.sheet.actor .encumbrance .arrow-down {
   border-top: 4px solid #000;
 }
 .pergashaFoundryvtt.sheet.actor .spellcasting-ability {
@@ -1458,12 +1463,55 @@
   /* ----------------------------------------- */
   /*  Biography                                */
   /* ----------------------------------------- */
+  
+}
+
+.pergashaFoundryvtt.sheet.actor.inventory {
+  min-width: 750px;
+  min-height: 680px;
+  /* ----------------------------------------- */
+  /*  Sheet Header                             */
+  /* ----------------------------------------- */
+  /* ----------------------------------------- */
+  /*  Sheet Body                               */
+  /* ----------------------------------------- */
+  /* ----------------------------------------- */
+  /*  Item Controls                            */
+  /* ----------------------------------------- */
+  /* ----------------------------------------- */
+  /*  Biography                                */
+  /* ----------------------------------------- */
 }
 .pergashaFoundryvtt.sheet.actor.character .sheet-header img.profile {
   flex: 0 0 160px;
   max-width: 160px;
   height: 160px;
 }
+
+.pergashaFoundryvtt.sheet.actor.inventory .sheet-header img.profile {
+  flex: 0 0 80px;
+  max-width: 80px;
+  height: 80px;
+}
+
+.pergashaFoundryvtt.sheet.actor.inventory .sheet-header .max-encumbrance-label{
+  max-width: fit-content;
+  margin-right: 10px;
+  font-weight: bold;
+  margin-left: 8px;
+  text-align: right;
+  color: #7a7971;
+}
+
+.pergashaFoundryvtt.sheet.actor.inventory .sheet-header input[type="number"] {
+  flex: 0 0 48px;
+  margin-left: 5px;
+  text-align: center;
+  border-bottom: 2px groove #eeede0;
+  max-width: fit-content;
+}
+
+
 .pergashaFoundryvtt.sheet.actor.character .sheet-header .charlevel {
   flex: 0 0 20px;
   height: 20px;
@@ -1552,24 +1600,19 @@
   text-align: right;
   padding-right: 10px;
 }
-.pergashaFoundryvtt.sheet.actor.character .inventory .item-controls,
-.pergashaFoundryvtt.sheet.actor.character .spellbook .item-controls {
+.pergashaFoundryvtt.sheet.actor .inventory .item-controls{
   flex: 0 0 68px;
 }
-.pergashaFoundryvtt.sheet.actor.character .inventory .item-controls .item-toggle,
-.pergashaFoundryvtt.sheet.actor.character .spellbook .item-controls .item-toggle {
+.pergashaFoundryvtt.sheet.actor .inventory .item-controls .item-toggle {
   color: #b5b3a4;
 }
-.pergashaFoundryvtt.sheet.actor.character .inventory .item-controls .item-toggle.active,
-.pergashaFoundryvtt.sheet.actor.character .spellbook .item-controls .item-toggle.active {
+.pergashaFoundryvtt.sheet.actor .inventory .item-controls .item-toggle.active{
   color: #4b4a44;
 }
-.pergashaFoundryvtt.sheet.actor.character .inventory .item-controls .item-toggle.fixed,
-.pergashaFoundryvtt.sheet.actor.character .spellbook .item-controls .item-toggle.fixed {
+.pergashaFoundryvtt.sheet.actor .inventory .item-controls .item-toggle.fixed {
   color: #44191A;
 }
-.pergashaFoundryvtt.sheet.actor.character .inventory .item-controls .item-toggle.fixed:hover,
-.pergashaFoundryvtt.sheet.actor.character .spellbook .item-controls .item-toggle.fixed:hover {
+.pergashaFoundryvtt.sheet.actor .inventory .item-controls .item-toggle.fixed:hover {
   text-shadow: none;
 }
 .pergashaFoundryvtt.sheet.actor.character .characteristics {
