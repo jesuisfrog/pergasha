@@ -746,7 +746,7 @@ export default class Item5e extends Item {
     // Render the chat card template
     const token = this.actor.token;
     const templateData = {
-      actor: this.actor,
+      actor: this.actor.data,
       tokenId: token?.uuid || null,
       item: this.data,
       data: this.getChatData(),
@@ -1263,12 +1263,11 @@ export default class Item5e extends Item {
 
   /**
    * Roll a Tool Check. Rely upon the d20Roll logic for the core implementation
-   * @prarm {Object} options   Roll configuration options provided to the d20Roll function
+   * @param {Object} options   Roll configuration options provided to the d20Roll function
    * @return {Promise<Roll>}   A Promise which resolves to the created Roll instance
    */
   rollToolCheck(options = {}) {
     if (this.type !== "tool") throw "Wrong item type!";
-
     // Prepare roll data
     let rollData = this.getRollData();
     const parts = [`@mod`, "@prof"];
@@ -1433,7 +1432,6 @@ export default class Item5e extends Item {
    * @private
    */
   static async _getChatCardActor(card) {
-
     // Case 1 - a synthetic actor from a Token
     if (card.dataset.tokenId) {
       const token = await fromUuid(card.dataset.tokenId);
