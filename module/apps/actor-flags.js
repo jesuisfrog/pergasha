@@ -24,6 +24,7 @@ export default class ActorSheetFlags extends DocumentSheet {
 
   /** @override */
   getData() {
+
     const data = {};
     data.actor = this.object;
     data.classes = this._getClasses();
@@ -98,7 +99,7 @@ export default class ActorSheetFlags extends DocumentSheet {
       { name: "data.bonuses.psionics.dc", label: "PERGASHA.BonusPsionicDC" }
     ];
     for (let b of bonuses) {
-      b.value = getProperty(this.object._data, b.name) || "";
+      b.value = getProperty(this.object.data, b.name) || "";
     }
     return bonuses;
   }
@@ -116,13 +117,12 @@ export default class ActorSheetFlags extends DocumentSheet {
     for (let [k, v] of Object.entries(flags)) {
       if ([undefined, null, "", false, 0].includes(v)) {
         delete flags[k];
-        if (hasProperty(actor._data.flags, `pergashaFoundryvtt.${k}`)) {
+        if (hasProperty(actor.data.flags, `pergashaFoundryvtt.${k}`)) {
           unset = true;
           flags[`-=${k}`] = null;
         }
       }
     }
-
     // Clear any bonuses which are whitespace only
     for (let b of Object.values(updateData.data.bonuses)) {
       for (let [k, v] of Object.entries(b)) {
