@@ -1245,8 +1245,9 @@ export default class Item5e extends Item {
     if (!data.recharge.value) return;
 
     // Roll the check
-    const roll = new Roll("1d6").roll();
+    const roll = await new Roll("1d6").roll({ async: true });
     const success = roll.total >= parseInt(data.recharge.value);
+
 
     // Display a Chat Message
     const promises = [roll.toMessage({
